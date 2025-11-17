@@ -718,6 +718,7 @@
       .demo-cont__services {
         box-sizing: border-box;
         overflow-y: auto;
+        overflow-x: hidden;
         z-index: 1;
         position: absolute;
         left: 0;
@@ -887,6 +888,7 @@
       .demo-cont__booking {
         box-sizing: border-box;
         overflow-y: auto;
+        overflow-x: hidden;
         z-index: 1;
         position: absolute;
         left: 0;
@@ -998,6 +1000,8 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        max-width: 100%;
+        box-sizing: border-box;
       }
 
       .demo-cont__booking-actions h3 {
@@ -1027,6 +1031,9 @@
         cursor: pointer;
         font-size: 1rem;
         text-align: center;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
       }
 
       .demo-cont__booking-btn-whatsapp {
@@ -1077,6 +1084,7 @@
       .demo-cont__process {
         box-sizing: border-box;
         overflow-y: auto;
+        overflow-x: hidden;
         z-index: 1;
         position: absolute;
         left: 0;
@@ -1306,6 +1314,7 @@
       .demo-cont__contact {
         box-sizing: border-box;
         overflow-y: auto;
+        overflow-x: hidden;
         z-index: 1;
         position: absolute;
         left: 0;
@@ -1395,6 +1404,9 @@
         border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 20px;
         padding: 28px;
+        box-sizing: border-box;
+        max-width: 100%;
+        overflow: hidden;
       }
 
       .demo-cont__contact-card h3 {
@@ -1413,6 +1425,7 @@
       .demo-cont__contact-input,
       .demo-cont__contact-textarea {
         width: 100%;
+        max-width: 100%;
         padding: 14px 20px;
         background: rgba(255, 255, 255, 0.95);
         border: 1px solid rgba(203, 213, 225, 0.9);
@@ -1422,6 +1435,7 @@
         margin-bottom: 16px;
         transition: all 0.25s ease;
         font-family: inherit;
+        box-sizing: border-box;
       }
 
       .demo-cont__contact-textarea {
@@ -1438,6 +1452,7 @@
 
       .demo-cont__contact-btn-submit {
         width: 100%;
+        max-width: 100%;
         padding: 14px 24px;
         background: rgba(255, 140, 66, 0.75);
         backdrop-filter: blur(20px) saturate(180%);
@@ -1451,6 +1466,7 @@
         transition: all 0.3s ease;
         box-shadow: 0 8px 20px rgba(255, 140, 66, 0.4),
                     0 4px 10px rgba(255, 140, 66, 0.3);
+        box-sizing: border-box;
       }
 
       .demo-cont__contact-btn-submit:hover {
@@ -1480,6 +1496,7 @@
         align-items: center;
         justify-content: center;
         width: 100%;
+        max-width: 100%;
         padding: 14px 24px;
         background: #25d366;
         color: #ffffff;
@@ -1489,6 +1506,7 @@
         transition: all 0.3s ease;
         box-shadow: 0 10px 28px rgba(37, 211, 102, 0.3);
         margin-bottom: 16px;
+        box-sizing: border-box;
       }
 
       .demo-cont__contact-btn-whatsapp:hover {
