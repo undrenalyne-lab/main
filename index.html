@@ -884,6 +884,196 @@
         font-size: 0.95rem;
       }
 
+      .demo-cont__booking {
+        box-sizing: border-box;
+        overflow-y: auto;
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding: 60px 40px 40px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(30px) saturate(180%);
+        -webkit-backdrop-filter: blur(30px) saturate(180%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0 0 25px 25px;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), 
+                    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+                    0 -8px 32px rgba(0, 0, 0, 0.2);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: #eef2ff;
+        transition: transform 0.7s;
+        transform: translate3d(0, -100%, 0) rotateX(45deg);
+        will-change: transform;
+      }
+
+      .booking-active .demo-cont__booking {
+        transition: transform 0.7s 0.2333333333s;
+        transform: translate3d(0, 0, 0);
+      }
+
+      .booking-active .example-slider {
+        transform: translate3d(0, 500px, 0) rotateX(-10deg) scale(0.9);
+        position: relative;
+        z-index: 1;
+      }
+
+      .demo-cont__booking-close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .demo-cont__booking-close:before,
+      .demo-cont__booking-close:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 2px;
+        margin-top: -1px;
+        background: #fff;
+      }
+
+      .demo-cont__booking-close:before {
+        transform: rotate(45deg);
+      }
+
+      .demo-cont__booking-close:after {
+        transform: rotate(-45deg);
+      }
+
+      .demo-cont__booking-heading {
+        font-size: clamp(2.2rem, 4vw, 2.8rem);
+        background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 32px;
+        font-weight: 600;
+      }
+
+      .demo-cont__booking-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 32px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .demo-cont__booking-calendar {
+        position: relative;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .demo-cont__booking-calendar::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: rgba(248, 250, 255, 1);
+        z-index: 10;
+        pointer-events: none;
+      }
+
+      .demo-cont__booking-calendar iframe {
+        width: 100%;
+        height: 560px;
+        border: 0;
+      }
+
+      .demo-cont__booking-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .demo-cont__booking-actions h3 {
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .demo-cont__booking-actions p {
+        color: rgba(238, 242, 255, 0.75);
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+
+      .demo-cont__booking-btn-whatsapp,
+      .demo-cont__booking-btn-brief {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 24px;
+        border-radius: 999px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      .demo-cont__booking-btn-whatsapp {
+        background: #25d366;
+        color: #ffffff;
+        box-shadow: 0 10px 28px rgba(37, 211, 102, 0.3);
+      }
+
+      .demo-cont__booking-btn-whatsapp:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 36px rgba(37, 211, 102, 0.4);
+        background: #20ba5a;
+      }
+
+      .demo-cont__booking-btn-brief {
+        background: rgba(255, 140, 66, 0.75);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 140, 66, 0.8);
+        color: #ffffff;
+        box-shadow: 0 8px 20px rgba(255, 140, 66, 0.4),
+                    0 4px 10px rgba(255, 140, 66, 0.3);
+      }
+
+      .demo-cont__booking-btn-brief:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 140, 66, 0.85);
+        border-color: rgba(255, 140, 66, 0.9);
+        box-shadow: 0 12px 28px rgba(255, 140, 66, 0.5),
+                    0 6px 14px rgba(255, 140, 66, 0.4);
+      }
+
+      .demo-cont__booking-support-note {
+        font-size: 0.85rem;
+        color: rgba(238, 242, 255, 0.6);
+        margin-top: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .demo-cont__booking-grid {
+          grid-template-columns: 1fr;
+        }
+        .demo-cont__booking-calendar iframe {
+          height: 400px;
+        }
+      }
+
       .fnc-slide__mask-inner {
         background-size: cover;
         background-position: center center;
@@ -1337,6 +1527,29 @@
           </div>
         </div>
       </div>
+      
+      <div class="demo-cont__booking">
+        <div class="demo-cont__booking-close"></div>
+        <h1 class="demo-cont__booking-heading">Réserver un rendez-vous</h1>
+        
+        <div class="demo-cont__booking-grid">
+          <div class="demo-cont__booking-calendar">
+            <iframe src="https://koalendar.com/e/meet-with-steven-vailhen?embed=true&hide_branding=true" title="Planifier un rendez-vous Undrenalyn eLab" loading="lazy"></iframe>
+          </div>
+          
+          <div class="demo-cont__booking-actions">
+            <div>
+              <h3>Calendrier 30 minutes</h3>
+              <p>Choisissez un créneau Google Meet pour parler de votre projet. Une confirmation automatique vous est envoyée.</p>
+            </div>
+            <a href="https://wa.me/33630904905?text=Bonjour%20Steven%2C%20je%20veux%20discuter%20de%20mon%20projet." target="_blank" rel="noopener" class="demo-cont__booking-btn-whatsapp">
+              Devis express sur WhatsApp
+            </a>
+            <a href="#" class="demo-cont__booking-btn-brief">Envoyer un brief détaillé</a>
+            <p class="demo-cont__booking-support-note">Réponse sous 2 heures ouvrées.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -1544,22 +1757,34 @@
 
       // Gestion de l'ouverture/fermeture de la section Services
       var $servicesButtons = document.querySelectorAll('.fnc-nav__control');
-      if ($servicesButtons.length > 0) {
-        $servicesButtons[0].addEventListener("click", function(e) {
-          // Vérifier si c'est le bouton Services (premier bouton)
-          if (this.textContent.trim().includes('Services')) {
+      $servicesButtons.forEach(function($btn, index) {
+        $btn.addEventListener("click", function(e) {
+          var btnText = this.textContent.trim();
+          
+          if (btnText.includes('Services')) {
             e.preventDefault();
             e.stopPropagation();
-            // Fermer credits si ouvert
-            $demoCont.classList.remove("credits-active");
+            // Fermer autres sections
+            $demoCont.classList.remove("credits-active", "booking-active");
             // Ouvrir/fermer services
             $demoCont.classList.toggle("services-active");
+          } else if (btnText.includes('Réserver')) {
+            e.preventDefault();
+            e.stopPropagation();
+            // Fermer autres sections
+            $demoCont.classList.remove("credits-active", "services-active");
+            // Ouvrir/fermer booking
+            $demoCont.classList.toggle("booking-active");
           }
         });
-      }
+      });
 
       document.querySelector(".demo-cont__services-close").addEventListener("click", function () {
         $demoCont.classList.remove("services-active");
+      });
+
+      document.querySelector(".demo-cont__booking-close").addEventListener("click", function () {
+        $demoCont.classList.remove("booking-active");
       });
 
       // Mise à jour de l'année dans le copyright
