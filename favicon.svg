@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <!-- Cadre blanc de 1px -->
+  <rect x="0.5" y="0.5" width="63" height="63" fill="none" stroke="white" stroke-width="1"/>
+  <!-- Image du portrait -->
+  <image x="1" y="1" width="62" height="62" xlink:href="assets/images/portrait.png" preserveAspectRatio="xMidYMid slice"/>
+</svg>
+
