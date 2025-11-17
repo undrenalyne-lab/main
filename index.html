@@ -3473,6 +3473,17 @@
         $demoCont.classList.remove("contact-active");
       });
 
+      // Gestion du bouton "brief" dans la page Réserver pour ouvrir Contact
+      var bookingBriefBtn = document.querySelector(".demo-cont__booking-btn-brief");
+      if (bookingBriefBtn) {
+        bookingBriefBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          $demoCont.classList.remove("booking-active", "credits-active", "services-active", "process-active");
+          $demoCont.classList.add("contact-active");
+        });
+      }
+
       // Gestion de l'ouverture des pages de services détaillées
       var serviceCards = document.querySelectorAll('.demo-cont__services-card');
       serviceCards.forEach(function(card) {
