@@ -2553,7 +2553,7 @@
         
         <div class="demo-cont__service-detail-cta">
           <a href="#" class="demo-cont__service-detail-btn-primary" onclick="openBooking(); return false;">Planifier 30 min</a>
-          <a href="paiement.html?service=conception-visuels&amount=100" class="demo-cont__service-detail-btn-secondary">Régler 100€</a>
+          <a href="#" class="demo-cont__service-detail-btn-secondary" onclick="openPayment('conception-visuels', '100'); return false;">Régler 100€</a>
         </div>
         
         <div class="demo-cont__service-detail-section">
@@ -2585,7 +2585,7 @@
         
         <div class="demo-cont__service-detail-cta">
           <a href="#" class="demo-cont__service-detail-btn-primary" onclick="openBooking(); return false;">Réserver une session</a>
-          <a href="paiement.html?service=conseils-ia&amount=150" class="demo-cont__service-detail-btn-secondary">Régler 150€</a>
+          <a href="#" class="demo-cont__service-detail-btn-secondary" onclick="openPayment('conseils-ia', '150'); return false;">Régler 150€</a>
         </div>
         
         <div class="demo-cont__service-detail-section">
@@ -2617,7 +2617,7 @@
         
         <div class="demo-cont__service-detail-cta">
           <a href="#" class="demo-cont__service-detail-btn-primary" onclick="openBooking(); return false;">Réserver un créneau</a>
-          <a href="paiement.html?service=edition-videos&amount=200" class="demo-cont__service-detail-btn-secondary">Régler 200€</a>
+          <a href="#" class="demo-cont__service-detail-btn-secondary" onclick="openPayment('edition-videos', '200'); return false;">Régler 200€</a>
         </div>
         
         <div class="demo-cont__service-detail-section">
@@ -3059,6 +3059,66 @@
         $demoCont.classList.add("booking-active");
       }
       window.openBooking = openBooking;
+
+      // Fonction pour ouvrir la page de paiement depuis les pages de services détaillées
+      function openPayment(serviceId, amount) {
+        // Mapping des services
+        var serviceNames = {
+          'conception-visuels': 'Conception visuels numériques',
+          'conseils-ia': 'Conseils en solutions IA',
+          'edition-videos': 'Édition vidéos courtes'
+        };
+        
+        // Mapping des liens Stripe
+        var stripeLinks = {
+          'conception-visuels': 'https://buy.stripe.com/aFacN70vgfud4XCctygjC00',
+          'conseils-ia': 'https://buy.stripe.com/fZueVf91Mdm5du80KQgjC01',
+          'edition-videos': 'https://buy.stripe.com/dRmcN791Meq93Ty2SYgjC02'
+        };
+        
+        // Mapping des liens PayPal
+        var paypalPages = {
+          'conception-visuels': 'paypal-100.html',
+          'conseils-ia': 'paypal-150.html',
+          'edition-videos': 'paypal-200.html'
+        };
+        
+        // Mettre à jour l'affichage AVANT d'ouvrir la page
+        var amountDisplay = document.getElementById('payment-amount-display');
+        var serviceNameDisplay = document.getElementById('payment-service-name');
+        var stripeButton = document.getElementById('payment-stripe-button');
+        var paypalButton = document.getElementById('payment-paypal-button');
+        
+        if (amountDisplay) amountDisplay.textContent = amount + '€';
+        if (serviceNameDisplay) serviceNameDisplay.textContent = serviceNames[serviceId] || 'Service';
+        
+        // Mettre à jour le lien Stripe
+        var stripeLink = stripeLinks[serviceId];
+        if (stripeLink && stripeButton) {
+          stripeButton.href = stripeLink;
+          stripeButton.style.pointerEvents = 'auto';
+          stripeButton.style.opacity = '1';
+        }
+        
+        // Mettre à jour le lien PayPal
+        var paypalPage = paypalPages[serviceId];
+        if (paypalPage && paypalButton) {
+          paypalButton.href = paypalPage;
+          paypalButton.style.pointerEvents = 'auto';
+          paypalButton.style.opacity = '1';
+        }
+        
+        // Fermer toutes les autres sections
+        $demoCont.classList.remove("credits-active", "services-active", "booking-active", "process-active", "contact-active", "service-detail-active");
+        // Ouvrir la page de paiement
+        var paymentPage = document.getElementById('payment-page');
+        if (paymentPage) {
+          paymentPage.style.display = 'block';
+          paymentPage.offsetHeight; // Forcer le reflow
+          $demoCont.classList.add("payment-active");
+        }
+      }
+      window.openPayment = openPayment;
 
       // Gestion du formulaire de contact
       var contactForm = document.getElementById("contact-form");
