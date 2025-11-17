@@ -2039,6 +2039,239 @@
         }
       }
 
+      /* ============================================
+         RESPONSIVE MOBILE - Améliorations UX mobile
+         ============================================ */
+      
+      @media (max-width: 768px) {
+        /* Textes défilants - ajustement pour mobile */
+        .fnc-slide__heading-line {
+          font-size: 32px !important;
+          padding-right: 10px !important;
+          word-spacing: 4px !important;
+        }
+        
+        .fnc-slide:nth-child(1) .fnc-slide__heading-line {
+          font-size: 28px !important;
+          margin-left: 0 !important;
+        }
+        
+        .fnc-slide:nth-child(2) .fnc-slide__heading-line,
+        .fnc-slide:nth-child(3) .fnc-slide__heading-line,
+        .fnc-slide:nth-child(4) .fnc-slide__heading-line {
+          font-size: 24px !important;
+        }
+        
+        .fnc-slide__heading-line:nth-child(2) {
+          padding-left: 10px !important;
+        }
+        
+        /* Bouton "Qui suis-je ?" - repositionnement mobile */
+        .fnc-slide__action-btn {
+          margin-left: 0 !important;
+          margin-top: 20px;
+          padding: 8px 20px;
+          font-size: 16px;
+        }
+        
+        /* Position du contenu des slides */
+        .fnc-slide__content {
+          left: 5% !important;
+          top: 30% !important;
+          width: 90% !important;
+        }
+        
+        /* Logo site - ajustement mobile */
+        .site-logo {
+          font-size: 1.2rem !important;
+          top: 10px !important;
+          left: 10px !important;
+        }
+        
+        /* Fenêtre "Qui suis-je ?" - pleine largeur sur mobile */
+        .demo-cont__credits {
+          width: 100% !important;
+          border-radius: 0 !important;
+          padding: 20px !important;
+        }
+        
+        .credits-active .example-slider {
+          transform: translate3d(-100%, 0, 0) rotateY(10deg) scale(0.9) !important;
+        }
+        
+        /* Portrait dans "Qui suis-je ?" - ajustement mobile */
+        .demo-cont__credits-portrait {
+          width: 120px !important;
+          height: 120px !important;
+        }
+        
+        .demo-cont__credits-portrait:hover {
+          width: 140px !important;
+          height: 140px !important;
+        }
+        
+        .demo-cont__credits-heading {
+          flex-direction: column !important;
+          align-items: center !important;
+          gap: 16px !important;
+          text-align: center !important;
+        }
+        
+        .demo-cont__credits-heading-text {
+          width: 100%;
+        }
+        
+        .demo-cont__credits-heading-text .line-1 {
+          font-size: 0.9rem !important;
+        }
+        
+        .demo-cont__credits-heading-text .line-2,
+        .demo-cont__credits-heading-text .line-3 {
+          font-size: 1.8rem !important;
+        }
+        
+        /* Boutons de navigation - amélioration mobile */
+        .fnc-nav {
+          bottom: 20px !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          width: calc(100% - 20px) !important;
+          max-width: 100% !important;
+        }
+        
+        .fnc-nav__controls {
+          gap: 8px !important;
+          padding: 12px !important;
+        }
+        
+        .fnc-nav__control {
+          font-size: 12px !important;
+          padding: 10px 12px !important;
+          flex: 1;
+          min-width: 0;
+        }
+        
+        /* Fenêtres modales - padding réduit mobile */
+        .demo-cont__services,
+        .demo-cont__booking,
+        .demo-cont__process,
+        .demo-cont__contact,
+        .demo-cont__service-detail,
+        .demo-cont__payment {
+          padding: 20px !important;
+        }
+        
+        /* Cartes de services - amélioration mobile */
+        .demo-cont__services-cards {
+          grid-template-columns: 1fr !important;
+          gap: 16px !important;
+        }
+        
+        .demo-cont__services-card {
+          padding: 20px !important;
+        }
+        
+        /* Grilles - colonne unique sur mobile */
+        .demo-cont__booking-grid,
+        .demo-cont__contact-grid {
+          grid-template-columns: 1fr !important;
+          gap: 20px !important;
+        }
+        
+        /* Calendrier Koalendar - hauteur réduite mobile */
+        .demo-cont__booking-calendar iframe {
+          height: 500px !important;
+        }
+        
+        /* Boutons - taille optimale pour le touch */
+        .demo-cont__booking-btn-whatsapp,
+        .demo-cont__booking-btn-brief,
+        .demo-cont__contact-btn-submit,
+        .demo-cont__contact-btn-whatsapp,
+        .demo-cont__service-detail-btn-primary,
+        .demo-cont__service-detail-btn-secondary,
+        .demo-cont__payment-btn-stripe,
+        .demo-cont__payment-btn-paypal {
+          padding: 14px 20px !important;
+          font-size: 15px !important;
+          min-height: 48px;
+        }
+        
+        /* Inputs et textareas - taille optimale pour le touch */
+        .demo-cont__contact-input,
+        .demo-cont__contact-textarea {
+          font-size: 16px !important;
+          padding: 14px 16px !important;
+          min-height: 48px;
+        }
+        
+        /* Footer "Qui suis-je ?" - ajustement mobile */
+        .demo-cont__credits-footer-links {
+          flex-direction: column !important;
+          gap: 12px !important;
+        }
+        
+        .demo-cont__credits-footer-link {
+          display: block;
+          text-align: center;
+          padding: 8px !important;
+        }
+        
+        /* Titres - taille réduite mobile */
+        .demo-cont__services-heading,
+        .demo-cont__booking-heading,
+        .demo-cont__process-heading,
+        .demo-cont__contact-heading,
+        .demo-cont__service-detail-heading,
+        .demo-cont__payment-heading {
+          font-size: 1.8rem !important;
+        }
+        
+        /* Montant paiement - taille réduite mobile */
+        .demo-cont__payment-amount {
+          font-size: 2.5rem !important;
+        }
+        
+        /* Vidéos - optimisation mobile */
+        .fnc-slide__video,
+        .fnc-slide__mask-video {
+          object-fit: cover;
+        }
+        
+        /* Éviter le zoom sur focus iOS */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+          font-size: 16px !important;
+        }
+      }
+      
+      /* Très petits écrans (iPhone SE, etc.) */
+      @media (max-width: 375px) {
+        .fnc-slide__heading-line {
+          font-size: 24px !important;
+        }
+        
+        .fnc-slide:nth-child(1) .fnc-slide__heading-line {
+          font-size: 20px !important;
+        }
+        
+        .fnc-slide:nth-child(2) .fnc-slide__heading-line,
+        .fnc-slide:nth-child(3) .fnc-slide__heading-line,
+        .fnc-slide:nth-child(4) .fnc-slide__heading-line {
+          font-size: 18px !important;
+        }
+        
+        .fnc-nav__control {
+          font-size: 11px !important;
+          padding: 8px 6px !important;
+        }
+        
+        .demo-cont__credits {
+          padding: 15px !important;
+        }
+      }
+
       .fnc-slide__mask-inner {
         background-size: cover;
         background-position: center center;
