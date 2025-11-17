@@ -4080,16 +4080,12 @@
         if (aboutSubtitle) aboutSubtitle.textContent = t.aboutSubtitle;
 
         // Description - trouver le premier paragraphe qui n'est pas dans un strong
-        var aboutDesc = document.querySelector('.demo-cont__credits-content p');
-        if (aboutDesc) {
-          // Trouver le paragraphe qui vient après le strong
-          var allPs = document.querySelectorAll('.demo-cont__credits-content p');
-          if (allPs.length >= 2) {
-            // Le deuxième paragraphe est généralement la description
-            var descP = allPs[1];
-            if (descP && !descP.querySelector('strong')) {
-              descP.textContent = t.aboutDesc;
-            }
+        var allPs = document.querySelectorAll('.demo-cont__credits-content p');
+        if (allPs.length >= 2) {
+          // Le deuxième paragraphe est généralement la description (après le strong)
+          var descP = allPs[1];
+          if (descP && !descP.querySelector('strong')) {
+            descP.textContent = t.aboutDesc;
           }
         }
 
