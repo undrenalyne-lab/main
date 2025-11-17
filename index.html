@@ -3000,7 +3000,8 @@
             // Mettre à jour le lien PayPal
             var paypalPage = paypalPages[serviceId];
             if (paypalPage && paypalButton) {
-              paypalButton.href = paypalPage;
+              // Utiliser le chemin relatif depuis la racine du site
+              paypalButton.href = './' + paypalPage;
               paypalButton.style.pointerEvents = 'auto';
               paypalButton.style.opacity = '1';
             } else if (paypalButton) {
