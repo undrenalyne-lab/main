@@ -2976,32 +2976,48 @@
               'edition-videos': 'paypal-200.html'
             };
             
-            // Mettre à jour l'affichage
-            document.getElementById('payment-amount-display').textContent = amount + '€';
-            document.getElementById('payment-service-name').textContent = serviceNames[serviceId] || 'Service';
+            // Mettre à jour l'affichage AVANT d'ouvrir la page
+            var amountDisplay = document.getElementById('payment-amount-display');
+            var serviceNameDisplay = document.getElementById('payment-service-name');
+            var stripeButton = document.getElementById('payment-stripe-button');
+            var paypalButton = document.getElementById('payment-paypal-button');
+            
+            if (amountDisplay) amountDisplay.textContent = amount + '€';
+            if (serviceNameDisplay) serviceNameDisplay.textContent = serviceNames[serviceId] || 'Service';
             
             // Mettre à jour le lien Stripe
             var stripeLink = stripeLinks[serviceId];
-            var stripeButton = document.getElementById('payment-stripe-button');
             if (stripeLink && stripeButton) {
               stripeButton.href = stripeLink;
+              stripeButton.style.pointerEvents = 'auto';
+              stripeButton.style.opacity = '1';
+            } else if (stripeButton) {
+              stripeButton.style.pointerEvents = 'none';
+              stripeButton.style.opacity = '0.5';
+              stripeButton.textContent = 'Lien Stripe à venir';
             }
             
             // Mettre à jour le lien PayPal
             var paypalPage = paypalPages[serviceId];
-            var paypalButton = document.getElementById('payment-paypal-button');
             if (paypalPage && paypalButton) {
               paypalButton.href = paypalPage;
+              paypalButton.style.pointerEvents = 'auto';
+              paypalButton.style.opacity = '1';
+            } else if (paypalButton) {
+              paypalButton.style.pointerEvents = 'none';
+              paypalButton.style.opacity = '0.5';
+              paypalButton.textContent = 'Lien PayPal à venir';
             }
             
             // Fermer toutes les autres sections
             $demoCont.classList.remove("credits-active", "services-active", "booking-active", "process-active", "contact-active", "service-detail-active");
             // Ouvrir la page de paiement
-            $demoCont.classList.add("payment-active");
             var paymentPage = document.getElementById('payment-page');
             if (paymentPage) {
               paymentPage.style.display = 'block';
-              paymentPage.offsetHeight; // Forcer le reflow
+              // Forcer le reflow pour que l'animation fonctionne
+              paymentPage.offsetHeight;
+              $demoCont.classList.add("payment-active");
             }
           }
         });
