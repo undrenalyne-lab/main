@@ -1,357 +1,655 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Undrenalyn eLab — Digital Services Studio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #030711;
-      --card: rgba(255, 255, 255, 0.03);
-      --text: #f3f5f7;
-      --muted: rgba(243, 245, 247, 0.7);
-      --accent: #4f46e5;
-      --accent-2: #0ea5e9;
-      --border: rgba(255, 255, 255, 0.08);
-      font-size: clamp(15px, 1.1vw, 18px);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.35), transparent 45%),
-                  radial-gradient(circle at 80% 0%, rgba(14, 165, 233, 0.35), transparent 40%),
-                  var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    header {
-      padding: 2.5rem clamp(1.5rem, 6vw, 6rem) 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      background: linear-gradient(180deg, rgba(3, 7, 17, 0.95) 0%, rgba(3, 7, 17, 0.35) 80%, transparent);
-      backdrop-filter: blur(12px);
-      z-index: 10;
-    }
-
-    .logo {
-      font-size: 1.2rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-    }
-
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      margin-left: 1.5rem;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-
-    nav a:hover,
-    nav a:focus {
-      color: var(--text);
-    }
-
-    main {
-      padding: 3rem clamp(1.5rem, 6vw, 6rem) 6rem;
-      display: grid;
-      gap: 4rem;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2.5rem;
-      align-items: center;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 0.9rem;
-      border-radius: 999px;
-      background: rgba(79, 70, 229, 0.2);
-      color: var(--accent-2);
-      font-size: 0.85rem;
-      margin-bottom: 1rem;
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      line-height: 1.1;
-      margin: 0;
-      color: var(--text);
-    }
-
-    .hero p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      margin: 1.5rem 0 2rem;
-    }
-
-    .cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .cta {
-      padding: 0.95rem 1.4rem;
-      border-radius: 999px;
-      font-weight: 600;
-      border: 1px solid transparent;
-      text-decoration: none;
-      text-align: center;
-      transition: transform 0.2s ease, border 0.2s ease, background 0.2s ease;
-    }
-
-    .cta.primary {
-      background: linear-gradient(120deg, var(--accent), var(--accent-2));
-      color: #fff;
-      box-shadow: 0 20px 45px rgba(79, 70, 229, 0.35);
-    }
-
-    .cta.secondary {
-      border-color: var(--border);
-      color: var(--text);
-    }
-
-    .cta:hover {
-      transform: translateY(-2px);
-    }
-
-    .metrics {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .metric {
-      flex: 1 1 180px;
-      padding: 1rem;
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      background: var(--card);
-    }
-
-    .metric strong {
-      display: block;
-      font-size: 1.8rem;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      padding: 1.8rem;
-      border-radius: 1.2rem;
-      border: 1px solid var(--border);
-      background: var(--card);
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      min-height: 220px;
-    }
-
-    .card h3 {
-      margin: 0;
-      font-size: 1.2rem;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .tag-row {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-top: auto;
-    }
-
-    .tag {
-      padding: 0.3rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-
-    footer {
-      padding: 2rem clamp(1.5rem, 6vw, 6rem) 3rem;
-      border-top: 1px solid var(--border);
-      background: rgba(0, 0, 0, 0.45);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .socials a {
-      color: var(--muted);
-      text-decoration: none;
-      margin-right: 1rem;
-      transition: color 0.2s ease;
-    }
-
-    .socials a:hover {
-      color: var(--text);
-    }
-
-    @media (max-width: 600px) {
-      nav {
-        display: none;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marvel Slider Tribute</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --bg: #030711;
+        --text: #f5f7ff;
+        --muted: rgba(245, 247, 255, 0.7);
+        --border: rgba(255, 255, 255, 0.12);
+        --accent: #5ce1e6;
       }
 
-      header {
-        padding-bottom: 0.5rem;
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
       }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="logo">UNDRENALYN eLAB</div>
-    <nav>
-      <a href="#expertises">Expertises</a>
-      <a href="#process">Process</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div>
-        <span class="badge">Studio numérique premium</span>
-        <h1>Nous propulsons les expériences digitales audacieuses.</h1>
-        <p>
-          Undrenalyn eLab accompagne startups et marques établies pour imaginer, prototyper et lancer des produits numériques
-          fluides, scalables et élégants. Nous fusionnons design expérimental, stratégie data-driven et ingénierie fiable.
-        </p>
-        <div class="cta-group">
-          <a class="cta primary" href="#contact">Planifier un sprint</a>
-          <a class="cta secondary" href="#process">Voir notre approche</a>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: radial-gradient(circle at 10% 20%, rgba(78, 205, 196, 0.4), transparent 45%),
+          radial-gradient(circle at 90% 10%, rgba(105, 99, 255, 0.35), transparent 40%),
+          var(--bg);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(1.5rem, 4vw, 3rem);
+      }
+
+      .demo-cont {
+        width: min(1200px, 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .fnc-slider {
+        position: relative;
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        overflow: hidden;
+        background: rgba(3, 7, 17, 0.8);
+        backdrop-filter: blur(12px);
+      }
+
+      .fnc-slider__slides {
+        position: relative;
+        height: min(70vh, 640px);
+      }
+
+      .fnc-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        transform: translateY(30px) scale(0.98);
+      }
+
+      .fnc-slide.m--active-slide {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+      }
+
+      .fnc-slide__inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        border-radius: 28px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: clamp(2rem, 6vw, 5rem);
+      }
+
+      .fnc-slide__mask,
+      .fnc-slide__mask-inner {
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+      }
+
+      .fnc-slide__mask {
+        z-index: 0;
+        overflow: hidden;
+        mix-blend-mode: screen;
+      }
+
+      .fnc-slide__mask-inner {
+        opacity: 0.3;
+        background: radial-gradient(circle at center, rgba(255, 255, 255, 0.65), transparent 60%);
+      }
+
+      .fnc-slide__content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .fnc-slide__heading {
+        font-size: clamp(3rem, 8vw, 6rem);
+        text-transform: uppercase;
+        line-height: 1;
+        margin: 0 0 1rem;
+        letter-spacing: 0.1em;
+      }
+
+      .fnc-slide__heading-line span {
+        display: block;
+      }
+
+      .fnc-slide__action-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 0.85rem 1.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: transparent;
+        color: var(--text);
+        font-weight: 600;
+        cursor: pointer;
+        overflow: hidden;
+        transition: background 0.3s ease, color 0.3s ease, border 0.3s ease;
+      }
+
+      .fnc-slide__action-btn span[data-text] {
+        display: inline-flex;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 0.2em;
+      }
+
+      .fnc-slide__action-btn::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: rgba(255, 255, 255, 0.08);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .fnc-slide__action-btn:hover::after,
+      .fnc-slide__action-btn:focus-visible::after {
+        opacity: 1;
+      }
+
+      .fnc-slide__action-btn:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .fnc-slide.m--blend-green .fnc-slide__inner {
+        background: linear-gradient(135deg, rgba(81, 207, 102, 0.35), rgba(7, 39, 15, 0.85)), url("https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1500&q=80") center/cover;
+      }
+
+      .fnc-slide.m--blend-dark .fnc-slide__inner {
+        background: linear-gradient(135deg, rgba(7, 13, 34, 0.75), rgba(8, 25, 58, 0.9)), url("https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1500&q=80") center/cover;
+      }
+
+      .fnc-slide.m--blend-red .fnc-slide__inner {
+        background: linear-gradient(135deg, rgba(176, 24, 24, 0.75), rgba(36, 5, 5, 0.95)), url("https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?auto=format&fit=crop&w=1500&q=80") center/cover;
+      }
+
+      .fnc-slide.m--blend-blue .fnc-slide__inner {
+        background: linear-gradient(135deg, rgba(12, 34, 98, 0.8), rgba(1, 5, 17, 0.95)), url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1500&q=80") center/cover;
+      }
+
+      .fnc-slider.m--global-blending-active .fnc-slide__inner {
+        mix-blend-mode: screen;
+      }
+
+      .fnc-nav {
+        position: relative;
+        padding: 1.25rem clamp(1rem, 3vw, 1.75rem) 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .fnc-nav__bgs {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        opacity: 0.25;
+      }
+
+      .fnc-nav__bg {
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        transition: opacity 0.3s ease;
+      }
+
+      .fnc-nav__bg:last-child {
+        border-right: none;
+      }
+
+      .fnc-nav__bg.m--active-nav-bg {
+        opacity: 0.8;
+      }
+
+      .fnc-nav__bg.m--navbg-green {
+        background: linear-gradient(120deg, rgba(46, 213, 115, 0.5), transparent);
+      }
+
+      .fnc-nav__bg.m--navbg-dark {
+        background: linear-gradient(120deg, rgba(93, 99, 115, 0.6), transparent);
+      }
+
+      .fnc-nav__bg.m--navbg-red {
+        background: linear-gradient(120deg, rgba(244, 67, 54, 0.6), transparent);
+      }
+
+      .fnc-nav__bg.m--navbg-blue {
+        background: linear-gradient(120deg, rgba(56, 189, 248, 0.6), transparent);
+      }
+
+      .fnc-nav__controls {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 0.75rem;
+        z-index: 1;
+      }
+
+      .fnc-nav__control {
+        position: relative;
+        padding: 0.85rem 1rem;
+        border-radius: 16px;
+        border: 1px solid transparent;
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+        cursor: pointer;
+        overflow: hidden;
+        transition: color 0.3s ease, border 0.3s ease, background 0.3s ease;
+      }
+
+      .fnc-nav__control-progress {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 0%;
+        background: var(--accent);
+        transition: width 0.6s ease;
+      }
+
+      .fnc-nav__control:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .fnc-nav__control.m--active-control {
+        color: var(--text);
+        border-color: rgba(255, 255, 255, 0.35);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .fnc-nav__control.m--active-control .fnc-nav__control-progress {
+        width: 100%;
+      }
+
+      .demo-cont__credits {
+        position: relative;
+        padding: 1.75rem;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: rgba(3, 7, 17, 0.8);
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.25rem;
+        align-items: center;
+      }
+
+      .demo-cont__credits h2,
+      .demo-cont__credits h3,
+      .demo-cont__credits h4 {
+        margin: 0;
+      }
+
+      .demo-cont__credits-heading {
+        text-transform: uppercase;
+        font-size: 0.95rem;
+        letter-spacing: 0.3em;
+        color: var(--muted);
+      }
+
+      .demo-cont__credits-img {
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        object-fit: cover;
+        justify-self: center;
+      }
+
+      .demo-cont__credits-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .demo-cont__credits-close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        cursor: pointer;
+      }
+
+      .demo-cont__credits-close::before,
+      .demo-cont__credits-close::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 12px;
+        height: 2px;
+        border-radius: 999px;
+        background: #fff;
+      }
+
+      .demo-cont__credits-close::before {
+        transform: rotate(45deg);
+      }
+
+      .demo-cont__credits-close::after {
+        transform: rotate(-45deg);
+      }
+
+      .demo-cont__credits.m--hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .demo-cont__credits:not(.m--hidden) {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .colorful-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .colorful-switch__label {
+        position: relative;
+        width: 60px;
+        height: 30px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 4px;
+      }
+
+      .colorful-switch__checkbox {
+        position: absolute;
+        opacity: 0;
+      }
+
+      .colorful-switch__dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #fff;
+        transition: transform 0.25s ease;
+      }
+
+      .colorful-switch__checkbox:checked + .colorful-switch__label .colorful-switch__dot {
+        transform: translateX(26px);
+      }
+
+      .colorful-switch__on,
+      .colorful-switch__off {
+        position: absolute;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+      }
+
+      .colorful-switch__on {
+        left: 8px;
+      }
+
+      .colorful-switch__off {
+        right: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .fnc-slider__slides {
+          height: 480px;
+        }
+
+        .fnc-slide__heading {
+          font-size: clamp(2.5rem, 11vw, 4rem);
+        }
+
+        .demo-cont__credits {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 
+    Please note, that you can apply .m--global-blending-active to .fnc-slider 
+    to enable blend-mode for all background-images or apply .m--blend-bg-active
+    to some specific slides (.fnc-slide). It's disabled by default in this demo,
+    because it requires specific images, where more than 50% of bg is transparent or monotone
+    -->
+    <div class="demo-cont">
+      <!-- slider start -->
+      <div class="fnc-slider example-slider">
+        <div class="fnc-slider__slides">
+          <!-- slide start -->
+          <div class="fnc-slide m--blend-green m--active-slide">
+            <div class="fnc-slide__inner">
+              <div class="fnc-slide__mask">
+                <div class="fnc-slide__mask-inner"></div>
+              </div>
+              <div class="fnc-slide__content">
+                <h2 class="fnc-slide__heading">
+                  <div class="fnc-slide__heading-line">
+                    <span>Black</span>
+                  </div>
+                  <div class="fnc-slide__heading-line">
+                    <span>Widow</span>
+                  </div>
+                </h2>
+                <button type="button" class="fnc-slide__action-btn">
+                  Credits
+                  <span data-text="Credits">Credits</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- slide end -->
+          <!-- slide start -->
+          <div class="fnc-slide m--blend-dark">
+            <div class="fnc-slide__inner">
+              <div class="fnc-slide__mask">
+                <div class="fnc-slide__mask-inner"></div>
+              </div>
+              <div class="fnc-slide__content">
+                <h2 class="fnc-slide__heading">
+                  <div class="fnc-slide__heading-line">
+                    <span>Captain</span>
+                  </div>
+                  <div class="fnc-slide__heading-line">
+                    <span>America</span>
+                  </div>
+                </h2>
+                <button type="button" class="fnc-slide__action-btn">
+                  Credits
+                  <span data-text="Credits">Credits</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- slide end -->
+          <!-- slide start -->
+          <div class="fnc-slide m--blend-red">
+            <div class="fnc-slide__inner">
+              <div class="fnc-slide__mask">
+                <div class="fnc-slide__mask-inner"></div>
+              </div>
+              <div class="fnc-slide__content">
+                <h2 class="fnc-slide__heading">
+                  <div class="fnc-slide__heading-line">
+                    <span>Iron</span>
+                  </div>
+                  <div class="fnc-slide__heading-line">
+                    <span>Man</span>
+                  </div>
+                </h2>
+                <button type="button" class="fnc-slide__action-btn">
+                  Credits
+                  <span data-text="Credits">Credits</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- slide end -->
+          <!-- slide start -->
+          <div class="fnc-slide m--blend-blue">
+            <div class="fnc-slide__inner">
+              <div class="fnc-slide__mask">
+                <div class="fnc-slide__mask-inner"></div>
+              </div>
+              <div class="fnc-slide__content">
+                <h2 class="fnc-slide__heading">
+                  <div class="fnc-slide__heading-line">
+                    <span>Thor</span>
+                  </div>
+                  <div class="fnc-slide__heading-line">
+                    <span>Just Thor</span>
+                  </div>
+                </h2>
+                <button type="button" class="fnc-slide__action-btn">
+                  Credits
+                  <span data-text="Credits">Credits</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- slide end -->
+        </div>
+        <nav class="fnc-nav">
+          <div class="fnc-nav__bgs">
+            <div class="fnc-nav__bg m--navbg-green m--active-nav-bg"></div>
+            <div class="fnc-nav__bg m--navbg-dark"></div>
+            <div class="fnc-nav__bg m--navbg-red"></div>
+            <div class="fnc-nav__bg m--navbg-blue"></div>
+          </div>
+          <div class="fnc-nav__controls">
+            <button class="fnc-nav__control m--active-control">
+              Black Widow
+              <span class="fnc-nav__control-progress"></span>
+            </button>
+            <button class="fnc-nav__control">
+              Captain America
+              <span class="fnc-nav__control-progress"></span>
+            </button>
+            <button class="fnc-nav__control">
+              Iron Man
+              <span class="fnc-nav__control-progress"></span>
+            </button>
+            <button class="fnc-nav__control">
+              Thor
+              <span class="fnc-nav__control-progress"></span>
+            </button>
+          </div>
+        </nav>
+      </div>
+      <!-- slider end -->
+      <div class="demo-cont__credits m--hidden" aria-hidden="true" role="dialog" aria-label="Credits overlay">
+        <div class="demo-cont__credits-close" role="button" tabindex="0" aria-label="Fermer les crédits"></div>
+        <h2 class="demo-cont__credits-heading">Made by</h2>
+        <img src="//s3-us-west-2.amazonaws.com/s.cdpn.io/142996/profile/profile-512_5.jpg" alt="Portrait de Nikolay Talanov" class="demo-cont__credits-img" />
+        <h3 class="demo-cont__credits-name">Nikolay Talanov</h3>
+        <a href="https://codepen.io/suez/" target="_blank" class="demo-cont__credits-link" rel="noreferrer">My codepen</a>
+        <a href="https://twitter.com/NikolayTalanov" target="_blank" class="demo-cont__credits-link" rel="noreferrer">My twitter</a>
+        <h2 class="demo-cont__credits-heading">Based on</h2>
+        <a href="https://dribbble.com/shots/2375246-Fashion-Butique-slider-animation" target="_blank" class="demo-cont__credits-link" rel="noreferrer">Concept by Kreativa Studio</a>
+        <h4 class="demo-cont__credits-blend">Global Blend Mode</h4>
+        <div class="colorful-switch">
+          <input type="checkbox" class="colorful-switch__checkbox js-activate-global-blending" id="colorful-switch-cb" />
+          <label class="colorful-switch__label" for="colorful-switch-cb">
+            <span class="colorful-switch__bg"></span>
+            <span class="colorful-switch__dot"></span>
+            <span class="colorful-switch__on">
+              <span class="colorful-switch__on__inner"></span>
+            </span>
+            <span class="colorful-switch__off"></span>
+          </label>
         </div>
       </div>
-      <div>
-        <div class="metrics">
-          <div class="metric">
-            <strong>+120</strong>
-            projets livrés avec un taux de satisfaction de 98%.
-          </div>
-          <div class="metric">
-            <strong>4,9/5</strong>
-            score moyen sur les revues clients depuis 2019.
-          </div>
-          <div class="metric">
-            <strong>72h</strong>
-            pour prototyper un MVP fonctionnel prêt à être testé.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="expertises">
-      <h2>Expertises intégrées</h2>
-      <div class="card-grid">
-        <article class="card">
-          <h3>Design systems</h3>
-          <p>UI/UX adaptative, guidelines complètes, composants web performants.</p>
-          <div class="tag-row">
-            <span class="tag">Figma</span>
-            <span class="tag">Design tokens</span>
-            <span class="tag">Accessibilité</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Produits web & mobile</h3>
-          <p>Applications full-stack, intégrations API, automatisation des workflows.</p>
-          <div class="tag-row">
-            <span class="tag">React</span>
-            <span class="tag">Next.js</span>
-            <span class="tag">Node</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Brand content interactif</h3>
-          <p>Sites narratifs, campagnes immersives et expériences live.</p>
-          <div class="tag-row">
-            <span class="tag">WebGL</span>
-            <span class="tag">3D</span>
-            <span class="tag">Storytelling</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Data & optimisation</h3>
-          <p>Dashboards, scoring, analytics avancée pour piloter la croissance.</p>
-          <div class="tag-row">
-            <span class="tag">AI</span>
-            <span class="tag">Growth</span>
-            <span class="tag">Automation</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="process">
-      <h2>Process sans friction</h2>
-      <div class="card-grid">
-        <article class="card">
-          <h3>1. Stratégie</h3>
-          <p>Audit express, cadrage des KPI, roadmap claire avant le sprint.</p>
-        </article>
-        <article class="card">
-          <h3>2. Design & Prototype</h3>
-          <p>Explorations visuelles, tests utilisateurs rapides et handoff fluide.</p>
-        </article>
-        <article class="card">
-          <h3>3. Build & Scale</h3>
-          <p>Code maintenable, CI/CD, monitoring continu et transfert d'équipe.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Travaillons ensemble</h2>
-      <div class="card" style="max-width: 640px; margin-top: 1.5rem;">
-        <p>
-          Expliquez-nous vos enjeux en 3 bullet points et nous vous répondons sous 24h avec une proposition de sprint sur-mesure.
-        </p>
-        <p>Email : <a href="mailto:contact@undrenalyn.studio" style="color: var(--accent-2); text-decoration: none;">contact@undrenalyn.studio</a></p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© <span id="year"></span> Undrenalyn eLab — Paris / Montréal</p>
-    <div class="socials">
-      <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
-      <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
-      <a href="https://www.behance.net" target="_blank" rel="noreferrer">Behance</a>
     </div>
-  </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
+    <script>
+      const slider = document.querySelector('.fnc-slider');
+      const slides = Array.from(document.querySelectorAll('.fnc-slide'));
+      const navControls = Array.from(document.querySelectorAll('.fnc-nav__control'));
+      const navBgs = Array.from(document.querySelectorAll('.fnc-nav__bg'));
+      const blendToggle = document.querySelector('.js-activate-global-blending');
+      const creditsPanel = document.querySelector('.demo-cont__credits');
+      const creditsClose = document.querySelector('.demo-cont__credits-close');
+      const creditsButtons = document.querySelectorAll('.fnc-slide__action-btn');
+
+      let activeIndex = slides.findIndex((slide) => slide.classList.contains('m--active-slide'));
+
+      function setActiveSlide(index) {
+        if (index === activeIndex || index < 0 || index >= slides.length) return;
+
+        slides[activeIndex]?.classList.remove('m--active-slide');
+        navControls[activeIndex]?.classList.remove('m--active-control');
+        navBgs[activeIndex]?.classList.remove('m--active-nav-bg');
+
+        slides[index].classList.add('m--active-slide');
+        navControls[index].classList.add('m--active-control');
+        navBgs[index].classList.add('m--active-nav-bg');
+
+        activeIndex = index;
+      }
+
+      navControls.forEach((control, index) => {
+        control.addEventListener('click', () => setActiveSlide(index));
+        control.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            setActiveSlide(index);
+          }
+        });
+      });
+
+      blendToggle?.addEventListener('change', (event) => {
+        slider.classList.toggle('m--global-blending-active', event.target.checked);
+      });
+
+      function openCredits() {
+        creditsPanel.classList.remove('m--hidden');
+        creditsPanel.setAttribute('aria-hidden', 'false');
+      }
+
+      function closeCredits() {
+        creditsPanel.classList.add('m--hidden');
+        creditsPanel.setAttribute('aria-hidden', 'true');
+      }
+
+      creditsButtons.forEach((btn) => btn.addEventListener('click', openCredits));
+      creditsClose?.addEventListener('click', closeCredits);
+      creditsClose?.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          closeCredits();
+        }
+      });
+    </script>
+  </body>
 </html>
