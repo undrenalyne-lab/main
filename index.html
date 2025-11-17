@@ -4045,11 +4045,17 @@
         // Boutons "Qui suis-je ?"
         var quiSuisJeBtns = document.querySelectorAll('.fnc-slide__action-btn');
         quiSuisJeBtns.forEach(function(btn) {
-          btn.textContent = t.quiSuisJe;
+          // Ne pas toucher au textContent du bouton, seulement au span
           var span = btn.querySelector('span[data-text]');
           if (span) {
             span.setAttribute('data-text', t.quiSuisJe);
             span.textContent = t.quiSuisJe;
+          } else {
+            // Si le span n'existe pas, le créer
+            var newSpan = document.createElement('span');
+            newSpan.setAttribute('data-text', t.quiSuisJe);
+            newSpan.textContent = t.quiSuisJe;
+            btn.appendChild(newSpan);
           }
         });
 
@@ -4266,9 +4272,14 @@
         var contactInfoTitle = document.querySelectorAll('.demo-cont__contact-card h3');
         if (contactInfoTitle.length >= 2) contactInfoTitle[1].textContent = t.contactInfoTitle;
 
-        var contactInfoDesc = document.querySelectorAll('.demo-cont__contact-card p');
-        if (contactInfoDesc.length >= 1 && contactInfoDesc[0].textContent.includes('Passez')) {
-          contactInfoDesc[0].textContent = t.contactInfoDesc;
+        // Description de la deuxième carte Contact - trouver le premier paragraphe de la deuxième carte
+        var contactCards = document.querySelectorAll('.demo-cont__contact-card');
+        if (contactCards.length >= 2) {
+          var secondCard = contactCards[1];
+          var secondCardP = secondCard.querySelector('p');
+          if (secondCardP) {
+            secondCardP.textContent = t.contactInfoDesc;
+          }
         }
 
         var contactWhatsApp = document.querySelector('.demo-cont__contact-btn-whatsapp');
