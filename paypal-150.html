@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Paiement PayPal sécurisé — Conseils en solutions IA 150€">
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/images/logo.png">
+    <title>Paiement PayPal — Undrenalyn eLab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://www.paypal.com/sdk/js?client-id=BAAmzF9Fp5sxLK1WilCLALK7bzdRvp0Tqd6M68K3wByXXcUC9wmpitFdZgj45FwtrzmFP2nnaTrEAgzwrU&components=hosted-buttons&disable-funding=venmo&currency=EUR"></script>
+    <style>
+        /* Vanta.js Background Setup */
+        html, html::before, html::after, body::before, body::after {
+            background-image: none !important;
+            background: transparent !important;
+        }
+        
+        body {
+            background: transparent !important;
+        }
+        
+        /* Ensure Vanta canvas is behind content */
+        body > canvas {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: -2 !important;
+            pointer-events: none !important;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        
+        /* Content above canvas */
+        header, main, footer, section, .section {
+            position: relative;
+            z-index: 1;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #faf8f3 0%, #f5f1e8 25%, #faf6f0 50%, #f8f4ed 75%, #faf8f3 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #eef2ff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                #0f172a 0%,
+                #1e293b 25%,
+                #334155 50%,
+                #1e293b 75%,
+                #0f172a 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(8,12,24,0.6) 0%, transparent 60%),
+                        radial-gradient(circle at 0% 0%, rgba(5,8,18,0.75) 0%, transparent 68%),
+                        radial-gradient(circle at 100% 100%, rgba(8,12,24,0.75) 0%, transparent 68%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes float { 0%,100%{transform:translate(0,0) rotate(0deg);}33%{transform:translate(28px,-24px) rotate(120deg);}66%{transform:translate(-20px,18px) rotate(240deg);} }
+        .main-container { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+        .glass-window { background: rgba(255,255,255,0.25); backdrop-filter: blur(55px) saturate(200%); -webkit-backdrop-filter: blur(55px) saturate(200%); border: 2px solid rgba(255,255,255,0.7); border-radius: 32px; box-shadow: 0 25px 80px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.5) inset; padding: 36px; margin: 40px 0; position: relative; }
+        .glass-window::before { content:''; position:absolute; inset:-50%; background:linear-gradient(45deg,transparent 30%,rgba(255,255,255,0.12) 50%,transparent 70%); animation:shine 8s linear infinite; pointer-events:none; }
+        @keyframes shine { 0%,92%{opacity:0; transform:translateX(-100%) translateY(-100%) rotate(45deg);} 93%,97%{opacity:1;} 98%,100%{opacity:0; transform:translateX(100%) translateY(100%) rotate(45deg);} }
+        .glass-window > * { position: relative; z-index: 1; }
+        h1 { font-size: clamp(2rem,4vw,2.5rem); background: linear-gradient(135deg,#f8fafc 0%,#c7d2fe 45%,#e9d5ff 85%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; margin-bottom: 16px; text-align: center; }
+        .amount-display {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: rgba(177, 195, 204, 0.95);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .service-name {
+            color: rgba(177, 195, 204, 0.9);
+            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 32px;
+        }
+        .payment-container {
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 40px 20px;
+            width: 100%;
+        }
+        #paypal-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #paypal-container iframe,
+        #paypal-container > div {
+            width: 100% !important;
+            max-width: 300px;
+        }
+        .back-button {
+            position: sticky;
+            top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 14px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            color: #1f2937;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.18);
+            margin-bottom: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 18px 32px rgba(15, 23, 42, 0.22);
+        }
+        footer { margin-top:32px; font-size:0.85rem; color: rgba(177, 195, 204, 0.9); text-align:center; }
+        @media(max-width:768px){ .glass-window{padding:26px;} }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="glass-window fade-in">
+            <a href="paiement.html?service=conseils-ia&amount=150" class="back-button">← Retour au choix de paiement</a>
+
+            <section class="hero-section">
+                <h1>Paiement PayPal</h1>
+                <div class="amount-display">150€</div>
+                <div class="service-name">Conseils en solutions IA</div>
+                
+                <div class="payment-container" id="paypal-container"></div>
+            </section>
+
+            <footer>&copy; <span id="year"></span> Undrenalyn eLab.</footer>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Initialize PayPal button
+        function initPayPalButton() {
+            if (typeof paypal !== 'undefined' && paypal.HostedButtons) {
+                paypal.HostedButtons({
+                    hostedButtonId: "2LQABY4XA6QZU",
+                }).render("#paypal-container");
+            } else {
+                setTimeout(initPayPalButton, 100);
+            }
+        }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPayPalButton);
+        } else {
+            initPayPalButton();
+        }
+    </script>
+    
+    <!-- Vanta.js Clouds Animation - Optimized -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
+</body>
+</html>
+
