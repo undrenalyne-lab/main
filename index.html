@@ -401,7 +401,6 @@
         opacity: 1;
         background: rgba(255, 255, 255, 0.15);
         border-color: rgba(255, 255, 255, 0.3);
-        transform: scale(1.1);
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3),
                     0 0 0 1px rgba(255, 255, 255, 0.1) inset;
       }
@@ -410,11 +409,13 @@
         opacity: 1;
         background: rgba(167, 139, 250, 0.2);
         border-color: rgba(167, 139, 250, 0.4);
+        animation: none;
       }
 
       .music-control.playing:hover {
         background: rgba(167, 139, 250, 0.3);
         border-color: rgba(167, 139, 250, 0.5);
+        transform: scale(1.1);
       }
 
       .music-control.muted {
