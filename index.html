@@ -4073,14 +4073,26 @@
         var aboutSubtitle = document.querySelector('.demo-cont__credits-content p strong');
         if (aboutSubtitle) aboutSubtitle.textContent = t.aboutSubtitle;
 
-        var aboutDesc = document.querySelector('.demo-cont__credits-content p:not(strong)');
-        if (aboutDesc && aboutDesc.textContent.includes('Je conçois')) {
-          aboutDesc.textContent = t.aboutDesc;
+        // Description - trouver le premier paragraphe qui n'est pas dans un strong
+        var aboutDesc = document.querySelector('.demo-cont__credits-content p');
+        if (aboutDesc) {
+          // Trouver le paragraphe qui vient après le strong
+          var allPs = document.querySelectorAll('.demo-cont__credits-content p');
+          if (allPs.length >= 2) {
+            // Le deuxième paragraphe est généralement la description
+            var descP = allPs[1];
+            if (descP && !descP.querySelector('strong')) {
+              descP.textContent = t.aboutDesc;
+            }
+          }
         }
 
-        var aboutSpecialtiesTitle = document.querySelector('.demo-cont__credits-content h3');
-        if (aboutSpecialtiesTitle && aboutSpecialtiesTitle.textContent.includes('Domaines')) {
-          aboutSpecialtiesTitle.textContent = t.aboutSpecialties;
+        // Titres h3 - utiliser querySelectorAll et sélectionner par index
+        var aboutH3s = document.querySelectorAll('.demo-cont__credits-content h3');
+        if (aboutH3s.length >= 3) {
+          aboutH3s[0].textContent = t.aboutSpecialties;
+          aboutH3s[1].textContent = t.aboutTools;
+          aboutH3s[2].textContent = t.aboutApproach;
         }
 
         var specialties = document.querySelectorAll('.demo-cont__credits-services li');
@@ -4090,19 +4102,13 @@
           specialties[2].textContent = t.specialty3;
         }
 
-        var aboutToolsTitle = document.querySelectorAll('.demo-cont__credits-content h3');
-        if (aboutToolsTitle.length >= 2) {
-          aboutToolsTitle[1].textContent = t.aboutTools;
-        }
-
-        var aboutApproachTitle = document.querySelectorAll('.demo-cont__credits-content h3');
-        if (aboutApproachTitle.length >= 3) {
-          aboutApproachTitle[2].textContent = t.aboutApproach;
-        }
-
+        // Texte "Mon approche" - trouver le dernier paragraphe
         var aboutApproachText = document.querySelectorAll('.demo-cont__credits-content p');
-        if (aboutApproachText.length >= 3 && aboutApproachText[aboutApproachText.length - 1].textContent.includes('Au-delà')) {
-          aboutApproachText[aboutApproachText.length - 1].textContent = t.aboutApproachText;
+        if (aboutApproachText.length >= 3) {
+          var lastP = aboutApproachText[aboutApproachText.length - 1];
+          if (lastP && !lastP.querySelector('strong')) {
+            lastP.textContent = t.aboutApproachText;
+          }
         }
 
         // Footer "Qui suis-je ?"
