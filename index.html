@@ -662,6 +662,47 @@
         transform: translateY(-2px);
       }
 
+      .demo-cont__credits-footer {
+        margin-top: 48px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+      }
+
+      .demo-cont__credits-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .demo-cont__credits-footer-link {
+        color: rgba(238, 242, 255, 0.7);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        padding: 4px 8px;
+        border-radius: 6px;
+      }
+
+      .demo-cont__credits-footer-link:hover {
+        color: rgba(255, 255, 255, 0.95);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .demo-cont__credits-footer-info {
+        color: rgba(238, 242, 255, 0.6);
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+        line-height: 1.6;
+      }
+
+      .demo-cont__credits-footer-copyright {
+        color: rgba(238, 242, 255, 0.5);
+        font-size: 0.8rem;
+      }
+
       .example-slider {
         z-index: 2;
         transform: translate3d(0, 0, 0);
@@ -1066,6 +1107,22 @@
           <h3>Mon approche</h3>
           <p>Au-delà de la production, j'accompagne chaque client pour clarifier le message, automatiser les tâches répétitives et bâtir des assets réutilisables (guides, templates, prompts). Communication directe via WhatsApp et bilans synthétiques après chaque mission.</p>
         </div>
+        
+        <footer class="demo-cont__credits-footer">
+          <div class="demo-cont__credits-footer-links">
+            <a href="#" class="demo-cont__credits-footer-link">Mentions légales</a>
+            <a href="#" class="demo-cont__credits-footer-link">CGV</a>
+            <a href="#" class="demo-cont__credits-footer-link">Politique de confidentialité</a>
+            <a href="#" class="demo-cont__credits-footer-link">Portfolio</a>
+            <a href="#" class="demo-cont__credits-footer-link">Études de cas</a>
+          </div>
+          <div class="demo-cont__credits-footer-info">
+            Undrenalyn eLab · Entreprise individuelle · SIRET : 793 551 706 00021
+          </div>
+          <div class="demo-cont__credits-footer-copyright">
+            © <span id="current-year"></span> Undrenalyn eLab. Tous droits réservés.
+          </div>
+        </footer>
       </div>
     </div>
 
@@ -1271,6 +1328,12 @@
       document.querySelector(".demo-cont__credits-close").addEventListener("click", function () {
         $demoCont.classList.remove("credits-active");
       });
+
+      // Mise à jour de l'année dans le copyright
+      var currentYearElement = document.getElementById("current-year");
+      if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+      }
     </script>
   </body>
 </html>
