@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <style>
       .fnc-slider {
         overflow: hidden;
@@ -344,13 +345,6 @@
         font-size: 0;
         display: flex;
         gap: 10px;
-        padding: 10px;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        border: 1px solid rgba(255, 255, 255, 0.18);
       }
 
       .fnc-nav__control {
@@ -422,6 +416,20 @@
         margin: 0;
       }
 
+      .site-logo {
+        position: fixed;
+        top: 1cm;
+        left: 1cm;
+        z-index: 10;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
+        letter-spacing: 0.5px;
+        pointer-events: none;
+      }
+
       .demo-cont {
         overflow: hidden;
         position: relative;
@@ -437,13 +445,16 @@
         position: absolute;
         right: 0;
         top: 0;
-        width: 400px;
+        width: 500px;
         height: 100%;
-        padding: 20px 10px 30px;
-        background: #303030;
-        font-family: "Open Sans", Helvetica, Arial, sans-serif;
-        color: #fff;
-        text-align: center;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(55px) saturate(200%);
+        -webkit-backdrop-filter: blur(55px) saturate(200%);
+        border-left: 2px solid rgba(255, 255, 255, 0.7);
+        box-shadow: -25px 0 80px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: #eef2ff;
         transition: transform 0.7s;
         transform: translate3d(100%, 0, 0) rotateY(-45deg);
         will-change: transform;
@@ -490,33 +501,70 @@
       }
 
       .demo-cont__credits-heading {
-        text-transform: uppercase;
-        font-size: 40px;
+        font-size: clamp(2.2rem, 4vw, 2.8rem);
+        background: linear-gradient(135deg, #f8fafc 0%, #c7d2fe 45%, #e9d5ff 85%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-top: 24px;
+        margin-bottom: 24px;
+        font-weight: 600;
+      }
+
+      .demo-cont__credits-content {
+        text-align: left;
+      }
+
+      .demo-cont__credits-content p {
+        color: rgba(177, 195, 204, 0.9);
+        line-height: 1.7;
         margin-bottom: 20px;
       }
 
-      .demo-cont__credits-img {
-        display: block;
-        width: 60%;
-        margin: 0 auto 30px;
-        border-radius: 10px;
+      .demo-cont__credits-content p strong {
+        color: rgba(177, 195, 204, 0.95);
+        font-weight: 600;
       }
 
-      .demo-cont__credits-name {
-        margin-bottom: 20px;
-        font-size: 30px;
+      .demo-cont__credits-content h3 {
+        font-size: 1.3rem;
+        color: rgba(177, 195, 204, 0.95);
+        margin: 32px 0 16px;
+        font-weight: 600;
       }
 
-      .demo-cont__credits-link {
-        display: block;
-        margin-bottom: 10px;
-        font-size: 24px;
-        color: #fff;
+      .demo-cont__credits-services {
+        list-style: none;
+        display: grid;
+        gap: 12px;
+        color: rgba(177, 195, 204, 0.9);
+        line-height: 1.7;
+        margin-bottom: 24px;
       }
 
-      .demo-cont__credits-blend {
-        font-size: 30px;
-        margin-bottom: 10px;
+      .demo-cont__credits-services li::before {
+        content: '• ';
+        color: rgba(255, 140, 66, 0.8);
+        font-weight: 700;
+        margin-right: 8px;
+      }
+
+      .demo-cont__credits-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+
+      .demo-cont__credits-tools span {
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        color: rgba(177, 195, 204, 0.95);
+        font-size: 0.9rem;
+        font-weight: 500;
       }
 
       .example-slider {
@@ -526,7 +574,7 @@
       }
 
       .credits-active .example-slider {
-        transform: translate3d(-400px, 0, 0) rotateY(10deg) scale(0.9);
+        transform: translate3d(-500px, 0, 0) rotateY(10deg) scale(0.9);
       }
 
       .example-slider .fnc-slide-1 .fnc-slide__inner,
@@ -765,6 +813,7 @@
     to some specific slides (.fnc-slide). It's disabled by default in this demo,
     because it requires specific images, where more than 50% of bg is transparent or monotone
     -->
+    <div class="site-logo">Undrenalyn eLab</div>
     <div class="demo-cont">
       <!-- slider start -->
       <div class="fnc-slider example-slider">
@@ -785,8 +834,8 @@
                   </div>
                 </h2>
                 <button type="button" class="fnc-slide__action-btn">
-                  Credits
-                  <span data-text="Credits">Credits</span>
+                  Qui suis-je ?
+                  <span data-text="Qui suis-je ?">Qui suis-je ?</span>
                 </button>
               </div>
             </div>
@@ -808,8 +857,8 @@
                   </div>
                 </h2>
                 <button type="button" class="fnc-slide__action-btn">
-                  Credits
-                  <span data-text="Credits">Credits</span>
+                  Qui suis-je ?
+                  <span data-text="Qui suis-je ?">Qui suis-je ?</span>
                 </button>
               </div>
             </div>
@@ -831,8 +880,8 @@
                   </div>
                 </h2>
                 <button type="button" class="fnc-slide__action-btn">
-                  Credits
-                  <span data-text="Credits">Credits</span>
+                  Qui suis-je ?
+                  <span data-text="Qui suis-je ?">Qui suis-je ?</span>
                 </button>
               </div>
             </div>
@@ -854,8 +903,8 @@
                   </div>
                 </h2>
                 <button type="button" class="fnc-slide__action-btn">
-                  Credits
-                  <span data-text="Credits">Credits</span>
+                  Qui suis-je ?
+                  <span data-text="Qui suis-je ?">Qui suis-je ?</span>
                 </button>
               </div>
             </div>
@@ -892,24 +941,31 @@
       <!-- slider end -->
       <div class="demo-cont__credits">
         <div class="demo-cont__credits-close"></div>
-        <h2 class="demo-cont__credits-heading">Made by</h2>
-        <img src="//s3-us-west-2.amazonaws.com/s.cdpn.io/142996/profile/profile-512_5.jpg" alt="" class="demo-cont__credits-img" />
-        <h3 class="demo-cont__credits-name">Nikolay Talanov</h3>
-        <a href="https://codepen.io/suez/" target="_blank" class="demo-cont__credits-link">My codepen</a>
-        <a href="https://twitter.com/NikolayTalanov" target="_blank" class="demo-cont__credits-link">My twitter</a>
-        <h2 class="demo-cont__credits-heading">Based on</h2>
-        <a href="https://dribbble.com/shots/2375246-Fashion-Butique-slider-animation" target="_blank" class="demo-cont__credits-link">Concept by Kreativa Studio</a>
-        <h4 class="demo-cont__credits-blend">Global Blend Mode</h4>
-        <div class="colorful-switch">
-          <input type="checkbox" class="colorful-switch__checkbox js-activate-global-blending" id="colorful-switch-cb" />
-          <label class="colorful-switch__label" for="colorful-switch-cb">
-            <span class="colorful-switch__bg"></span>
-            <span class="colorful-switch__dot"></span>
-            <span class="colorful-switch__on">
-              <span class="colorful-switch__on__inner"></span>
-            </span>
-            <span class="colorful-switch__off"></span>
-          </label>
+        <div class="demo-cont__credits-content">
+          <h1 class="demo-cont__credits-heading">À propos de Steven VAILHEN</h1>
+          
+          <p><strong>Designer &amp; consultant IA indépendant</strong></p>
+          <p>Je conçois vos identités visuelles, vos formats vidéo et vos automatisations marketing avec une promesse claire : livrer rapidement, rester explicite et rendre chaque outil simple à utiliser.</p>
+          
+          <h3>Domaines de spécialité</h3>
+          <ul class="demo-cont__credits-services">
+            <li>Identités visuelles et chartes graphiques accélérées.</li>
+            <li>Optimisation des workflows marketing via IA générative.</li>
+            <li>Montages vidéo courts destinés aux réseaux sociaux.</li>
+          </ul>
+          
+          <h3>Outils maîtrisés</h3>
+          <div class="demo-cont__credits-tools">
+            <span>Midjourney</span>
+            <span>DALL·E</span>
+            <span>Runway</span>
+            <span>CapCut</span>
+            <span>Canva Pro</span>
+            <span>Notion</span>
+          </div>
+          
+          <h3>Mon approche</h3>
+          <p>Au-delà de la production, j'accompagne chaque client pour clarifier le message, automatiser les tâches répétitives et bâtir des assets réutilisables (guides, templates, prompts). Communication directe via WhatsApp et bilans synthétiques après chaque mission.</p>
         </div>
       </div>
     </div>
@@ -1085,10 +1141,6 @@
 
       document.querySelector(".demo-cont__credits-close").addEventListener("click", function () {
         $demoCont.classList.remove("credits-active");
-      });
-
-      document.querySelector(".js-activate-global-blending").addEventListener("click", function () {
-        document.querySelector(".example-slider").classList.toggle("m--global-blending-active");
       });
     </script>
   </body>
