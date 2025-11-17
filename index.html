@@ -859,6 +859,14 @@
         font-weight: 600;
         font-size: 1rem;
         border: 1px solid rgba(34, 197, 94, 0.3);
+        cursor: pointer;
+        z-index: 5;
+        transition: all 0.3s ease;
+      }
+
+      .demo-cont__services-card-price:hover {
+        background: rgba(34, 197, 94, 0.3);
+        transform: scale(1.05);
       }
 
       .demo-cont__services-card-badge {
@@ -1741,6 +1749,188 @@
         margin-bottom: 16px;
       }
 
+      .demo-cont__payment {
+        box-sizing: border-box;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding: 60px 40px 40px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(30px) saturate(180%);
+        -webkit-backdrop-filter: blur(30px) saturate(180%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0 0 25px 25px;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), 
+                    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+                    0 -8px 32px rgba(0, 0, 0, 0.2);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: #eef2ff;
+        transition: transform 0.7s;
+        transform: translate3d(0, -100%, 0) rotateX(45deg);
+        will-change: transform;
+        max-width: 1000px;
+        margin: 0 auto;
+        display: none;
+      }
+
+      .payment-active .demo-cont__payment {
+        transition: transform 0.7s 0.2333333333s;
+        transform: translate3d(0, 0, 0);
+        display: block !important;
+      }
+
+      .payment-active .example-slider {
+        transform: translate3d(0, 500px, 0) rotateX(-10deg) scale(0.9);
+        position: relative;
+        z-index: 1;
+      }
+
+      .demo-cont__payment-close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .demo-cont__payment-close:before,
+      .demo-cont__payment-close:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 2px;
+        margin-top: -1px;
+        background: #fff;
+      }
+
+      .demo-cont__payment-close:before {
+        transform: rotate(45deg);
+      }
+
+      .demo-cont__payment-close:after {
+        transform: rotate(-45deg);
+      }
+
+      .demo-cont__payment-heading {
+        font-size: clamp(2.2rem, 4vw, 2.8rem);
+        background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .demo-cont__payment-lead {
+        color: rgba(238, 242, 255, 0.75);
+        line-height: 1.7;
+        margin-bottom: 32px;
+        font-size: 1rem;
+      }
+
+      .demo-cont__payment-amount {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.95);
+        text-align: center;
+        margin-bottom: 8px;
+      }
+
+      .demo-cont__payment-service-name {
+        color: rgba(238, 242, 255, 0.75);
+        text-align: center;
+        font-size: 1rem;
+        margin-bottom: 32px;
+      }
+
+      .demo-cont__payment-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 32px;
+      }
+
+      .demo-cont__payment-option {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .demo-cont__payment-option h2 {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.95);
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .demo-cont__payment-option p {
+        color: rgba(238, 242, 255, 0.75);
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+      }
+
+      .demo-cont__payment-container {
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 12px;
+        padding: 20px;
+      }
+
+      .demo-cont__payment-btn-stripe,
+      .demo-cont__payment-btn-paypal {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 28px;
+        border-radius: 999px;
+        background: rgba(255, 140, 66, 0.75);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 140, 66, 0.8);
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(255, 140, 66, 0.4),
+                    0 4px 10px rgba(255, 140, 66, 0.3);
+        font-size: 1rem;
+        cursor: pointer;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .demo-cont__payment-btn-stripe:hover,
+      .demo-cont__payment-btn-paypal:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 140, 66, 0.85);
+        border-color: rgba(255, 140, 66, 0.9);
+        box-shadow: 0 12px 28px rgba(255, 140, 66, 0.5),
+                    0 6px 14px rgba(255, 140, 66, 0.4);
+      }
+
+      @media (max-width: 768px) {
+        .demo-cont__payment-section {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+
       .fnc-slide__mask-inner {
         background-size: cover;
         background-position: center center;
@@ -2173,21 +2363,21 @@
         
         <div class="demo-cont__services-cards">
           <div class="demo-cont__services-card" data-service="conception-visuels">
-            <div class="demo-cont__services-card-price">100€</div>
+            <div class="demo-cont__services-card-price" data-payment-service="conception-visuels" data-amount="100">100€</div>
             <div class="demo-cont__services-card-badge">48h</div>
             <h3 class="demo-cont__services-card-title">Conception Visuels Numériques</h3>
             <p class="demo-cont__services-card-description">Logos, bannières et visuels sur mesure générés avec IA et retouches manuelles, livrés en 48h.</p>
           </div>
           
           <div class="demo-cont__services-card" data-service="conseils-ia">
-            <div class="demo-cont__services-card-price">150€</div>
+            <div class="demo-cont__services-card-price" data-payment-service="conseils-ia" data-amount="150">150€</div>
             <div class="demo-cont__services-card-badge">Session 1h</div>
             <h3 class="demo-cont__services-card-title">Conseils en Solutions IA</h3>
             <p class="demo-cont__services-card-description">Diagnostic workflow, recommandations d'outils et plan d'action IA avec rapport PDF.</p>
           </div>
           
           <div class="demo-cont__services-card" data-service="edition-videos">
-            <div class="demo-cont__services-card-price">200€</div>
+            <div class="demo-cont__services-card-price" data-payment-service="edition-videos" data-amount="200">200€</div>
             <div class="demo-cont__services-card-badge">Clips 1-3 min</div>
             <h3 class="demo-cont__services-card-title">Édition Vidéos Courtes</h3>
             <p class="demo-cont__services-card-description">Montages optimisés pour TikTok, Reels et Shorts avec sous-titres et formats adaptés.</p>
@@ -2702,11 +2892,15 @@
       // Gestion de l'ouverture des pages de services détaillées
       var serviceCards = document.querySelectorAll('.demo-cont__services-card');
       serviceCards.forEach(function(card) {
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function(e) {
+          // Ne pas ouvrir si on clique sur le prix (géré séparément)
+          if (e.target.classList.contains('demo-cont__services-card-price')) {
+            return;
+          }
           var serviceId = this.getAttribute('data-service');
           if (serviceId) {
             // Fermer toutes les autres sections
-            $demoCont.classList.remove("credits-active", "services-active", "booking-active", "process-active", "contact-active", "service-detail-active");
+            $demoCont.classList.remove("credits-active", "services-active", "booking-active", "process-active", "contact-active", "service-detail-active", "payment-active");
             // Ouvrir la page de service détaillée
             $demoCont.classList.add("service-detail-active");
             // Afficher la bonne page
@@ -2724,21 +2918,100 @@
         });
       });
 
+      // Gestion des clics sur les prix pour ouvrir la page de paiement
+      var priceElements = document.querySelectorAll('.demo-cont__services-card-price');
+      priceElements.forEach(function(priceEl) {
+        priceEl.addEventListener('click', function(e) {
+          e.stopPropagation();
+          var serviceId = this.getAttribute('data-payment-service');
+          var amount = this.getAttribute('data-amount');
+          
+          if (serviceId && amount) {
+            // Mapping des services
+            var serviceNames = {
+              'conception-visuels': 'Conception visuels numériques',
+              'conseils-ia': 'Conseils en solutions IA',
+              'edition-videos': 'Édition vidéos courtes'
+            };
+            
+            // Mapping des liens Stripe
+            var stripeLinks = {
+              'conception-visuels': 'https://buy.stripe.com/aFacN70vgfud4XCctygjC00',
+              'conseils-ia': 'https://buy.stripe.com/fZueVf91Mdm5du80KQgjC01',
+              'edition-videos': 'https://buy.stripe.com/dRmcN791Meq93Ty2SYgjC02'
+            };
+            
+            // Mapping des liens PayPal
+            var paypalPages = {
+              'conception-visuels': 'paypal-100.html',
+              'conseils-ia': 'paypal-150.html',
+              'edition-videos': 'paypal-200.html'
+            };
+            
+            // Mettre à jour l'affichage
+            document.getElementById('payment-amount-display').textContent = amount + '€';
+            document.getElementById('payment-service-name').textContent = serviceNames[serviceId] || 'Service';
+            
+            // Mettre à jour le lien Stripe
+            var stripeLink = stripeLinks[serviceId];
+            var stripeButton = document.getElementById('payment-stripe-button');
+            if (stripeLink && stripeButton) {
+              stripeButton.href = stripeLink;
+            }
+            
+            // Mettre à jour le lien PayPal
+            var paypalPage = paypalPages[serviceId];
+            var paypalButton = document.getElementById('payment-paypal-button');
+            if (paypalPage && paypalButton) {
+              paypalButton.href = paypalPage;
+            }
+            
+            // Fermer toutes les autres sections
+            $demoCont.classList.remove("credits-active", "services-active", "booking-active", "process-active", "contact-active", "service-detail-active");
+            // Ouvrir la page de paiement
+            $demoCont.classList.add("payment-active");
+            var paymentPage = document.getElementById('payment-page');
+            if (paymentPage) {
+              paymentPage.style.display = 'block';
+              paymentPage.offsetHeight; // Forcer le reflow
+            }
+          }
+        });
+      });
+
       // Gestion de la fermeture des pages de services détaillées
       var serviceDetailCloses = document.querySelectorAll('.demo-cont__service-detail-close');
       serviceDetailCloses.forEach(function(closeBtn) {
-        closeBtn.addEventListener('click', function() {
+        closeBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          // Fermer la page de service détaillée
           $demoCont.classList.remove("service-detail-active");
           var allServiceDetails = document.querySelectorAll('.demo-cont__service-detail');
           allServiceDetails.forEach(function(detail) {
             detail.style.display = 'none';
           });
+          // Rouvrir la page Services
+          $demoCont.classList.add("services-active");
         });
       });
 
+      // Gestion de la fermeture de la page de paiement
+      var paymentClose = document.querySelector('.demo-cont__payment-close');
+      if (paymentClose) {
+        paymentClose.addEventListener('click', function() {
+          $demoCont.classList.remove("payment-active");
+          var paymentPage = document.getElementById('payment-page');
+          if (paymentPage) {
+            paymentPage.style.display = 'none';
+          }
+          // Rouvrir la page Services
+          $demoCont.classList.add("services-active");
+        });
+      }
+
       // Fonction pour ouvrir la page Réserver
       function openBooking() {
-        $demoCont.classList.remove("credits-active", "services-active", "process-active", "contact-active", "service-detail-active");
+        $demoCont.classList.remove("credits-active", "services-active", "process-active", "contact-active", "service-detail-active", "payment-active");
         $demoCont.classList.add("booking-active");
       }
       window.openBooking = openBooking;
