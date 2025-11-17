@@ -3,832 +3,1073 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sketchy, But Keeps Spinning</title>
+  <title>Avengers Slider</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
-::-webkit-scrollbar {
-  width: 0.625rem;
-  height: 0.625rem;
-}
+    :root {
+      color-scheme: dark;
+      --sliding-at: 1s;
+      --sliding-delay: 0.6667s;
+      --mask-at: 0.7s;
+      --heading-at: 1.5s;
+      --control-at: 0.5s;
+      --hover-at: 0.3s;
+      --easing: ease-in-out;
+      --blend-mode: luminosity;
+      --content-left: 40%;
+      --content-top: 40%;
+      --heading-padding: 30px;
+      --heading-font-size: clamp(48px, 10vw, 100px);
+      --mask-top: 15%;
+      --mask-height: 67vh;
+      --mask-width: calc(var(--mask-height) * 0.75);
+      --mask-right: calc(100% - var(--content-left));
+      --black: #1f2833;
+      --green: #42605e;
+      --green-light: #6a857f;
+      --dark: #4d4d4d;
+      --dark-light: #6b6b6b;
+      --red: #872326;
+      --red-light: #a54043;
+      --blue: #2d7791;
+      --blue-light: #4f96b0;
+      --credits-at: 0.7s;
+      --credits-width: min(400px, 90vw);
+      --font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+      --switch-w: 180px;
+      --switch-h: calc(var(--switch-w) * 120 / 280);
+      --switch-br: calc(var(--switch-w) * 50 / 280);
+      --switch-outer: 5px;
+      --switch-dot: calc(var(--switch-w) * 8 / 280);
+      --switch-dot-left: calc(var(--switch-w) * 204 / 280);
+      --switch-dot-offset: calc(var(--switch-w) * -125 / 280);
+      --switch-off: calc(var(--switch-w) * 64 / 280);
+      --switch-on-left: calc(var(--switch-w) * 162 / 280);
+      --switch-on-top: calc(var(--switch-w) * 35 / 280);
+      --switch-on-width: calc(var(--switch-w) * 30 / 280);
+      --switch-on-height: calc(var(--switch-w) * 56 / 280);
+      --switch-anim: 0.5s;
+      --switch-cub-in: cubic-bezier(.52,-0.96,.51,1.28);
+      --switch-cub-out: cubic-bezier(.67,-0.16,.47,1.61);
+    }
 
-::-webkit-scrollbar-thumb {
-  background: #111;
-  border-radius: 0.3125rem;
-  box-shadow: inset 0.125rem 0.125rem 0.125rem rgba(255, 255, 255, 0.25),
-    inset -0.125rem -0.125rem 0.125rem rgba(0, 0, 0, 0.25);
-  cursor: default;
-}
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
 
-::-webkit-scrollbar-track {
-  background: #333;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-family);
+      background: #000;
+      color: #fff;
+    }
 
-::selection {
-  background: #fff;
-  color: #333;
-}
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
 
-html,
-body {
-  height: 100vh;
-  height: 100dvh;
-  margin: 0;
-  overflow: hidden;
-}
+    button {
+      font-family: inherit;
+    }
 
-body {
-  display: grid;
-  grid-template-rows: calc(100dvh - 4rem) 4rem;
-  font-family: system-ui, sans-serif;
-}
+    .demo-cont {
+      overflow: hidden;
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      perspective: 1500px;
+      background: #000;
+      isolation: isolate;
+    }
 
-canvas,
-.editor,
-#controls {
-  grid-row: 1;
-  grid-column: 1;
-}
+    .demo-cont__credits {
+      box-sizing: border-box;
+      overflow-y: auto;
+      z-index: 1;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: var(--credits-width);
+      height: 100%;
+      padding: 20px 10px 30px;
+      background: #303030;
+      font-family: var(--font-family);
+      color: #fff;
+      text-align: center;
+      transition: transform var(--credits-at);
+      transform: translate3d(100%,0,0) rotateY(-45deg);
+      will-change: transform;
+    }
 
-canvas {
-  --canvas-z-index: -1;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  background: black;
-  touch-action: none;
-  z-index: var(--canvas-z-index);
-}
+    .credits-active .demo-cont__credits {
+      transition: transform var(--credits-at) calc(var(--credits-at) / 3);
+      transform: translate3d(0,0,0);
+    }
 
-.editor,
-.overlay,
-#error {
-  font-family: 'Courier New', Courier, monospace;
-  background: repeating-linear-gradient(0deg, #000a, #1119, #000a .25rem);
-  padding: 1em;
-}
+    .demo-cont__credits-close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+    }
 
-.editor {
-  color: #fefefe;
-  tab-size: 2;
-  border: none;
-  resize: none;
-}
+    .demo-cont__credits-close::before,
+    .demo-cont__credits-close::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 2px;
+      margin-top: -1px;
+      background: #fff;
+    }
 
-.editor:focus {
-  outline: none;
-}
+    .demo-cont__credits-close::before {
+      transform: rotate(45deg);
+    }
 
-#error {
-  grid-row: 2;
-  grid-column: 1;
-  margin: 0;
-  padding-block: 0;
-  padding-top: .5em;
-  color: firebrick;
-  overflow: auto;
-  text-wrap: pretty;
-}
+    .demo-cont__credits-close::after {
+      transform: rotate(-45deg);
+    }
 
-#indicator {
-  visibility: hidden;
-  position: absolute;
-  top: calc(var(--top, 0px) - var(--scroll-top, 0px));
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 10px solid firebrick;
-  transform: translateY(-25%);
-}
+    .demo-cont__credits-heading {
+      text-transform: uppercase;
+      font-size: clamp(26px, 5vw, 40px);
+      margin: 20px 0;
+    }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-}
+    .demo-cont__credits-img {
+      width: min(60%, 220px);
+      margin: 0 auto 30px;
+      border-radius: 10px;
+    }
 
-.editor,
-.overlay {
-  font-size: 1rem;
-  line-height: 1.2;
-  white-space: pre;
-}
+    .demo-cont__credits-name {
+      margin-bottom: 20px;
+      font-size: clamp(20px, 4vw, 30px);
+    }
 
-#controls {
-  position: fixed;
-  top: 1em;
-  right: 2em;
-}
+    .demo-cont__credits-link {
+      display: block;
+      margin-bottom: 10px;
+      font-size: clamp(18px, 3vw, 24px);
+      color: #fff;
+      text-decoration: none;
+    }
 
-.controls {
-  position: relative;
-  display: flex;
-  gap: 1.5em;
-  padding: .5em 1.25em;
-  background: #1111;
-  border-radius: 4px;
-}
+    .demo-cont__credits-link:hover {
+      text-decoration: underline;
+    }
 
-.controls::before,
-.controls::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  transform: scale(.95);
-  border-radius: inherit;
-  opacity: 0;
-}
+    .demo-cont__credits-blend {
+      font-size: clamp(20px, 4vw, 30px);
+      margin-bottom: 10px;
+    }
 
-.controls::before {
-  background: #aef;
-  animation: pulse 2s infinite;
-}
+    .example-slider {
+      z-index: 2;
+      height: 100%;
+      transform: translate3d(0,0,0);
+      transition: transform var(--credits-at);
+    }
 
-.controls::after {
-  background: #fefefe66;
-  transition: transform 200ms ease-in-out;
-}
+    .credits-active .example-slider {
+      transform: translate3d(calc(var(--credits-width) * -1),0,0) rotateY(10deg) scale(0.9);
+    }
 
-.controls:hover::before,
-.controls:hover::after {
-  opacity: 1;
-}
+    .fnc-slider {
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+    }
 
-.controls:hover::before {
-  transform: scale(.98);
-  filter: blur(2px);
-}
+    .fnc-slider__slides {
+      position: relative;
+      height: 100%;
+      transition: transform var(--sliding-at) var(--sliding-delay);
+    }
 
-.controls:hover::after {
-  transform: scale(1.025, 1.1);
-}
+    .fnc-slide {
+      overflow: hidden;
+      position: absolute;
+      inset: 0;
+      transform: translate3d(0,0,0);
+    }
 
-.controls:hover {
-  background: #111f;
-}
+    .fnc-slide.m--before-sliding {
+      z-index: 2 !important;
+      transform: translate3d(100%,0,0);
+    }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
+    .fnc-slide.m--active-slide {
+      z-index: 1;
+      transition: transform var(--sliding-at) var(--sliding-delay) var(--easing);
+      transform: translate3d(0,0,0);
+    }
 
-  50% {
-    transform: scale(1.0125);
-  }
+    .fnc-slide__inner {
+      position: relative;
+      height: 100%;
+      background-size: cover;
+      background-position: center top;
+      transform: translate3d(0,0,0);
+    }
 
-  100% {
-    transform: scale(1);
-  }
-}
+    .m--global-blending-active .fnc-slide__inner,
+    .m--blend-bg-active .fnc-slide__inner,
+    .fnc-slide__mask-inner {
+      background-blend-mode: var(--blend-mode);
+    }
 
-.hidden {
-  display: none !important;
-}
+    .fnc-slide.m--before-sliding .fnc-slide__inner {
+      transform: translate3d(-100%,0,0);
+    }
 
-.opaque {
-  opacity: 1 !important;
-  background: #111 !important;
-}
+    .fnc-slide.m--active-slide .fnc-slide__inner {
+      transition: transform var(--sliding-at) var(--sliding-delay) var(--easing);
+      transform: translate3d(0,0,0);
+    }
 
-input {
-  all: unset;
-  opacity: .2;
-  filter: saturate(0) invert(1);
-  cursor: pointer;
-  transition: opacity 200ms ease-in-out;
-  padding: .25em .5em;
-}
+    .fnc-slide__mask {
+      overflow: hidden;
+      z-index: 1;
+      position: absolute;
+      right: var(--mask-right);
+      top: var(--mask-top);
+      width: var(--mask-width);
+      height: var(--mask-height);
+      margin-right: calc(var(--heading-padding) * -3);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, 6vh 0, 6vh 61vh, 44vh 61vh, 44vh 6vh, 6vh 6vh);
+      transform-origin: 50% 0;
+      transition-timing-function: var(--easing);
+    }
 
-input:hover {
-  opacity: 1;
-}
+    .fnc-slide.m--before-sliding .fnc-slide__mask {
+      transform: rotate(-10deg) translate3d(200px,0,0);
+      opacity: 0;
+    }
 
-.icon {
-  text-align: center;
-  line-height: 1;
-}
+    .fnc-slide.m--active-slide .fnc-slide__mask {
+      transition: transform var(--mask-at) calc(var(--sliding-at) + var(--sliding-delay) / 3),
+        opacity calc(var(--mask-at) / 2) calc(var(--sliding-at) + var(--sliding-delay) / 3);
+      transform: translate3d(0,0,0);
+      opacity: 1;
+    }
 
-#btnToggleView {
-  width: 1.25em;
-}
+    .fnc-slide.m--previous-slide .fnc-slide__mask {
+      transition: transform var(--mask-at) calc(var(--sliding-delay) / 2),
+        opacity calc(var(--mask-at) / 2) calc(var(--mask-at) / 2 + var(--sliding-delay) / 2);
+      transform: rotate(10deg) translate3d(-200px,0,0);
+      opacity: 0;
+    }
 
-#btnToggleView::after {
-  content: '👁';
-}
+    .fnc-slide__mask-inner {
+      z-index: -1;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100vw;
+      height: 100vh;
+      margin-left: -50vw;
+      margin-top: -50vh;
+      background-size: cover;
+      background-position: center center;
+      transform-origin: 50% calc((100vh - var(--mask-height)) / 2);
+      transition-timing-function: var(--easing);
+    }
 
-#btnToggleView:checked::after {
-  content: '✏️';
-}
+    .fnc-slide.m--before-sliding .fnc-slide__mask-inner {
+      transform: translateY(0) rotate(10deg) translateX(-200px);
+    }
 
-#btnToggleResolution::after {
-  content: '1️⃣';
-}
+    .fnc-slide.m--active-slide .fnc-slide__mask-inner {
+      transition: transform var(--mask-at) calc(var(--sliding-at) + var(--sliding-delay) / 3);
+      transform: translateX(0);
+    }
 
-#btnToggleResolution:checked::after {
-  content: '2️⃣';
-}
+    .fnc-slide.m--previous-slide .fnc-slide__mask-inner {
+      transition: transform var(--mask-at) calc(var(--sliding-delay) / 2);
+      transform: translateY(0) rotate(-10deg) translateX(200px);
+    }
 
-#btnReset::after {
-  content: '⏮️';
-}
+    .fnc-slide__content {
+      z-index: 2;
+      position: absolute;
+      left: var(--content-left);
+      top: var(--content-top);
+    }
+
+    .fnc-slide__heading {
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .fnc-slide__heading-line {
+      overflow: hidden;
+      position: relative;
+      padding-right: 20px;
+      font-size: var(--heading-font-size);
+      color: #fff;
+      word-spacing: 10px;
+      line-height: 1;
+    }
+
+    .fnc-slide__heading-line:nth-child(2) {
+      padding-left: var(--heading-padding);
+    }
+
+    .fnc-slide.m--before-sliding .fnc-slide__heading-line,
+    .fnc-slide.m--before-sliding .fnc-slide__heading-line span {
+      transform: translateY(100%);
+    }
+
+    .fnc-slide.m--active-slide .fnc-slide__heading-line,
+    .fnc-slide.m--active-slide .fnc-slide__heading-line span {
+      transition: transform var(--heading-at) calc(var(--sliding-delay) * 1.5);
+      transform: translateY(0);
+    }
+
+    .fnc-slide.m--previous-slide .fnc-slide__heading-line,
+    .fnc-slide.m--previous-slide .fnc-slide__heading-line span {
+      transition: transform var(--heading-at);
+      transform: translateY(-100%);
+    }
+
+    .fnc-slide__heading-line span {
+      display: block;
+    }
+
+    .fnc-slide__action-btn {
+      position: relative;
+      margin-left: min(200px, 25vw);
+      padding: 5px 15px;
+      font-size: 20px;
+      line-height: 1;
+      color: transparent;
+      border: none;
+      text-transform: uppercase;
+      background: transparent;
+      cursor: pointer;
+      text-align: center;
+      outline: none;
+    }
+
+    .fnc-slide__action-btn span {
+      position: absolute;
+      inset: 0;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      transition: transform var(--hover-at);
+      transform-origin: 50% 0;
+      line-height: 30px;
+      color: #fff;
+    }
+
+    .fnc-slide__action-btn span::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 2px solid #fff;
+      border-top: none;
+      border-bottom: none;
+    }
+
+    .fnc-slide__action-btn span::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      line-height: 30px;
+      background: var(--black);
+      opacity: 0;
+      transform-origin: 50% 0;
+      transform: translateY(100%) rotateX(-90deg);
+      transition: opacity calc(var(--hover-at) / 2) calc(var(--hover-at) / 2);
+    }
+
+    .fnc-slide__action-btn:hover span {
+      transform: rotateX(90deg);
+    }
+
+    .fnc-slide__action-btn:hover span::after {
+      opacity: 1;
+      transition: opacity calc(var(--hover-at) / 2);
+    }
+
+    .fnc-nav {
+      z-index: 5;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    .fnc-nav__bgs {
+      z-index: -1;
+      overflow: hidden;
+      position: absolute;
+      inset: 0;
+    }
+
+    .fnc-nav__bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .fnc-nav__bg.m--nav-bg-before {
+      z-index: 2 !important;
+      transform: translateX(100%);
+    }
+
+    .fnc-nav__bg.m--active-nav-bg {
+      z-index: 1;
+      transition: transform var(--sliding-at) var(--sliding-delay);
+      transform: translateX(0);
+    }
+
+    .fnc-nav__controls {
+      font-size: 0;
+    }
+
+    .fnc-nav__control {
+      overflow: hidden;
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      width: 100px;
+      height: 50px;
+      font-size: 14px;
+      color: #fff;
+      text-transform: uppercase;
+      background: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background-color var(--control-at);
+    }
+
+    .fnc-nav__control.m--active-control {
+      background: var(--black);
+    }
+
+    .fnc-nav__control-progress {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      transform-origin: 0 50%;
+      transform: scaleX(0);
+      transition-timing-function: linear !important;
+    }
+
+    .m--with-autosliding .m--active-control .fnc-nav__control-progress {
+      transform: scaleX(1);
+    }
+
+    .m--prev-control .fnc-nav__control-progress {
+      transform: translateX(100%);
+      transition: transform 0.5s !important;
+    }
+
+    .m--reset-progress .fnc-nav__control-progress {
+      transform: scaleX(0);
+      transition: transform 0s !important;
+    }
+
+    .m--autosliding-blocked .fnc-nav__control-progress {
+      transition: none !important;
+      transform: scaleX(0) !important;
+    }
+
+    .m--blend-green .fnc-slide__inner {
+      background-color: var(--green-light);
+    }
+
+    .m--blend-green .fnc-slide__mask-inner,
+    .m--navbg-green {
+      background-color: var(--green);
+    }
+
+    .m--blend-dark .fnc-slide__inner {
+      background-color: var(--dark-light);
+    }
+
+    .m--blend-dark .fnc-slide__mask-inner,
+    .m--navbg-dark {
+      background-color: var(--dark);
+    }
+
+    .m--blend-red .fnc-slide__inner {
+      background-color: var(--red-light);
+    }
+
+    .m--blend-red .fnc-slide__mask-inner,
+    .m--navbg-red {
+      background-color: var(--red);
+    }
+
+    .m--blend-blue .fnc-slide__inner {
+      background-color: var(--blue-light);
+    }
+
+    .m--blend-blue .fnc-slide__mask-inner,
+    .m--navbg-blue {
+      background-color: var(--blue);
+    }
+
+    .fnc-slide-1 .fnc-slide__inner,
+    .fnc-slide-1 .fnc-slide__mask-inner {
+      background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/blackwidow.jpg');
+    }
+
+    .fnc-slide-2 .fnc-slide__inner,
+    .fnc-slide-2 .fnc-slide__mask-inner {
+      background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/captainamerica.jpg');
+    }
+
+    .fnc-slide-3 .fnc-slide__inner,
+    .fnc-slide-3 .fnc-slide__mask-inner {
+      background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/ironman-alt.jpg');
+    }
+
+    .fnc-slide-3 .fnc-slide__inner::before,
+    .fnc-slide-4 .fnc-slide__inner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+
+    .fnc-slide-3 .fnc-slide__inner::before {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .fnc-slide-4 .fnc-slide__inner,
+    .fnc-slide-4 .fnc-slide__mask-inner {
+      background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/thor.jpg');
+    }
+
+    .fnc-slide-4 .fnc-slide__inner::before {
+      background: rgba(0,0,0,0.2);
+    }
+
+    .colorful-switch {
+      position: relative;
+      width: var(--switch-w);
+      height: var(--switch-h);
+      margin: 0 auto;
+      border-radius: var(--switch-br);
+      background: #cfcfcf;
+    }
+
+    .colorful-switch::before {
+      content: "";
+      z-index: -1;
+      position: absolute;
+      left: calc(var(--switch-outer) * -1);
+      top: calc(var(--switch-outer) * -1);
+      width: calc(var(--switch-w) + var(--switch-outer) * 2);
+      height: calc(var(--switch-h) + var(--switch-outer) * 2);
+      border-radius: calc(var(--switch-br) + var(--switch-outer));
+      background: #314239;
+      transition: background-color 0.3s;
+    }
+
+    .colorful-switch:hover::before {
+      background: #4c735f;
+    }
+
+    .colorful-switch__checkbox {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+    }
+
+    .colorful-switch__label {
+      z-index: 1;
+      overflow: hidden;
+      position: absolute;
+      inset: 0;
+      border-radius: var(--switch-br);
+      cursor: pointer;
+    }
+
+    .colorful-switch__bg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: calc(var(--switch-w) * 3);
+      height: 100%;
+      background: linear-gradient(90deg, #14dcd6 0, #10e7bd var(--switch-w), #ef9c29 calc(var(--switch-w) * 2), #e76339 100%);
+      transition: transform var(--switch-anim);
+      transform: translate3d(calc(var(--switch-w) * -2),0,0);
+    }
+
+    .colorful-switch__dot {
+      position: absolute;
+      left: var(--switch-dot-left);
+      top: 50%;
+      width: var(--switch-dot);
+      height: var(--switch-dot);
+      margin-left: calc(var(--switch-dot) / -2);
+      margin-top: calc(var(--switch-dot) / -2);
+      border-radius: 50%;
+      background: #fff;
+      transition: transform var(--switch-anim);
+      transform: translate3d(0,0,0);
+    }
+
+    .colorful-switch__on {
+      position: absolute;
+      left: var(--switch-on-left);
+      top: var(--switch-on-top);
+      width: var(--switch-on-width);
+      height: var(--switch-on-height);
+      transition: transform var(--switch-anim);
+      transform: translate3d(0,0,0);
+    }
+
+    .colorful-switch__on__inner {
+      position: absolute;
+      inset: 0;
+      transition: transform calc(var(--switch-anim) / 2) 0s var(--switch-cub-in);
+      transform-origin: 100% 50%;
+      transform: rotate(45deg) scale(0) translateZ(0);
+    }
+
+    .colorful-switch__on__inner::before,
+    .colorful-switch__on__inner::after {
+      content: "";
+      position: absolute;
+      border-radius: calc(var(--switch-dot) / 2);
+      background: #fff;
+    }
+
+    .colorful-switch__on__inner::before {
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: calc(var(--switch-dot) + 1px);
+    }
+
+    .colorful-switch__on__inner::after {
+      right: 0;
+      top: 0;
+      width: calc(var(--switch-dot) + 1px);
+      height: 100%;
+    }
+
+    .colorful-switch__off {
+      position: absolute;
+      left: var(--switch-dot-left);
+      top: 50%;
+      width: var(--switch-off);
+      height: var(--switch-off);
+      margin-left: calc(var(--switch-off) / -2);
+      margin-top: calc(var(--switch-off) / -2);
+      transition: transform var(--switch-anim);
+      transform: translate3d(0,0,0);
+    }
+
+    .colorful-switch__off::before,
+    .colorful-switch__off::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: var(--switch-dot);
+      margin-top: calc(var(--switch-dot) / -2);
+      border-radius: calc(var(--switch-dot) / 2);
+      background: #fff;
+      transition: transform calc(var(--switch-anim) / 2) calc(var(--switch-anim) / 2);
+    }
+
+    .colorful-switch__off::before {
+      transform: rotate(45deg) scaleX(1) translateZ(0);
+    }
+
+    .colorful-switch__off::after {
+      transition-timing-function: var(--switch-cub-out);
+      transform: rotate(-45deg) scaleX(1) translateZ(0);
+    }
+
+    .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__bg,
+    .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__dot,
+    .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__on,
+    .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__off {
+      transform: translate3d(var(--switch-dot-offset),0,0);
+    }
+
+    .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__bg {
+      transform: translate3d(0,0,0);
+    }
+
+    .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__on__inner {
+      transition: transform calc(var(--switch-anim) / 2) calc(var(--switch-anim) / 2) var(--switch-cub-out);
+      transform: rotate(45deg) scale(1) translateZ(0);
+    }
+
+    .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__off::before,
+    .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__off::after {
+      transition-delay: 0s;
+    }
+
+    .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__off::before {
+      transform: rotate(45deg) scaleX(0) translateZ(0);
+    }
+
+    .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__off::after {
+      transition-timing-function: ease;
+      transform: rotate(-45deg) scaleX(0) translateZ(0);
+    }
+
+    @media (max-width: 900px) {
+      :root {
+        --content-left: 10%;
+        --content-top: 30%;
+        --mask-top: 10%;
+      }
+
+      .fnc-slide__action-btn {
+        margin-left: 0;
+      }
+
+      .demo-cont__credits {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .fnc-slide__heading-line {
+        word-spacing: 0;
+      }
+
+      .fnc-nav__control {
+        width: 80px;
+        font-size: 12px;
+      }
+    }
   </style>
 </head>
 <body>
-  <canvas id="canvas"></canvas>
-  <textarea id="codeEditor" class="editor" spellcheck="false" autocorrect="off" autocapitalize="off" translate="no" oninput="render()"></textarea>
-  <pre id="error"></pre>
-  <div id="indicator"></div>
-  <div id="controls">
-    <div class="controls">
-      <input id="btnToggleView" class="icon" type="checkbox" name="toggleView" onclick="toggleView()">
-      <input id="btnToggleResolution" class="icon" type="checkbox" name="toggleResolution" onchange="toggleResolution()">
-      <input id="btnReset" class="icon" type="checkbox" name="reset" onclick="reset()">
+  <div class="demo-cont">
+    <div class="fnc-slider example-slider">
+      <div class="fnc-slider__slides">
+        <div class="fnc-slide m--blend-green m--active-slide">
+          <div class="fnc-slide__inner">
+            <div class="fnc-slide__mask">
+              <div class="fnc-slide__mask-inner"></div>
+            </div>
+            <div class="fnc-slide__content">
+              <h2 class="fnc-slide__heading">
+                <div class="fnc-slide__heading-line">
+                  <span>Black</span>
+                </div>
+                <div class="fnc-slide__heading-line">
+                  <span>Widow</span>
+                </div>
+              </h2>
+              <button type="button" class="fnc-slide__action-btn">
+                Credits
+                <span data-text="Credits">Credits</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="fnc-slide m--blend-dark">
+          <div class="fnc-slide__inner">
+            <div class="fnc-slide__mask">
+              <div class="fnc-slide__mask-inner"></div>
+            </div>
+            <div class="fnc-slide__content">
+              <h2 class="fnc-slide__heading">
+                <div class="fnc-slide__heading-line">
+                  <span>Captain</span>
+                </div>
+                <div class="fnc-slide__heading-line">
+                  <span>America</span>
+                </div>
+              </h2>
+              <button type="button" class="fnc-slide__action-btn">
+                Credits
+                <span data-text="Credits">Credits</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="fnc-slide m--blend-red">
+          <div class="fnc-slide__inner">
+            <div class="fnc-slide__mask">
+              <div class="fnc-slide__mask-inner"></div>
+            </div>
+            <div class="fnc-slide__content">
+              <h2 class="fnc-slide__heading">
+                <div class="fnc-slide__heading-line">
+                  <span>Iron</span>
+                </div>
+                <div class="fnc-slide__heading-line">
+                  <span>Man</span>
+                </div>
+              </h2>
+              <button type="button" class="fnc-slide__action-btn">
+                Credits
+                <span data-text="Credits">Credits</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="fnc-slide m--blend-blue">
+          <div class="fnc-slide__inner">
+            <div class="fnc-slide__mask">
+              <div class="fnc-slide__mask-inner"></div>
+            </div>
+            <div class="fnc-slide__content">
+              <h2 class="fnc-slide__heading">
+                <div class="fnc-slide__heading-line">
+                  <span>Thor</span>
+                </div>
+                <div class="fnc-slide__heading-line">
+                  <span>Just Thor</span>
+                </div>
+              </h2>
+              <button type="button" class="fnc-slide__action-btn">
+                Credits
+                <span data-text="Credits">Credits</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="fnc-nav">
+        <div class="fnc-nav__bgs">
+          <div class="fnc-nav__bg m--navbg-green m--active-nav-bg"></div>
+          <div class="fnc-nav__bg m--navbg-dark"></div>
+          <div class="fnc-nav__bg m--navbg-red"></div>
+          <div class="fnc-nav__bg m--navbg-blue"></div>
+        </div>
+        <div class="fnc-nav__controls">
+          <button class="fnc-nav__control">
+            Black Widow
+            <span class="fnc-nav__control-progress"></span>
+          </button>
+          <button class="fnc-nav__control">
+            Captain America
+            <span class="fnc-nav__control-progress"></span>
+          </button>
+          <button class="fnc-nav__control">
+            Iron Man
+            <span class="fnc-nav__control-progress"></span>
+          </button>
+          <button class="fnc-nav__control">
+            Thor
+            <span class="fnc-nav__control-progress"></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+    <div class="demo-cont__credits">
+      <div class="demo-cont__credits-close"></div>
+      <h2 class="demo-cont__credits-heading">Made by</h2>
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/profile/profile-512_5.jpg" alt="Portrait de Nikolay Talanov" class="demo-cont__credits-img">
+      <h3 class="demo-cont__credits-name">Nikolay Talanov</h3>
+      <a href="https://codepen.io/suez/" target="_blank" rel="noreferrer" class="demo-cont__credits-link">My codepen</a>
+      <a href="https://twitter.com/NikolayTalanov" target="_blank" rel="noreferrer" class="demo-cont__credits-link">My twitter</a>
+      <h2 class="demo-cont__credits-heading">Based on</h2>
+      <a href="https://dribbble.com/shots/2375246-Fashion-Butique-slider-animation" target="_blank" rel="noreferrer" class="demo-cont__credits-link">Concept by Kreativa Studio</a>
+      <h4 class="demo-cont__credits-blend">Global Blend Mode</h4>
+      <div class="colorful-switch">
+        <input type="checkbox" class="colorful-switch__checkbox js-activate-global-blending" id="colorful-switch-cb">
+        <label class="colorful-switch__label" for="colorful-switch-cb">
+          <span class="colorful-switch__bg"></span>
+          <span class="colorful-switch__dot"></span>
+          <span class="colorful-switch__on">
+            <span class="colorful-switch__on__inner"></span>
+          </span>
+          <span class="colorful-switch__off"></span>
+        </label>
+      </div>
     </div>
   </div>
-  <script type="x-shader/x-fragment">#version 300 es
-/*********
-* made by Matthias Hurrle (@atzedent)
-*/
-precision highp float;
-out vec4 O;
-uniform float time;
-uniform vec2 resolution;
-uniform vec2 move;
-#define FC gl_FragCoord.xy
-#define R resolution
-#define T time
-#define N normalize
-#define S smoothstep
-#define MN min(R.x,R.y)
-#define rot(a) mat2(cos((a)-vec4(0,11,33,0)))
-#define csqr(a) vec2(a.x*a.x-a.y*a.y,2.*a.x*a.y)
-float rnd(vec3 p) {
-p=fract(p*vec3(12.9898,78.233,156.34));
-p+=dot(p,p+34.56);
-return fract(p.x*p.y*p.z);
-}
-float swirls(in vec3 p) {
-float d=.0;
-vec3 c=p;
-for(float i=min(.0,time); i<9.; i++) {
-p=.7*abs(p)/dot(p,p)-.7;
-p.yz=csqr(p.yz);
-p=p.zxy;
-d+=exp(-19.*abs(dot(p,c)));
-}
-return d;
-}
-vec3 march(in vec3 p, vec3 rd) {
-float d=.2, t=.0, c=.0, k=mix(.9,1.,rnd(rd)),
-maxd=length(p)-1.;
-vec3 col=vec3(0);
-for(float i=min(.0,time); i<120.; i++) {
-t+=d*exp(-2.*c)*k;
-c=swirls(p+rd*t);
-if (t<5e-2 || t>maxd) break;
-col+=vec3(c*c,c/1.05,c)*8e-3;
-}
-return col;
-}
-float rnd(vec2 p) {
-p=fract(p*vec2(12.9898,78.233));
-p+=dot(p,p+34.56);
-return fract(p.x*p.y);
-}
-vec3 sky(vec2 p, bool anim) {
-p.x-=.17-(anim?2e-4*T:.0);
-p*=500.;
-vec2 id=floor(p), gv=fract(p)-.5;
-float n=rnd(id), d=length(gv);
-if (n<.975) return vec3(0);
-return vec3(S(3e-2*n,1e-3*n,d*d));
-}
-void cam(inout vec3 p) {
-p.yz*=rot(move.y*6.3/MN-T*.05);
-p.xz*=rot(-move.x*6.3/MN+T*.025);
-}
-void main() {
-vec2 uv=(FC-.5*R)/MN;
-vec3 col=vec3(0),
-p=vec3(0,0,-16),
-rd=N(vec3(uv,1)), rdd=rd;
-cam(p); cam(rd);
-col=march(p,rd);
-col=S(-.2,.9,col);
-vec2 sn=.5+vec2(atan(rdd.x,rdd.z),atan(length(rdd.xz),rdd.y))/6.28318;
-col=max(col,vec3(sky(sn,true)+sky(2.+sn*2.,true)));
-float t=min((time-.5)*.3,1.);
-uv=FC/R*2.-1.;
-uv*=.7;
-float v=pow(dot(uv,uv),1.8);
-col=mix(col,vec3(0),v);
-col=mix(vec3(0),col,t);
-col=max(col,.08);
-  O=vec4(col,1);
-}</script>
   <script>
-/*********
- * made by Matthias Hurrle (@atzedent)
- */
-let editMode = false // set to false to hide the code editor on load
-let resolution = .5 // set 1 for full resolution or to .5 to start with half resolution on load
-let renderDelay = 1000 // delay in ms before rendering the shader after a change
-let dpr = Math.max(1, resolution * window.devicePixelRatio)
-let frm, source, editor, store, renderer, pointers
-const shaderId = 'oggKrGW'
-window.onload = init
+    (function() {
+      var $$ = function(selector, context) {
+        var ctx = context || document;
+        return Array.prototype.slice.call(ctx.querySelectorAll(selector));
+      };
 
-function resize() {
-  const { innerWidth: width, innerHeight: height } = window
+      function _fncSliderInit($slider, options) {
+        var prefix = ".fnc-";
+        var $slidesCont = $slider.querySelector(prefix + "slider__slides");
+        var $slides = $$(prefix + "slide", $slider);
+        var $controls = $$(prefix + "nav__control", $slider);
+        var $controlsBgs = $$(prefix + "nav__bg", $slider);
+        var $progressAS = $$(prefix + "nav__control-progress", $slider);
+        var numOfSlides = $slides.length;
+        var curSlide = 1;
+        var sliding = false;
+        var slidingAT = parseFloat(getComputedStyle($slidesCont)["transition-duration"]) * 1000;
+        var slidingDelay = parseFloat(getComputedStyle($slidesCont)["transition-delay"]) * 1000;
+        var autoSlidingActive = false;
+        var autoSlidingTO;
+        var autoSlidingDelay = 5000;
+        var autoSlidingBlocked = false;
+        var $activeSlide;
+        var $activeControlsBg;
+        var $prevControl;
 
-  canvas.width = width * dpr
-  canvas.height = height * dpr
+        function setIDs() {
+          $slides.forEach(function($slide, index) {
+            $slide.classList.add("fnc-slide-" + (index + 1));
+          });
 
-  if (renderer) {
-    renderer.updateScale(dpr)
-  }
-}
-function toggleView() {
-  editor.hidden = btnToggleView.checked
-  canvas.style.setProperty('--canvas-z-index', btnToggleView.checked ? 0 : -1)
-}
-function reset() {
-  let shader = source
-  editor.text = shader ? shader.textContent : renderer.defaultSource
-  store.putShaderSource(shaderId, editor.text)
-  renderThis()
-}
-function toggleResolution() {
-  resolution = btnToggleResolution.checked ? .5 : 1
-  dpr = Math.max(1, resolution * window.devicePixelRatio)
-  pointers.updateScale(dpr)
-  resize()
-}
-function loop(now) {
-  renderer.updateMouse(pointers.first)
-  renderer.updatePointerCount(pointers.count)
-  renderer.updatePointerCoords(pointers.coords)
-  renderer.updateMove(pointers.move)
-  renderer.render(now)
-  frm = requestAnimationFrame(loop)
-}
-function renderThis() {
-  editor.clearError()
-  store.putShaderSource(shaderId, editor.text)
+          $controls.forEach(function($control, index) {
+            $control.setAttribute("data-slide", index + 1);
+            $control.classList.add("fnc-nav__control-" + (index + 1));
+          });
 
-  const result = renderer.test(editor.text)
+          $controlsBgs.forEach(function($bg, index) {
+            $bg.classList.add("fnc-nav__bg-" + (index + 1));
+          });
+        }
 
-  if (result) {
-    editor.setError(result)
-  } else {
-    renderer.updateShader(editor.text)
-  }
-  cancelAnimationFrame(frm) // Always cancel the previous frame!
-  loop(0)
-}
-const debounce = (fn, delay) => {
-  let timerId
-  return (...args) => {
-    clearTimeout(timerId)
-    timerId = setTimeout(() => fn.apply(this, args), delay)
-  }
-}
-const render = debounce(renderThis, renderDelay)
-function init() {
-  source = document.querySelector("script[type='x-shader/x-fragment']")
+        setIDs();
 
-  document.title = "Sketchy, But Keeps Spinning"
+        function afterSlidingHandler() {
+          var previousSlide = $slider.querySelector(".m--previous-slide");
+          if (previousSlide) {
+            previousSlide.classList.remove("m--active-slide", "m--previous-slide");
+          }
+          var previousNavBg = $slider.querySelector(".m--previous-nav-bg");
+          if (previousNavBg) {
+            previousNavBg.classList.remove("m--active-nav-bg", "m--previous-nav-bg");
+          }
 
-  renderer = new Renderer(canvas, dpr)
-  pointers = new PointerHandler(canvas, dpr)
-  store    = new Store(window.location)
-  editor   = new Editor(codeEditor, error, indicator)
-  editor.text = source.textContent
-  renderer.setup()
-  renderer.init()
+          $activeSlide.classList.remove("m--before-sliding");
+          $activeControlsBg.classList.remove("m--nav-bg-before");
+          $prevControl.classList.remove("m--prev-control");
+          $prevControl.classList.add("m--reset-progress");
+          void $prevControl.offsetTop;
+          $prevControl.classList.remove("m--reset-progress");
 
-  if (!editMode) {
-    btnToggleView.checked = true
-    toggleView()
-  }
-  if (resolution === .5) {
-    btnToggleResolution.checked = true
-    toggleResolution()
-  }
-  canvas.addEventListener('shader-error', e => editor.setError(e.detail))
+          sliding = false;
+          void $slider.offsetTop;
 
-  resize()
+          if (autoSlidingActive && !autoSlidingBlocked) {
+            setAutoslidingTO();
+          }
+        }
 
-  if (renderer.test(source.textContent) === null) {
-    renderer.updateShader(source.textContent)
-  }
-  loop(0)
-  window.onresize = resize
-  window.addEventListener("keydown", e => {
-    if (e.key === "L" && e.ctrlKey) {
-      e.preventDefault()
-      btnToggleView.checked = !btnToggleView.checked
-      toggleView()
-    }
-  })
-}
-class Renderer {
-  #vertexSrc = "#version 300 es\nprecision highp float;\nin vec4 position;\nvoid main(){gl_Position=position;}"
-  #fragmtSrc = "#version 300 es\nprecision highp float;\nout vec4 O;\nuniform float time;\nuniform vec2 resolution;\nvoid main() {\n\tvec2 uv=gl_FragCoord.xy/resolution;\n\tO=vec4(uv,sin(time)*.5+.5,1);\n}"
-  #vertices = [-1, 1, -1, -1, 1, 1, 1, -1]
-  constructor(canvas, scale) {
-    this.canvas = canvas
-    this.scale = scale
-    this.gl = canvas.getContext("webgl2")
-    this.gl.viewport(0, 0, canvas.width * scale, canvas.height * scale)
-    this.shaderSource = this.#fragmtSrc
-    this.mouseMove = [0, 0]
-    this.mouseCoords = [0, 0]
-    this.pointerCoords = [0, 0]
-    this.nbrOfPointers = 0
-  }
-  get defaultSource() { return this.#fragmtSrc }
-  updateShader(source) {
-    this.reset()
-    this.shaderSource = source
-    this.setup()
-    this.init()
-  }
-  updateMove(deltas) {
-    this.mouseMove = deltas
-  }
-  updateMouse(coords) {
-    this.mouseCoords = coords
-  }
-  updatePointerCoords(coords) {
-    this.pointerCoords = coords
-  }
-  updatePointerCount(nbr) {
-    this.nbrOfPointers = nbr
-  }
-  updateScale(scale) {
-    this.scale = scale
-    this.gl.viewport(0, 0, this.canvas.width * scale, this.canvas.height * scale)
-  }
-  compile(shader, source) {
-    const gl = this.gl
-    gl.shaderSource(shader, source)
-    gl.compileShader(shader)
+        function performSliding(slideID) {
+          if (sliding) return;
+          sliding = true;
+          window.clearTimeout(autoSlidingTO);
+          curSlide = slideID;
 
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      console.error(gl.getShaderInfoLog(shader))
-      this.canvas.dispatchEvent(new CustomEvent('shader-error', { detail: gl.getShaderInfoLog(shader) }))
-    }
-  }
-  test(source) {
-    let result = null
-    const gl = this.gl
-    const shader = gl.createShader(gl.FRAGMENT_SHADER)
-    gl.shaderSource(shader, source)
-    gl.compileShader(shader)
+          $prevControl = $slider.querySelector(".m--active-control");
+          if ($prevControl) {
+            $prevControl.classList.remove("m--active-control");
+            $prevControl.classList.add("m--prev-control");
+          }
+          var newControl = $slider.querySelector(prefix + "nav__control-" + slideID);
+          if (newControl) {
+            newControl.classList.add("m--active-control");
+          }
 
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      result = gl.getShaderInfoLog(shader)
-    }
-    if (gl.getShaderParameter(shader, gl.DELETE_STATUS)) {
-      gl.deleteShader(shader)
-    }
-    return result
-  }
-  reset() {
-    const { gl, program, vs, fs } = this
-    if (!program || gl.getProgramParameter(program, gl.DELETE_STATUS)) return
-    if (gl.getShaderParameter(vs, gl.DELETE_STATUS)) {
-      gl.detachShader(program, vs)
-      gl.deleteShader(vs)
-    }
-    if (gl.getShaderParameter(fs, gl.DELETE_STATUS)) {
-      gl.detachShader(program, fs)
-      gl.deleteShader(fs)
-    }
-    gl.deleteProgram(program)
-  }
-  setup() {
-    const gl = this.gl
-    this.vs = gl.createShader(gl.VERTEX_SHADER)
-    this.fs = gl.createShader(gl.FRAGMENT_SHADER)
-    this.compile(this.vs, this.#vertexSrc)
-    this.compile(this.fs, this.shaderSource)
-    this.program = gl.createProgram()
-    gl.attachShader(this.program, this.vs)
-    gl.attachShader(this.program, this.fs)
-    gl.linkProgram(this.program)
+          $activeSlide = $slider.querySelector(prefix + "slide-" + slideID);
+          $activeControlsBg = $slider.querySelector(prefix + "nav__bg-" + slideID);
 
-    if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-      console.error(gl.getProgramInfoLog(this.program))
-    }
-  }
-  init() {
-    const { gl, program } = this
-    this.buffer = gl.createBuffer()
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer)
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.#vertices), gl.STATIC_DRAW)
+          var currentActiveSlide = $slider.querySelector(".m--active-slide");
+          if (currentActiveSlide) {
+            currentActiveSlide.classList.add("m--previous-slide");
+          }
+          var currentActiveNavBg = $slider.querySelector(".m--active-nav-bg");
+          if (currentActiveNavBg) {
+            currentActiveNavBg.classList.add("m--previous-nav-bg");
+          }
 
-    const position = gl.getAttribLocation(program, "position")
+          $activeSlide.classList.add("m--before-sliding");
+          $activeControlsBg.classList.add("m--nav-bg-before");
+          void $activeSlide.offsetTop;
+          $activeSlide.classList.add("m--active-slide");
+          $activeControlsBg.classList.add("m--active-nav-bg");
 
-    gl.enableVertexAttribArray(position)
-    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0)
+          setTimeout(afterSlidingHandler, slidingAT + slidingDelay);
+        }
 
-    program.resolution = gl.getUniformLocation(program, "resolution")
-    program.time = gl.getUniformLocation(program, "time")
-    program.move = gl.getUniformLocation(program, "move")
-    program.touch = gl.getUniformLocation(program, "touch")
-    program.pointerCount = gl.getUniformLocation(program, "pointerCount")
-    program.pointers = gl.getUniformLocation(program, "pointers")
-  }
-  render(now = 0) {
-    const { gl, program, buffer, canvas, mouseMove, mouseCoords, pointerCoords, nbrOfPointers } = this
-    
-    if (!program || gl.getProgramParameter(program, gl.DELETE_STATUS)) return
+        function controlClickHandler() {
+          if (sliding || this.classList.contains("m--active-control")) return;
+          if (options.blockASafterClick) {
+            autoSlidingBlocked = true;
+            $slider.classList.add("m--autosliding-blocked");
+          }
+          var slideID = Number(this.getAttribute("data-slide"));
+          performSliding(slideID);
+        }
 
-    gl.clearColor(0, 0, 0, 1)
-    gl.clear(gl.COLOR_BUFFER_BIT)
-    gl.useProgram(program)
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
-    gl.uniform2f(program.resolution, canvas.width, canvas.height)
-    gl.uniform1f(program.time, now * 1e-3)
-    gl.uniform2f(program.move, ...mouseMove)
-    gl.uniform2f(program.touch, ...mouseCoords)
-    gl.uniform1i(program.pointerCount, nbrOfPointers)
-    gl.uniform2fv(program.pointers, pointerCoords)
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
-  }
-}
-class Store {
-  constructor(key) {
-    this.key = key
-    this.store = window.localStorage
-  }
-  #ownShadersKey = 'ownShaders'
-  #StorageType = Object.freeze({
-    shader: 'fragmentSource',
-    config: 'config'
-  })
-  #getKeyPrefix(type) {
-    return `${type}${btoa(this.key)}`
-  }
-  #getKey(type, name) {
-    return `${this.#getKeyPrefix(type)}${btoa(name)}`
-  }
-  putShaderSource(name, source) {
-    const storageType = this.#StorageType.shader
-    this.store.setItem(this.#getKey(storageType, name), source)
-  }
-  getShaderSource(name) {
-    const storageType = this.#StorageType.shader
-    return this.store.getItem(this.#getKey(storageType, name))
-  }
-  deleteShaderSource(name) {
-    const storageType = this.#StorageType.shader
-    this.store.removeItem(this.#getKey(storageType, name))
-  }
-  /** @returns {{title:string, uuid:string}[]} */
-  getOwnShaders() {
-    const storageType = this.#StorageType.config
-    const result = this.store.getItem(this.#getKey(storageType, this.#ownShadersKey))
-    
-    return result ? JSON.parse(result) : []
-  }
-  /** @param {{title:string, uuid:string}[]} shader */
-  putOwnShader(shader) {
-    const ownShaders = this.getOwnShaders()
-    const storageType = this.#StorageType.config
-    const index = ownShaders.findIndex((s) => s.uuid === shader.uuid)
-    if (index === -1) {
-      ownShaders.push(shader)
-    } else {
-      ownShaders[index] = shader
-    }
-    this.store.setItem(this.#getKey(storageType, this.#ownShadersKey), JSON.stringify(ownShaders))
-  }
-  deleteOwnShader(uuid) {
-    const ownShaders = this.getOwnShaders()
-    const storageType = this.#StorageType.config
-    this.store.setItem(this.#getKey(storageType, this.#ownShadersKey), JSON.stringify(ownShaders.filter((s) => s.uuid !== uuid) ))
-    this.deleteShaderSource(uuid)
-  }
-  /** @param {string[]} keep The names of the shaders to keep*/
-  cleanup(keep=[]) {
-    const storageType = this.#StorageType.shader
-    const ownShaders = this.getOwnShaders().map((s) => this.#getKey(storageType, s.uuid))
-    const premadeShaders = keep.map((name) => this.#getKey(storageType, name))
-    const keysToKeep = [...ownShaders, ...premadeShaders]
-    const result = []
+        $controls.forEach(function($control) {
+          $control.addEventListener("click", controlClickHandler);
+        });
 
-    for (let i = 0; i < this.store.length; i++) {
-      const key = this.store.key(i)
+        function setAutoslidingTO() {
+          window.clearTimeout(autoSlidingTO);
+          var delay = Number(options.autoSlidingDelay) || autoSlidingDelay;
+          curSlide = curSlide % numOfSlides + 1;
+          autoSlidingTO = window.setTimeout(function() {
+            performSliding(curSlide);
+          }, delay);
+        }
 
-      if (key.startsWith(this.#getKeyPrefix(this.#StorageType.shader)) && !keysToKeep.includes(key)) {
-        result.push(key)
+        if (options.autoSliding || Number(options.autoSlidingDelay) > 0) {
+          if (options.autoSliding !== false) {
+            autoSlidingActive = true;
+            setAutoslidingTO();
+            $slider.classList.add("m--with-autosliding");
+            void $slider.offsetTop;
+            var delay = Number(options.autoSlidingDelay) || autoSlidingDelay;
+            delay += slidingDelay + slidingAT;
+            $progressAS.forEach(function($progress) {
+              $progress.style.transition = "transform " + (delay / 1000) + "s";
+            });
+          }
+        }
+
+        var firstControl = $slider.querySelector(".fnc-nav__control:first-child");
+        if (firstControl) {
+          firstControl.classList.add("m--active-control");
+        }
       }
-    }
 
-    result.forEach((key) => this.store.removeItem(key))
-  }
-}
-class PointerHandler {
-  constructor(element, scale) {
-    this.scale = scale
-    this.active = false
-    this.pointers = new Map()
-    this.lastCoords = [0,0]
-    this.moves = [0,0]
-    const map = (element, scale, x, y) => [x * scale, element.height - y * scale]
-    element.addEventListener("pointerdown", (e) => {
-      this.active = true
-      this.pointers.set(e.pointerId, map(element, this.getScale(), e.clientX, e.clientY))
-    })
-    element.addEventListener("pointerup", (e) => {
-      if (this.count === 1) {
-        this.lastCoords = this.first
-      }
-      this.pointers.delete(e.pointerId)
-      this.active = this.pointers.size > 0
-    })
-    element.addEventListener("pointerleave", (e) => {
-      if (this.count === 1) {
-        this.lastCoords = this.first
-      }
-      this.pointers.delete(e.pointerId)
-      this.active = this.pointers.size > 0
-    })
-    element.addEventListener("pointermove", (e) => {
-      if (!this.active) return
-      this.lastCoords = [e.clientX, e.clientY]
-      this.pointers.set(e.pointerId, map(element, this.getScale(), e.clientX, e.clientY))
-      this.moves = [this.moves[0]+e.movementX, this.moves[1]+e.movementY]
-    })
-  }
-  getScale() {
-    return this.scale
-  }
-  updateScale(scale) { this.scale = scale }
-  reset() {
-    this.pointers.clear()
-    this.active = false
-    this.moves = [0,0]
-  }
-  get count() {
-    return this.pointers.size
-  }
-  get move() {
-    return this.moves
-  }
-  get coords() {
-    return this.pointers.size > 0 ? Array.from(this.pointers.values()).map((p) => [...p]).flat() : [0, 0]
-  }
-  get first() {
-    return this.pointers.values().next().value || this.lastCoords
-  }
-}
-class Editor {
-  constructor(textarea, errorfield, errorindicator) {
-    this.textarea = textarea
-    this.errorfield = errorfield
-    this.errorindicator = errorindicator
-    textarea.addEventListener('keydown', this.handleKeydown.bind(this))
-    textarea.addEventListener('scroll', this.handleScroll.bind(this))
-  }
-  get hidden() { return this.textarea.classList.contains('hidden') }
-  set hidden(value) { value ? this.#hide() : this.#show() }
-  get text() { return this.textarea.value }
-  set text(value) { this.textarea.value = value }
-  get scrollTop() { return this.textarea.scrollTop }
-  set scrollTop(value) { this.textarea.scrollTop = value }
-  setError(message) {
-    this.errorfield.innerHTML = message
-    this.errorfield.classList.add('opaque')
-    const match = message.match(/ERROR: \d+:(\d+):/)
-    const lineNumber = match ? parseInt(match[1]) : 0
-    const overlay = document.createElement('pre')
+      window.fncSlider = function(sliderSelector, options) {
+        $$(sliderSelector).forEach(function($slider) {
+          _fncSliderInit($slider, options || {});
+        });
+      };
+    }());
 
-    overlay.classList.add('overlay')
-    overlay.textContent = '\n'.repeat(lineNumber)
+    fncSlider(".example-slider", { autoSlidingDelay: 4000 });
 
-    document.body.appendChild(overlay)
+    var demoCont = document.querySelector(".demo-cont");
+    document.querySelectorAll(".fnc-slide__action-btn").forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        demoCont.classList.toggle("credits-active");
+      });
+    });
 
-    const offsetTop = parseInt(getComputedStyle(overlay).height)
+    document.querySelector(".demo-cont__credits-close").addEventListener("click", function() {
+      demoCont.classList.remove("credits-active");
+    });
 
-    this.errorindicator.style.setProperty('--top', offsetTop + 'px')
-    this.errorindicator.style.visibility = 'visible'
-
-    document.body.removeChild(overlay)
-  }
-  clearError() {
-    this.errorfield.textContent = ''
-    this.errorfield.classList.remove('opaque')
-    this.errorfield.blur()
-    this.errorindicator.style.visibility = 'hidden'
-  }
-  focus() {
-    this.textarea.focus()
-  }
-  #hide() {
-    for (const el of [this.errorindicator, this.errorfield, this.textarea]) {
-      el.classList.add('hidden')
-    }
-  }
-  #show() {
-    for (const el of [this.errorindicator, this.errorfield, this.textarea]) {
-      el.classList.remove('hidden')
-    }
-    this.focus()
-  }
-  handleScroll() {
-    this.errorindicator.style.setProperty('--scroll-top', `${this.textarea.scrollTop}px`)
-  }
-  handleKeydown(event) {
-    if (event.key === "Tab") {
-      event.preventDefault()
-      this.handleTabKey(event.shiftKey)
-    } else if (event.key === "Enter") {
-      event.preventDefault()
-      this.handleEnterKey()
-    }
-  }
-  handleTabKey(shiftPressed) {
-    if (this.#getSelectedText() !== "") {
-      if (shiftPressed) {
-        this.#unindentSelectedText()
-        return
-      }
-      this.#indentSelectedText()
-    } else {
-      this.#indentAtCursor()
-    }
-  }
-  #getSelectedText() {
-    const editor = this.textarea
-    const start = editor.selectionStart
-    const end = editor.selectionEnd
-    return editor.value.substring(start, end)
-  }
-  #indentAtCursor() {
-    const editor = this.textarea
-    const cursorPos = editor.selectionStart
-
-    document.execCommand('insertText', false, '\t')
-    editor.selectionStart = editor.selectionEnd = cursorPos + 1
-  }
-  #indentSelectedText() {
-    const editor = this.textarea
-    const cursorPos = editor.selectionStart
-    const selectedText = this.#getSelectedText()
-    const lines = selectedText.split('\n')
-    const indentedText = lines.map(line => '\t' + line).join('\n')
-
-    document.execCommand('insertText', false, indentedText)
-    editor.selectionStart = cursorPos
-  }
-  #unindentSelectedText() {
-    const editor = this.textarea
-    const cursorPos = editor.selectionStart
-    const selectedText = this.#getSelectedText()
-    const lines = selectedText.split('\n')
-    const indentedText = lines.map(line => line.replace(/^\t/, '').replace(/^ /, '')).join('\n')
-
-    document.execCommand('insertText', false, indentedText)
-    editor.selectionStart = cursorPos
-  }
-  handleEnterKey() {
-    const editor = this.textarea
-    const visibleTop = editor.scrollTop
-    const cursorPosition = editor.selectionStart
-
-    let start = cursorPosition - 1
-    while (start >= 0 && editor.value[start] !== '\n') {
-      start--
-    }
-
-    let newLine = ''
-    while (start < cursorPosition - 1 && (editor.value[start + 1] === ' ' || editor.value[start + 1] === '\t')) {
-      newLine += editor.value[start + 1]
-      start++
-    }
-
-    document.execCommand('insertText', false, '\n' + newLine)
-    editor.selectionStart = editor.selectionEnd = cursorPosition + 1 + newLine.length
-    editor.scrollTop = visibleTop // Prevent the editor from scrolling
-    const lineHeight = editor.scrollHeight / editor.value.split('\n').length
-    const line = editor.value.substring(0, cursorPosition).split('\n').length
-
-    // Do the actual layout calculation in order to get the correct scroll position
-    const visibleBottom = editor.scrollTop + editor.clientHeight
-    const lineTop = lineHeight * (line - 1)
-    const lineBottom = lineHeight * (line + 2)
-
-    // If the cursor is outside the visible range, scroll the editor
-    if (lineTop < visibleTop) editor.scrollTop = lineTop
-    if (lineBottom > visibleBottom) editor.scrollTop = lineBottom - editor.clientHeight
-  }
-}
+    document.querySelector(".js-activate-global-blending").addEventListener("click", function() {
+      document.querySelector(".example-slider").classList.toggle("m--global-blending-active");
+    });
   </script>
 </body>
 </html>
