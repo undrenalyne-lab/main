@@ -103,6 +103,20 @@
         background-size: cover;
         background-position: center top;
         transform: translate3d(0, 0, 0);
+        overflow: hidden;
+      }
+
+      .fnc-slide__video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+        z-index: -1;
       }
 
       .m--global-blending-active .fnc-slide__inner,
@@ -308,7 +322,7 @@
         z-index: 5;
         position: absolute;
         left: 50%;
-        bottom: 0;
+        bottom: 40px;
         transform: translateX(-50%);
       }
 
@@ -344,7 +358,26 @@
       .fnc-nav__controls {
         font-size: 0;
         display: flex;
-        gap: 10px;
+        gap: 12px;
+        padding: 12px 16px;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
+                    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                    0 2px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .fnc-nav__controls:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 
+                    0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+                    0 4px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
       }
 
       .fnc-nav__control {
@@ -577,44 +610,23 @@
         transform: translate3d(-500px, 0, 0) rotateY(10deg) scale(0.9);
       }
 
-      .example-slider .fnc-slide-1 .fnc-slide__inner,
-      .example-slider .fnc-slide-1 .fnc-slide__mask-inner {
-        background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/blackwidow.jpg");
+      .fnc-slide__mask-inner {
+        background-size: cover;
+        background-position: center center;
+        overflow: hidden;
       }
 
-      .example-slider .fnc-slide-2 .fnc-slide__inner,
-      .example-slider .fnc-slide-2 .fnc-slide__mask-inner {
-        background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/captainamerica.jpg");
-      }
-
-      .example-slider .fnc-slide-3 .fnc-slide__inner,
-      .example-slider .fnc-slide-3 .fnc-slide__mask-inner {
-        background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/ironman-alt.jpg");
-      }
-
-      .example-slider .fnc-slide-3 .fnc-slide__inner:before {
-        content: "";
+      .fnc-slide__mask-video {
         position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      .example-slider .fnc-slide-4 .fnc-slide__inner,
-      .example-slider .fnc-slide-4 .fnc-slide__mask-inner {
-        background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/thor.jpg");
-      }
-
-      .example-slider .fnc-slide-4 .fnc-slide__inner:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.2);
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+        z-index: -1;
       }
 
       .example-slider .fnc-slide__heading,
@@ -821,16 +833,20 @@
           <!-- slide start -->
           <div class="fnc-slide m--blend-green m--active-slide">
             <div class="fnc-slide__inner">
+              <video class="fnc-slide__video" autoplay muted loop playsinline>
+                <source src="assets/videos/VID1.mp4" type="video/mp4">
+              </video>
               <div class="fnc-slide__mask">
-                <div class="fnc-slide__mask-inner"></div>
+                <div class="fnc-slide__mask-inner">
+                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline>
+                    <source src="assets/videos/VID1.mp4" type="video/mp4">
+                  </video>
+                </div>
               </div>
               <div class="fnc-slide__content">
                 <h2 class="fnc-slide__heading">
                   <div class="fnc-slide__heading-line">
-                    <span>Black</span>
-                  </div>
-                  <div class="fnc-slide__heading-line">
-                    <span>Widow</span>
+                    <span>Services</span>
                   </div>
                 </h2>
                 <button type="button" class="fnc-slide__action-btn">
@@ -844,16 +860,20 @@
           <!-- slide start -->
           <div class="fnc-slide m--blend-dark">
             <div class="fnc-slide__inner">
+              <video class="fnc-slide__video" autoplay muted loop playsinline>
+                <source src="assets/videos/VID2.mp4" type="video/mp4">
+              </video>
               <div class="fnc-slide__mask">
-                <div class="fnc-slide__mask-inner"></div>
+                <div class="fnc-slide__mask-inner">
+                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline>
+                    <source src="assets/videos/VID2.mp4" type="video/mp4">
+                  </video>
+                </div>
               </div>
               <div class="fnc-slide__content">
                 <h2 class="fnc-slide__heading">
                   <div class="fnc-slide__heading-line">
-                    <span>Captain</span>
-                  </div>
-                  <div class="fnc-slide__heading-line">
-                    <span>America</span>
+                    <span>Réserver</span>
                   </div>
                 </h2>
                 <button type="button" class="fnc-slide__action-btn">
@@ -867,16 +887,20 @@
           <!-- slide start -->
           <div class="fnc-slide m--blend-red">
             <div class="fnc-slide__inner">
+              <video class="fnc-slide__video" autoplay muted loop playsinline>
+                <source src="assets/videos/VID3.mp4" type="video/mp4">
+              </video>
               <div class="fnc-slide__mask">
-                <div class="fnc-slide__mask-inner"></div>
+                <div class="fnc-slide__mask-inner">
+                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline>
+                    <source src="assets/videos/VID3.mp4" type="video/mp4">
+                  </video>
+                </div>
               </div>
               <div class="fnc-slide__content">
                 <h2 class="fnc-slide__heading">
                   <div class="fnc-slide__heading-line">
-                    <span>Iron</span>
-                  </div>
-                  <div class="fnc-slide__heading-line">
-                    <span>Man</span>
+                    <span>Processus</span>
                   </div>
                 </h2>
                 <button type="button" class="fnc-slide__action-btn">
@@ -890,16 +914,20 @@
           <!-- slide start -->
           <div class="fnc-slide m--blend-blue">
             <div class="fnc-slide__inner">
+              <video class="fnc-slide__video" autoplay muted loop playsinline>
+                <source src="assets/videos/VID4.mp4" type="video/mp4">
+              </video>
               <div class="fnc-slide__mask">
-                <div class="fnc-slide__mask-inner"></div>
+                <div class="fnc-slide__mask-inner">
+                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline>
+                    <source src="assets/videos/VID4.mp4" type="video/mp4">
+                  </video>
+                </div>
               </div>
               <div class="fnc-slide__content">
                 <h2 class="fnc-slide__heading">
                   <div class="fnc-slide__heading-line">
-                    <span>Thor</span>
-                  </div>
-                  <div class="fnc-slide__heading-line">
-                    <span>Just Thor</span>
+                    <span>Contact</span>
                   </div>
                 </h2>
                 <button type="button" class="fnc-slide__action-btn">
@@ -920,19 +948,19 @@
           </div>
           <div class="fnc-nav__controls">
             <button class="fnc-nav__control">
-              Black Widow
+              Services
               <span class="fnc-nav__control-progress"></span>
             </button>
             <button class="fnc-nav__control">
-              Captain America
+              Réserver
               <span class="fnc-nav__control-progress"></span>
             </button>
             <button class="fnc-nav__control">
-              Iron Man
+              Processus
               <span class="fnc-nav__control-progress"></span>
             </button>
             <button class="fnc-nav__control">
-              Thor
+              Contact
               <span class="fnc-nav__control-progress"></span>
             </button>
           </div>
