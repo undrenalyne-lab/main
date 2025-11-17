@@ -349,6 +349,87 @@
         transform: translateX(-50%);
       }
 
+      /* Bouton musique en bas à droite */
+      .music-control {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 100;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2),
+                    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        opacity: 0.7;
+      }
+
+      .music-control:hover {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3),
+                    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+      }
+
+      .music-control.playing {
+        opacity: 1;
+        background: rgba(167, 139, 250, 0.2);
+        border-color: rgba(167, 139, 250, 0.4);
+      }
+
+      .music-control.playing:hover {
+        background: rgba(167, 139, 250, 0.3);
+        border-color: rgba(167, 139, 250, 0.5);
+      }
+
+      .music-control.muted {
+        opacity: 0.5;
+      }
+
+      .music-control svg {
+        width: 24px;
+        height: 24px;
+        fill: rgba(255, 255, 255, 0.9);
+        transition: all 0.3s ease;
+      }
+
+      .music-control:hover svg {
+        fill: rgba(255, 255, 255, 1);
+      }
+
+      .music-control.playing svg {
+        fill: rgba(167, 139, 250, 0.9);
+      }
+
+      /* Audio élément caché */
+      #background-music {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .music-control {
+          width: 44px;
+          height: 44px;
+          bottom: 80px;
+          right: 15px;
+        }
+        
+        .music-control svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
       .fnc-nav__bgs {
         display: none;
       }
@@ -2495,6 +2576,18 @@
     because it requires specific images, where more than 50% of bg is transparent or monotone
     -->
     <div class="site-logo">Undrenalyn eLab</div>
+    
+    <!-- Contrôle musique -->
+    <div class="music-control" id="music-control" title="Lancer la musique">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>
+    </div>
+    
+    <audio id="background-music" loop>
+      <source src="assets/ADHD.mp3" type="audio/mpeg">
+    </audio>
+    
     <div class="demo-cont">
       <!-- slider start -->
       <div class="fnc-slider example-slider">
