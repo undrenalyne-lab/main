@@ -2107,14 +2107,16 @@
         <div class="demo-cont__contact-grid">
           <div class="demo-cont__contact-card">
             <h3>Formulaire sécurisé</h3>
-            <form id="contact-form" action="https://formsubmit.co/el/jawuzi" method="POST">
+            <form id="contact-form" action="https://formsubmit.co/el/jawuzi" method="POST" enctype="text/plain">
               <input type="hidden" name="_captcha" value="false">
               <input type="hidden" name="_next" value="https://undrenalyn-elab.github.io/merci.html">
               <input type="hidden" name="_subject" value="Nouveau message depuis le site Undrenalyn eLab">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_autoresponse" value="Merci pour votre message ! Je vous répondrai sous 2 heures ouvrées.">
               
-              <input type="text" name="name" required placeholder="Votre nom" class="demo-cont__contact-input" />
-              <input type="email" name="email" required placeholder="votre@email.com" class="demo-cont__contact-input" />
-              <textarea name="message" rows="4" required placeholder="Parlez-moi de votre projet..." class="demo-cont__contact-textarea"></textarea>
+              <input type="text" name="Nom" required placeholder="Votre nom" class="demo-cont__contact-input" />
+              <input type="email" name="Email" required placeholder="votre@email.com" class="demo-cont__contact-input" />
+              <textarea name="Message" rows="4" required placeholder="Parlez-moi de votre projet..." class="demo-cont__contact-textarea"></textarea>
               
               <button type="submit" class="demo-cont__contact-btn-submit">Envoyer le message</button>
               
@@ -2406,10 +2408,12 @@
       var contactSuccess = document.getElementById("contact-success");
       if (contactForm && contactSuccess) {
         contactForm.addEventListener("submit", function(e) {
+          // Ne pas empêcher la soumission normale du formulaire
+          // Le formulaire se soumettra normalement à FormSubmit
           contactSuccess.classList.add("show");
-          setTimeout(function() {
-            contactSuccess.classList.remove("show");
-          }, 5000);
+          
+          // Laisser le formulaire se soumettre normalement
+          // FormSubmit redirigera vers _next après envoi
         });
       }
 
