@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/images/logo.png">
+    <title>Mentions légales – Undrenalyn eLab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, html::before, html::after, body::before, body::after {
+            background-image: none !important;
+            background: transparent !important;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f1018 !important;
+            min-height: 100vh;
+            padding: 20px;
+            color: #eef2ff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(167, 139, 250, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+            animation: gradientShift 20s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(8, 12, 24, 0.6) 0%, transparent 60%),
+                        radial-gradient(circle at 0% 0%, rgba(5, 8, 18, 0.75) 0%, transparent 68%),
+                        radial-gradient(circle at 100% 100%, rgba(8, 12, 24, 0.75) 0%, transparent 68%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(28px, -24px) rotate(120deg); }
+            66% { transform: translate(-20px, 18px) rotate(240deg); }
+        }
+        
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 40px;
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(238, 242, 255, 0.9);
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin-bottom: 32px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateX(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-heading {
+            margin-bottom: 40px;
+        }
+        
+        .section-heading h1 {
+            font-size: clamp(2.2rem, 4vw, 2.8rem);
+            background: linear-gradient(135deg, #f8fafc 0%, #c7d2fe 45%, #e9d5ff 85%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+        
+        .section-heading p {
+            color: rgba(238, 242, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        .case-studies-grid {
+            display: grid;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .case-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+        
+        .case-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+        
+        .case-card h2 {
+            font-size: 1.4rem;
+            color: rgba(238, 242, 255, 0.95);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .case-card p {
+            color: rgba(238, 242, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+        
+        .case-card p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .case-card a {
+            color: rgba(167, 139, 250, 0.9);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .case-card a:hover {
+            color: rgba(167, 139, 250, 1);
+            text-decoration: underline;
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(238, 242, 255, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .case-card {
+                padding: 20px;
+            }
+            .section-heading h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <a href="index.html" class="back-button">← Retour à l'accueil</a>
+        <header class="section-heading">
+            <div>
+                <h1>Mentions légales</h1>
+                <p>Informations imposées par la loi n°2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique.</p>
+            </div>
+        </header>
+
+        <section class="case-studies-grid">
+            <article class="case-card">
+                <h2>Éditeur du site</h2>
+                <p><strong>Exploitant :</strong> Steven VAILHEN – Undrenalyn eLab (entreprise individuelle)</p>
+                <p><strong>N° SIRET :</strong> 793 551 706 00021</p>
+                <p><strong>Responsable de la publication :</strong> Steven VAILHEN</p>
+                <p><strong>Contact :</strong> via le formulaire disponible sur la page d'accueil.</p>
+            </article>
+
+            <article class="case-card">
+                <h2>Hébergement</h2>
+                <p>Site hébergé par GitHub Pages (GitHub, Inc.), 88 Colin P. Kelly Jr St, San Francisco, CA 94107, États-Unis.</p>
+                <p><strong>Support :</strong> <a href="https://docs.github.com/pages" target="_blank" rel="noopener">docs.github.com/pages</a></p>
+            </article>
+
+            <article class="case-card">
+                <h2>Propriété intellectuelle</h2>
+                <p>L'ensemble des contenus (textes, images, vidéos, graphismes, logos, icônes) sont la propriété exclusive de Undrenalyn eLab sauf mention contraire. Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site est interdite sans autorisation écrite préalable.</p>
+            </article>
+
+            <article class="case-card">
+                <h2>Données personnelles</h2>
+                <p>Les données collectées via le formulaire de contact sont utilisées uniquement pour répondre aux demandes. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression en formulant une demande via ce même formulaire.</p>
+                <p>Le site peut utiliser des outils analytiques (Google Analytics, Matomo). Un bandeau d'information et un mécanisme de consentement seront mis en place avant tout suivi.</p>
+            </article>
+
+            <article class="case-card">
+                <h2>Médiation &amp; litiges</h2>
+                <p>En cas de litige, le consommateur peut saisir le médiateur de la consommation dont relève l'entreprise : CNPM Médiation Consommation – 23 Rue Terrenoire, 42100 Saint-Étienne (www.cnpm-mediation-consommation.eu).</p>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Undrenalyn eLab. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

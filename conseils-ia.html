@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conseils IA Undrenalyn eLab : audit express, roadmap et prompts prêts à l'emploi.">
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/images/logo.png">
+    <title>Conseils en solutions IA — Undrenalyn eLab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Vanta.js Background Setup */
+        
+        body {
+            background: transparent !important;
+        }
+        
+        /* Ensure Vanta canvas is behind content */
+        body > canvas {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: -2 !important;
+            pointer-events: none !important;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        
+        /* Content above canvas */
+        header, main, footer, section, .section {
+            position: relative;
+            z-index: 1;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        .hidden { display: none !important; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: transparent !important;
+            min-height: 100vh;
+            padding: 20px;
+            color: #eef2ff;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(8,12,24,0.6) 0%, transparent 60%),
+                        radial-gradient(circle at 0% 0%, rgba(5,8,18,0.75) 0%, transparent 68%),
+                        radial-gradient(circle at 100% 100%, rgba(8,12,24,0.75) 0%, transparent 68%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes float { 0%,100%{transform:translate(0,0) rotate(0deg);}33%{transform:translate(28px,-24px) rotate(120deg);}66%{transform:translate(-20px,18px) rotate(240deg);} }
+        .main-container { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+        .glass-window {
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(55px) saturate(200%);
+            -webkit-backdrop-filter: blur(55px) saturate(200%);
+            border: 2px solid rgba(255,255,255,0.7);
+            border-radius: 32px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.5) inset;
+            padding: 36px;
+            margin: 40px 0;
+            position: relative;
+        }
+        .glass-window::before { content:''; position:absolute; inset:-50%; background:linear-gradient(45deg,transparent 30%,rgba(255,255,255,0.12) 50%,transparent 70%); animation:shine 8s linear infinite; pointer-events:none; }
+        @keyframes shine { 0%,92%{opacity:0; transform:translateX(-100%) translateY(-100%) rotate(45deg);} 93%,97%{opacity:1;} 98%,100%{opacity:0; transform:translateX(100%) translateY(100%) rotate(45deg);} }
+        header { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:28px; flex-wrap:wrap; }
+        h1 { font-size: clamp(2.2rem,4vw,2.8rem); background: transparent !important; }
+        p.lead { color: rgba(177, 195, 204, 0.9); line-height:1.7; margin-bottom:18px; }
+        .list { list-style:none; display:grid; gap:10px; color: rgba(177, 195, 204, 0.9); }
+        .list li::before { content:'• '; color:rgba(255, 140, 66, 0.9); font-weight:700; }
+        .contact-quick { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+        .contact-quick a { display:inline-flex; align-items:center; padding:10px 16px; border-radius:999px; background:rgba(255,255,255,0.6); border:1px solid rgba(148,163,184,0.4); color:#1f2937; font-weight:600; text-decoration:none; font-size:0.9rem; transition:transform 0.3s ease, box-shadow 0.3s ease; }
+        .contact-quick a:hover { transform:translateY(-2px); box-shadow:0 12px 26px rgba(148,163,184,0.28); }
+        .cta-row { display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; }
+        .btn-primary,.btn-secondary { display:inline-flex; align-items:center; justify-content:center; padding:12px 22px; border-radius:999px; font-weight:600; text-decoration:none; transition:transform 0.3s ease, box-shadow 0.3s ease; }
+        .btn-primary { background:rgba(255,140,66,0.75); backdrop-filter:blur(20px) saturate(180%); -webkit-backdrop-filter:blur(20px) saturate(180%); border:1px solid rgba(255,140,66,0.8); color: rgba(177, 195, 204, 0.95); box-shadow:0 8px 20px rgba(255,140,66,0.4),0 4px 10px rgba(255,140,66,0.3),inset 0 2px 4px rgba(255,255,255,0.2),inset 0 -2px 4px rgba(0,0,0,0.1); position:relative; overflow:hidden; }
+        .btn-primary:hover { background:rgba(255,140,66,0.85); border-color:rgba(255,140,66,0.9); box-shadow:0 12px 28px rgba(255,140,66,0.5),0 6px 14px rgba(255,140,66,0.4),inset 0 2px 6px rgba(255,255,255,0.3),inset 0 -2px 6px rgba(0,0,0,0.15); }
+        .btn-secondary { background:rgba(255,255,255,0.65); border:1px solid rgba(148,163,184,0.4); color:#1f2937; }
+        .btn-secondary:hover { transform:translateY(-2px); box-shadow:0 16px 30px rgba(148,163,184,0.25); }
+        .section-divider { height:1px; margin:28px 0; background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.55) 20%,rgba(255,255,255,0.55) 80%,transparent 100%); }
+        footer { margin-top:32px; font-size:0.85rem; color: rgba(177, 195, 204, 0.9); text-align:center; }
+        .back-button {
+            position: sticky;
+            top: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 14px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            color: #1f2937;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.18);
+            margin-bottom: 18px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 18px 32px rgba(15, 23, 42, 0.22);
+        }
+        .service-showcase {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 24px 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                0 5px 15px rgba(0, 0, 0, 0.25),
+                inset 0 2px 4px rgba(255, 255, 255, 0.6),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.15),
+                inset 2px 0 4px rgba(255, 255, 255, 0.5),
+                inset -2px 0 4px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.3),
+                0 0 0 1px rgba(0, 0, 0, 0.05) inset;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            aspect-ratio: 16 / 9;
+        }
+        
+        .service-showcase-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            position: relative;
+            z-index: 2;
+            transition: opacity 0.5s ease;
+        }
+        
+        .service-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.4) 30%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0.4) 70%,
+                transparent 100%);
+            transition: left 0.6s ease;
+            pointer-events: none;
+            z-index: 3;
+        }
+        
+        .service-showcase:hover::before {
+            left: 100%;
+        }
+        
+        .service-showcase::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.05) 0%, 
+                transparent 50%,
+                rgba(255, 255, 255, 0.03) 100%);
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0.2;
+        }
+        
+        .service-showcase:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.5),
+                0 15px 40px rgba(0, 0, 0, 0.35),
+                0 8px 20px rgba(0, 0, 0, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.7),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+                inset 2px 0 4px rgba(255, 255, 255, 0.6),
+                inset -2px 0 4px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.4),
+                0 0 0 1px rgba(0, 0, 0, 0.08) inset;
+        }
+        
+        @media(max-width:768px){ 
+            .glass-window{padding:26px;} 
+            .service-showcase {
+                max-width: 100%;
+                aspect-ratio: 16 / 9;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="glass-window fade-in">
+            <a href="../index.html" class="back-button">← Retour à l'accueil</a>
+
+            <section class="hero-section" style="margin-bottom:32px;">
+                <h1>Conseils en solutions IA</h1>
+                <p class="lead">60 minutes pour identifier les gains rapides, choisir les bons outils et repartir avec une feuille de route claire.</p>
+                
+                <div class="service-showcase">
+                    <img src="../assets/images/prestaai.jpeg" alt="Conseils en solutions IA" class="service-showcase-image">
+                </div>
+                <ul class="list">
+                    <li>Audit express de vos workflows</li>
+                    <li>Roadmap priorisée + recommandations d'outils</li>
+                    <li>Prompts personnalisés et scripts prêts à lancer</li>
+                </ul>
+                <div class="cta-row">
+                    <a class="btn-primary" href="../reserver.html">Réserver une session</a>
+                    <a class="btn-secondary" href="../paiement.html?service=conseils-ia&amount=150">Régler 150€</a>
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <section style="display:grid; gap:16px; color: rgba(177, 195, 204, 0.95);">
+                <strong style="color: rgba(177, 195, 204, 0.95);">Étapes clés :</strong>
+                <ul class="list">
+                    <li>Questionnaire + collecte d'exemples</li>
+                    <li>Atelier visio 60 min</li>
+                    <li>Livrable PDF (quick wins &amp; roadmap)</li>
+                    <li>Support WhatsApp 14 jours</li>
+                </ul>
+            </section>
+
+            <footer>&copy; <span id="year"></span> Undrenalyn eLab.</footer>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    
+    <!-- Vanta.js Clouds Animation - Optimized -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
+</body>
+</html>
