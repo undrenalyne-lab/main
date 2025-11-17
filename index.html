@@ -2944,7 +2944,30 @@
 
       document.querySelector(".demo-cont__credits-close").addEventListener("click", function () {
         $demoCont.classList.remove("credits-active");
+        // Arrêter la vidéo quand on ferme
+        var portraitVideo = document.querySelector(".demo-cont__credits-portrait-video");
+        if (portraitVideo) {
+          portraitVideo.pause();
+          portraitVideo.currentTime = 0;
+        }
       });
+      
+      // Gestion de la vidéo au survol du portrait
+      var portraitContainer = document.querySelector(".demo-cont__credits-portrait");
+      var portraitVideo = document.querySelector(".demo-cont__credits-portrait-video");
+      if (portraitContainer && portraitVideo) {
+        portraitContainer.addEventListener("mouseenter", function() {
+          portraitVideo.currentTime = 0;
+          portraitVideo.play().catch(function(e) {
+            console.log("Erreur lecture vidéo:", e);
+          });
+        });
+        
+        portraitContainer.addEventListener("mouseleave", function() {
+          portraitVideo.pause();
+          portraitVideo.currentTime = 0;
+        });
+      }
 
       // Gestion de l'ouverture/fermeture de la section Services
       var $servicesButtons = document.querySelectorAll('.fnc-nav__control');
