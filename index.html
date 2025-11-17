@@ -334,21 +334,11 @@
       }
 
       .fnc-nav__bgs {
-        z-index: -1;
-        overflow: hidden;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
+        display: none;
       }
 
       .fnc-nav__bg {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
+        display: none;
       }
 
       .fnc-nav__bg.m--nav-bg-before {
@@ -475,13 +465,13 @@
         width: 500px;
         height: 100%;
         padding: 40px;
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(20px) saturate(180%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
-        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(30px) saturate(180%);
+        -webkit-backdrop-filter: blur(30px) saturate(180%);
+        border-left: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 25px 0 0 25px;
         box-shadow: -25px 0 80px rgba(0, 0, 0, 0.3), 
-                    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
                     -8px 0 32px rgba(0, 0, 0, 0.2);
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         color: #eef2ff;
