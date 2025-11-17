@@ -715,6 +715,175 @@
         z-index: 1;
       }
 
+      .demo-cont__services {
+        box-sizing: border-box;
+        overflow-y: auto;
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding: 60px 40px 40px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(30px) saturate(180%);
+        -webkit-backdrop-filter: blur(30px) saturate(180%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0 0 25px 25px;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), 
+                    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+                    0 -8px 32px rgba(0, 0, 0, 0.2);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: #eef2ff;
+        transition: transform 0.7s;
+        transform: translate3d(0, -100%, 0) rotateX(45deg);
+        will-change: transform;
+      }
+
+      .services-active .demo-cont__services {
+        transition: transform 0.7s 0.2333333333s;
+        transform: translate3d(0, 0, 0);
+      }
+
+      .services-active .example-slider {
+        transform: translate3d(0, 500px, 0) rotateX(-10deg) scale(0.9);
+        position: relative;
+        z-index: 1;
+      }
+
+      .demo-cont__services-close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .demo-cont__services-close:before,
+      .demo-cont__services-close:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 2px;
+        margin-top: -1px;
+        background: #fff;
+      }
+
+      .demo-cont__services-close:before {
+        transform: rotate(45deg);
+      }
+
+      .demo-cont__services-close:after {
+        transform: rotate(-45deg);
+      }
+
+      .demo-cont__services-heading {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 12px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .demo-cont__services-subtitle {
+        text-align: center;
+        color: rgba(238, 242, 255, 0.7);
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+      }
+
+      .demo-cont__services-features {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 32px;
+        margin-bottom: 48px;
+        padding: 20px;
+      }
+
+      .demo-cont__services-feature {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(238, 242, 255, 0.85);
+        font-size: 0.95rem;
+      }
+
+      .demo-cont__services-feature-icon {
+        font-size: 1.2rem;
+      }
+
+      .demo-cont__services-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .demo-cont__services-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        padding: 28px;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .demo-cont__services-card:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.25);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .demo-cont__services-card-price {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background: rgba(34, 197, 94, 0.2);
+        color: #22c55e;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 1rem;
+        border: 1px solid rgba(34, 197, 94, 0.3);
+      }
+
+      .demo-cont__services-card-badge {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        color: rgba(238, 242, 255, 0.7);
+        font-size: 0.85rem;
+        padding: 4px 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+      }
+
+      .demo-cont__services-card-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.95);
+        margin-top: 50px;
+        margin-bottom: 16px;
+      }
+
+      .demo-cont__services-card-description {
+        color: rgba(238, 242, 255, 0.75);
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
       .fnc-slide__mask-inner {
         background-size: cover;
         background-position: center center;
@@ -1124,6 +1293,50 @@
           </div>
         </footer>
       </div>
+      
+      <div class="demo-cont__services">
+        <div class="demo-cont__services-close"></div>
+        <h1 class="demo-cont__services-heading">MES SERVICES</h1>
+        <p class="demo-cont__services-subtitle">Solutions créatives sur mesure pour vos projets numériques</p>
+        
+        <div class="demo-cont__services-features">
+          <div class="demo-cont__services-feature">
+            <span class="demo-cont__services-feature-icon">⚡</span>
+            <span>Livraison 48h</span>
+          </div>
+          <div class="demo-cont__services-feature">
+            <span class="demo-cont__services-feature-icon">📅</span>
+            <span>Sessions Google Meet</span>
+          </div>
+          <div class="demo-cont__services-feature">
+            <span class="demo-cont__services-feature-icon">💬</span>
+            <span>Support WhatsApp réactif</span>
+          </div>
+        </div>
+        
+        <div class="demo-cont__services-cards">
+          <div class="demo-cont__services-card">
+            <div class="demo-cont__services-card-price">100€</div>
+            <div class="demo-cont__services-card-badge">48h</div>
+            <h3 class="demo-cont__services-card-title">Conception Visuels Numériques</h3>
+            <p class="demo-cont__services-card-description">Logos, bannières et visuels sur mesure générés avec IA et retouches manuelles, livrés en 48h.</p>
+          </div>
+          
+          <div class="demo-cont__services-card">
+            <div class="demo-cont__services-card-price">150€</div>
+            <div class="demo-cont__services-card-badge">Session 1h</div>
+            <h3 class="demo-cont__services-card-title">Conseils en Solutions IA</h3>
+            <p class="demo-cont__services-card-description">Diagnostic workflow, recommandations d'outils et plan d'action IA avec rapport PDF.</p>
+          </div>
+          
+          <div class="demo-cont__services-card">
+            <div class="demo-cont__services-card-price">200€</div>
+            <div class="demo-cont__services-card-badge">Clips 1-3 min</div>
+            <h3 class="demo-cont__services-card-title">Édition Vidéos Courtes</h3>
+            <p class="demo-cont__services-card-description">Montages optimisés pour TikTok, Reels et Shorts avec sous-titres et formats adaptés.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -1327,6 +1540,26 @@
 
       document.querySelector(".demo-cont__credits-close").addEventListener("click", function () {
         $demoCont.classList.remove("credits-active");
+      });
+
+      // Gestion de l'ouverture/fermeture de la section Services
+      var $servicesButtons = document.querySelectorAll('.fnc-nav__control');
+      if ($servicesButtons.length > 0) {
+        $servicesButtons[0].addEventListener("click", function(e) {
+          // Vérifier si c'est le bouton Services (premier bouton)
+          if (this.textContent.trim().includes('Services')) {
+            e.preventDefault();
+            e.stopPropagation();
+            // Fermer credits si ouvert
+            $demoCont.classList.remove("credits-active");
+            // Ouvrir/fermer services
+            $demoCont.classList.toggle("services-active");
+          }
+        });
+      }
+
+      document.querySelector(".demo-cont__services-close").addEventListener("click", function () {
+        $demoCont.classList.remove("services-active");
       });
 
       // Mise à jour de l'année dans le copyright
