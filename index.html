@@ -53,15 +53,15 @@
       }
 
       .fnc-slider .m--blend-red .fnc-slide__inner {
-        background-color: #eb2229;
+        background-color: #a78bfa;
       }
 
       .fnc-slider .m--blend-red .fnc-slide__mask-inner {
-        background-color: #990e13;
+        background-color: #8b5cf6;
       }
 
       .fnc-slider .m--navbg-red {
-        background-color: #990e13;
+        background-color: #8b5cf6;
       }
 
       .fnc-slider .m--blend-blue .fnc-slide__inner {
@@ -117,6 +117,13 @@
         transform: translate(-50%, -50%);
         object-fit: cover;
         z-index: -1;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+        will-change: transform;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       .m--global-blending-active .fnc-slide__inner,
@@ -627,6 +634,13 @@
         transform: translate(-50%, -50%);
         object-fit: cover;
         z-index: -1;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+        will-change: transform;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       .example-slider .fnc-slide__heading,
@@ -833,12 +847,12 @@
           <!-- slide start -->
           <div class="fnc-slide m--blend-green m--active-slide">
             <div class="fnc-slide__inner">
-              <video class="fnc-slide__video" autoplay muted loop playsinline>
+              <video class="fnc-slide__video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
                 <source src="assets/videos/VID1.mp4" type="video/mp4">
               </video>
               <div class="fnc-slide__mask">
                 <div class="fnc-slide__mask-inner">
-                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline>
+                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
                     <source src="assets/videos/VID1.mp4" type="video/mp4">
                   </video>
                 </div>
@@ -860,12 +874,12 @@
           <!-- slide start -->
           <div class="fnc-slide m--blend-dark">
             <div class="fnc-slide__inner">
-              <video class="fnc-slide__video" autoplay muted loop playsinline>
+              <video class="fnc-slide__video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
                 <source src="assets/videos/VID2.mp4" type="video/mp4">
               </video>
               <div class="fnc-slide__mask">
                 <div class="fnc-slide__mask-inner">
-                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline>
+                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
                     <source src="assets/videos/VID2.mp4" type="video/mp4">
                   </video>
                 </div>
@@ -887,12 +901,12 @@
           <!-- slide start -->
           <div class="fnc-slide m--blend-red">
             <div class="fnc-slide__inner">
-              <video class="fnc-slide__video" autoplay muted loop playsinline>
+              <video class="fnc-slide__video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
                 <source src="assets/videos/VID3.mp4" type="video/mp4">
               </video>
               <div class="fnc-slide__mask">
                 <div class="fnc-slide__mask-inner">
-                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline>
+                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
                     <source src="assets/videos/VID3.mp4" type="video/mp4">
                   </video>
                 </div>
@@ -914,12 +928,12 @@
           <!-- slide start -->
           <div class="fnc-slide m--blend-blue">
             <div class="fnc-slide__inner">
-              <video class="fnc-slide__video" autoplay muted loop playsinline>
+              <video class="fnc-slide__video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
                 <source src="assets/videos/VID4.mp4" type="video/mp4">
               </video>
               <div class="fnc-slide__mask">
                 <div class="fnc-slide__mask-inner">
-                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline>
+                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
                     <source src="assets/videos/VID4.mp4" type="video/mp4">
                   </video>
                 </div>
@@ -1158,6 +1172,36 @@
       })();
 
       fncSlider(".example-slider", { autoSlidingDelay: 4000 });
+
+      // Amélioration du chargement et démarrage des vidéos
+      (function() {
+        var videos = document.querySelectorAll('.fnc-slide__video, .fnc-slide__mask-video');
+        videos.forEach(function(video) {
+          // Préchargement et démarrage du début
+          video.addEventListener('loadeddata', function() {
+            this.currentTime = 0;
+            this.play().catch(function(e) {
+              console.log('Video play prevented:', e);
+            });
+          });
+          
+          // Réinitialiser au début à chaque boucle
+          video.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+          });
+          
+          // S'assurer que la vidéo démarre du début
+          video.addEventListener('canplay', function() {
+            if (this.currentTime > 0.1) {
+              this.currentTime = 0;
+            }
+          });
+          
+          // Forcer le préchargement
+          video.load();
+        });
+      })();
 
       var $demoCont = document.querySelector(".demo-cont");
 
