@@ -3433,35 +3433,25 @@
       var $servicesButtons = document.querySelectorAll('.fnc-nav__control');
       $servicesButtons.forEach(function($btn, index) {
         $btn.addEventListener("click", function(e) {
-          var btnText = this.textContent.trim();
+          e.preventDefault();
+          e.stopPropagation();
           
-          if (btnText.includes('Services')) {
-            e.preventDefault();
-            e.stopPropagation();
-            // Fermer autres sections
+          // Utiliser l'index plutôt que le texte pour être compatible avec toutes les langues
+          if (index === 0) {
+            // Services
             $demoCont.classList.remove("credits-active", "booking-active", "process-active", "contact-active");
-            // Ouvrir/fermer services
             $demoCont.classList.toggle("services-active");
-          } else if (btnText.includes('Réserver')) {
-            e.preventDefault();
-            e.stopPropagation();
-            // Fermer autres sections
+          } else if (index === 1) {
+            // Réserver / Book
             $demoCont.classList.remove("credits-active", "services-active", "process-active", "contact-active");
-            // Ouvrir/fermer booking
             $demoCont.classList.toggle("booking-active");
-          } else if (btnText.includes('Processus')) {
-            e.preventDefault();
-            e.stopPropagation();
-            // Fermer autres sections
+          } else if (index === 2) {
+            // Processus / Process
             $demoCont.classList.remove("credits-active", "services-active", "booking-active", "contact-active");
-            // Ouvrir/fermer process
             $demoCont.classList.toggle("process-active");
-          } else if (btnText.includes('Contact')) {
-            e.preventDefault();
-            e.stopPropagation();
-            // Fermer autres sections
+          } else if (index === 3) {
+            // Contact
             $demoCont.classList.remove("credits-active", "services-active", "booking-active", "process-active");
-            // Ouvrir/fermer contact
             $demoCont.classList.toggle("contact-active");
           }
         });
@@ -4166,9 +4156,13 @@
         var bookingCalendarTitle = document.querySelector('.demo-cont__booking-actions h3');
         if (bookingCalendarTitle) bookingCalendarTitle.textContent = t.bookingCalendarTitle;
 
-        var bookingCalendarDesc = document.querySelector('.demo-cont__booking-actions p');
-        if (bookingCalendarDesc && bookingCalendarDesc.textContent.includes('Choisissez')) {
-          bookingCalendarDesc.textContent = t.bookingCalendarDesc;
+        // Description calendrier - trouver le premier paragraphe dans booking-actions
+        var bookingActions = document.querySelector('.demo-cont__booking-actions');
+        if (bookingActions) {
+          var bookingCalendarDesc = bookingActions.querySelector('p');
+          if (bookingCalendarDesc) {
+            bookingCalendarDesc.textContent = t.bookingCalendarDesc;
+          }
         }
 
         var bookingWhatsApp = document.querySelector('.demo-cont__booking-btn-whatsapp');
