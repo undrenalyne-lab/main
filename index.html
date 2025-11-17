@@ -1303,6 +1303,228 @@
         }
       }
 
+      .demo-cont__contact {
+        box-sizing: border-box;
+        overflow-y: auto;
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding: 60px 40px 40px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(30px) saturate(180%);
+        -webkit-backdrop-filter: blur(30px) saturate(180%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0 0 25px 25px;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), 
+                    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+                    0 -8px 32px rgba(0, 0, 0, 0.2);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: #eef2ff;
+        transition: transform 0.7s;
+        transform: translate3d(0, -100%, 0) rotateX(45deg);
+        will-change: transform;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .contact-active .demo-cont__contact {
+        transition: transform 0.7s 0.2333333333s;
+        transform: translate3d(0, 0, 0);
+      }
+
+      .contact-active .example-slider {
+        transform: translate3d(0, 500px, 0) rotateX(-10deg) scale(0.9);
+        position: relative;
+        z-index: 1;
+      }
+
+      .demo-cont__contact-close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .demo-cont__contact-close:before,
+      .demo-cont__contact-close:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 2px;
+        margin-top: -1px;
+        background: #fff;
+      }
+
+      .demo-cont__contact-close:before {
+        transform: rotate(45deg);
+      }
+
+      .demo-cont__contact-close:after {
+        transform: rotate(-45deg);
+      }
+
+      .demo-cont__contact-heading {
+        font-size: clamp(2.2rem, 4vw, 2.8rem);
+        background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 32px;
+        font-weight: 600;
+      }
+
+      .demo-cont__contact-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 32px;
+        margin-top: 32px;
+      }
+
+      .demo-cont__contact-card {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        padding: 28px;
+      }
+
+      .demo-cont__contact-card h3 {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.95);
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .demo-cont__contact-card p {
+        color: rgba(238, 242, 255, 0.75);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      .demo-cont__contact-input,
+      .demo-cont__contact-textarea {
+        width: 100%;
+        padding: 14px 20px;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(203, 213, 225, 0.9);
+        border-radius: 14px;
+        font-size: 15px;
+        color: rgba(15, 23, 42, 0.9);
+        margin-bottom: 16px;
+        transition: all 0.25s ease;
+        font-family: inherit;
+      }
+
+      .demo-cont__contact-textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .demo-cont__contact-input:focus,
+      .demo-cont__contact-textarea:focus {
+        outline: none;
+        border-color: rgba(167, 139, 250, 0.8);
+        box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2), 0 10px 26px rgba(167, 139, 250, 0.25);
+      }
+
+      .demo-cont__contact-btn-submit {
+        width: 100%;
+        padding: 14px 24px;
+        background: rgba(255, 140, 66, 0.75);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 140, 66, 0.8);
+        color: #ffffff;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(255, 140, 66, 0.4),
+                    0 4px 10px rgba(255, 140, 66, 0.3);
+      }
+
+      .demo-cont__contact-btn-submit:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 140, 66, 0.85);
+        border-color: rgba(255, 140, 66, 0.9);
+        box-shadow: 0 12px 28px rgba(255, 140, 66, 0.5),
+                    0 6px 14px rgba(255, 140, 66, 0.4);
+      }
+
+      .demo-cont__contact-success {
+        margin-top: 16px;
+        padding: 12px;
+        background: rgba(34, 197, 94, 0.2);
+        border-radius: 12px;
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 0.9rem;
+        display: none;
+      }
+
+      .demo-cont__contact-success.show {
+        display: block;
+      }
+
+      .demo-cont__contact-btn-whatsapp {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 14px 24px;
+        background: #25d366;
+        color: #ffffff;
+        border-radius: 999px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 28px rgba(37, 211, 102, 0.3);
+        margin-bottom: 16px;
+      }
+
+      .demo-cont__contact-btn-whatsapp:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 36px rgba(37, 211, 102, 0.4);
+        background: #20ba5a;
+      }
+
+      .demo-cont__contact-support-note {
+        font-size: 0.85rem;
+        color: rgba(238, 242, 255, 0.6);
+        margin-top: 16px;
+      }
+
+      .demo-cont__contact-legal {
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .demo-cont__contact-legal p {
+        font-size: 0.85rem;
+        color: rgba(238, 242, 255, 0.6);
+        margin-bottom: 6px;
+      }
+
+      .demo-cont__contact-hidden {
+        display: none !important;
+      }
+
+      @media (max-width: 768px) {
+        .demo-cont__contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
       .fnc-slide__mask-inner {
         background-size: cover;
         background-position: center center;
@@ -1690,7 +1912,7 @@
             <span>CapCut</span>
             <span>Canva Pro</span>
             <span>Notion</span>
-          </div>
+        </div>
           
           <h3>Mon approche</h3>
           <p>Au-delà de la production, j'accompagne chaque client pour clarifier le message, automatiser les tâches répétitives et bâtir des assets réutilisables (guides, templates, prompts). Communication directe via WhatsApp et bilans synthétiques après chaque mission.</p>
@@ -1856,6 +2078,49 @@
           <div class="demo-cont__process-benefit-card">
             <h3>Accompagnement pro</h3>
             <p>Suivi WhatsApp, support post-livraison et documentation claire pour chaque projet.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="demo-cont__contact">
+        <div class="demo-cont__contact-close"></div>
+        <h1 class="demo-cont__contact-heading">Brief rapide</h1>
+        
+        <div class="demo-cont__contact-grid">
+          <div class="demo-cont__contact-card">
+            <h3>Formulaire sécurisé</h3>
+            <form id="contact-form" action="https://formsubmit.co/undrenalyne@gmail.com" method="POST">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="https://undrenalyn-elab.github.io/merci.html">
+              <input type="hidden" name="_subject" value="Nouveau message depuis le site Undrenalyn eLab">
+              
+              <input type="text" name="name" required placeholder="Votre nom" class="demo-cont__contact-input" />
+              <input type="email" name="email" required placeholder="votre@email.com" class="demo-cont__contact-input" />
+              <textarea name="message" rows="4" required placeholder="Parlez-moi de votre projet..." class="demo-cont__contact-textarea"></textarea>
+              
+              <button type="submit" class="demo-cont__contact-btn-submit">Envoyer le message</button>
+              
+              <p id="contact-success" class="demo-cont__contact-success">
+                ✓ Merci pour votre message. Je vous répondrai sous peu.
+              </p>
+            </form>
+          </div>
+          
+          <div class="demo-cont__contact-card">
+            <h3>Besoin d'une réponse immédiate ?</h3>
+            <p>Passez par WhatsApp pour un devis express ou précisez votre demande via le formulaire. Toutes les réponses se font sous 2 heures ouvrées.</p>
+            
+            <a href="https://wa.me/33630904905?text=Bonjour%20Steven%2C%20je%20veux%20discuter%20de%20mon%20projet." target="_blank" rel="noopener" class="demo-cont__contact-btn-whatsapp">
+              WhatsApp direct
+            </a>
+            
+            <p class="demo-cont__contact-support-note">Disponibilité : lundi - vendredi, 9h à 18h CET.</p>
+            
+            <div class="demo-cont__contact-legal">
+              <p>Undrenalyn eLab · Entreprise individuelle</p>
+              <p>SIRET : 793 551 706 00021</p>
+              <p>Facturation via Stripe / PayPal.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -2074,23 +2339,30 @@
             e.preventDefault();
             e.stopPropagation();
             // Fermer autres sections
-            $demoCont.classList.remove("credits-active", "booking-active", "process-active");
+            $demoCont.classList.remove("credits-active", "booking-active", "process-active", "contact-active");
             // Ouvrir/fermer services
             $demoCont.classList.toggle("services-active");
           } else if (btnText.includes('Réserver')) {
             e.preventDefault();
             e.stopPropagation();
             // Fermer autres sections
-            $demoCont.classList.remove("credits-active", "services-active", "process-active");
+            $demoCont.classList.remove("credits-active", "services-active", "process-active", "contact-active");
             // Ouvrir/fermer booking
             $demoCont.classList.toggle("booking-active");
           } else if (btnText.includes('Processus')) {
             e.preventDefault();
             e.stopPropagation();
             // Fermer autres sections
-            $demoCont.classList.remove("credits-active", "services-active", "booking-active");
+            $demoCont.classList.remove("credits-active", "services-active", "booking-active", "contact-active");
             // Ouvrir/fermer process
             $demoCont.classList.toggle("process-active");
+          } else if (btnText.includes('Contact')) {
+            e.preventDefault();
+            e.stopPropagation();
+            // Fermer autres sections
+            $demoCont.classList.remove("credits-active", "services-active", "booking-active", "process-active");
+            // Ouvrir/fermer contact
+            $demoCont.classList.toggle("contact-active");
           }
         });
       });
@@ -2106,6 +2378,22 @@
       document.querySelector(".demo-cont__process-close").addEventListener("click", function () {
         $demoCont.classList.remove("process-active");
       });
+
+      document.querySelector(".demo-cont__contact-close").addEventListener("click", function () {
+        $demoCont.classList.remove("contact-active");
+      });
+
+      // Gestion du formulaire de contact
+      var contactForm = document.getElementById("contact-form");
+      var contactSuccess = document.getElementById("contact-success");
+      if (contactForm && contactSuccess) {
+        contactForm.addEventListener("submit", function(e) {
+          contactSuccess.classList.add("show");
+          setTimeout(function() {
+            contactSuccess.classList.remove("show");
+          }, 5000);
+        });
+      }
 
       // Mise à jour de l'année dans le copyright
       var currentYearElement = document.getElementById("current-year");
