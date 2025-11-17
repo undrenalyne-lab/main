@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undrenalyn eLab — Digital Services Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #030711;
+      --card: rgba(255, 255, 255, 0.03);
+      --text: #f3f5f7;
+      --muted: rgba(243, 245, 247, 0.7);
+      --accent: #4f46e5;
+      --accent-2: #0ea5e9;
+      --border: rgba(255, 255, 255, 0.08);
+      font-size: clamp(15px, 1.1vw, 18px);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.35), transparent 45%),
+                  radial-gradient(circle at 80% 0%, rgba(14, 165, 233, 0.35), transparent 40%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 2.5rem clamp(1.5rem, 6vw, 6rem) 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      background: linear-gradient(180deg, rgba(3, 7, 17, 0.95) 0%, rgba(3, 7, 17, 0.35) 80%, transparent);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--text);
+    }
+
+    main {
+      padding: 3rem clamp(1.5rem, 6vw, 6rem) 6rem;
+      display: grid;
+      gap: 4rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(79, 70, 229, 0.2);
+      color: var(--accent-2);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.1;
+      margin: 0;
+      color: var(--text);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin: 1.5rem 0 2rem;
+    }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .cta {
+      padding: 0.95rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      text-decoration: none;
+      text-align: center;
+      transition: transform 0.2s ease, border 0.2s ease, background 0.2s ease;
+    }
+
+    .cta.primary {
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      color: #fff;
+      box-shadow: 0 20px 45px rgba(79, 70, 229, 0.35);
+    }
+
+    .cta.secondary {
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .cta:hover {
+      transform: translateY(-2px);
+    }
+
+    .metrics {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .metric {
+      flex: 1 1 180px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      background: var(--card);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.8rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      padding: 1.8rem;
+      border-radius: 1.2rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      min-height: 220px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+
+    .tag {
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 2rem clamp(1.5rem, 6vw, 6rem) 3rem;
+      border-top: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .socials a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-right: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .socials a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        display: none;
+      }
+
+      header {
+        padding-bottom: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">UNDRENALYN eLAB</div>
+    <nav>
+      <a href="#expertises">Expertises</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="badge">Studio numérique premium</span>
+        <h1>Nous propulsons les expériences digitales audacieuses.</h1>
+        <p>
+          Undrenalyn eLab accompagne startups et marques établies pour imaginer, prototyper et lancer des produits numériques
+          fluides, scalables et élégants. Nous fusionnons design expérimental, stratégie data-driven et ingénierie fiable.
+        </p>
+        <div class="cta-group">
+          <a class="cta primary" href="#contact">Planifier un sprint</a>
+          <a class="cta secondary" href="#process">Voir notre approche</a>
+        </div>
+      </div>
+      <div>
+        <div class="metrics">
+          <div class="metric">
+            <strong>+120</strong>
+            projets livrés avec un taux de satisfaction de 98%.
+          </div>
+          <div class="metric">
+            <strong>4,9/5</strong>
+            score moyen sur les revues clients depuis 2019.
+          </div>
+          <div class="metric">
+            <strong>72h</strong>
+            pour prototyper un MVP fonctionnel prêt à être testé.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="expertises">
+      <h2>Expertises intégrées</h2>
+      <div class="card-grid">
+        <article class="card">
+          <h3>Design systems</h3>
+          <p>UI/UX adaptative, guidelines complètes, composants web performants.</p>
+          <div class="tag-row">
+            <span class="tag">Figma</span>
+            <span class="tag">Design tokens</span>
+            <span class="tag">Accessibilité</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Produits web & mobile</h3>
+          <p>Applications full-stack, intégrations API, automatisation des workflows.</p>
+          <div class="tag-row">
+            <span class="tag">React</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Node</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Brand content interactif</h3>
+          <p>Sites narratifs, campagnes immersives et expériences live.</p>
+          <div class="tag-row">
+            <span class="tag">WebGL</span>
+            <span class="tag">3D</span>
+            <span class="tag">Storytelling</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Data & optimisation</h3>
+          <p>Dashboards, scoring, analytics avancée pour piloter la croissance.</p>
+          <div class="tag-row">
+            <span class="tag">AI</span>
+            <span class="tag">Growth</span>
+            <span class="tag">Automation</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="process">
+      <h2>Process sans friction</h2>
+      <div class="card-grid">
+        <article class="card">
+          <h3>1. Stratégie</h3>
+          <p>Audit express, cadrage des KPI, roadmap claire avant le sprint.</p>
+        </article>
+        <article class="card">
+          <h3>2. Design & Prototype</h3>
+          <p>Explorations visuelles, tests utilisateurs rapides et handoff fluide.</p>
+        </article>
+        <article class="card">
+          <h3>3. Build & Scale</h3>
+          <p>Code maintenable, CI/CD, monitoring continu et transfert d'équipe.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Travaillons ensemble</h2>
+      <div class="card" style="max-width: 640px; margin-top: 1.5rem;">
+        <p>
+          Expliquez-nous vos enjeux en 3 bullet points et nous vous répondons sous 24h avec une proposition de sprint sur-mesure.
+        </p>
+        <p>Email : <a href="mailto:contact@undrenalyn.studio" style="color: var(--accent-2); text-decoration: none;">contact@undrenalyn.studio</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="year"></span> Undrenalyn eLab — Paris / Montréal</p>
+    <div class="socials">
+      <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+      <a href="https://www.behance.net" target="_blank" rel="noreferrer">Behance</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
