@@ -838,6 +838,7 @@
         padding: 28px;
         position: relative;
         transition: all 0.3s ease;
+        cursor: pointer;
       }
 
       .demo-cont__services-card:hover {
@@ -1543,6 +1544,201 @@
         }
       }
 
+      .demo-cont__service-detail {
+        box-sizing: border-box;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding: 60px 40px 40px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(30px) saturate(180%);
+        -webkit-backdrop-filter: blur(30px) saturate(180%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0 0 25px 25px;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), 
+                    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+                    0 -8px 32px rgba(0, 0, 0, 0.2);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: #eef2ff;
+        transition: transform 0.7s;
+        transform: translate3d(0, -100%, 0) rotateX(45deg);
+        will-change: transform;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .service-detail-active .demo-cont__service-detail {
+        transition: transform 0.7s 0.2333333333s;
+        transform: translate3d(0, 0, 0);
+      }
+
+      .service-detail-active .example-slider {
+        transform: translate3d(0, 500px, 0) rotateX(-10deg) scale(0.9);
+        position: relative;
+        z-index: 1;
+      }
+
+      .demo-cont__service-detail-close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .demo-cont__service-detail-close:before,
+      .demo-cont__service-detail-close:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 2px;
+        margin-top: -1px;
+        background: #fff;
+      }
+
+      .demo-cont__service-detail-close:before {
+        transform: rotate(45deg);
+      }
+
+      .demo-cont__service-detail-close:after {
+        transform: rotate(-45deg);
+      }
+
+      .demo-cont__service-detail-heading {
+        font-size: clamp(2.2rem, 4vw, 2.8rem);
+        background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #c7d2fe 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .demo-cont__service-detail-lead {
+        color: rgba(238, 242, 255, 0.75);
+        line-height: 1.7;
+        margin-bottom: 32px;
+        font-size: 1.1rem;
+      }
+
+      .demo-cont__service-detail-showcase {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin: 24px auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        aspect-ratio: 16 / 9;
+        cursor: pointer;
+      }
+
+      .demo-cont__service-detail-showcase img,
+      .demo-cont__service-detail-showcase video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .demo-cont__service-detail-list {
+        list-style: none;
+        display: grid;
+        gap: 12px;
+        margin: 24px 0;
+      }
+
+      .demo-cont__service-detail-list li {
+        color: rgba(238, 242, 255, 0.75);
+        line-height: 1.6;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .demo-cont__service-detail-list li::before {
+        content: '•';
+        color: rgba(167, 139, 250, 0.9);
+        font-weight: 700;
+        position: absolute;
+        left: 0;
+        font-size: 1.2em;
+      }
+
+      .demo-cont__service-detail-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin: 32px 0;
+      }
+
+      .demo-cont__service-detail-btn-primary,
+      .demo-cont__service-detail-btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14px 28px;
+        border-radius: 999px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+        box-sizing: border-box;
+      }
+
+      .demo-cont__service-detail-btn-primary {
+        background: rgba(255, 140, 66, 0.75);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 140, 66, 0.8);
+        color: #ffffff;
+        box-shadow: 0 8px 20px rgba(255, 140, 66, 0.4),
+                    0 4px 10px rgba(255, 140, 66, 0.3);
+      }
+
+      .demo-cont__service-detail-btn-primary:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 140, 66, 0.85);
+        border-color: rgba(255, 140, 66, 0.9);
+        box-shadow: 0 12px 28px rgba(255, 140, 66, 0.5),
+                    0 6px 14px rgba(255, 140, 66, 0.4);
+      }
+
+      .demo-cont__service-detail-btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .demo-cont__service-detail-btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .demo-cont__service-detail-section {
+        margin: 32px 0;
+        padding-top: 32px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .demo-cont__service-detail-section strong {
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 1.1rem;
+        display: block;
+        margin-bottom: 16px;
+      }
+
       .fnc-slide__mask-inner {
         background-size: cover;
         background-position: center center;
@@ -1974,21 +2170,21 @@
         </div>
         
         <div class="demo-cont__services-cards">
-          <div class="demo-cont__services-card">
+          <div class="demo-cont__services-card" data-service="conception-visuels">
             <div class="demo-cont__services-card-price">100€</div>
             <div class="demo-cont__services-card-badge">48h</div>
             <h3 class="demo-cont__services-card-title">Conception Visuels Numériques</h3>
             <p class="demo-cont__services-card-description">Logos, bannières et visuels sur mesure générés avec IA et retouches manuelles, livrés en 48h.</p>
           </div>
           
-          <div class="demo-cont__services-card">
+          <div class="demo-cont__services-card" data-service="conseils-ia">
             <div class="demo-cont__services-card-price">150€</div>
             <div class="demo-cont__services-card-badge">Session 1h</div>
             <h3 class="demo-cont__services-card-title">Conseils en Solutions IA</h3>
             <p class="demo-cont__services-card-description">Diagnostic workflow, recommandations d'outils et plan d'action IA avec rapport PDF.</p>
           </div>
           
-          <div class="demo-cont__services-card">
+          <div class="demo-cont__services-card" data-service="edition-videos">
             <div class="demo-cont__services-card-price">200€</div>
             <div class="demo-cont__services-card-badge">Clips 1-3 min</div>
             <h3 class="demo-cont__services-card-title">Édition Vidéos Courtes</h3>
@@ -2107,7 +2303,7 @@
         <div class="demo-cont__contact-grid">
           <div class="demo-cont__contact-card">
             <h3>Formulaire sécurisé</h3>
-            <form id="contact-form" action="https://formsubmit.co/el/jawuzi" method="POST">
+            <form id="contact-form" action="https://formsubmit.co/undrenalyne@gmail.com" method="POST">
               <input type="hidden" name="_captcha" value="false">
               <input type="hidden" name="_next" value="https://undrenalyn-elab.github.io/merci.html">
               <input type="hidden" name="_subject" value="Nouveau message depuis le site Undrenalyn eLab">
@@ -2142,6 +2338,104 @@
               <p>Facturation via Stripe / PayPal.</p>
             </div>
           </div>
+        </div>
+      </div>
+      
+      <!-- Page détaillée Conception Visuels Numériques -->
+      <div class="demo-cont__service-detail" id="service-conception-visuels">
+        <div class="demo-cont__service-detail-close"></div>
+        <h1 class="demo-cont__service-detail-heading">Conception visuels numériques</h1>
+        <p class="demo-cont__service-detail-lead">Logos, bannières et identités visuelles générées par IA puis retouchées manuellement. Livrables HD prêts à intégrer en 48h.</p>
+        
+        <div class="demo-cont__service-detail-showcase">
+          <video muted playsinline loop autoplay>
+            <source src="assets/videos/conceptiongraph.mp4" type="video/mp4">
+          </video>
+        </div>
+        
+        <ul class="demo-cont__service-detail-list">
+          <li>3 propositions créatives + variations réseaux sociaux</li>
+          <li>Fichiers source (PNG, SVG, PDF)</li>
+          <li>Prompts et guide rapide pour refaire des déclinaisons</li>
+        </ul>
+        
+        <div class="demo-cont__service-detail-cta">
+          <a href="#" class="demo-cont__service-detail-btn-primary" onclick="openBooking(); return false;">Planifier 30 min</a>
+          <a href="paiement.html?service=conception-visuels&amount=100" class="demo-cont__service-detail-btn-secondary">Régler 100€</a>
+        </div>
+        
+        <div class="demo-cont__service-detail-section">
+          <strong>Déroulé express :</strong>
+          <ul class="demo-cont__service-detail-list">
+            <li>Brief Notion partagé</li>
+            <li>Exploration générative + retouches</li>
+            <li>Session live 20 min pour ajuster</li>
+            <li>Export final + support 7 jours</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Page détaillée Conseils en Solutions IA -->
+      <div class="demo-cont__service-detail" id="service-conseils-ia">
+        <div class="demo-cont__service-detail-close"></div>
+        <h1 class="demo-cont__service-detail-heading">Conseils en solutions IA</h1>
+        <p class="demo-cont__service-detail-lead">60 minutes pour identifier les gains rapides, choisir les bons outils et repartir avec une feuille de route claire.</p>
+        
+        <div class="demo-cont__service-detail-showcase">
+          <img src="assets/images/prestaai.jpeg" alt="Conseils en solutions IA">
+        </div>
+        
+        <ul class="demo-cont__service-detail-list">
+          <li>Audit express de vos workflows</li>
+          <li>Roadmap priorisée + recommandations d'outils</li>
+          <li>Prompts personnalisés et scripts prêts à lancer</li>
+        </ul>
+        
+        <div class="demo-cont__service-detail-cta">
+          <a href="#" class="demo-cont__service-detail-btn-primary" onclick="openBooking(); return false;">Réserver une session</a>
+          <a href="paiement.html?service=conseils-ia&amount=150" class="demo-cont__service-detail-btn-secondary">Régler 150€</a>
+        </div>
+        
+        <div class="demo-cont__service-detail-section">
+          <strong>Étapes clés :</strong>
+          <ul class="demo-cont__service-detail-list">
+            <li>Questionnaire + collecte d'exemples</li>
+            <li>Atelier visio 60 min</li>
+            <li>Livrable PDF (quick wins &amp; roadmap)</li>
+            <li>Support WhatsApp 14 jours</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Page détaillée Édition Vidéos Courtes -->
+      <div class="demo-cont__service-detail" id="service-edition-videos">
+        <div class="demo-cont__service-detail-close"></div>
+        <h1 class="demo-cont__service-detail-heading">Édition de vidéos courtes</h1>
+        <p class="demo-cont__service-detail-lead">Scripts, montage vertical et exports optimisés pour TikTok, Reels et Shorts. Une vidéo prête à poster.</p>
+        
+        <div class="demo-cont__service-detail-showcase">
+          <img src="assets/images/videospresta.jpeg" alt="Édition de vidéos courtes">
+        </div>
+        
+        <ul class="demo-cont__service-detail-list">
+          <li>Montage 1 à 3 minutes livré sous 72h</li>
+          <li>Sous-titres dynamiques + habillage personnalisé</li>
+          <li>Description et plan de diffusion</li>
+        </ul>
+        
+        <div class="demo-cont__service-detail-cta">
+          <a href="#" class="demo-cont__service-detail-btn-primary" onclick="openBooking(); return false;">Réserver un créneau</a>
+          <a href="paiement.html?service=edition-videos&amount=200" class="demo-cont__service-detail-btn-secondary">Régler 200€</a>
+        </div>
+        
+        <div class="demo-cont__service-detail-section">
+          <strong>Workflow :</strong>
+          <ul class="demo-cont__service-detail-list">
+            <li>Brief &amp; storyboard express</li>
+            <li>Montage + habillage</li>
+            <li>Optimisation hooks et sous-titres</li>
+            <li>Livraison + support 7 jours</li>
+          </ul>
         </div>
       </div>
     </div>
