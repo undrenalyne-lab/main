@@ -541,7 +541,7 @@
         position: absolute;
         right: 0;
         top: 0;
-        width: 500px;
+        width: 600px;
         height: 100%;
         padding: 40px;
         background: rgba(255, 255, 255, 0.05);
@@ -723,9 +723,73 @@
       }
 
       .credits-active .example-slider {
-        transform: translate3d(-500px, 0, 0) rotateY(10deg) scale(0.9);
+        transform: translate3d(-600px, 0, 0) rotateY(10deg) scale(0.9);
         position: relative;
         z-index: 1;
+      }
+      
+      /* Portrait circulaire style LinkedIn */
+      .demo-cont__credits-portrait {
+        position: absolute;
+        left: -120px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 2;
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .credits-active .demo-cont__credits-portrait {
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity 0.7s 0.3s, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), width 0.5s cubic-bezier(0.4, 0, 0.2, 1), height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .demo-cont__credits-portrait:hover {
+        width: 240px;
+        height: 240px;
+        left: -140px;
+        border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 12px 48px rgba(139, 92, 246, 0.4),
+                    0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+      }
+      
+      .demo-cont__credits-portrait-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: opacity 0.5s ease;
+      }
+      
+      .demo-cont__credits-portrait-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+      }
+      
+      .demo-cont__credits-portrait:hover .demo-cont__credits-portrait-image {
+        opacity: 0;
+      }
+      
+      .demo-cont__credits-portrait:hover .demo-cont__credits-portrait-video {
+        opacity: 1;
       }
 
       .demo-cont__services {
@@ -2309,6 +2373,12 @@
       </div>
       <!-- slider end -->
       <div class="demo-cont__credits">
+        <div class="demo-cont__credits-portrait">
+          <img src="assets/images/portrait.png" alt="Steven VAILHEN" class="demo-cont__credits-portrait-image">
+          <video class="demo-cont__credits-portrait-video" muted loop playsinline preload="auto">
+            <source src="assets/videos/WALK.mp4" type="video/mp4">
+          </video>
+        </div>
         <div class="demo-cont__credits-close"></div>
         <div class="demo-cont__credits-content">
           <h1 class="demo-cont__credits-heading">À propos de Steven VAILHEN</h1>
