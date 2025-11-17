@@ -3610,6 +3610,58 @@
       if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
       }
+
+      // Gestion de la musique de fond
+      var musicControl = document.getElementById("music-control");
+      var backgroundMusic = document.getElementById("background-music");
+      var isPlaying = false;
+      var isMuted = false;
+
+      if (musicControl && backgroundMusic) {
+        musicControl.addEventListener("click", function() {
+          if (!isPlaying) {
+            // Lancer la musique
+            backgroundMusic.play().then(function() {
+              isPlaying = true;
+              isMuted = false;
+              musicControl.classList.add("playing");
+              musicControl.classList.remove("muted");
+              musicControl.title = "Mute / Unmute";
+              // Changer l'icône pour mute/unmute
+              var svg = musicControl.querySelector("svg");
+              if (svg) {
+                svg.innerHTML = '<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-1 13.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>';
+              }
+            }).catch(function(error) {
+              console.log("Erreur lecture audio:", error);
+            });
+          } else {
+            // Toggle mute/unmute
+            if (isMuted) {
+              backgroundMusic.muted = false;
+              isMuted = false;
+              musicControl.classList.remove("muted");
+              musicControl.title = "Mute";
+            } else {
+              backgroundMusic.muted = true;
+              isMuted = true;
+              musicControl.classList.add("muted");
+              musicControl.title = "Unmute";
+            }
+          }
+        });
+
+        // Gérer la pause automatique si la page devient inactive
+        document.addEventListener("visibilitychange", function() {
+          if (document.hidden && isPlaying) {
+            backgroundMusic.pause();
+          } else if (!document.hidden && isPlaying && !isMuted) {
+            backgroundMusic.play().catch(function(e) {
+              console.log("Erreur reprise audio:", e);
+            });
+          }
+        });
+      }
     </script>
   </body>
 </html>
