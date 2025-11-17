@@ -1573,9 +1573,10 @@
         display: none;
       }
 
-      .service-detail-active .demo-cont__service-detail {
+      .service-detail-active .demo-cont__service-detail[style*="display: block"] {
         transition: transform 0.7s 0.2333333333s;
         transform: translate3d(0, 0, 0);
+        display: block !important;
       }
 
       .service-detail-active .example-slider {
@@ -2716,6 +2717,8 @@
             var targetService = document.getElementById('service-' + serviceId);
             if (targetService) {
               targetService.style.display = 'block';
+              // Forcer le reflow pour que l'animation fonctionne
+              targetService.offsetHeight;
             }
           }
         });
