@@ -574,6 +574,64 @@
         pointer-events: none;
       }
 
+      /* Sélecteur de langue */
+      .language-selector {
+        position: fixed;
+        top: 1cm;
+        right: 1cm;
+        z-index: 10;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .language-btn {
+        width: 40px;
+        height: 28px;
+        border-radius: 6px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      .language-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+      }
+
+      .language-btn.active {
+        background: rgba(167, 139, 250, 0.3);
+        border-color: rgba(167, 139, 250, 0.6);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(167, 139, 250, 0.4);
+      }
+
+      @media (max-width: 768px) {
+        .language-selector {
+          top: 10px !important;
+          right: 10px !important;
+        }
+        
+        .language-btn {
+          width: 36px;
+          height: 26px;
+          font-size: 12px;
+        }
+      }
+
       .demo-cont {
         overflow: hidden;
         position: relative;
@@ -2607,6 +2665,12 @@
     -->
     <div class="site-logo">Undrenalyn eLab</div>
     
+    <!-- Sélecteur de langue -->
+    <div class="language-selector">
+      <button class="language-btn active" data-lang="fr" id="lang-fr">FR</button>
+      <button class="language-btn" data-lang="en" id="lang-en">EN</button>
+    </div>
+    
     <!-- Contrôle musique -->
     <div class="music-control" id="music-control" title="Lancer la musique">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="music-icon">
@@ -3565,11 +3629,12 @@
 
       // Fonction pour ouvrir la page de paiement depuis les pages de services détaillées
       function openPayment(serviceId, amount) {
-        // Mapping des services
+        // Mapping des services (utilise les traductions)
+        var t = translations[currentLang] || translations.fr;
         var serviceNames = {
-          'conception-visuels': 'Conception visuels numériques',
-          'conseils-ia': 'Conseils en solutions IA',
-          'edition-videos': 'Édition vidéos courtes'
+          'conception-visuels': t.service1DetailTitle,
+          'conseils-ia': t.service2DetailTitle,
+          'edition-videos': t.service3DetailTitle
         };
         
         // Mapping des liens Stripe
@@ -3643,6 +3708,718 @@
       if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
       }
+
+      // ============================================
+      // SYSTÈME DE TRADUCTION FR/EN
+      // ============================================
+      
+      var translations = {
+        fr: {
+          // Textes défilants
+          slide1: "Undrenalyn eLab",
+          slide2: "Identités visuelles et chartes graphiques accélérées.",
+          slide3: "Optimisation des workflows marketing via IA générative.",
+          slide4: "Montages vidéo courts destinés aux réseaux sociaux.",
+          quiSuisJe: "Qui suis-je ?",
+          
+          // Navigation
+          navServices: "Services",
+          navReserver: "Réserver",
+          navProcessus: "Processus",
+          navContact: "Contact",
+          
+          // Page "Qui suis-je ?"
+          aboutTitle: "À propos de",
+          aboutSteven: "Steven",
+          aboutVailhen: "VAILHEN",
+          aboutSubtitle: "Designer & consultant IA indépendant",
+          aboutDesc: "Je conçois vos identités visuelles, vos formats vidéo et vos automatisations marketing avec une promesse claire : livrer rapidement, rester explicite et rendre chaque outil simple à utiliser.",
+          aboutSpecialties: "Domaines de spécialité",
+          specialty1: "Identités visuelles et chartes graphiques accélérées.",
+          specialty2: "Optimisation des workflows marketing via IA générative.",
+          specialty3: "Montages vidéo courts destinés aux réseaux sociaux.",
+          aboutTools: "Outils maîtrisés",
+          aboutApproach: "Mon approche",
+          aboutApproachText: "Au-delà de la production, j'accompagne chaque client pour clarifier le message, automatiser les tâches répétitives et bâtir des assets réutilisables (guides, templates, prompts). Communication directe via WhatsApp et bilans synthétiques après chaque mission.",
+          
+          // Footer "Qui suis-je ?"
+          footerMentions: "Mentions légales",
+          footerCGV: "CGV",
+          footerPrivacy: "Politique de confidentialité",
+          footerPortfolio: "Portfolio",
+          footerCases: "Études de cas",
+          footerRights: "Tous droits réservés.",
+          
+          // Page Services
+          servicesTitle: "MES SERVICES",
+          servicesSubtitle: "Solutions créatives sur mesure pour vos projets numériques",
+          servicesFeature1: "Livraison 48h",
+          servicesFeature2: "Sessions Google Meet",
+          servicesFeature3: "Support WhatsApp réactif",
+          service1Title: "Conception Visuels Numériques",
+          service1Desc: "Logos, bannières et visuels sur mesure générés avec IA et retouches manuelles, livrés en 48h.",
+          service2Title: "Conseils en Solutions IA",
+          service2Desc: "Diagnostic workflow, recommandations d'outils et plan d'action IA avec rapport PDF.",
+          service3Title: "Édition Vidéos Courtes",
+          service3Desc: "Montages optimisés pour TikTok, Reels et Shorts avec sous-titres et formats adaptés.",
+          
+          // Page Réserver
+          bookingTitle: "Réserver un rendez-vous",
+          bookingCalendarTitle: "Calendrier 30 minutes",
+          bookingCalendarDesc: "Choisissez un créneau Google Meet pour parler de votre projet. Une confirmation automatique vous est envoyée.",
+          bookingWhatsApp: "Devis express sur WhatsApp",
+          bookingBrief: "Envoyer un brief détaillé",
+          bookingResponse: "Réponse sous 2 heures ouvrées.",
+          
+          // Page Processus
+          processTitle: "Processus de travail",
+          processIntro: "Méthodologie claire : brief, proposition, production, livraison et suivi pour garantir un rendu fiable et rapide.",
+          processStep1Title: "Brief & analyse",
+          processStep1Desc: "Session de découverte (30 min) pour comprendre objectifs, audience et contraintes.",
+          processStep2Title: "Proposition & devis",
+          processStep2Desc: "Envoi de pistes créatives avec planning et devis transparents.",
+          processStep3Title: "Production",
+          processStep3Desc: "Création des contenus (IA + retouches). Point d'étape via WhatsApp ou Google Meet.",
+          processStep4Title: "Livraison & ajustements",
+          processStep4Desc: "Remise des livrables, modifications incluses et mini guide d'utilisation.",
+          processStep5Title: "Suivi post-projet",
+          processStep5Desc: "Support 30 jours, archivage et déclinaisons supplémentaires si besoin.",
+          processDay1: "Jour 1",
+          processDay12: "Jour 1-2",
+          processDay23: "Jour 2-3",
+          processDay34: "Jour 3-4",
+          processDay30: "30 jours",
+          processGuarantees: "Garanties professionnelles",
+          guarantee1: "✓ Devis et contrat signés avant démarrage",
+          guarantee2: "✓ Factures conformes et paiement sécurisé",
+          guarantee3: "✓ Fichiers sources remis systématiquement",
+          guarantee4: "✓ Confidentialité et NDA sur demande",
+          guarantee5: "✓ Délais respectés ou remboursement partiel",
+          processBenefits: "Pourquoi Undrenalyn eLab ?",
+          benefit1Title: "Livraison rapide",
+          benefit1Desc: "Visuels et vidéos prêts à publier en moins de 48 heures avec retouches incluses.",
+          benefit2Title: "IA + design humain",
+          benefit2Desc: "Combinaison des meilleurs outils IA et d'un regard créatif pour un résultat premium.",
+          benefit3Title: "Accompagnement pro",
+          benefit3Desc: "Suivi WhatsApp, support post-livraison et documentation claire pour chaque projet.",
+          
+          // Page Contact
+          contactTitle: "Brief rapide",
+          contactFormTitle: "Formulaire sécurisé",
+          contactName: "Votre nom",
+          contactEmail: "votre@email.com",
+          contactMessage: "Parlez-moi de votre projet...",
+          contactSubmit: "Envoyer le message",
+          contactSuccess: "✓ Merci pour votre message. Je vous répondrai sous peu.",
+          contactInfoTitle: "Besoin d'une réponse immédiate ?",
+          contactInfoDesc: "Passez par WhatsApp pour un devis express ou précisez votre demande via le formulaire. Toutes les réponses se font sous 2 heures ouvrées.",
+          contactWhatsApp: "WhatsApp direct",
+          contactAvailability: "Disponibilité : lundi - vendredi, 9h à 18h CET.",
+          contactLegal1: "Undrenalyn eLab · Entreprise individuelle",
+          contactLegal2: "SIRET : 793 551 706 00021",
+          contactLegal3: "Facturation via Stripe / PayPal.",
+          
+          // Pages services détaillées
+          serviceDetailPlanifier: "Planifier 30 min",
+          serviceDetailReserver: "Réserver une session",
+          serviceDetailReserverCreneau: "Réserver un créneau",
+          serviceDetailRegler: "Régler",
+          service1DetailTitle: "Conception visuels numériques",
+          service1DetailLead: "Logos, bannières et identités visuelles générées par IA puis retouchées manuellement. Livrables HD prêts à intégrer en 48h.",
+          service1Detail1: "3 propositions créatives + variations réseaux sociaux",
+          service1Detail2: "Fichiers source (PNG, SVG, PDF)",
+          service1Detail3: "Prompts et guide rapide pour refaire des déclinaisons",
+          service1DetailSection: "Déroulé express :",
+          service1DetailStep1: "Brief Notion partagé",
+          service1DetailStep2: "Exploration générative + retouches",
+          service1DetailStep3: "Session live 20 min pour ajuster",
+          service1DetailStep4: "Export final + support 7 jours",
+          service2DetailTitle: "Conseils en solutions IA",
+          service2DetailLead: "60 minutes pour identifier les gains rapides, choisir les bons outils et repartir avec une feuille de route claire.",
+          service2Detail1: "Audit express de vos workflows",
+          service2Detail2: "Roadmap priorisée + recommandations d'outils",
+          service2Detail3: "Prompts personnalisés et scripts prêts à lancer",
+          service2DetailSection: "Étapes clés :",
+          service2DetailStep1: "Questionnaire + collecte d'exemples",
+          service2DetailStep2: "Atelier visio 60 min",
+          service2DetailStep3: "Livrable PDF (quick wins & roadmap)",
+          service2DetailStep4: "Support WhatsApp 14 jours",
+          service3DetailTitle: "Édition de vidéos courtes",
+          service3DetailLead: "Scripts, montage vertical et exports optimisés pour TikTok, Reels et Shorts. Une vidéo prête à poster.",
+          service3Detail1: "Montage 1 à 3 minutes livré sous 72h",
+          service3Detail2: "Sous-titres dynamiques + habillage personnalisé",
+          service3Detail3: "Description et plan de diffusion",
+          service3DetailSection: "Workflow :",
+          service3DetailStep1: "Brief & storyboard express",
+          service3DetailStep2: "Montage + habillage",
+          service3DetailStep3: "Optimisation hooks et sous-titres",
+          service3DetailStep4: "Livraison + support 7 jours",
+          
+          // Page paiement
+          paymentTitle: "Paiement sécurisé",
+          paymentLead: "Choisissez votre mode de règlement. Facture et reçu envoyés automatiquement après validation du paiement.",
+          paymentStripe: "Payer avec Stripe",
+          paymentStripeDesc: "Paiement par carte bancaire sécurisé",
+          paymentPayPal: "Payer avec PayPal",
+          paymentPayPalDesc: "Paiement via votre compte PayPal",
+          
+          // Bouton musique
+          musicTitle: "Lancer la musique",
+          musicMute: "Mute",
+          musicUnmute: "Unmute"
+        },
+        en: {
+          // Textes défilants
+          slide1: "Undrenalyn eLab",
+          slide2: "Accelerated visual identities and brand guidelines.",
+          slide3: "Marketing workflow optimization via generative AI.",
+          slide4: "Short video edits for social media.",
+          quiSuisJe: "Who am I?",
+          
+          // Navigation
+          navServices: "Services",
+          navReserver: "Book",
+          navProcessus: "Process",
+          navContact: "Contact",
+          
+          // Page "Qui suis-je ?"
+          aboutTitle: "About",
+          aboutSteven: "Steven",
+          aboutVailhen: "VAILHEN",
+          aboutSubtitle: "Independent Designer & AI Consultant",
+          aboutDesc: "I design your visual identities, video formats, and marketing automations with a clear promise: fast delivery, transparency, and making every tool simple to use.",
+          aboutSpecialties: "Areas of expertise",
+          specialty1: "Accelerated visual identities and brand guidelines.",
+          specialty2: "Marketing workflow optimization via generative AI.",
+          specialty3: "Short video edits for social media.",
+          aboutTools: "Mastered tools",
+          aboutApproach: "My approach",
+          aboutApproachText: "Beyond production, I accompany each client to clarify the message, automate repetitive tasks, and build reusable assets (guides, templates, prompts). Direct communication via WhatsApp and concise summaries after each project.",
+          
+          // Footer "Qui suis-je ?"
+          footerMentions: "Legal notice",
+          footerCGV: "Terms & Conditions",
+          footerPrivacy: "Privacy policy",
+          footerPortfolio: "Portfolio",
+          footerCases: "Case studies",
+          footerRights: "All rights reserved.",
+          
+          // Page Services
+          servicesTitle: "MY SERVICES",
+          servicesSubtitle: "Custom creative solutions for your digital projects",
+          servicesFeature1: "48h delivery",
+          servicesFeature2: "Google Meet sessions",
+          servicesFeature3: "Reactive WhatsApp support",
+          service1Title: "Digital Visual Design",
+          service1Desc: "Logos, banners, and custom visuals generated with AI and manual retouching, delivered in 48h.",
+          service2Title: "AI Solutions Consulting",
+          service2Desc: "Workflow diagnosis, tool recommendations, and AI action plan with PDF report.",
+          service3Title: "Short Video Editing",
+          service3Desc: "Edits optimized for TikTok, Reels, and Shorts with subtitles and adapted formats.",
+          
+          // Page Réserver
+          bookingTitle: "Book an appointment",
+          bookingCalendarTitle: "30-minute calendar",
+          bookingCalendarDesc: "Choose a Google Meet slot to discuss your project. An automatic confirmation will be sent to you.",
+          bookingWhatsApp: "Express quote on WhatsApp",
+          bookingBrief: "Send a detailed brief",
+          bookingResponse: "Response within 2 business hours.",
+          
+          // Page Processus
+          processTitle: "Work process",
+          processIntro: "Clear methodology: brief, proposal, production, delivery, and follow-up to ensure reliable and fast results.",
+          processStep1Title: "Brief & analysis",
+          processStep1Desc: "Discovery session (30 min) to understand objectives, audience, and constraints.",
+          processStep2Title: "Proposal & quote",
+          processStep2Desc: "Sending creative directions with timeline and transparent quotes.",
+          processStep3Title: "Production",
+          processStep3Desc: "Content creation (AI + retouching). Checkpoint via WhatsApp or Google Meet.",
+          processStep4Title: "Delivery & adjustments",
+          processStep4Desc: "Handover of deliverables, included revisions, and mini usage guide.",
+          processStep5Title: "Post-project follow-up",
+          processStep5Desc: "30-day support, archiving, and additional variations if needed.",
+          processDay1: "Day 1",
+          processDay12: "Day 1-2",
+          processDay23: "Day 2-3",
+          processDay34: "Day 3-4",
+          processDay30: "30 days",
+          processGuarantees: "Professional guarantees",
+          guarantee1: "✓ Quote and signed contract before starting",
+          guarantee2: "✓ Compliant invoices and secure payment",
+          guarantee3: "✓ Source files systematically provided",
+          guarantee4: "✓ Confidentiality and NDA on request",
+          guarantee5: "✓ Deadlines met or partial refund",
+          processBenefits: "Why Undrenalyn eLab?",
+          benefit1Title: "Fast delivery",
+          benefit1Desc: "Visuals and videos ready to publish in less than 48 hours with included revisions.",
+          benefit2Title: "AI + human design",
+          benefit2Desc: "Combination of the best AI tools and creative vision for a premium result.",
+          benefit3Title: "Professional support",
+          benefit3Desc: "WhatsApp follow-up, post-delivery support, and clear documentation for each project.",
+          
+          // Page Contact
+          contactTitle: "Quick brief",
+          contactFormTitle: "Secure form",
+          contactName: "Your name",
+          contactEmail: "your@email.com",
+          contactMessage: "Tell me about your project...",
+          contactSubmit: "Send message",
+          contactSuccess: "✓ Thank you for your message. I will reply shortly.",
+          contactInfoTitle: "Need an immediate response?",
+          contactInfoDesc: "Use WhatsApp for an express quote or specify your request via the form. All responses are made within 2 business hours.",
+          contactWhatsApp: "Direct WhatsApp",
+          contactAvailability: "Availability: Monday - Friday, 9am to 6pm CET.",
+          contactLegal1: "Undrenalyn eLab · Sole proprietorship",
+          contactLegal2: "SIRET: 793 551 706 00021",
+          contactLegal3: "Billing via Stripe / PayPal.",
+          
+          // Pages services détaillées
+          serviceDetailPlanifier: "Schedule 30 min",
+          serviceDetailReserver: "Book a session",
+          serviceDetailReserverCreneau: "Book a slot",
+          serviceDetailRegler: "Pay",
+          service1DetailTitle: "Digital Visual Design",
+          service1DetailLead: "Logos, banners, and visual identities generated by AI then manually retouched. HD deliverables ready to integrate in 48h.",
+          service1Detail1: "3 creative proposals + social media variations",
+          service1Detail2: "Source files (PNG, SVG, PDF)",
+          service1Detail3: "Prompts and quick guide to create variations",
+          service1DetailSection: "Express process:",
+          service1DetailStep1: "Shared Notion brief",
+          service1DetailStep2: "Generative exploration + retouching",
+          service1DetailStep3: "20 min live session to adjust",
+          service1DetailStep4: "Final export + 7-day support",
+          service2DetailTitle: "AI Solutions Consulting",
+          service2DetailLead: "60 minutes to identify quick wins, choose the right tools, and leave with a clear roadmap.",
+          service2Detail1: "Express audit of your workflows",
+          service2Detail2: "Prioritized roadmap + tool recommendations",
+          service2Detail3: "Custom prompts and ready-to-launch scripts",
+          service2DetailSection: "Key steps:",
+          service2DetailStep1: "Questionnaire + example collection",
+          service2DetailStep2: "60 min video workshop",
+          service2DetailStep3: "PDF deliverable (quick wins & roadmap)",
+          service2DetailStep4: "14-day WhatsApp support",
+          service3DetailTitle: "Short Video Editing",
+          service3DetailLead: "Scripts, vertical editing, and exports optimized for TikTok, Reels, and Shorts. A video ready to post.",
+          service3Detail1: "1 to 3 minute edit delivered within 72h",
+          service3Detail2: "Dynamic subtitles + custom branding",
+          service3Detail3: "Description and distribution plan",
+          service3DetailSection: "Workflow:",
+          service3DetailStep1: "Express brief & storyboard",
+          service3DetailStep2: "Editing + branding",
+          service3DetailStep3: "Hook and subtitle optimization",
+          service3DetailStep4: "Delivery + 7-day support",
+          
+          // Page paiement
+          paymentTitle: "Secure payment",
+          paymentLead: "Choose your payment method. Invoice and receipt sent automatically after payment validation.",
+          paymentStripe: "Pay with Stripe",
+          paymentStripeDesc: "Secure credit card payment",
+          paymentPayPal: "Pay with PayPal",
+          paymentPayPalDesc: "Payment via your PayPal account",
+          
+          // Bouton musique
+          musicTitle: "Play music",
+          musicMute: "Mute",
+          musicUnmute: "Unmute"
+        }
+      };
+
+      // Langue actuelle (par défaut FR)
+      var currentLang = localStorage.getItem('siteLanguage') || 'fr';
+
+      // Fonction pour appliquer les traductions
+      function applyTranslations(lang) {
+        var t = translations[lang];
+        if (!t) return;
+
+        // Textes défilants
+        var slide1 = document.querySelector('.fnc-slide:nth-child(1) .fnc-slide__heading-line span');
+        var slide2 = document.querySelector('.fnc-slide:nth-child(2) .fnc-slide__heading-line span');
+        var slide3 = document.querySelector('.fnc-slide:nth-child(3) .fnc-slide__heading-line span');
+        var slide4 = document.querySelector('.fnc-slide:nth-child(4) .fnc-slide__heading-line span');
+        if (slide1) slide1.textContent = t.slide1;
+        if (slide2) slide2.textContent = t.slide2;
+        if (slide3) slide3.textContent = t.slide3;
+        if (slide4) slide4.textContent = t.slide4;
+
+        // Boutons "Qui suis-je ?"
+        var quiSuisJeBtns = document.querySelectorAll('.fnc-slide__action-btn');
+        quiSuisJeBtns.forEach(function(btn) {
+          btn.textContent = t.quiSuisJe;
+          var span = btn.querySelector('span[data-text]');
+          if (span) {
+            span.setAttribute('data-text', t.quiSuisJe);
+            span.textContent = t.quiSuisJe;
+          }
+        });
+
+        // Navigation
+        var navButtons = document.querySelectorAll('.fnc-nav__control');
+        if (navButtons.length >= 4) {
+          navButtons[0].textContent = t.navServices;
+          navButtons[1].textContent = t.navReserver;
+          navButtons[2].textContent = t.navProcessus;
+          navButtons[3].textContent = t.navContact;
+        }
+
+        // Page "Qui suis-je ?"
+        var aboutLine1 = document.querySelector('.demo-cont__credits-heading-text .line-1');
+        var aboutLine2 = document.querySelector('.demo-cont__credits-heading-text .line-2');
+        var aboutLine3 = document.querySelector('.demo-cont__credits-heading-text .line-3');
+        if (aboutLine1) aboutLine1.textContent = t.aboutTitle;
+        if (aboutLine2) aboutLine2.textContent = t.aboutSteven;
+        if (aboutLine3) aboutLine3.textContent = t.aboutVailhen;
+
+        var aboutSubtitle = document.querySelector('.demo-cont__credits-content p strong');
+        if (aboutSubtitle) aboutSubtitle.textContent = t.aboutSubtitle;
+
+        var aboutDesc = document.querySelector('.demo-cont__credits-content p:not(strong)');
+        if (aboutDesc && aboutDesc.textContent.includes('Je conçois')) {
+          aboutDesc.textContent = t.aboutDesc;
+        }
+
+        var aboutSpecialtiesTitle = document.querySelector('.demo-cont__credits-content h3');
+        if (aboutSpecialtiesTitle && aboutSpecialtiesTitle.textContent.includes('Domaines')) {
+          aboutSpecialtiesTitle.textContent = t.aboutSpecialties;
+        }
+
+        var specialties = document.querySelectorAll('.demo-cont__credits-services li');
+        if (specialties.length >= 3) {
+          specialties[0].textContent = t.specialty1;
+          specialties[1].textContent = t.specialty2;
+          specialties[2].textContent = t.specialty3;
+        }
+
+        var aboutToolsTitle = document.querySelectorAll('.demo-cont__credits-content h3');
+        if (aboutToolsTitle.length >= 2) {
+          aboutToolsTitle[1].textContent = t.aboutTools;
+        }
+
+        var aboutApproachTitle = document.querySelectorAll('.demo-cont__credits-content h3');
+        if (aboutApproachTitle.length >= 3) {
+          aboutApproachTitle[2].textContent = t.aboutApproach;
+        }
+
+        var aboutApproachText = document.querySelectorAll('.demo-cont__credits-content p');
+        if (aboutApproachText.length >= 3 && aboutApproachText[aboutApproachText.length - 1].textContent.includes('Au-delà')) {
+          aboutApproachText[aboutApproachText.length - 1].textContent = t.aboutApproachText;
+        }
+
+        // Footer "Qui suis-je ?"
+        var footerLinks = document.querySelectorAll('.demo-cont__credits-footer-link');
+        if (footerLinks.length >= 5) {
+          footerLinks[0].textContent = t.footerMentions;
+          footerLinks[1].textContent = t.footerCGV;
+          footerLinks[2].textContent = t.footerPrivacy;
+          footerLinks[3].textContent = t.footerPortfolio;
+          footerLinks[4].textContent = t.footerCases;
+        }
+
+        var footerCopyright = document.querySelector('.demo-cont__credits-footer-copyright');
+        if (footerCopyright) {
+          var text = footerCopyright.textContent;
+          footerCopyright.innerHTML = '© <span id="current-year"></span> Undrenalyn eLab. ' + t.footerRights;
+          var yearSpan = document.getElementById('current-year');
+          if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+        }
+
+        // Page Services
+        var servicesTitle = document.querySelector('.demo-cont__services-heading');
+        if (servicesTitle) servicesTitle.textContent = t.servicesTitle;
+
+        var servicesSubtitle = document.querySelector('.demo-cont__services-subtitle');
+        if (servicesSubtitle) servicesSubtitle.textContent = t.servicesSubtitle;
+
+        var servicesFeatures = document.querySelectorAll('.demo-cont__services-feature span:not(.demo-cont__services-feature-icon)');
+        if (servicesFeatures.length >= 3) {
+          servicesFeatures[0].textContent = t.servicesFeature1;
+          servicesFeatures[1].textContent = t.servicesFeature2;
+          servicesFeatures[2].textContent = t.servicesFeature3;
+        }
+
+        var serviceCards = document.querySelectorAll('.demo-cont__services-card-title');
+        if (serviceCards.length >= 3) {
+          serviceCards[0].textContent = t.service1Title;
+          serviceCards[1].textContent = t.service2Title;
+          serviceCards[2].textContent = t.service3Title;
+        }
+
+        var serviceDescs = document.querySelectorAll('.demo-cont__services-card-description');
+        if (serviceDescs.length >= 3) {
+          serviceDescs[0].textContent = t.service1Desc;
+          serviceDescs[1].textContent = t.service2Desc;
+          serviceDescs[2].textContent = t.service3Desc;
+        }
+
+        // Page Réserver
+        var bookingTitle = document.querySelector('.demo-cont__booking-heading');
+        if (bookingTitle) bookingTitle.textContent = t.bookingTitle;
+
+        var bookingCalendarTitle = document.querySelector('.demo-cont__booking-actions h3');
+        if (bookingCalendarTitle) bookingCalendarTitle.textContent = t.bookingCalendarTitle;
+
+        var bookingCalendarDesc = document.querySelector('.demo-cont__booking-actions p');
+        if (bookingCalendarDesc && bookingCalendarDesc.textContent.includes('Choisissez')) {
+          bookingCalendarDesc.textContent = t.bookingCalendarDesc;
+        }
+
+        var bookingWhatsApp = document.querySelector('.demo-cont__booking-btn-whatsapp');
+        if (bookingWhatsApp) bookingWhatsApp.textContent = t.bookingWhatsApp;
+
+        var bookingBrief = document.querySelector('.demo-cont__booking-btn-brief');
+        if (bookingBrief) bookingBrief.textContent = t.bookingBrief;
+
+        var bookingResponse = document.querySelector('.demo-cont__booking-support-note');
+        if (bookingResponse) bookingResponse.textContent = t.bookingResponse;
+
+        // Page Processus
+        var processTitle = document.querySelector('.demo-cont__process-heading');
+        if (processTitle) processTitle.textContent = t.processTitle;
+
+        var processIntro = document.querySelector('.demo-cont__process-intro');
+        if (processIntro) processIntro.textContent = t.processIntro;
+
+        var processSteps = document.querySelectorAll('.demo-cont__process-step-content h3');
+        if (processSteps.length >= 5) {
+          processSteps[0].textContent = t.processStep1Title;
+          processSteps[1].textContent = t.processStep2Title;
+          processSteps[2].textContent = t.processStep3Title;
+          processSteps[3].textContent = t.processStep4Title;
+          processSteps[4].textContent = t.processStep5Title;
+        }
+
+        var processDescs = document.querySelectorAll('.demo-cont__process-step-content p');
+        if (processDescs.length >= 5) {
+          processDescs[0].textContent = t.processStep1Desc;
+          processDescs[1].textContent = t.processStep2Desc;
+          processDescs[2].textContent = t.processStep3Desc;
+          processDescs[3].textContent = t.processStep4Desc;
+          processDescs[4].textContent = t.processStep5Desc;
+        }
+
+        var processDurations = document.querySelectorAll('.demo-cont__process-duration');
+        if (processDurations.length >= 5) {
+          processDurations[0].textContent = t.processDay1;
+          processDurations[1].textContent = t.processDay12;
+          processDurations[2].textContent = t.processDay23;
+          processDurations[3].textContent = t.processDay34;
+          processDurations[4].textContent = t.processDay30;
+        }
+
+        var processGuaranteesTitle = document.querySelector('.demo-cont__process-guarantees h3');
+        if (processGuaranteesTitle) processGuaranteesTitle.textContent = t.processGuarantees;
+
+        var guarantees = document.querySelectorAll('.demo-cont__process-guarantees li');
+        if (guarantees.length >= 5) {
+          guarantees[0].textContent = t.guarantee1;
+          guarantees[1].textContent = t.guarantee2;
+          guarantees[2].textContent = t.guarantee3;
+          guarantees[3].textContent = t.guarantee4;
+          guarantees[4].textContent = t.guarantee5;
+        }
+
+        var processBenefitsTitle = document.querySelector('.demo-cont__process-benefits-title');
+        if (processBenefitsTitle) processBenefitsTitle.textContent = t.processBenefits;
+
+        var benefitTitles = document.querySelectorAll('.demo-cont__process-benefit-card h3');
+        if (benefitTitles.length >= 3) {
+          benefitTitles[0].textContent = t.benefit1Title;
+          benefitTitles[1].textContent = t.benefit2Title;
+          benefitTitles[2].textContent = t.benefit3Title;
+        }
+
+        var benefitDescs = document.querySelectorAll('.demo-cont__process-benefit-card p');
+        if (benefitDescs.length >= 3) {
+          benefitDescs[0].textContent = t.benefit1Desc;
+          benefitDescs[1].textContent = t.benefit2Desc;
+          benefitDescs[2].textContent = t.benefit3Desc;
+        }
+
+        // Page Contact
+        var contactTitle = document.querySelector('.demo-cont__contact-heading');
+        if (contactTitle) contactTitle.textContent = t.contactTitle;
+
+        var contactFormTitle = document.querySelector('.demo-cont__contact-card h3');
+        if (contactFormTitle) contactFormTitle.textContent = t.contactFormTitle;
+
+        var contactNameInput = document.querySelector('.demo-cont__contact-input[type="text"]');
+        if (contactNameInput) contactNameInput.placeholder = t.contactName;
+
+        var contactEmailInput = document.querySelector('.demo-cont__contact-input[type="email"]');
+        if (contactEmailInput) contactEmailInput.placeholder = t.contactEmail;
+
+        var contactTextarea = document.querySelector('.demo-cont__contact-textarea');
+        if (contactTextarea) contactTextarea.placeholder = t.contactMessage;
+
+        var contactSubmit = document.querySelector('.demo-cont__contact-btn-submit');
+        if (contactSubmit) contactSubmit.textContent = t.contactSubmit;
+
+        var contactSuccess = document.querySelector('.demo-cont__contact-success');
+        if (contactSuccess) contactSuccess.textContent = t.contactSuccess;
+
+        var contactInfoTitle = document.querySelectorAll('.demo-cont__contact-card h3');
+        if (contactInfoTitle.length >= 2) contactInfoTitle[1].textContent = t.contactInfoTitle;
+
+        var contactInfoDesc = document.querySelectorAll('.demo-cont__contact-card p');
+        if (contactInfoDesc.length >= 1 && contactInfoDesc[0].textContent.includes('Passez')) {
+          contactInfoDesc[0].textContent = t.contactInfoDesc;
+        }
+
+        var contactWhatsApp = document.querySelector('.demo-cont__contact-btn-whatsapp');
+        if (contactWhatsApp) contactWhatsApp.textContent = t.contactWhatsApp;
+
+        var contactAvailability = document.querySelector('.demo-cont__contact-support-note');
+        if (contactAvailability) contactAvailability.textContent = t.contactAvailability;
+
+        var contactLegal = document.querySelectorAll('.demo-cont__contact-legal p');
+        if (contactLegal.length >= 3) {
+          contactLegal[0].textContent = t.contactLegal1;
+          contactLegal[1].textContent = t.contactLegal2;
+          contactLegal[2].textContent = t.contactLegal3;
+        }
+
+        // Pages services détaillées
+        var service1Detail = document.getElementById('service-conception-visuels');
+        if (service1Detail) {
+          var h1 = service1Detail.querySelector('h1');
+          if (h1) h1.textContent = t.service1DetailTitle;
+          var lead = service1Detail.querySelector('.demo-cont__service-detail-lead');
+          if (lead) lead.textContent = t.service1DetailLead;
+          var list = service1Detail.querySelectorAll('.demo-cont__service-detail-list li');
+          if (list.length >= 3) {
+            list[0].textContent = t.service1Detail1;
+            list[1].textContent = t.service1Detail2;
+            list[2].textContent = t.service1Detail3;
+          }
+          var section = service1Detail.querySelector('.demo-cont__service-detail-section strong');
+          if (section) section.textContent = t.service1DetailSection;
+          var steps = service1Detail.querySelectorAll('.demo-cont__service-detail-section li');
+          if (steps.length >= 4) {
+            steps[0].textContent = t.service1DetailStep1;
+            steps[1].textContent = t.service1DetailStep2;
+            steps[2].textContent = t.service1DetailStep3;
+            steps[3].textContent = t.service1DetailStep4;
+          }
+          var btn1 = service1Detail.querySelector('.demo-cont__service-detail-btn-primary');
+          if (btn1) btn1.textContent = t.serviceDetailPlanifier;
+          var btn2 = service1Detail.querySelector('.demo-cont__service-detail-btn-secondary');
+          if (btn2) btn2.textContent = t.serviceDetailRegler + ' 100€';
+        }
+
+        var service2Detail = document.getElementById('service-conseils-ia');
+        if (service2Detail) {
+          var h1 = service2Detail.querySelector('h1');
+          if (h1) h1.textContent = t.service2DetailTitle;
+          var lead = service2Detail.querySelector('.demo-cont__service-detail-lead');
+          if (lead) lead.textContent = t.service2DetailLead;
+          var list = service2Detail.querySelectorAll('.demo-cont__service-detail-list li');
+          if (list.length >= 3) {
+            list[0].textContent = t.service2Detail1;
+            list[1].textContent = t.service2Detail2;
+            list[2].textContent = t.service2Detail3;
+          }
+          var section = service2Detail.querySelector('.demo-cont__service-detail-section strong');
+          if (section) section.textContent = t.service2DetailSection;
+          var steps = service2Detail.querySelectorAll('.demo-cont__service-detail-section li');
+          if (steps.length >= 4) {
+            steps[0].textContent = t.service2DetailStep1;
+            steps[1].textContent = t.service2DetailStep2;
+            steps[2].textContent = t.service2DetailStep3;
+            steps[3].textContent = t.service2DetailStep4;
+          }
+          var btn1 = service2Detail.querySelector('.demo-cont__service-detail-btn-primary');
+          if (btn1) btn1.textContent = t.serviceDetailReserver;
+          var btn2 = service2Detail.querySelector('.demo-cont__service-detail-btn-secondary');
+          if (btn2) btn2.textContent = t.serviceDetailRegler + ' 150€';
+        }
+
+        var service3Detail = document.getElementById('service-edition-videos');
+        if (service3Detail) {
+          var h1 = service3Detail.querySelector('h1');
+          if (h1) h1.textContent = t.service3DetailTitle;
+          var lead = service3Detail.querySelector('.demo-cont__service-detail-lead');
+          if (lead) lead.textContent = t.service3DetailLead;
+          var list = service3Detail.querySelectorAll('.demo-cont__service-detail-list li');
+          if (list.length >= 3) {
+            list[0].textContent = t.service3Detail1;
+            list[1].textContent = t.service3Detail2;
+            list[2].textContent = t.service3Detail3;
+          }
+          var section = service3Detail.querySelector('.demo-cont__service-detail-section strong');
+          if (section) section.textContent = t.service3DetailSection;
+          var steps = service3Detail.querySelectorAll('.demo-cont__service-detail-section li');
+          if (steps.length >= 4) {
+            steps[0].textContent = t.service3DetailStep1;
+            steps[1].textContent = t.service3DetailStep2;
+            steps[2].textContent = t.service3DetailStep3;
+            steps[3].textContent = t.service3DetailStep4;
+          }
+          var btn1 = service3Detail.querySelector('.demo-cont__service-detail-btn-primary');
+          if (btn1) btn1.textContent = t.serviceDetailReserverCreneau;
+          var btn2 = service3Detail.querySelector('.demo-cont__service-detail-btn-secondary');
+          if (btn2) btn2.textContent = t.serviceDetailRegler + ' 200€';
+        }
+
+        // Page paiement
+        var paymentPage = document.getElementById('payment-page');
+        if (paymentPage) {
+          var paymentTitle = paymentPage.querySelector('.demo-cont__payment-heading');
+          if (paymentTitle) paymentTitle.textContent = t.paymentTitle;
+          var paymentLead = paymentPage.querySelector('.demo-cont__payment-lead');
+          if (paymentLead) paymentLead.textContent = t.paymentLead;
+          var stripeTitle = paymentPage.querySelectorAll('.demo-cont__payment-option h2');
+          if (stripeTitle.length >= 2) {
+            stripeTitle[0].textContent = t.paymentStripe;
+            stripeTitle[1].textContent = t.paymentPayPal;
+          }
+          var stripeDesc = paymentPage.querySelectorAll('.demo-cont__payment-option p');
+          if (stripeDesc.length >= 2) {
+            stripeDesc[0].textContent = t.paymentStripeDesc;
+            stripeDesc[1].textContent = t.paymentPayPalDesc;
+          }
+          var stripeBtn = document.getElementById('payment-stripe-button');
+          if (stripeBtn) stripeBtn.textContent = t.paymentStripe;
+          var paypalBtn = document.getElementById('payment-paypal-button');
+          if (paypalBtn) paypalBtn.textContent = t.paymentPayPal;
+        }
+
+        // Bouton musique
+        var musicControl = document.getElementById('music-control');
+        if (musicControl && !musicControl.classList.contains('playing')) {
+          musicControl.title = t.musicTitle;
+        }
+      }
+
+      // Gestion du changement de langue
+      var langFrBtn = document.getElementById('lang-fr');
+      var langEnBtn = document.getElementById('lang-en');
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('siteLanguage', lang);
+        
+        // Mettre à jour les boutons
+        if (langFrBtn && langEnBtn) {
+          langFrBtn.classList.toggle('active', lang === 'fr');
+          langEnBtn.classList.toggle('active', lang === 'en');
+        }
+        
+        // Appliquer les traductions
+        applyTranslations(lang);
+      }
+
+      if (langFrBtn && langEnBtn) {
+        langFrBtn.addEventListener('click', function() {
+          setLanguage('fr');
+        });
+        
+        langEnBtn.addEventListener('click', function() {
+          setLanguage('en');
+        });
+      }
+
+      // Appliquer la langue au chargement
+      setLanguage(currentLang);
 
       // Gestion de la musique de fond
       var musicControl = document.getElementById("music-control");
