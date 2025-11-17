@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Avengers Slider</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      color-scheme: dark;
       --sliding-at: 1s;
       --sliding-delay: 0.6667s;
       --mask-at: 0.7s;
@@ -21,23 +17,23 @@
       --content-left: 40%;
       --content-top: 40%;
       --heading-padding: 30px;
-      --heading-font-size: clamp(48px, 10vw, 100px);
+      --heading-font-size: 100px;
       --mask-top: 15%;
+      --mask-right: 60%;
       --mask-height: 67vh;
-      --mask-width: calc(var(--mask-height) * 0.75);
-      --mask-right: calc(100% - var(--content-left));
+      --mask-width: 50.25vh;
       --black: #1f2833;
+      --dark: #505050;
+      --dark-light: #737373;
       --green: #42605e;
-      --green-light: #6a857f;
-      --dark: #4d4d4d;
-      --dark-light: #6b6b6b;
-      --red: #872326;
-      --red-light: #a54043;
+      --green-light: #6a857e;
+      --red: #791f25;
+      --red-light: #934b50;
       --blue: #2d7791;
-      --blue-light: #4f96b0;
+      --blue-light: #5792a7;
+      --font-base: 'Open Sans', Helvetica, Arial, sans-serif;
       --credits-at: 0.7s;
-      --credits-width: min(400px, 90vw);
-      --font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+      --credits-width: 400px;
       --switch-w: 180px;
       --switch-h: calc(var(--switch-w) * 120 / 280);
       --switch-br: calc(var(--switch-w) * 50 / 280);
@@ -62,7 +58,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: var(--font-family);
+      font-family: var(--font-base);
       background: #000;
       color: #fff;
     }
@@ -77,79 +73,12 @@
       font-family: inherit;
     }
 
-    @media (max-width: 1024px) {
-      :root {
-        --content-left: 32%;
-        --content-top: 36%;
-        --mask-height: 60vh;
-      }
-    }
-
-    @media (max-width: 768px) {
-      :root {
-        --content-left: 12%;
-        --content-top: 30%;
-        --mask-height: 52vh;
-        --heading-font-size: clamp(36px, 11vw, 64px);
-      }
-
-      .fnc-slide__action-btn {
-        margin-left: 0;
-      }
-
-      .fnc-slide__mask {
-        left: 5%;
-        right: auto;
-        width: min(var(--mask-width), 280px);
-        margin-right: 0;
-      }
-
-      .fnc-nav {
-        left: 0;
-        right: 0;
-        bottom: 10px;
-        text-align: center;
-        padding: 0 10px 20px;
-      }
-
-      .fnc-nav__control {
-        width: min(140px, 42vw);
-      }
-    }
-
-    @media (max-width: 560px) {
-      :root {
-        --content-top: 24%;
-        --heading-font-size: clamp(28px, 12vw, 48px);
-      }
-
-      .fnc-slide__mask {
-        display: none;
-      }
-
-      .fnc-slide__heading-line {
-        padding-right: 10px;
-      }
-
-      .fnc-nav__controls {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-      }
-
-      .fnc-nav__control {
-        width: 100%;
-      }
-    }
-
     .demo-cont {
       overflow: hidden;
       position: relative;
       height: 100vh;
-      min-height: 600px;
       perspective: 1500px;
       background: #000;
-      isolation: isolate;
     }
 
     .demo-cont__credits {
@@ -163,17 +92,21 @@
       height: 100%;
       padding: 20px 10px 30px;
       background: #303030;
-      font-family: var(--font-family);
-      color: #fff;
       text-align: center;
       transition: transform var(--credits-at);
-      transform: translate3d(100%,0,0) rotateY(-45deg);
+      transform: translate3d(100%, 0, 0) rotateY(-45deg);
       will-change: transform;
     }
 
     .credits-active .demo-cont__credits {
       transition: transform var(--credits-at) calc(var(--credits-at) / 3);
-      transform: translate3d(0,0,0);
+      transform: translate3d(0, 0, 0);
+    }
+
+    .demo-cont__credits *,
+    .demo-cont__credits *::before,
+    .demo-cont__credits *::after {
+      box-sizing: border-box;
     }
 
     .demo-cont__credits-close {
@@ -207,53 +140,55 @@
 
     .demo-cont__credits-heading {
       text-transform: uppercase;
-      font-size: clamp(26px, 5vw, 40px);
-      margin: 20px 0;
+      font-size: 40px;
+      margin-bottom: 20px;
     }
 
     .demo-cont__credits-img {
-      width: min(60%, 220px);
+      width: 60%;
       margin: 0 auto 30px;
       border-radius: 10px;
     }
 
     .demo-cont__credits-name {
       margin-bottom: 20px;
-      font-size: clamp(20px, 4vw, 30px);
+      font-size: 30px;
     }
 
     .demo-cont__credits-link {
       display: block;
       margin-bottom: 10px;
-      font-size: clamp(18px, 3vw, 24px);
+      font-size: 24px;
       color: #fff;
       text-decoration: none;
     }
 
-    .demo-cont__credits-link:hover {
-      text-decoration: underline;
-    }
-
     .demo-cont__credits-blend {
-      font-size: clamp(20px, 4vw, 30px);
+      font-size: 30px;
       margin-bottom: 10px;
     }
 
     .example-slider {
       z-index: 2;
-      height: 100%;
-      transform: translate3d(0,0,0);
+      transform: translate3d(0, 0, 0);
       transition: transform var(--credits-at);
     }
 
     .credits-active .example-slider {
-      transform: translate3d(calc(var(--credits-width) * -1),0,0) rotateY(10deg) scale(0.9);
+      transform: translate3d(calc(var(--credits-width) * -1), 0, 0) rotateY(10deg) scale(0.9);
     }
 
     .fnc-slider {
       overflow: hidden;
+      box-sizing: border-box;
       position: relative;
-      height: 100%;
+      height: 100vh;
+    }
+
+    .fnc-slider *,
+    .fnc-slider *::before,
+    .fnc-slider *::after {
+      box-sizing: border-box;
     }
 
     .fnc-slider__slides {
@@ -262,22 +197,73 @@
       transition: transform var(--sliding-at) var(--sliding-delay);
     }
 
+    .fnc-slider .m--blend-dark .fnc-slide__inner {
+      background-color: var(--dark-light);
+    }
+
+    .fnc-slider .m--blend-dark .fnc-slide__mask-inner {
+      background-color: var(--dark);
+    }
+
+    .fnc-slider .m--blend-green .fnc-slide__inner {
+      background-color: var(--green-light);
+    }
+
+    .fnc-slider .m--blend-green .fnc-slide__mask-inner {
+      background-color: var(--green);
+    }
+
+    .fnc-slider .m--blend-red .fnc-slide__inner {
+      background-color: var(--red-light);
+    }
+
+    .fnc-slider .m--blend-red .fnc-slide__mask-inner {
+      background-color: var(--red);
+    }
+
+    .fnc-slider .m--blend-blue .fnc-slide__inner {
+      background-color: var(--blue-light);
+    }
+
+    .fnc-slider .m--blend-blue .fnc-slide__mask-inner {
+      background-color: var(--blue);
+    }
+
+    .fnc-slider .m--navbg-dark {
+      background-color: var(--dark);
+    }
+
+    .fnc-slider .m--navbg-green {
+      background-color: var(--green);
+    }
+
+    .fnc-slider .m--navbg-red {
+      background-color: var(--red);
+    }
+
+    .fnc-slider .m--navbg-blue {
+      background-color: var(--blue);
+    }
+
     .fnc-slide {
       overflow: hidden;
       position: absolute;
-      inset: 0;
-      transform: translate3d(0,0,0);
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      transform: translate3d(0, 0, 0);
     }
 
     .fnc-slide.m--before-sliding {
       z-index: 2 !important;
-      transform: translate3d(100%,0,0);
+      transform: translate3d(100%, 0, 0);
     }
 
     .fnc-slide.m--active-slide {
       z-index: 1;
       transition: transform var(--sliding-at) var(--sliding-delay) var(--easing);
-      transform: translate3d(0,0,0);
+      transform: translate3d(0, 0, 0);
     }
 
     .fnc-slide__inner {
@@ -285,22 +271,21 @@
       height: 100%;
       background-size: cover;
       background-position: center top;
-      transform: translate3d(0,0,0);
+      transform: translate3d(0, 0, 0);
     }
 
     .m--global-blending-active .fnc-slide__inner,
-    .m--blend-bg-active .fnc-slide__inner,
-    .fnc-slide__mask-inner {
+    .m--blend-bg-active .fnc-slide__inner {
       background-blend-mode: var(--blend-mode);
     }
 
-    .fnc-slide.m--before-sliding .fnc-slide__inner {
-      transform: translate3d(-100%,0,0);
+    .m--before-sliding .fnc-slide__inner {
+      transform: translate3d(-100%, 0, 0);
     }
 
-    .fnc-slide.m--active-slide .fnc-slide__inner {
+    .m--active-slide .fnc-slide__inner {
       transition: transform var(--sliding-at) var(--sliding-delay) var(--easing);
-      transform: translate3d(0,0,0);
+      transform: translate3d(0, 0, 0);
     }
 
     .fnc-slide__mask {
@@ -317,22 +302,20 @@
       transition-timing-function: var(--easing);
     }
 
-    .fnc-slide.m--before-sliding .fnc-slide__mask {
-      transform: rotate(-10deg) translate3d(200px,0,0);
+    .m--before-sliding .fnc-slide__mask {
+      transform: rotate(-10deg) translate3d(200px, 0, 0);
       opacity: 0;
     }
 
-    .fnc-slide.m--active-slide .fnc-slide__mask {
-      transition: transform var(--mask-at) calc(var(--sliding-at) + var(--sliding-delay) / 3),
-        opacity calc(var(--mask-at) / 2) calc(var(--sliding-at) + var(--sliding-delay) / 3);
-      transform: translate3d(0,0,0);
+    .m--active-slide .fnc-slide__mask {
+      transition: transform var(--mask-at) calc(var(--sliding-at) + var(--sliding-delay) / 3);
+      transform: translate3d(0, 0, 0);
       opacity: 1;
     }
 
-    .fnc-slide.m--previous-slide .fnc-slide__mask {
-      transition: transform var(--mask-at) calc(var(--sliding-delay) / 2),
-        opacity calc(var(--mask-at) / 2) calc(var(--mask-at) / 2 + var(--sliding-delay) / 2);
-      transform: rotate(10deg) translate3d(-200px,0,0);
+    .m--previous-slide .fnc-slide__mask {
+      transition: transform var(--mask-at) calc(var(--sliding-delay) / 2);
+      transform: rotate(10deg) translate3d(-200px, 0, 0);
       opacity: 0;
     }
 
@@ -347,22 +330,23 @@
       margin-top: -50vh;
       background-size: cover;
       background-position: center center;
+      background-blend-mode: var(--blend-mode);
       transform-origin: 50% calc((100vh - var(--mask-height)) / 2);
       transition-timing-function: var(--easing);
     }
 
-    .fnc-slide.m--before-sliding .fnc-slide__mask-inner {
-      transform: translateY(0) rotate(10deg) translateX(-200px);
+    .m--before-sliding .fnc-slide__mask-inner {
+      transform: translateY(0) rotate(10deg) translateX(-200px) translateZ(0);
     }
 
-    .fnc-slide.m--active-slide .fnc-slide__mask-inner {
+    .m--active-slide .fnc-slide__mask-inner {
       transition: transform var(--mask-at) calc(var(--sliding-at) + var(--sliding-delay) / 3);
       transform: translateX(0);
     }
 
-    .fnc-slide.m--previous-slide .fnc-slide__mask-inner {
+    .m--previous-slide .fnc-slide__mask-inner {
       transition: transform var(--mask-at) calc(var(--sliding-delay) / 2);
-      transform: translateY(0) rotate(-10deg) translateX(200px);
+      transform: translateY(0) rotate(-10deg) translateX(200px) translateZ(0);
     }
 
     .fnc-slide__content {
@@ -384,26 +368,22 @@
       font-size: var(--heading-font-size);
       color: #fff;
       word-spacing: 10px;
-      line-height: 1;
     }
 
     .fnc-slide__heading-line:nth-child(2) {
       padding-left: var(--heading-padding);
     }
 
-    .fnc-slide.m--before-sliding .fnc-slide__heading-line,
-    .fnc-slide.m--before-sliding .fnc-slide__heading-line span {
+    .m--before-sliding .fnc-slide__heading-line {
       transform: translateY(100%);
     }
 
-    .fnc-slide.m--active-slide .fnc-slide__heading-line,
-    .fnc-slide.m--active-slide .fnc-slide__heading-line span {
+    .m--active-slide .fnc-slide__heading-line {
       transition: transform var(--heading-at) calc(var(--sliding-delay) * 1.5);
       transform: translateY(0);
     }
 
-    .fnc-slide.m--previous-slide .fnc-slide__heading-line,
-    .fnc-slide.m--previous-slide .fnc-slide__heading-line span {
+    .m--previous-slide .fnc-slide__heading-line {
       transition: transform var(--heading-at);
       transform: translateY(-100%);
     }
@@ -412,9 +392,23 @@
       display: block;
     }
 
+    .m--before-sliding .fnc-slide__heading-line span {
+      transform: translateY(-100%);
+    }
+
+    .m--active-slide .fnc-slide__heading-line span {
+      transition: transform var(--heading-at) calc(var(--sliding-delay) * 1.5);
+      transform: translateY(0);
+    }
+
+    .m--previous-slide .fnc-slide__heading-line span {
+      transition: transform var(--heading-at);
+      transform: translateY(100%);
+    }
+
     .fnc-slide__action-btn {
       position: relative;
-      margin-left: min(200px, 25vw);
+      margin-left: 200px;
       padding: 5px 15px;
       font-size: 20px;
       line-height: 1;
@@ -429,7 +423,10 @@
 
     .fnc-slide__action-btn span {
       position: absolute;
-      inset: 0;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
       perspective: 1000px;
       transform-style: preserve-3d;
       transition: transform var(--hover-at);
@@ -441,7 +438,10 @@
     .fnc-slide__action-btn span::before {
       content: "";
       position: absolute;
-      inset: 0;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
       border: 2px solid #fff;
       border-top: none;
       border-bottom: none;
@@ -450,7 +450,10 @@
     .fnc-slide__action-btn span::after {
       content: attr(data-text);
       position: absolute;
-      inset: 0;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
       line-height: 30px;
       background: var(--black);
       opacity: 0;
@@ -479,12 +482,18 @@
       z-index: -1;
       overflow: hidden;
       position: absolute;
-      inset: 0;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
     }
 
     .fnc-nav__bg {
       position: absolute;
-      inset: 0;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
     }
 
     .fnc-nav__bg.m--nav-bg-before {
@@ -546,82 +555,12 @@
 
     .m--reset-progress .fnc-nav__control-progress {
       transform: scaleX(0);
-      transition: transform 0s !important;
+      transition: transform 0s 0s !important;
     }
 
     .m--autosliding-blocked .fnc-nav__control-progress {
-      transition: none !important;
+      transition: all 0s 0s !important;
       transform: scaleX(0) !important;
-    }
-
-    .m--reduce-motion .fnc-slider__slides,
-    .m--reduce-motion .fnc-slide,
-    .m--reduce-motion .fnc-slide__inner,
-    .m--reduce-motion .fnc-slide__mask,
-    .m--reduce-motion .fnc-slide__mask-inner,
-    .m--reduce-motion .fnc-slide__heading-line,
-    .m--reduce-motion .fnc-slide__heading-line span,
-    .m--reduce-motion .fnc-slide__action-btn span,
-    .m--reduce-motion .fnc-nav__bg,
-    .m--reduce-motion .fnc-nav__control-progress,
-    .m--reduce-motion .demo-cont__credits,
-    .m--reduce-motion .example-slider {
-      transition-duration: 0s !important;
-      transition-delay: 0s !important;
-    }
-
-    .m--reduce-motion .fnc-nav__control-progress {
-      transform: scaleX(0) !important;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .example-slider,
-      .demo-cont__credits,
-      .fnc-slider__slides,
-      .fnc-slide__inner,
-      .fnc-slide__mask,
-      .fnc-slide__mask-inner,
-      .fnc-slide__heading-line,
-      .fnc-slide__heading-line span {
-        transition-duration: 0s !important;
-        transition-delay: 0s !important;
-      }
-    }
-
-    .m--blend-green .fnc-slide__inner {
-      background-color: var(--green-light);
-    }
-
-    .m--blend-green .fnc-slide__mask-inner,
-    .m--navbg-green {
-      background-color: var(--green);
-    }
-
-    .m--blend-dark .fnc-slide__inner {
-      background-color: var(--dark-light);
-    }
-
-    .m--blend-dark .fnc-slide__mask-inner,
-    .m--navbg-dark {
-      background-color: var(--dark);
-    }
-
-    .m--blend-red .fnc-slide__inner {
-      background-color: var(--red-light);
-    }
-
-    .m--blend-red .fnc-slide__mask-inner,
-    .m--navbg-red {
-      background-color: var(--red);
-    }
-
-    .m--blend-blue .fnc-slide__inner {
-      background-color: var(--blue-light);
-    }
-
-    .m--blend-blue .fnc-slide__mask-inner,
-    .m--navbg-blue {
-      background-color: var(--blue);
     }
 
     .fnc-slide-1 .fnc-slide__inner,
@@ -639,15 +578,14 @@
       background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/ironman-alt.jpg');
     }
 
-    .fnc-slide-3 .fnc-slide__inner::before,
-    .fnc-slide-4 .fnc-slide__inner::before {
+    .fnc-slide-3 .fnc-slide__inner::before {
       content: "";
       position: absolute;
-      inset: 0;
-    }
-
-    .fnc-slide-3 .fnc-slide__inner::before {
-      background: rgba(255,255,255,0.1);
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .fnc-slide-4 .fnc-slide__inner,
@@ -656,7 +594,13 @@
     }
 
     .fnc-slide-4 .fnc-slide__inner::before {
-      background: rgba(0,0,0,0.2);
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.2);
     }
 
     .colorful-switch {
@@ -687,7 +631,8 @@
 
     .colorful-switch__checkbox {
       position: absolute;
-      inset: 0;
+      left: 0;
+      top: 0;
       opacity: 0;
     }
 
@@ -695,7 +640,10 @@
       z-index: 1;
       overflow: hidden;
       position: absolute;
-      inset: 0;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
       border-radius: var(--switch-br);
       cursor: pointer;
     }
@@ -708,7 +656,7 @@
       height: 100%;
       background: linear-gradient(90deg, #14dcd6 0, #10e7bd var(--switch-w), #ef9c29 calc(var(--switch-w) * 2), #e76339 100%);
       transition: transform var(--switch-anim);
-      transform: translate3d(calc(var(--switch-w) * -2),0,0);
+      transform: translate3d(calc(var(--switch-w) * -2), 0, 0);
     }
 
     .colorful-switch__dot {
@@ -722,7 +670,7 @@
       border-radius: 50%;
       background: #fff;
       transition: transform var(--switch-anim);
-      transform: translate3d(0,0,0);
+      transform: translate3d(0, 0, 0);
     }
 
     .colorful-switch__on {
@@ -732,12 +680,13 @@
       width: var(--switch-on-width);
       height: var(--switch-on-height);
       transition: transform var(--switch-anim);
-      transform: translate3d(0,0,0);
+      transform: translate3d(0, 0, 0);
     }
 
     .colorful-switch__on__inner {
       position: absolute;
-      inset: 0;
+      width: 100%;
+      height: 100%;
       transition: transform calc(var(--switch-anim) / 2) 0s var(--switch-cub-in);
       transform-origin: 100% 50%;
       transform: rotate(45deg) scale(0) translateZ(0);
@@ -774,7 +723,7 @@
       margin-left: calc(var(--switch-off) / -2);
       margin-top: calc(var(--switch-off) / -2);
       transition: transform var(--switch-anim);
-      transform: translate3d(0,0,0);
+      transform: translate3d(0, 0, 0);
     }
 
     .colorful-switch__off::before,
@@ -804,11 +753,7 @@
     .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__dot,
     .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__on,
     .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__off {
-      transform: translate3d(var(--switch-dot-offset),0,0);
-    }
-
-    .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__bg {
-      transform: translate3d(0,0,0);
+      transform: translate3d(var(--switch-dot-offset), 0, 0);
     }
 
     .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__on__inner {
@@ -828,33 +773,6 @@
     .colorful-switch__checkbox:checked ~ .colorful-switch__label .colorful-switch__off::after {
       transition-timing-function: ease;
       transform: rotate(-45deg) scaleX(0) translateZ(0);
-    }
-
-    @media (max-width: 900px) {
-      :root {
-        --content-left: 10%;
-        --content-top: 30%;
-        --mask-top: 10%;
-      }
-
-      .fnc-slide__action-btn {
-        margin-left: 0;
-      }
-
-      .demo-cont__credits {
-        font-size: 0.9rem;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .fnc-slide__heading-line {
-        word-spacing: 0;
-      }
-
-      .fnc-nav__control {
-        width: 80px;
-        font-size: 12px;
-      }
     }
   </style>
 </head>
@@ -977,7 +895,7 @@
     <div class="demo-cont__credits">
       <div class="demo-cont__credits-close"></div>
       <h2 class="demo-cont__credits-heading">Made by</h2>
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/profile/profile-512_5.jpg" alt="Portrait de Nikolay Talanov" class="demo-cont__credits-img" loading="lazy">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/profile/profile-512_5.jpg" alt="Portrait de Nikolay Talanov" class="demo-cont__credits-img" />
       <h3 class="demo-cont__credits-name">Nikolay Talanov</h3>
       <a href="https://codepen.io/suez/" target="_blank" rel="noreferrer" class="demo-cont__credits-link">My codepen</a>
       <a href="https://twitter.com/NikolayTalanov" target="_blank" rel="noreferrer" class="demo-cont__credits-link">My twitter</a>
@@ -985,7 +903,7 @@
       <a href="https://dribbble.com/shots/2375246-Fashion-Butique-slider-animation" target="_blank" rel="noreferrer" class="demo-cont__credits-link">Concept by Kreativa Studio</a>
       <h4 class="demo-cont__credits-blend">Global Blend Mode</h4>
       <div class="colorful-switch">
-        <input type="checkbox" class="colorful-switch__checkbox js-activate-global-blending" id="colorful-switch-cb">
+        <input type="checkbox" class="colorful-switch__checkbox js-activate-global-blending" id="colorful-switch-cb" />
         <label class="colorful-switch__label" for="colorful-switch-cb">
           <span class="colorful-switch__bg"></span>
           <span class="colorful-switch__dot"></span>
@@ -999,198 +917,167 @@
   </div>
   <script>
     (function() {
-      const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
+      const $$ = (selector, context) => {
+        const ctx = context || document;
+        return Array.prototype.slice.call(ctx.querySelectorAll(selector));
+      };
 
-      function initSlider($slider, options = {}) {
-        const prefix = ".fnc-";
-        const slidesCont = $slider.querySelector(`${prefix}slider__slides`);
-        if (!slidesCont) return;
-        const slides = $$(`${prefix}slide`, $slider);
-        const controls = $$(`${prefix}nav__control`, $slider);
-        const controlsBgs = $$(`${prefix}nav__bg`, $slider);
-        const progressBars = $$(`${prefix}nav__control-progress`, $slider);
-        const numOfSlides = slides.length;
+      function initSlider($slider, options) {
+        const prefix = '.fnc-';
+        const $slidesCont = $slider.querySelector(`${prefix}slider__slides`);
+        const $slides = $$(`${prefix}slide`, $slider);
+        const $controls = $$(`${prefix}nav__control`, $slider);
+        const $controlsBgs = $$(`${prefix}nav__bg`, $slider);
+        const $progressAS = $$(`${prefix}nav__control-progress`, $slider);
+
+        const numOfSlides = $slides.length;
         let curSlide = 1;
         let sliding = false;
-        const computed = getComputedStyle(slidesCont);
-        const slidingAT = parseFloat(computed.transitionDuration || "0") * 1000;
-        const slidingDelay = parseFloat(computed.transitionDelay || "0") * 1000;
-        const baseAutoDelay = typeof options.autoSlidingDelay === "number" ? options.autoSlidingDelay : 5000;
-        const shouldAutoSlide = options.autoSliding !== false && baseAutoDelay > 0;
-        let autoSlidingActive = shouldAutoSlide;
+        const slidingAT = parseFloat(getComputedStyle($slidesCont).transitionDuration) * 1000;
+        const slidingDelay = parseFloat(getComputedStyle($slidesCont).transitionDelay) * 1000;
+
+        let autoSlidingActive = false;
         let autoSlidingTO;
+        const autoSlidingDelay = 5000;
         let autoSlidingBlocked = false;
+
         let $activeSlide;
         let $activeControlsBg;
         let $prevControl;
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-        slides.forEach(($slide, index) => {
-          $slide.classList.add(`fnc-slide-${index + 1}`);
-        });
-        controls.forEach(($control, index) => {
-          $control.dataset.slide = String(index + 1);
-          $control.classList.add(`fnc-nav__control-${index + 1}`);
-        });
-        controlsBgs.forEach(($bg, index) => {
-          $bg.classList.add(`fnc-nav__bg-${index + 1}`);
-        });
+        function setIDs() {
+          $slides.forEach(($slide, index) => {
+            $slide.classList.add(`fnc-slide-${index + 1}`);
+          });
 
-        function resetProgressState() {
-          if (!$prevControl) return;
-          $prevControl.classList.remove("m--prev-control");
-          $prevControl.classList.add("m--reset-progress");
-          void $prevControl.offsetTop;
-          $prevControl.classList.remove("m--reset-progress");
+          $controls.forEach(($control, index) => {
+            $control.setAttribute('data-slide', index + 1);
+            $control.classList.add(`fnc-nav__control-${index + 1}`);
+          });
+
+          $controlsBgs.forEach(($bg, index) => {
+            $bg.classList.add(`fnc-nav__bg-${index + 1}`);
+          });
         }
 
+        setIDs();
+
         function afterSlidingHandler() {
-          const previousSlide = $slider.querySelector(".m--previous-slide");
-          if (previousSlide) {
-            previousSlide.classList.remove("m--active-slide", "m--previous-slide");
-          }
-          const previousNavBg = $slider.querySelector(".m--previous-nav-bg");
-          if (previousNavBg) {
-            previousNavBg.classList.remove("m--active-nav-bg", "m--previous-nav-bg");
-          }
-          $activeSlide.classList.remove("m--before-sliding");
-          $activeControlsBg.classList.remove("m--nav-bg-before");
-          resetProgressState();
+          $slider.querySelector('.m--previous-slide').classList.remove('m--active-slide', 'm--previous-slide');
+          $slider.querySelector('.m--previous-nav-bg').classList.remove('m--active-nav-bg', 'm--previous-nav-bg');
+
+          $activeSlide.classList.remove('m--before-sliding');
+          $activeControlsBg.classList.remove('m--nav-bg-before');
+          $prevControl.classList.remove('m--prev-control');
+          $prevControl.classList.add('m--reset-progress');
+          $prevControl.offsetTop;
+          $prevControl.classList.remove('m--reset-progress');
+
           sliding = false;
-          void $slider.offsetTop;
-          scheduleAutoslide();
+          $slider.offsetTop;
+
+          if (autoSlidingActive && !autoSlidingBlocked) {
+            setAutoslidingTO();
+          }
         }
 
         function performSliding(slideID) {
-          if (sliding || !slideID) return;
+          if (sliding) return;
           sliding = true;
           window.clearTimeout(autoSlidingTO);
           curSlide = slideID;
-          $prevControl = $slider.querySelector(".m--active-control");
-          if ($prevControl) {
-            $prevControl.classList.remove("m--active-control");
-            $prevControl.classList.add("m--prev-control");
-          }
-          const newControl = $slider.querySelector(`${prefix}nav__control-${slideID}`);
-          if (newControl) {
-            newControl.classList.add("m--active-control");
-          }
+
+          $prevControl = $slider.querySelector('.m--active-control');
+          $prevControl.classList.remove('m--active-control');
+          $prevControl.classList.add('m--prev-control');
+          $slider.querySelector(`${prefix}nav__control-${slideID}`).classList.add('m--active-control');
+
           $activeSlide = $slider.querySelector(`${prefix}slide-${slideID}`);
           $activeControlsBg = $slider.querySelector(`${prefix}nav__bg-${slideID}`);
-          const currentActiveSlide = $slider.querySelector(".m--active-slide");
-          if (currentActiveSlide) {
-            currentActiveSlide.classList.add("m--previous-slide");
-          }
-          const currentActiveNavBg = $slider.querySelector(".m--active-nav-bg");
-          if (currentActiveNavBg) {
-            currentActiveNavBg.classList.add("m--previous-nav-bg");
-          }
-          $activeSlide.classList.add("m--before-sliding");
-          $activeControlsBg.classList.add("m--nav-bg-before");
-          void $activeSlide.offsetTop;
-          $activeSlide.classList.add("m--active-slide");
-          $activeControlsBg.classList.add("m--active-nav-bg");
+
+          $slider.querySelector('.m--active-slide').classList.add('m--previous-slide');
+          $slider.querySelector('.m--active-nav-bg').classList.add('m--previous-nav-bg');
+
+          $activeSlide.classList.add('m--before-sliding');
+          $activeControlsBg.classList.add('m--nav-bg-before');
+
+          $activeSlide.offsetTop;
+
+          $activeSlide.classList.add('m--active-slide');
+          $activeControlsBg.classList.add('m--active-nav-bg');
+
           window.setTimeout(afterSlidingHandler, slidingAT + slidingDelay);
         }
 
-        function scheduleAutoslide(nextSlide) {
-          window.clearTimeout(autoSlidingTO);
-          if (!autoSlidingActive || autoSlidingBlocked) return;
-          const target = nextSlide ? ((nextSlide - 1) % numOfSlides) + 1 : ((curSlide % numOfSlides) + 1);
-          autoSlidingTO = window.setTimeout(() => {
-            performSliding(target);
-          }, baseAutoDelay);
-        }
-
-        function disableAutoslideForMotion() {
-          autoSlidingActive = false;
-          window.clearTimeout(autoSlidingTO);
-          $slider.classList.remove("m--with-autosliding");
-          $slider.classList.add("m--reduce-motion");
-        }
-
-        function handleVisibilityChange() {
-          if (!autoSlidingActive || autoSlidingBlocked) return;
-          if (document.hidden) {
-            window.clearTimeout(autoSlidingTO);
-          } else {
-            scheduleAutoslide();
+        function controlClickHandler() {
+          if (sliding || this.classList.contains('m--active-control')) return;
+          if (options.blockASafterClick) {
+            autoSlidingBlocked = true;
+            $slider.classList.add('m--autosliding-blocked');
           }
+
+          const slideID = Number(this.getAttribute('data-slide'));
+          performSliding(slideID);
         }
 
-        controls.forEach(($control) => {
-          $control.addEventListener("click", function() {
-            if (sliding || this.classList.contains("m--active-control")) return;
-            if (options.blockASafterClick) {
-              autoSlidingBlocked = true;
-              $slider.classList.add("m--autosliding-blocked");
-              window.clearTimeout(autoSlidingTO);
-            }
-            performSliding(Number(this.dataset.slide));
-          });
+        $controls.forEach(($control) => {
+          $control.addEventListener('click', controlClickHandler);
         });
 
-        const firstControl = $slider.querySelector(".fnc-nav__control:first-child");
-        if (firstControl) {
-          firstControl.classList.add("m--active-control");
+        function setAutoslidingTO() {
+          window.clearTimeout(autoSlidingTO);
+          const delay = Number(options.autoSlidingDelay) || autoSlidingDelay;
+          curSlide += 1;
+          if (curSlide > numOfSlides) curSlide = 1;
+
+          autoSlidingTO = window.setTimeout(() => {
+            performSliding(curSlide);
+          }, delay);
         }
 
-        if (prefersReducedMotion.matches) {
-          disableAutoslideForMotion();
-        }
+        if (options.autoSliding || Number(options.autoSlidingDelay) > 0) {
+          if (options.autoSliding !== false) {
+            autoSlidingActive = true;
+            setAutoslidingTO();
+            $slider.classList.add('m--with-autosliding');
+            $slider.offsetTop;
 
-        if (autoSlidingActive) {
-          $slider.classList.add("m--with-autosliding");
-          const delayForProgress = baseAutoDelay + slidingDelay + slidingAT;
-          progressBars.forEach(($progress) => {
-            $progress.style.transition = `transform ${delayForProgress / 1000}s`;
-          });
-          scheduleAutoslide();
-          document.addEventListener("visibilitychange", handleVisibilityChange);
-        }
+            let delay = Number(options.autoSlidingDelay) || autoSlidingDelay;
+            delay += slidingDelay + slidingAT;
 
-        const motionPreferenceHandler = (event) => {
-          if (event.matches) {
-            disableAutoslideForMotion();
-          } else {
-            $slider.classList.remove("m--reduce-motion");
-            if (shouldAutoSlide && !autoSlidingBlocked) {
-              autoSlidingActive = true;
-              $slider.classList.add("m--with-autosliding");
-              scheduleAutoslide();
-            }
+            $progressAS.forEach(($progress) => {
+              $progress.style.transition = `transform ${delay / 1000}s`;
+            });
           }
-        };
-
-        if (typeof prefersReducedMotion.addEventListener === "function") {
-          prefersReducedMotion.addEventListener("change", motionPreferenceHandler);
-        } else if (typeof prefersReducedMotion.addListener === "function") {
-          prefersReducedMotion.addListener(motionPreferenceHandler);
         }
+
+        $slider.querySelector('.fnc-nav__control:first-child').classList.add('m--active-control');
       }
 
-      window.fncSlider = function(sliderSelector, options) {
-        $$(sliderSelector).forEach(($slider) => {
-          initSlider($slider, options);
+      window.fncSlider = (sliderSelector, options) => {
+        const $sliders = $$(sliderSelector);
+        $sliders.forEach(($slider) => {
+          initSlider($slider, options || {});
         });
       };
     }());
 
-    fncSlider(".example-slider", { autoSlidingDelay: 4000 });
+    fncSlider('.example-slider', { autoSlidingDelay: 4000 });
 
-    const demoCont = document.querySelector(".demo-cont");
-    document.querySelectorAll(".fnc-slide__action-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        demoCont.classList.toggle("credits-active");
+    const $demoCont = document.querySelector('.demo-cont');
+
+    Array.prototype.slice.call(document.querySelectorAll('.fnc-slide__action-btn')).forEach(($btn) => {
+      $btn.addEventListener('click', () => {
+        $demoCont.classList.toggle('credits-active');
       });
     });
 
-    document.querySelector(".demo-cont__credits-close").addEventListener("click", () => {
-      demoCont.classList.remove("credits-active");
+    document.querySelector('.demo-cont__credits-close').addEventListener('click', () => {
+      $demoCont.classList.remove('credits-active');
     });
 
-    document.querySelector(".js-activate-global-blending").addEventListener("click", () => {
-      document.querySelector(".example-slider").classList.toggle("m--global-blending-active");
+    document.querySelector('.js-activate-global-blending').addEventListener('click', () => {
+      document.querySelector('.example-slider').classList.toggle('m--global-blending-active');
     });
   </script>
 </body>
