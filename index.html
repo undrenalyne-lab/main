@@ -1570,6 +1570,7 @@
         will-change: transform;
         max-width: 1100px;
         margin: 0 auto;
+        display: none;
       }
 
       .service-detail-active .demo-cont__service-detail {
@@ -2696,6 +2697,48 @@
       document.querySelector(".demo-cont__contact-close").addEventListener("click", function () {
         $demoCont.classList.remove("contact-active");
       });
+
+      // Gestion de l'ouverture des pages de services détaillées
+      var serviceCards = document.querySelectorAll('.demo-cont__services-card');
+      serviceCards.forEach(function(card) {
+        card.addEventListener('click', function() {
+          var serviceId = this.getAttribute('data-service');
+          if (serviceId) {
+            // Fermer toutes les autres sections
+            $demoCont.classList.remove("credits-active", "services-active", "booking-active", "process-active", "contact-active", "service-detail-active");
+            // Ouvrir la page de service détaillée
+            $demoCont.classList.add("service-detail-active");
+            // Afficher la bonne page
+            var allServiceDetails = document.querySelectorAll('.demo-cont__service-detail');
+            allServiceDetails.forEach(function(detail) {
+              detail.style.display = 'none';
+            });
+            var targetService = document.getElementById('service-' + serviceId);
+            if (targetService) {
+              targetService.style.display = 'block';
+            }
+          }
+        });
+      });
+
+      // Gestion de la fermeture des pages de services détaillées
+      var serviceDetailCloses = document.querySelectorAll('.demo-cont__service-detail-close');
+      serviceDetailCloses.forEach(function(closeBtn) {
+        closeBtn.addEventListener('click', function() {
+          $demoCont.classList.remove("service-detail-active");
+          var allServiceDetails = document.querySelectorAll('.demo-cont__service-detail');
+          allServiceDetails.forEach(function(detail) {
+            detail.style.display = 'none';
+          });
+        });
+      });
+
+      // Fonction pour ouvrir la page Réserver
+      function openBooking() {
+        $demoCont.classList.remove("credits-active", "services-active", "process-active", "contact-active", "service-detail-active");
+        $demoCont.classList.add("booking-active");
+      }
+      window.openBooking = openBooking;
 
       // Gestion du formulaire de contact
       var contactForm = document.getElementById("contact-form");
