@@ -77,6 +77,71 @@
       font-family: inherit;
     }
 
+    @media (max-width: 1024px) {
+      :root {
+        --content-left: 32%;
+        --content-top: 36%;
+        --mask-height: 60vh;
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --content-left: 12%;
+        --content-top: 30%;
+        --mask-height: 52vh;
+        --heading-font-size: clamp(36px, 11vw, 64px);
+      }
+
+      .fnc-slide__action-btn {
+        margin-left: 0;
+      }
+
+      .fnc-slide__mask {
+        left: 5%;
+        right: auto;
+        width: min(var(--mask-width), 280px);
+        margin-right: 0;
+      }
+
+      .fnc-nav {
+        left: 0;
+        right: 0;
+        bottom: 10px;
+        text-align: center;
+        padding: 0 10px 20px;
+      }
+
+      .fnc-nav__control {
+        width: min(140px, 42vw);
+      }
+    }
+
+    @media (max-width: 560px) {
+      :root {
+        --content-top: 24%;
+        --heading-font-size: clamp(28px, 12vw, 48px);
+      }
+
+      .fnc-slide__mask {
+        display: none;
+      }
+
+      .fnc-slide__heading-line {
+        padding-right: 10px;
+      }
+
+      .fnc-nav__controls {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .fnc-nav__control {
+        width: 100%;
+      }
+    }
+
     .demo-cont {
       overflow: hidden;
       position: relative;
@@ -489,6 +554,40 @@
       transform: scaleX(0) !important;
     }
 
+    .m--reduce-motion .fnc-slider__slides,
+    .m--reduce-motion .fnc-slide,
+    .m--reduce-motion .fnc-slide__inner,
+    .m--reduce-motion .fnc-slide__mask,
+    .m--reduce-motion .fnc-slide__mask-inner,
+    .m--reduce-motion .fnc-slide__heading-line,
+    .m--reduce-motion .fnc-slide__heading-line span,
+    .m--reduce-motion .fnc-slide__action-btn span,
+    .m--reduce-motion .fnc-nav__bg,
+    .m--reduce-motion .fnc-nav__control-progress,
+    .m--reduce-motion .demo-cont__credits,
+    .m--reduce-motion .example-slider {
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
+    }
+
+    .m--reduce-motion .fnc-nav__control-progress {
+      transform: scaleX(0) !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .example-slider,
+      .demo-cont__credits,
+      .fnc-slider__slides,
+      .fnc-slide__inner,
+      .fnc-slide__mask,
+      .fnc-slide__mask-inner,
+      .fnc-slide__heading-line,
+      .fnc-slide__heading-line span {
+        transition-duration: 0s !important;
+        transition-delay: 0s !important;
+      }
+    }
+
     .m--blend-green .fnc-slide__inner {
       background-color: var(--green-light);
     }
@@ -878,7 +977,7 @@
     <div class="demo-cont__credits">
       <div class="demo-cont__credits-close"></div>
       <h2 class="demo-cont__credits-heading">Made by</h2>
-      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/profile/profile-512_5.jpg" alt="Portrait de Nikolay Talanov" class="demo-cont__credits-img">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/profile/profile-512_5.jpg" alt="Portrait de Nikolay Talanov" class="demo-cont__credits-img" loading="lazy">
       <h3 class="demo-cont__credits-name">Nikolay Talanov</h3>
       <a href="https://codepen.io/suez/" target="_blank" rel="noreferrer" class="demo-cont__credits-link">My codepen</a>
       <a href="https://twitter.com/NikolayTalanov" target="_blank" rel="noreferrer" class="demo-cont__credits-link">My twitter</a>
@@ -900,174 +999,197 @@
   </div>
   <script>
     (function() {
-      var $$ = function(selector, context) {
-        var ctx = context || document;
-        return Array.prototype.slice.call(ctx.querySelectorAll(selector));
-      };
+      const $$ = (selector, context = document) => Array.from(context.querySelectorAll(selector));
 
-      function _fncSliderInit($slider, options) {
-        var prefix = ".fnc-";
-        var $slidesCont = $slider.querySelector(prefix + "slider__slides");
-        var $slides = $$(prefix + "slide", $slider);
-        var $controls = $$(prefix + "nav__control", $slider);
-        var $controlsBgs = $$(prefix + "nav__bg", $slider);
-        var $progressAS = $$(prefix + "nav__control-progress", $slider);
-        var numOfSlides = $slides.length;
-        var curSlide = 1;
-        var sliding = false;
-        var slidingAT = parseFloat(getComputedStyle($slidesCont)["transition-duration"]) * 1000;
-        var slidingDelay = parseFloat(getComputedStyle($slidesCont)["transition-delay"]) * 1000;
-        var autoSlidingActive = false;
-        var autoSlidingTO;
-        var autoSlidingDelay = 5000;
-        var autoSlidingBlocked = false;
-        var $activeSlide;
-        var $activeControlsBg;
-        var $prevControl;
+      function initSlider($slider, options = {}) {
+        const prefix = ".fnc-";
+        const slidesCont = $slider.querySelector(`${prefix}slider__slides`);
+        if (!slidesCont) return;
+        const slides = $$(`${prefix}slide`, $slider);
+        const controls = $$(`${prefix}nav__control`, $slider);
+        const controlsBgs = $$(`${prefix}nav__bg`, $slider);
+        const progressBars = $$(`${prefix}nav__control-progress`, $slider);
+        const numOfSlides = slides.length;
+        let curSlide = 1;
+        let sliding = false;
+        const computed = getComputedStyle(slidesCont);
+        const slidingAT = parseFloat(computed.transitionDuration || "0") * 1000;
+        const slidingDelay = parseFloat(computed.transitionDelay || "0") * 1000;
+        const baseAutoDelay = typeof options.autoSlidingDelay === "number" ? options.autoSlidingDelay : 5000;
+        const shouldAutoSlide = options.autoSliding !== false && baseAutoDelay > 0;
+        let autoSlidingActive = shouldAutoSlide;
+        let autoSlidingTO;
+        let autoSlidingBlocked = false;
+        let $activeSlide;
+        let $activeControlsBg;
+        let $prevControl;
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-        function setIDs() {
-          $slides.forEach(function($slide, index) {
-            $slide.classList.add("fnc-slide-" + (index + 1));
-          });
+        slides.forEach(($slide, index) => {
+          $slide.classList.add(`fnc-slide-${index + 1}`);
+        });
+        controls.forEach(($control, index) => {
+          $control.dataset.slide = String(index + 1);
+          $control.classList.add(`fnc-nav__control-${index + 1}`);
+        });
+        controlsBgs.forEach(($bg, index) => {
+          $bg.classList.add(`fnc-nav__bg-${index + 1}`);
+        });
 
-          $controls.forEach(function($control, index) {
-            $control.setAttribute("data-slide", index + 1);
-            $control.classList.add("fnc-nav__control-" + (index + 1));
-          });
-
-          $controlsBgs.forEach(function($bg, index) {
-            $bg.classList.add("fnc-nav__bg-" + (index + 1));
-          });
-        }
-
-        setIDs();
-
-        function afterSlidingHandler() {
-          var previousSlide = $slider.querySelector(".m--previous-slide");
-          if (previousSlide) {
-            previousSlide.classList.remove("m--active-slide", "m--previous-slide");
-          }
-          var previousNavBg = $slider.querySelector(".m--previous-nav-bg");
-          if (previousNavBg) {
-            previousNavBg.classList.remove("m--active-nav-bg", "m--previous-nav-bg");
-          }
-
-          $activeSlide.classList.remove("m--before-sliding");
-          $activeControlsBg.classList.remove("m--nav-bg-before");
+        function resetProgressState() {
+          if (!$prevControl) return;
           $prevControl.classList.remove("m--prev-control");
           $prevControl.classList.add("m--reset-progress");
           void $prevControl.offsetTop;
           $prevControl.classList.remove("m--reset-progress");
+        }
 
+        function afterSlidingHandler() {
+          const previousSlide = $slider.querySelector(".m--previous-slide");
+          if (previousSlide) {
+            previousSlide.classList.remove("m--active-slide", "m--previous-slide");
+          }
+          const previousNavBg = $slider.querySelector(".m--previous-nav-bg");
+          if (previousNavBg) {
+            previousNavBg.classList.remove("m--active-nav-bg", "m--previous-nav-bg");
+          }
+          $activeSlide.classList.remove("m--before-sliding");
+          $activeControlsBg.classList.remove("m--nav-bg-before");
+          resetProgressState();
           sliding = false;
           void $slider.offsetTop;
-
-          if (autoSlidingActive && !autoSlidingBlocked) {
-            setAutoslidingTO();
-          }
+          scheduleAutoslide();
         }
 
         function performSliding(slideID) {
-          if (sliding) return;
+          if (sliding || !slideID) return;
           sliding = true;
           window.clearTimeout(autoSlidingTO);
           curSlide = slideID;
-
           $prevControl = $slider.querySelector(".m--active-control");
           if ($prevControl) {
             $prevControl.classList.remove("m--active-control");
             $prevControl.classList.add("m--prev-control");
           }
-          var newControl = $slider.querySelector(prefix + "nav__control-" + slideID);
+          const newControl = $slider.querySelector(`${prefix}nav__control-${slideID}`);
           if (newControl) {
             newControl.classList.add("m--active-control");
           }
-
-          $activeSlide = $slider.querySelector(prefix + "slide-" + slideID);
-          $activeControlsBg = $slider.querySelector(prefix + "nav__bg-" + slideID);
-
-          var currentActiveSlide = $slider.querySelector(".m--active-slide");
+          $activeSlide = $slider.querySelector(`${prefix}slide-${slideID}`);
+          $activeControlsBg = $slider.querySelector(`${prefix}nav__bg-${slideID}`);
+          const currentActiveSlide = $slider.querySelector(".m--active-slide");
           if (currentActiveSlide) {
             currentActiveSlide.classList.add("m--previous-slide");
           }
-          var currentActiveNavBg = $slider.querySelector(".m--active-nav-bg");
+          const currentActiveNavBg = $slider.querySelector(".m--active-nav-bg");
           if (currentActiveNavBg) {
             currentActiveNavBg.classList.add("m--previous-nav-bg");
           }
-
           $activeSlide.classList.add("m--before-sliding");
           $activeControlsBg.classList.add("m--nav-bg-before");
           void $activeSlide.offsetTop;
           $activeSlide.classList.add("m--active-slide");
           $activeControlsBg.classList.add("m--active-nav-bg");
-
-          setTimeout(afterSlidingHandler, slidingAT + slidingDelay);
+          window.setTimeout(afterSlidingHandler, slidingAT + slidingDelay);
         }
 
-        function controlClickHandler() {
-          if (sliding || this.classList.contains("m--active-control")) return;
-          if (options.blockASafterClick) {
-            autoSlidingBlocked = true;
-            $slider.classList.add("m--autosliding-blocked");
+        function scheduleAutoslide(nextSlide) {
+          window.clearTimeout(autoSlidingTO);
+          if (!autoSlidingActive || autoSlidingBlocked) return;
+          const target = nextSlide ? ((nextSlide - 1) % numOfSlides) + 1 : ((curSlide % numOfSlides) + 1);
+          autoSlidingTO = window.setTimeout(() => {
+            performSliding(target);
+          }, baseAutoDelay);
+        }
+
+        function disableAutoslideForMotion() {
+          autoSlidingActive = false;
+          window.clearTimeout(autoSlidingTO);
+          $slider.classList.remove("m--with-autosliding");
+          $slider.classList.add("m--reduce-motion");
+        }
+
+        function handleVisibilityChange() {
+          if (!autoSlidingActive || autoSlidingBlocked) return;
+          if (document.hidden) {
+            window.clearTimeout(autoSlidingTO);
+          } else {
+            scheduleAutoslide();
           }
-          var slideID = Number(this.getAttribute("data-slide"));
-          performSliding(slideID);
         }
 
-        $controls.forEach(function($control) {
-          $control.addEventListener("click", controlClickHandler);
+        controls.forEach(($control) => {
+          $control.addEventListener("click", function() {
+            if (sliding || this.classList.contains("m--active-control")) return;
+            if (options.blockASafterClick) {
+              autoSlidingBlocked = true;
+              $slider.classList.add("m--autosliding-blocked");
+              window.clearTimeout(autoSlidingTO);
+            }
+            performSliding(Number(this.dataset.slide));
+          });
         });
 
-        function setAutoslidingTO() {
-          window.clearTimeout(autoSlidingTO);
-          var delay = Number(options.autoSlidingDelay) || autoSlidingDelay;
-          curSlide = curSlide % numOfSlides + 1;
-          autoSlidingTO = window.setTimeout(function() {
-            performSliding(curSlide);
-          }, delay);
-        }
-
-        if (options.autoSliding || Number(options.autoSlidingDelay) > 0) {
-          if (options.autoSliding !== false) {
-            autoSlidingActive = true;
-            setAutoslidingTO();
-            $slider.classList.add("m--with-autosliding");
-            void $slider.offsetTop;
-            var delay = Number(options.autoSlidingDelay) || autoSlidingDelay;
-            delay += slidingDelay + slidingAT;
-            $progressAS.forEach(function($progress) {
-              $progress.style.transition = "transform " + (delay / 1000) + "s";
-            });
-          }
-        }
-
-        var firstControl = $slider.querySelector(".fnc-nav__control:first-child");
+        const firstControl = $slider.querySelector(".fnc-nav__control:first-child");
         if (firstControl) {
           firstControl.classList.add("m--active-control");
+        }
+
+        if (prefersReducedMotion.matches) {
+          disableAutoslideForMotion();
+        }
+
+        if (autoSlidingActive) {
+          $slider.classList.add("m--with-autosliding");
+          const delayForProgress = baseAutoDelay + slidingDelay + slidingAT;
+          progressBars.forEach(($progress) => {
+            $progress.style.transition = `transform ${delayForProgress / 1000}s`;
+          });
+          scheduleAutoslide();
+          document.addEventListener("visibilitychange", handleVisibilityChange);
+        }
+
+        const motionPreferenceHandler = (event) => {
+          if (event.matches) {
+            disableAutoslideForMotion();
+          } else {
+            $slider.classList.remove("m--reduce-motion");
+            if (shouldAutoSlide && !autoSlidingBlocked) {
+              autoSlidingActive = true;
+              $slider.classList.add("m--with-autosliding");
+              scheduleAutoslide();
+            }
+          }
+        };
+
+        if (typeof prefersReducedMotion.addEventListener === "function") {
+          prefersReducedMotion.addEventListener("change", motionPreferenceHandler);
+        } else if (typeof prefersReducedMotion.addListener === "function") {
+          prefersReducedMotion.addListener(motionPreferenceHandler);
         }
       }
 
       window.fncSlider = function(sliderSelector, options) {
-        $$(sliderSelector).forEach(function($slider) {
-          _fncSliderInit($slider, options || {});
+        $$(sliderSelector).forEach(($slider) => {
+          initSlider($slider, options);
         });
       };
     }());
 
     fncSlider(".example-slider", { autoSlidingDelay: 4000 });
 
-    var demoCont = document.querySelector(".demo-cont");
-    document.querySelectorAll(".fnc-slide__action-btn").forEach(function(btn) {
-      btn.addEventListener("click", function() {
+    const demoCont = document.querySelector(".demo-cont");
+    document.querySelectorAll(".fnc-slide__action-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
         demoCont.classList.toggle("credits-active");
       });
     });
 
-    document.querySelector(".demo-cont__credits-close").addEventListener("click", function() {
+    document.querySelector(".demo-cont__credits-close").addEventListener("click", () => {
       demoCont.classList.remove("credits-active");
     });
 
-    document.querySelector(".js-activate-global-blending").addEventListener("click", function() {
+    document.querySelector(".js-activate-global-blending").addEventListener("click", () => {
       document.querySelector(".example-slider").classList.toggle("m--global-blending-active");
     });
   </script>
