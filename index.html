@@ -126,6 +126,9 @@
         will-change: transform;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        /* Optimisations pour lecture fluide */
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
       }
 
       .m--global-blending-active .fnc-slide__inner,
@@ -560,69 +563,104 @@
         margin: 0;
       }
 
-      /* Écran de chargement */
+      /* Écran de chargement - Animation stylée */
       .loading-screen {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        background-size: 200% 200%;
         z-index: 9999;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: gradientShift 3s ease infinite;
+      }
+
+      @keyframes gradientShift {
+        0%, 100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
       }
 
       .loading-screen.hidden {
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
+        transform: scale(1.1);
       }
 
-      .loading-spinner {
-        width: 60px;
-        height: 60px;
-        border: 4px solid rgba(255, 255, 255, 0.3);
-        border-top-color: #ffffff;
+      .loading-animation {
+        position: relative;
+        width: 120px;
+        height: 120px;
+      }
+
+      .loading-circle {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 3px solid transparent;
         border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin-bottom: 20px;
+        animation: loadingPulse 1.5s ease-in-out infinite;
       }
 
-      @keyframes spin {
-        to {
-          transform: rotate(360deg);
+      .loading-circle:nth-child(1) {
+        border-top-color: rgba(255, 255, 255, 0.9);
+        animation-delay: 0s;
+      }
+
+      .loading-circle:nth-child(2) {
+        border-right-color: rgba(255, 255, 255, 0.7);
+        animation-delay: 0.2s;
+        transform: scale(0.85);
+      }
+
+      .loading-circle:nth-child(3) {
+        border-bottom-color: rgba(255, 255, 255, 0.5);
+        animation-delay: 0.4s;
+        transform: scale(0.7);
+      }
+
+      @keyframes loadingPulse {
+        0%, 100% {
+          transform: scale(1) rotate(0deg);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.1) rotate(180deg);
+          opacity: 0.7;
         }
       }
 
-      .loading-text {
-        color: #ffffff;
-        font-size: 1.2rem;
-        font-weight: 500;
-        text-align: center;
-        margin-top: 20px;
-        opacity: 0.9;
+      .loading-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        animation: centerPulse 1s ease-in-out infinite;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
       }
 
-      .loading-progress {
-        width: 200px;
-        height: 4px;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 2px;
-        margin-top: 20px;
-        overflow: hidden;
-      }
-
-      .loading-progress-bar {
-        height: 100%;
-        background: #ffffff;
-        width: 0%;
-        transition: width 0.3s ease;
-        border-radius: 2px;
+      @keyframes centerPulse {
+        0%, 100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: translate(-50%, -50%) scale(1.3);
+          opacity: 0.8;
+        }
       }
 
       .site-logo {
@@ -2535,6 +2573,9 @@
         will-change: transform;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        /* Optimisations pour lecture fluide */
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
       }
 
       .example-slider .fnc-slide__heading,
@@ -2729,10 +2770,11 @@
   <body>
     <!-- Écran de chargement -->
     <div class="loading-screen" id="loading-screen">
-      <div class="loading-spinner"></div>
-      <div class="loading-text">Chargement...</div>
-      <div class="loading-progress">
-        <div class="loading-progress-bar" id="loading-progress-bar"></div>
+      <div class="loading-animation">
+        <div class="loading-circle"></div>
+        <div class="loading-circle"></div>
+        <div class="loading-circle"></div>
+        <div class="loading-center"></div>
       </div>
     </div>
     
@@ -2798,12 +2840,12 @@
           <!-- slide start -->
           <div class="fnc-slide m--blend-dark">
             <div class="fnc-slide__inner">
-              <video class="fnc-slide__video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
+              <video class="fnc-slide__video" autoplay muted loop playsinline preload="metadata" onloadeddata="this.currentTime=0">
                 <source src="assets/videos/VID2.mp4" type="video/mp4">
               </video>
               <div class="fnc-slide__mask">
                 <div class="fnc-slide__mask-inner">
-                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
+                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline preload="metadata" onloadeddata="this.currentTime=0">
                     <source src="assets/videos/VID2.mp4" type="video/mp4">
                   </video>
                 </div>
@@ -2825,12 +2867,12 @@
           <!-- slide start -->
           <div class="fnc-slide m--blend-red">
             <div class="fnc-slide__inner">
-              <video class="fnc-slide__video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
+              <video class="fnc-slide__video" autoplay muted loop playsinline preload="metadata" onloadeddata="this.currentTime=0">
                 <source src="assets/videos/VID3.mp4" type="video/mp4">
               </video>
               <div class="fnc-slide__mask">
                 <div class="fnc-slide__mask-inner">
-                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
+                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline preload="metadata" onloadeddata="this.currentTime=0">
                     <source src="assets/videos/VID3.mp4" type="video/mp4">
                   </video>
                 </div>
@@ -2852,12 +2894,12 @@
           <!-- slide start -->
           <div class="fnc-slide m--blend-blue">
             <div class="fnc-slide__inner">
-              <video class="fnc-slide__video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
+              <video class="fnc-slide__video" autoplay muted loop playsinline preload="metadata" onloadeddata="this.currentTime=0">
                 <source src="assets/videos/VID4.mp4" type="video/mp4">
               </video>
               <div class="fnc-slide__mask">
                 <div class="fnc-slide__mask-inner">
-                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline preload="auto" onloadeddata="this.currentTime=0">
+                  <video class="fnc-slide__mask-video" autoplay muted loop playsinline preload="metadata" onloadeddata="this.currentTime=0">
                     <source src="assets/videos/VID4.mp4" type="video/mp4">
                   </video>
                 </div>
@@ -2916,7 +2958,7 @@
         </div>
             <div class="demo-cont__credits-portrait">
               <img src="assets/images/portrait.png" alt="Steven VAILHEN" class="demo-cont__credits-portrait-image">
-              <video class="demo-cont__credits-portrait-video" muted loop playsinline preload="auto">
+              <video class="demo-cont__credits-portrait-video" muted loop playsinline preload="metadata">
                 <source src="assets/videos/WALK.mp4" type="video/mp4">
               </video>
             </div>
@@ -3287,71 +3329,88 @@
       (function () {
         // Gestion de l'écran de chargement
         var loadingScreen = document.getElementById('loading-screen');
-        var loadingProgressBar = document.getElementById('loading-progress-bar');
-        var loadingText = loadingScreen ? loadingScreen.querySelector('.loading-text') : null;
-        
-        function updateLoadingProgress(percent) {
-          if (loadingProgressBar) {
-            loadingProgressBar.style.width = percent + '%';
-          }
-        }
         
         function hideLoadingScreen() {
           if (loadingScreen) {
-            setTimeout(function() {
-              loadingScreen.classList.add('hidden');
-            }, 500);
+            loadingScreen.classList.add('hidden');
           }
         }
         
-        // Charger les vidéos
+        // Charger les vidéos de manière optimisée
         function loadVideos() {
           var videos = document.querySelectorAll('video');
           var totalVideos = videos.length;
           var loadedVideos = 0;
-          var minLoadingTime = 2000; // Minimum 2 secondes d'affichage
+          var minLoadingTime = 800; // Maximum 800ms d'affichage
           var startTime = Date.now();
+          var maxLoadingTime = 2000; // Timeout de sécurité après 2 secondes
           
           if (totalVideos === 0) {
             setTimeout(function() {
-              updateLoadingProgress(100);
-              setTimeout(hideLoadingScreen, 500);
+              hideLoadingScreen();
             }, minLoadingTime);
             return;
           }
           
-          function checkAllLoaded() {
-            loadedVideos++;
-            var progress = Math.min(90, Math.round((loadedVideos / totalVideos) * 90));
-            updateLoadingProgress(progress);
-            
-            if (loadedVideos >= totalVideos) {
-              var elapsedTime = Date.now() - startTime;
-              var remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+          // Charger uniquement la première vidéo visible en priorité
+          var activeVideo = document.querySelector('.m--active-slide video');
+          var otherVideos = Array.from(videos).filter(function(v) {
+            return v !== activeVideo && !v.closest('.m--active-slide');
+          });
+          
+          function checkVideoLoaded(video, isPriority) {
+            if (video.readyState >= 2) { // HAVE_CURRENT_DATA ou plus
+              loadedVideos++;
+              if (isPriority && loadedVideos === 1) {
+                // Première vidéo chargée, masquer rapidement l'écran
+                var elapsedTime = Date.now() - startTime;
+                var remainingTime = Math.max(minLoadingTime - elapsedTime, 300);
+                setTimeout(function() {
+                  hideLoadingScreen();
+                }, remainingTime);
+              }
+            } else {
+              video.addEventListener('loadeddata', function() {
+                loadedVideos++;
+                if (isPriority && loadedVideos === 1) {
+                  var elapsedTime = Date.now() - startTime;
+                  var remainingTime = Math.max(minLoadingTime - elapsedTime, 300);
+                  setTimeout(function() {
+                    hideLoadingScreen();
+                  }, remainingTime);
+                }
+              }, { once: true });
               
-              setTimeout(function() {
-                updateLoadingProgress(100);
-                setTimeout(hideLoadingScreen, 500);
-              }, remainingTime);
+              video.addEventListener('error', function() {
+                loadedVideos++;
+                if (isPriority && loadedVideos === 1) {
+                  setTimeout(function() {
+                    hideLoadingScreen();
+                  }, minLoadingTime);
+                }
+              }, { once: true });
             }
           }
           
-          videos.forEach(function(video) {
-            if (video.readyState >= 3) {
-              // Vidéo déjà chargée
-              checkAllLoaded();
-            } else {
-              video.addEventListener('canplaythrough', checkAllLoaded, { once: true });
-              video.addEventListener('error', checkAllLoaded, { once: true });
+          // Charger la vidéo active en priorité
+          if (activeVideo) {
+            checkVideoLoaded(activeVideo, true);
+            activeVideo.load();
+          }
+          
+          // Charger les autres vidéos en arrière-plan
+          otherVideos.forEach(function(video) {
+            checkVideoLoaded(video, false);
+            // Ne pas forcer le chargement immédiat pour économiser la bande passante
+            if (video.readyState === 0) {
               video.load();
             }
           });
           
-          // Timeout de sécurité après 5 secondes maximum
+          // Timeout de sécurité
           setTimeout(function() {
-            updateLoadingProgress(100);
-            setTimeout(hideLoadingScreen, 500);
-          }, 5000);
+            hideLoadingScreen();
+          }, maxLoadingTime);
         }
         
         // Démarrer le chargement quand le DOM est prêt
@@ -3520,33 +3579,119 @@
 
       fncSlider(".example-slider", { autoSlidingDelay: 4000 });
 
-      // Amélioration du chargement et démarrage des vidéos
+      // Gestion optimisée des vidéos pour éviter les conflits et saccades
       (function() {
-        var videos = document.querySelectorAll('.fnc-slide__video, .fnc-slide__mask-video');
-        videos.forEach(function(video) {
-          // Préchargement et démarrage du début
-          video.addEventListener('loadeddata', function() {
-            this.currentTime = 0;
-            this.play().catch(function(e) {
-              console.log('Video play prevented:', e);
-            });
+        var allVideos = document.querySelectorAll('.fnc-slide__video, .fnc-slide__mask-video');
+        var currentlyPlayingVideos = [];
+        
+        // Fonction pour arrêter toutes les vidéos sauf celles spécifiées
+        function pauseAllVideos(exceptVideos) {
+          allVideos.forEach(function(video) {
+            if (exceptVideos && exceptVideos.indexOf(video) !== -1) {
+              return; // Ne pas arrêter cette vidéo
+            }
+            if (!video.paused) {
+              video.pause();
+            }
           });
+        }
+        
+        // Fonction pour démarrer les vidéos d'une slide de manière fluide
+        function playSlideVideos(slideElement) {
+          if (!slideElement) return;
           
-          // Réinitialiser au début à chaque boucle
-          video.addEventListener('ended', function() {
-            this.currentTime = 0;
-            this.play();
-          });
+          var slideVideos = slideElement.querySelectorAll('.fnc-slide__video, .fnc-slide__mask-video');
+          var videosToPlay = [];
           
-          // S'assurer que la vidéo démarre du début
-          video.addEventListener('canplay', function() {
-            if (this.currentTime > 0.1) {
-              this.currentTime = 0;
+          slideVideos.forEach(function(video) {
+            // Réinitialiser la position
+            video.currentTime = 0;
+            
+            // Vérifier que la vidéo est prête
+            if (video.readyState >= 2) {
+              videosToPlay.push(video);
+            } else {
+              // Attendre que la vidéo soit prête
+              var playWhenReady = function() {
+                video.currentTime = 0;
+                videosToPlay.push(video);
+                if (videosToPlay.length === slideVideos.length) {
+                  startPlayingVideos(videosToPlay);
+                }
+              };
+              video.addEventListener('loadeddata', playWhenReady, { once: true });
+              video.addEventListener('canplay', playWhenReady, { once: true });
+              video.load();
             }
           });
           
-          // Forcer le préchargement
-          video.load();
+          if (videosToPlay.length === slideVideos.length) {
+            startPlayingVideos(videosToPlay);
+          }
+        }
+        
+        // Fonction pour démarrer la lecture de manière fluide
+        function startPlayingVideos(videos) {
+          pauseAllVideos(videos);
+          
+          videos.forEach(function(video, index) {
+            setTimeout(function() {
+              var playPromise = video.play();
+              if (playPromise !== undefined) {
+                playPromise.catch(function(error) {
+                  // Gérer les erreurs silencieusement
+                  console.log('Video play error handled:', error);
+                });
+              }
+            }, index * 50); // Délai léger entre chaque vidéo pour éviter les conflits
+          });
+          
+          currentlyPlayingVideos = videos;
+        }
+        
+        // Observer les changements de slide active
+        var observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+              var target = mutation.target;
+              if (target.classList.contains('m--active-slide')) {
+                playSlideVideos(target);
+              } else if (target.classList.contains('m--previous-slide')) {
+                // Arrêter les vidéos de la slide précédente
+                var prevVideos = target.querySelectorAll('.fnc-slide__video, .fnc-slide__mask-video');
+                prevVideos.forEach(function(video) {
+                  video.pause();
+                });
+              }
+            }
+          });
+        });
+        
+        // Observer toutes les slides
+        document.querySelectorAll('.fnc-slide').forEach(function(slide) {
+          observer.observe(slide, { attributes: true, attributeFilter: ['class'] });
+        });
+        
+        // Démarrer la vidéo de la slide active au chargement
+        var activeSlide = document.querySelector('.m--active-slide');
+        if (activeSlide) {
+          playSlideVideos(activeSlide);
+        }
+        
+        // Gérer les boucles de manière fluide
+        allVideos.forEach(function(video) {
+          video.addEventListener('ended', function() {
+            if (video.closest('.m--active-slide')) {
+              // Seulement si la vidéo est dans la slide active
+              video.currentTime = 0;
+              video.play().catch(function() {});
+            }
+          }, { passive: true });
+          
+          // Optimisation pour mobile : réduire la qualité si nécessaire
+          if (window.innerWidth <= 768) {
+            video.setAttribute('playsinline', 'true');
+          }
         });
       })();
 
