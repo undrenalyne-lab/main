@@ -27,7 +27,7 @@
       .fnc-slider__slides {
         position: relative;
         height: 100%;
-        transition: transform 1s 0.6666666667s;
+        transition: transform 1s 0.6666666667s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .fnc-slider .m--blend-dark .fnc-slide__inner {
@@ -141,7 +141,7 @@
       }
 
       .m--active-slide .fnc-slide__inner {
-        transition: transform 1s 0.6666666667s ease-in-out;
+        transition: transform 1s 0.6666666667s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, 0, 0);
       }
 
@@ -561,106 +561,12 @@
 
       body {
         margin: 0;
-      }
-
-      /* Écran de chargement - Animation stylée */
-      .loading-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-        background-size: 200% 200%;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        animation: gradientShift 3s ease infinite;
-      }
-
-      @keyframes gradientShift {
-        0%, 100% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-      }
-
-      .loading-screen.hidden {
         opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transform: scale(1.1);
+        transition: opacity 2s ease-in-out;
       }
 
-      .loading-animation {
-        position: relative;
-        width: 120px;
-        height: 120px;
-      }
-
-      .loading-circle {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border: 3px solid transparent;
-        border-radius: 50%;
-        animation: loadingPulse 1.5s ease-in-out infinite;
-      }
-
-      .loading-circle:nth-child(1) {
-        border-top-color: rgba(255, 255, 255, 0.9);
-        animation-delay: 0s;
-      }
-
-      .loading-circle:nth-child(2) {
-        border-right-color: rgba(255, 255, 255, 0.7);
-        animation-delay: 0.2s;
-        transform: scale(0.85);
-      }
-
-      .loading-circle:nth-child(3) {
-        border-bottom-color: rgba(255, 255, 255, 0.5);
-        animation-delay: 0.4s;
-        transform: scale(0.7);
-      }
-
-      @keyframes loadingPulse {
-        0%, 100% {
-          transform: scale(1) rotate(0deg);
-          opacity: 1;
-        }
-        50% {
-          transform: scale(1.1) rotate(180deg);
-          opacity: 0.7;
-        }
-      }
-
-      .loading-center {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 20px;
-        height: 20px;
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        animation: centerPulse 1s ease-in-out infinite;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-      }
-
-      @keyframes centerPulse {
-        0%, 100% {
-          transform: translate(-50%, -50%) scale(1);
-          opacity: 1;
-        }
-        50% {
-          transform: translate(-50%, -50%) scale(1.3);
-          opacity: 0.8;
-        }
+      body.loaded {
+        opacity: 1;
       }
 
       .site-logo {
@@ -1116,17 +1022,18 @@
                     0 -8px 32px rgba(0, 0, 0, 0.2);
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         color: #eef2ff;
-        transition: transform 0.7s;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, -100%, 0) rotateX(45deg);
         will-change: transform;
       }
 
       .services-active .demo-cont__services {
-        transition: transform 0.7s 0.2333333333s;
+        transition: transform 0.6s 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, 0, 0);
       }
 
       .services-active .example-slider {
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, 500px, 0) rotateX(-10deg) scale(0.9);
         position: relative;
         z-index: 1;
@@ -1295,17 +1202,18 @@
                     0 -8px 32px rgba(0, 0, 0, 0.2);
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         color: #eef2ff;
-        transition: transform 0.7s;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, -100%, 0) rotateX(45deg);
         will-change: transform;
       }
 
       .booking-active .demo-cont__booking {
-        transition: transform 0.7s 0.2333333333s;
+        transition: transform 0.6s 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, 0, 0);
       }
 
       .booking-active .example-slider {
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, 500px, 0) rotateX(-10deg) scale(0.9);
         position: relative;
         z-index: 1;
@@ -1491,7 +1399,7 @@
                     0 -8px 32px rgba(0, 0, 0, 0.2);
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         color: #eef2ff;
-        transition: transform 0.7s;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, -100%, 0) rotateX(45deg);
         will-change: transform;
         max-width: 1100px;
@@ -1499,11 +1407,12 @@
       }
 
       .process-active .demo-cont__process {
-        transition: transform 0.7s 0.2333333333s;
+        transition: transform 0.6s 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, 0, 0);
       }
 
       .process-active .example-slider {
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, 500px, 0) rotateX(-10deg) scale(0.9);
         position: relative;
         z-index: 1;
@@ -1721,7 +1630,7 @@
                     0 -8px 32px rgba(0, 0, 0, 0.2);
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         color: #eef2ff;
-        transition: transform 0.7s;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, -100%, 0) rotateX(45deg);
         will-change: transform;
         max-width: 1100px;
@@ -1729,11 +1638,12 @@
       }
 
       .contact-active .demo-cont__contact {
-        transition: transform 0.7s 0.2333333333s;
+        transition: transform 0.6s 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, 0, 0);
       }
 
       .contact-active .example-slider {
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         transform: translate3d(0, 500px, 0) rotateX(-10deg) scale(0.9);
         position: relative;
         z-index: 1;
@@ -2768,16 +2678,6 @@
     </style>
   </head>
   <body>
-    <!-- Écran de chargement -->
-    <div class="loading-screen" id="loading-screen">
-      <div class="loading-animation">
-        <div class="loading-circle"></div>
-        <div class="loading-circle"></div>
-        <div class="loading-circle"></div>
-        <div class="loading-center"></div>
-      </div>
-    </div>
-    
     <!-- 
     Please note, that you can apply .m--global-blending-active to .fnc-slider 
     to enable blend-mode for all background-images or apply .m--blend-bg-active
@@ -3327,98 +3227,23 @@
 
     <script>
       (function () {
-        // Gestion de l'écran de chargement
-        var loadingScreen = document.getElementById('loading-screen');
-        
-        function hideLoadingScreen() {
-          if (loadingScreen) {
-            loadingScreen.classList.add('hidden');
-          }
-        }
-        
-        // Charger les vidéos de manière optimisée
-        function loadVideos() {
-          var videos = document.querySelectorAll('video');
-          var totalVideos = videos.length;
-          var loadedVideos = 0;
-          var minLoadingTime = 800; // Maximum 800ms d'affichage
-          var startTime = Date.now();
-          var maxLoadingTime = 2000; // Timeout de sécurité après 2 secondes
-          
-          if (totalVideos === 0) {
+        // Fondu d'apparition du site (2 secondes)
+        function initSiteFadeIn() {
+          // Attendre que le DOM soit prêt
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+              setTimeout(function() {
+                document.body.classList.add('loaded');
+              }, 100);
+            });
+          } else {
             setTimeout(function() {
-              hideLoadingScreen();
-            }, minLoadingTime);
-            return;
+              document.body.classList.add('loaded');
+            }, 100);
           }
-          
-          // Charger uniquement la première vidéo visible en priorité
-          var activeVideo = document.querySelector('.m--active-slide video');
-          var otherVideos = Array.from(videos).filter(function(v) {
-            return v !== activeVideo && !v.closest('.m--active-slide');
-          });
-          
-          function checkVideoLoaded(video, isPriority) {
-            if (video.readyState >= 2) { // HAVE_CURRENT_DATA ou plus
-              loadedVideos++;
-              if (isPriority && loadedVideos === 1) {
-                // Première vidéo chargée, masquer rapidement l'écran
-                var elapsedTime = Date.now() - startTime;
-                var remainingTime = Math.max(minLoadingTime - elapsedTime, 300);
-                setTimeout(function() {
-                  hideLoadingScreen();
-                }, remainingTime);
-              }
-            } else {
-              video.addEventListener('loadeddata', function() {
-                loadedVideos++;
-                if (isPriority && loadedVideos === 1) {
-                  var elapsedTime = Date.now() - startTime;
-                  var remainingTime = Math.max(minLoadingTime - elapsedTime, 300);
-                  setTimeout(function() {
-                    hideLoadingScreen();
-                  }, remainingTime);
-                }
-              }, { once: true });
-              
-              video.addEventListener('error', function() {
-                loadedVideos++;
-                if (isPriority && loadedVideos === 1) {
-                  setTimeout(function() {
-                    hideLoadingScreen();
-                  }, minLoadingTime);
-                }
-              }, { once: true });
-            }
-          }
-          
-          // Charger la vidéo active en priorité
-          if (activeVideo) {
-            checkVideoLoaded(activeVideo, true);
-            activeVideo.load();
-          }
-          
-          // Charger les autres vidéos en arrière-plan
-          otherVideos.forEach(function(video) {
-            checkVideoLoaded(video, false);
-            // Ne pas forcer le chargement immédiat pour économiser la bande passante
-            if (video.readyState === 0) {
-              video.load();
-            }
-          });
-          
-          // Timeout de sécurité
-          setTimeout(function() {
-            hideLoadingScreen();
-          }, maxLoadingTime);
         }
         
-        // Démarrer le chargement quand le DOM est prêt
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', loadVideos);
-        } else {
-          loadVideos();
-        }
+        initSiteFadeIn();
         
         var $$ = function (selector, context) {
           var contextEl = context || document;
@@ -3579,74 +3404,163 @@
 
       fncSlider(".example-slider", { autoSlidingDelay: 4000 });
 
-      // Gestion optimisée des vidéos pour éviter les conflits et saccades
+      // Gestion optimisée des vidéos pour éviter les sauts et bugs
       (function() {
         var allVideos = document.querySelectorAll('.fnc-slide__video, .fnc-slide__mask-video');
-        var currentlyPlayingVideos = [];
+        var videoStates = new Map();
+        var isTransitioning = false;
+        
+        // Initialiser l'état de chaque vidéo
+        allVideos.forEach(function(video) {
+          videoStates.set(video, {
+            isPlaying: false,
+            isReady: false,
+            isLoading: false
+          });
+          
+          // Précharger les vidéos de manière optimisée
+          video.preload = 'metadata';
+          video.muted = true;
+          video.loop = true;
+          video.playsInline = true;
+          
+          // Gérer le chargement
+          var handleCanPlay = function() {
+            var state = videoStates.get(video);
+            state.isReady = true;
+            state.isLoading = false;
+            // S'assurer que la vidéo commence à 0
+            if (video.currentTime > 0.1) {
+              video.currentTime = 0;
+            }
+          };
+          
+          video.addEventListener('canplay', handleCanPlay, { once: true });
+          video.addEventListener('loadeddata', handleCanPlay);
+          
+          // Gérer les erreurs de chargement
+          video.addEventListener('error', function() {
+            var state = videoStates.get(video);
+            state.isLoading = false;
+            // Réessayer le chargement après un délai
+            setTimeout(function() {
+              if (!state.isReady) {
+                video.load();
+              }
+            }, 1000);
+          });
+          
+          // Gérer les boucles de manière fluide (sans saut)
+          video.addEventListener('timeupdate', function() {
+            // Si on approche de la fin, préparer la boucle
+            if (video.duration && video.currentTime >= video.duration - 0.1) {
+              video.currentTime = 0;
+            }
+          });
+          
+          // Prévenir les sauts lors de la boucle
+          video.addEventListener('seeked', function() {
+            if (video.currentTime === 0 && videoStates.get(video).isPlaying) {
+              // S'assurer que la lecture continue sans interruption
+              if (video.paused) {
+                video.play().catch(function() {});
+              }
+            }
+          });
+        });
         
         // Fonction pour arrêter toutes les vidéos sauf celles spécifiées
         function pauseAllVideos(exceptVideos) {
           allVideos.forEach(function(video) {
             if (exceptVideos && exceptVideos.indexOf(video) !== -1) {
-              return; // Ne pas arrêter cette vidéo
+              return;
             }
-            if (!video.paused) {
+            var state = videoStates.get(video);
+            if (state.isPlaying && !video.paused) {
               video.pause();
+              state.isPlaying = false;
             }
           });
         }
         
-        // Fonction pour démarrer les vidéos d'une slide de manière fluide
+        // Fonction pour préparer et démarrer les vidéos d'une slide
         function playSlideVideos(slideElement) {
-          if (!slideElement) return;
+          if (!slideElement || isTransitioning) return;
           
-          var slideVideos = slideElement.querySelectorAll('.fnc-slide__video, .fnc-slide__mask-video');
-          var videosToPlay = [];
+          isTransitioning = true;
+          var slideVideos = Array.from(slideElement.querySelectorAll('.fnc-slide__video, .fnc-slide__mask-video'));
           
-          slideVideos.forEach(function(video) {
-            // Réinitialiser la position
-            video.currentTime = 0;
-            
-            // Vérifier que la vidéo est prête
-            if (video.readyState >= 2) {
-              videosToPlay.push(video);
-            } else {
-              // Attendre que la vidéo soit prête
-              var playWhenReady = function() {
+          if (slideVideos.length === 0) {
+            isTransitioning = false;
+            return;
+          }
+          
+          // Arrêter toutes les autres vidéos d'abord
+          pauseAllVideos(slideVideos);
+          
+          // Préparer chaque vidéo
+          var videosReady = 0;
+          var totalVideos = slideVideos.length;
+          
+          function checkAndPlay() {
+            videosReady++;
+            if (videosReady === totalVideos) {
+              // Toutes les vidéos sont prêtes, démarrer la lecture
+              slideVideos.forEach(function(video, index) {
+                var state = videoStates.get(video);
+                
+                // Réinitialiser la position
                 video.currentTime = 0;
-                videosToPlay.push(video);
-                if (videosToPlay.length === slideVideos.length) {
-                  startPlayingVideos(videosToPlay);
-                }
+                
+                // Démarrer la lecture avec un léger délai pour éviter les conflits
+                setTimeout(function() {
+                  if (state.isReady && slideElement.classList.contains('m--active-slide')) {
+                    var playPromise = video.play();
+                    if (playPromise !== undefined) {
+                      playPromise.then(function() {
+                        state.isPlaying = true;
+                      }).catch(function(error) {
+                        // Réessayer après un court délai
+                        setTimeout(function() {
+                          if (slideElement.classList.contains('m--active-slide')) {
+                            video.play().then(function() {
+                              state.isPlaying = true;
+                            }).catch(function() {});
+                          }
+                        }, 200);
+                      });
+                    }
+                  }
+                }, index * 30);
+              });
+              
+              isTransitioning = false;
+            }
+          }
+          
+          // Vérifier l'état de chaque vidéo
+          slideVideos.forEach(function(video) {
+            var state = videoStates.get(video);
+            
+            if (state.isReady) {
+              checkAndPlay();
+            } else {
+              // Charger la vidéo si nécessaire
+              if (!state.isLoading) {
+                state.isLoading = true;
+                video.load();
+              }
+              
+              // Attendre que la vidéo soit prête
+              var onReady = function() {
+                state.isReady = true;
+                checkAndPlay();
               };
-              video.addEventListener('loadeddata', playWhenReady, { once: true });
-              video.addEventListener('canplay', playWhenReady, { once: true });
-              video.load();
+              
+              video.addEventListener('canplay', onReady, { once: true });
+              video.addEventListener('loadeddata', onReady, { once: true });
             }
           });
-          
-          if (videosToPlay.length === slideVideos.length) {
-            startPlayingVideos(videosToPlay);
-          }
-        }
-        
-        // Fonction pour démarrer la lecture de manière fluide
-        function startPlayingVideos(videos) {
-          pauseAllVideos(videos);
-          
-          videos.forEach(function(video, index) {
-            setTimeout(function() {
-              var playPromise = video.play();
-              if (playPromise !== undefined) {
-                playPromise.catch(function(error) {
-                  // Gérer les erreurs silencieusement
-                  console.log('Video play error handled:', error);
-                });
-              }
-            }, index * 50); // Délai léger entre chaque vidéo pour éviter les conflits
-          });
-          
-          currentlyPlayingVideos = videos;
         }
         
         // Observer les changements de slide active
@@ -3654,13 +3568,19 @@
           mutations.forEach(function(mutation) {
             if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
               var target = mutation.target;
+              
               if (target.classList.contains('m--active-slide')) {
-                playSlideVideos(target);
+                // Délai pour laisser l'animation de transition se terminer
+                setTimeout(function() {
+                  playSlideVideos(target);
+                }, 100);
               } else if (target.classList.contains('m--previous-slide')) {
-                // Arrêter les vidéos de la slide précédente
+                // Arrêter immédiatement les vidéos de la slide précédente
                 var prevVideos = target.querySelectorAll('.fnc-slide__video, .fnc-slide__mask-video');
                 prevVideos.forEach(function(video) {
+                  var state = videoStates.get(video);
                   video.pause();
+                  state.isPlaying = false;
                 });
               }
             }
@@ -3673,26 +3593,12 @@
         });
         
         // Démarrer la vidéo de la slide active au chargement
-        var activeSlide = document.querySelector('.m--active-slide');
-        if (activeSlide) {
-          playSlideVideos(activeSlide);
-        }
-        
-        // Gérer les boucles de manière fluide
-        allVideos.forEach(function(video) {
-          video.addEventListener('ended', function() {
-            if (video.closest('.m--active-slide')) {
-              // Seulement si la vidéo est dans la slide active
-              video.currentTime = 0;
-              video.play().catch(function() {});
-            }
-          }, { passive: true });
-          
-          // Optimisation pour mobile : réduire la qualité si nécessaire
-          if (window.innerWidth <= 768) {
-            video.setAttribute('playsinline', 'true');
+        setTimeout(function() {
+          var activeSlide = document.querySelector('.m--active-slide');
+          if (activeSlide) {
+            playSlideVideos(activeSlide);
           }
-        });
+        }, 500);
       })();
 
       var $demoCont = document.querySelector(".demo-cont");
