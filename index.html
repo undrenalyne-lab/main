@@ -560,6 +560,71 @@
         margin: 0;
       }
 
+      /* Écran de chargement */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      .loading-screen.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top-color: #ffffff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loading-text {
+        color: #ffffff;
+        font-size: 1.2rem;
+        font-weight: 500;
+        text-align: center;
+        margin-top: 20px;
+        opacity: 0.9;
+      }
+
+      .loading-progress {
+        width: 200px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
+        margin-top: 20px;
+        overflow: hidden;
+      }
+
+      .loading-progress-bar {
+        height: 100%;
+        background: #ffffff;
+        width: 0%;
+        transition: width 0.3s ease;
+        border-radius: 2px;
+      }
+
       .site-logo {
         position: fixed;
         top: 1cm;
@@ -2318,6 +2383,11 @@
           padding: 10px 12px !important;
           flex: 1;
           min-width: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 100%;
+          box-sizing: border-box;
         }
         
         /* Fenêtres modales - padding réduit mobile */
@@ -2657,6 +2727,15 @@
     </style>
   </head>
   <body>
+    <!-- Écran de chargement -->
+    <div class="loading-screen" id="loading-screen">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Chargement...</div>
+      <div class="loading-progress">
+        <div class="loading-progress-bar" id="loading-progress-bar"></div>
+      </div>
+    </div>
+    
     <!-- 
     Please note, that you can apply .m--global-blending-active to .fnc-slider 
     to enable blend-mode for all background-images or apply .m--blend-bg-active
@@ -3044,6 +3123,7 @@
               <input type="hidden" name="_subject" value="Nouveau message depuis le site Undrenalyn eLab">
               <input type="hidden" name="_template" value="table">
               <input type="hidden" name="_autoresponse" value="Merci pour votre message ! Je vous répondrai sous 2 heures ouvrées.">
+              <input type="hidden" name="_format" value="plain">
               
               <input type="text" name="Nom" required placeholder="Votre nom" class="demo-cont__contact-input" />
               <input type="email" name="Email" required placeholder="votre@email.com" class="demo-cont__contact-input" />
@@ -3205,6 +3285,82 @@
 
     <script>
       (function () {
+        // Gestion de l'écran de chargement
+        var loadingScreen = document.getElementById('loading-screen');
+        var loadingProgressBar = document.getElementById('loading-progress-bar');
+        var loadingText = loadingScreen ? loadingScreen.querySelector('.loading-text') : null;
+        
+        function updateLoadingProgress(percent) {
+          if (loadingProgressBar) {
+            loadingProgressBar.style.width = percent + '%';
+          }
+        }
+        
+        function hideLoadingScreen() {
+          if (loadingScreen) {
+            setTimeout(function() {
+              loadingScreen.classList.add('hidden');
+            }, 500);
+          }
+        }
+        
+        // Charger les vidéos
+        function loadVideos() {
+          var videos = document.querySelectorAll('video');
+          var totalVideos = videos.length;
+          var loadedVideos = 0;
+          var minLoadingTime = 2000; // Minimum 2 secondes d'affichage
+          var startTime = Date.now();
+          
+          if (totalVideos === 0) {
+            setTimeout(function() {
+              updateLoadingProgress(100);
+              setTimeout(hideLoadingScreen, 500);
+            }, minLoadingTime);
+            return;
+          }
+          
+          function checkAllLoaded() {
+            loadedVideos++;
+            var progress = Math.min(90, Math.round((loadedVideos / totalVideos) * 90));
+            updateLoadingProgress(progress);
+            
+            if (loadedVideos >= totalVideos) {
+              var elapsedTime = Date.now() - startTime;
+              var remainingTime = Math.max(0, minLoadingTime - elapsedTime);
+              
+              setTimeout(function() {
+                updateLoadingProgress(100);
+                setTimeout(hideLoadingScreen, 500);
+              }, remainingTime);
+            }
+          }
+          
+          videos.forEach(function(video) {
+            if (video.readyState >= 3) {
+              // Vidéo déjà chargée
+              checkAllLoaded();
+            } else {
+              video.addEventListener('canplaythrough', checkAllLoaded, { once: true });
+              video.addEventListener('error', checkAllLoaded, { once: true });
+              video.load();
+            }
+          });
+          
+          // Timeout de sécurité après 5 secondes maximum
+          setTimeout(function() {
+            updateLoadingProgress(100);
+            setTimeout(hideLoadingScreen, 500);
+          }, 5000);
+        }
+        
+        // Démarrer le chargement quand le DOM est prêt
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', loadVideos);
+        } else {
+          loadVideos();
+        }
+        
         var $$ = function (selector, context) {
           var contextEl = context || document;
           var elements = contextEl.querySelectorAll(selector);
@@ -3695,12 +3851,31 @@
       var contactSuccess = document.getElementById("contact-success");
       if (contactForm && contactSuccess) {
         contactForm.addEventListener("submit", function(e) {
-          // Ne pas empêcher la soumission normale du formulaire
-          // Le formulaire se soumettra normalement à FormSubmit
+          // Afficher le message de succès immédiatement
           contactSuccess.classList.add("show");
           
-          // Laisser le formulaire se soumettre normalement
+          // Ne pas empêcher la soumission normale du formulaire
+          // Le formulaire se soumettra normalement à FormSubmit
           // FormSubmit redirigera vers _next après envoi
+          // Ne pas utiliser preventDefault() pour permettre la soumission normale
+          
+          // Vérifier que tous les champs requis sont remplis
+          var inputs = contactForm.querySelectorAll('input[required], textarea[required]');
+          var allValid = true;
+          inputs.forEach(function(input) {
+            if (!input.value.trim()) {
+              allValid = false;
+              input.style.borderColor = 'rgba(239, 68, 68, 0.8)';
+            } else {
+              input.style.borderColor = '';
+            }
+          });
+          
+          if (!allValid) {
+            e.preventDefault();
+            contactSuccess.classList.remove("show");
+            return false;
+          }
         });
       }
 
