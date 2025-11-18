@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0f1018" />
+    <meta name="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formsubmit.co https://buy.stripe.com; frame-src 'self' https:;" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formsubmit.co https://buy.stripe.com; frame-src 'self' https:;" />
     <title>Undrenalyn eLab — Design & IA</title>
     <link rel="icon" type="image/x-icon" href="assets/icon_1763421641.ico">
     <link rel="apple-touch-icon" href="assets/icon_1763421641.ico">
@@ -630,14 +637,30 @@
 
       @media (max-width: 768px) {
         .language-selector {
-          top: 10px !important;
-          right: 10px !important;
+          top: 60px !important;
+          right: 60px !important;
+          z-index: 5 !important;
         }
         
         .language-btn {
-          width: 36px;
-          height: 26px;
-          font-size: 12px;
+          width: 32px;
+          height: 24px;
+          font-size: 11px;
+        }
+        
+        /* Boutons de fermeture - priorité sur mobile */
+        .demo-cont__services-close,
+        .demo-cont__booking-close,
+        .demo-cont__process-close,
+        .demo-cont__contact-close,
+        .demo-cont__service-detail-close,
+        .demo-cont__payment-close,
+        .demo-cont__credits-close {
+          z-index: 20 !important;
+          right: 15px !important;
+          top: 15px !important;
+          width: 32px !important;
+          height: 32px !important;
         }
       }
 
@@ -2338,14 +2361,58 @@
           box-sizing: border-box;
         }
         
-        /* Fenêtres modales - padding réduit mobile */
+        /* Fenêtres modales - padding réduit mobile et optimisation affichage */
         .demo-cont__services,
         .demo-cont__booking,
         .demo-cont__process,
         .demo-cont__contact,
         .demo-cont__service-detail,
         .demo-cont__payment {
-          padding: 20px !important;
+          padding: 50px 20px 20px 20px !important;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-rendering: optimizeLegibility;
+          will-change: transform;
+          transform: translateZ(0);
+          -webkit-transform: translateZ(0);
+        }
+        
+        /* Optimisation du rendu du texte dans les modales mobile */
+        .demo-cont__services-heading,
+        .demo-cont__booking-heading,
+        .demo-cont__process-heading,
+        .demo-cont__contact-heading,
+        .demo-cont__process-step-content h3,
+        .demo-cont__process-step-content p,
+        .demo-cont__process-intro,
+        .demo-cont__process-step-content,
+        .demo-cont__services-card-title,
+        .demo-cont__services-card-description {
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-rendering: optimizeLegibility;
+          transform: translateZ(0);
+          -webkit-transform: translateZ(0);
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          opacity: 1;
+          transition: opacity 0.3s ease;
+        }
+        
+        /* Forcer le rendu immédiat du texte */
+        .services-active .demo-cont__services *,
+        .booking-active .demo-cont__booking *,
+        .process-active .demo-cont__process *,
+        .contact-active .demo-cont__contact * {
+          opacity: 1 !important;
+        }
+        
+        /* Transitions optimisées pour mobile */
+        .services-active .demo-cont__services,
+        .booking-active .demo-cont__booking,
+        .process-active .demo-cont__process,
+        .contact-active .demo-cont__contact {
+          transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
         }
         
         /* Cartes de services - amélioration mobile */
@@ -3539,7 +3606,7 @@
               // Charger la vidéo si nécessaire
               if (!state.isLoading) {
                 state.isLoading = true;
-                video.load();
+          video.load();
               }
               
               // Attendre que la vidéo soit prête
