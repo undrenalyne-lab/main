@@ -3227,23 +3227,14 @@
 
     <script>
       (function () {
-        // Fondu d'apparition du site (2 secondes)
-        function initSiteFadeIn() {
-          // Attendre que le DOM soit prêt
-          if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function() {
-              setTimeout(function() {
-                document.body.classList.add('loaded');
-              }, 100);
-            });
-          } else {
-            setTimeout(function() {
-              document.body.classList.add('loaded');
-            }, 100);
-          }
+        // Simple fondu d'apparition du site (2 secondes)
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('loaded');
+          });
+        } else {
+          document.body.classList.add('loaded');
         }
-        
-        initSiteFadeIn();
         
         var $$ = function (selector, context) {
           var contextEl = context || document;
