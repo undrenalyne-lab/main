@@ -587,7 +587,13 @@
         color: #ffffff;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
         letter-spacing: 0.5px;
-        pointer-events: none;
+        cursor: pointer;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .site-logo:hover {
+        opacity: 0.8;
+        transform: scale(1.05);
       }
 
       /* Sélecteur de langue */
@@ -638,7 +644,7 @@
       @media (max-width: 768px) {
         .language-selector {
           top: 60px !important;
-          right: 60px !important;
+          right: 90px !important;
           z-index: 5 !important;
         }
         
@@ -3126,9 +3132,9 @@
         <div class="demo-cont__contact-grid">
           <div class="demo-cont__contact-card">
             <h3>Formulaire sécurisé</h3>
-            <form id="contact-form" action="https://formsubmit.co/undrenalyne@gmail.com" method="POST">
+            <form id="contact-form" action="https://formsubmit.co/undrenalyne@gmail.com" method="POST" target="_self">
               <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_next" value="https://undrenalyn-elab.github.io/merci.html">
+              <input type="hidden" name="_next" value="">
               <input type="hidden" name="_subject" value="Nouveau message depuis le site Undrenalyn eLab">
               <input type="hidden" name="_template" value="table">
               <input type="hidden" name="_autoresponse" value="Merci pour votre message ! Je vous répondrai sous 2 heures ouvrées.">
@@ -3960,14 +3966,6 @@
       var contactSuccess = document.getElementById("contact-success");
       if (contactForm && contactSuccess) {
         contactForm.addEventListener("submit", function(e) {
-          // Afficher le message de succès immédiatement
-          contactSuccess.classList.add("show");
-          
-          // Ne pas empêcher la soumission normale du formulaire
-          // Le formulaire se soumettra normalement à FormSubmit
-          // FormSubmit redirigera vers _next après envoi
-          // Ne pas utiliser preventDefault() pour permettre la soumission normale
-          
           // Vérifier que tous les champs requis sont remplis
           var inputs = contactForm.querySelectorAll('input[required], textarea[required]');
           var allValid = true;
@@ -3985,6 +3983,42 @@
             contactSuccess.classList.remove("show");
             return false;
           }
+          
+          // Empêcher la redirection et envoyer le formulaire en arrière-plan
+          e.preventDefault();
+          
+          // Afficher le message de succès
+          contactSuccess.classList.add("show");
+          
+          // Envoyer le formulaire via fetch pour éviter la redirection
+          var formData = new FormData(contactForm);
+          fetch(contactForm.action, {
+            method: 'POST',
+            body: formData
+          }).then(function(response) {
+            if (response.ok) {
+              // Réinitialiser le formulaire après succès
+              setTimeout(function() {
+                contactForm.reset();
+              }, 2000);
+            }
+          }).catch(function(error) {
+            console.log('Erreur envoi formulaire:', error);
+          });
+        });
+      }
+
+      // Logo cliquable pour retourner à l'accueil
+      var siteLogo = document.querySelector('.site-logo');
+      if (siteLogo) {
+        siteLogo.addEventListener('click', function() {
+          // Fermer toutes les modales ouvertes
+          var $demoCont = document.querySelector(".demo-cont");
+          if ($demoCont) {
+            $demoCont.classList.remove("credits-active", "services-active", "booking-active", "process-active", "contact-active", "service-detail-active", "payment-active");
+          }
+          // Retourner en haut de la page
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
 
