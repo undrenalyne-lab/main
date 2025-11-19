@@ -632,7 +632,7 @@
       .language-selector {
         position: fixed;
         top: 1cm;
-        right: 1cm;
+        right: calc(1cm + 1cm);
         z-index: 10;
         display: flex;
         gap: 8px;
@@ -676,7 +676,7 @@
       @media (max-width: 768px) {
         .language-selector {
           top: 60px !important;
-          right: 90px !important;
+          right: 100px !important;
           z-index: 5 !important;
         }
         
@@ -3516,19 +3516,6 @@
 
       // Chargement intelligent des vidéos avec images de fallback
       (function() {
-        // Détecter si on est sur mobile
-        var isMobile = /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
-        var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
-        // Si mobile ou préférence réduite, ne pas charger les vidéos
-        if (isMobile || prefersReducedMotion) {
-          // Masquer toutes les vidéos sur mobile
-          document.querySelectorAll('.fnc-slide__video, .fnc-slide__mask-video').forEach(function(video) {
-            video.style.display = 'none';
-          });
-          return;
-        }
-        
         var allVideos = document.querySelectorAll('.fnc-slide__video, .fnc-slide__mask-video');
         var videoStates = new Map();
         var isTransitioning = false;
