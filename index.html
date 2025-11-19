@@ -2567,6 +2567,173 @@
         textarea {
           font-size: 16px !important;
         }
+        
+        /* ============================================
+           PAGE PROCESSUS - Corrections spécifiques mobile
+           ============================================ */
+        .demo-cont__process {
+          max-width: 100% !important;
+          margin: 0 !important;
+          padding: 60px 20px 20px 20px !important;
+          width: 100% !important;
+          height: 100vh !important;
+          overflow-y: auto !important;
+          overflow-x: hidden !important;
+          border-radius: 0 !important;
+        }
+        
+        .process-active .demo-cont__process {
+          transform: translate3d(0, 0, 0) !important;
+        }
+        
+        .process-active .example-slider {
+          transform: translate3d(0, 0, 0) !important;
+          position: relative !important;
+          z-index: 0 !important;
+        }
+        
+        .demo-cont__process-heading {
+          font-size: 1.8rem !important;
+          margin-bottom: 20px !important;
+          text-align: center !important;
+          -webkit-text-fill-color: #ffffff !important;
+          color: #ffffff !important;
+          background: none !important;
+          -webkit-background-clip: unset !important;
+          background-clip: unset !important;
+        }
+        
+        .demo-cont__process-intro {
+          font-size: 1rem !important;
+          line-height: 1.6 !important;
+          margin-bottom: 24px !important;
+          color: rgba(238, 242, 255, 0.9) !important;
+          text-align: center !important;
+        }
+        
+        .demo-cont__process-steps {
+          gap: 16px !important;
+          margin: 24px 0 !important;
+        }
+        
+        .demo-cont__process-step {
+          grid-template-columns: 1fr !important;
+          gap: 16px !important;
+          padding: 20px !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+          background: rgba(255, 255, 255, 0.1) !important;
+          border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        .demo-cont__process-step:hover {
+          transform: none !important;
+        }
+        
+        .demo-cont__process-step-number {
+          width: 50px !important;
+          height: 50px !important;
+          font-size: 1.1rem !important;
+          margin: 0 auto !important;
+        }
+        
+        .demo-cont__process-step-content {
+          text-align: center !important;
+          width: 100% !important;
+        }
+        
+        .demo-cont__process-step-content h3 {
+          font-size: 1.2rem !important;
+          color: rgba(255, 255, 255, 1) !important;
+          margin-bottom: 12px !important;
+          font-weight: 600 !important;
+        }
+        
+        .demo-cont__process-step-content p {
+          font-size: 0.95rem !important;
+          color: rgba(238, 242, 255, 0.9) !important;
+          line-height: 1.6 !important;
+          margin-bottom: 12px !important;
+        }
+        
+        .demo-cont__process-duration {
+          font-size: 0.85rem !important;
+          padding: 6px 12px !important;
+          display: inline-block !important;
+        }
+        
+        .demo-cont__process-guarantees {
+          padding: 20px !important;
+          margin: 24px 0 !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+        
+        .demo-cont__process-guarantees h3 {
+          font-size: 1.2rem !important;
+          color: rgba(255, 255, 255, 1) !important;
+          margin-bottom: 16px !important;
+          text-align: center !important;
+        }
+        
+        .demo-cont__process-guarantees ul {
+          gap: 12px !important;
+        }
+        
+        .demo-cont__process-guarantees li {
+          color: rgba(238, 242, 255, 0.9) !important;
+          font-size: 0.95rem !important;
+          line-height: 1.6 !important;
+          padding-left: 20px !important;
+          position: relative !important;
+        }
+        
+        .demo-cont__process-guarantees li:before {
+          content: "✓" !important;
+          position: absolute !important;
+          left: 0 !important;
+          color: rgba(167, 139, 250, 1) !important;
+          font-weight: bold !important;
+        }
+        
+        .demo-cont__process-benefits-title {
+          font-size: 1.3rem !important;
+          color: rgba(255, 255, 255, 1) !important;
+          margin: 32px 0 20px !important;
+          text-align: center !important;
+        }
+        
+        .demo-cont__process-benefits-grid {
+          grid-template-columns: 1fr !important;
+          gap: 16px !important;
+          margin: 24px 0 !important;
+        }
+        
+        .demo-cont__process-benefit-card {
+          padding: 20px !important;
+          width: 100% !important;
+          box-sizing: border-box !important;
+          background: rgba(255, 255, 255, 0.1) !important;
+          border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+        
+        .demo-cont__process-benefit-card:hover {
+          transform: none !important;
+        }
+        
+        .demo-cont__process-benefit-card h3 {
+          font-size: 1.1rem !important;
+          color: rgba(255, 255, 255, 1) !important;
+          margin-bottom: 12px !important;
+          text-align: center !important;
+        }
+        
+        .demo-cont__process-benefit-card p {
+          font-size: 0.9rem !important;
+          color: rgba(238, 242, 255, 0.9) !important;
+          line-height: 1.6 !important;
+          text-align: center !important;
+        }
       }
       
       /* Très petits écrans (iPhone SE, etc.) */
