@@ -673,10 +673,54 @@
         box-shadow: 0 4px 12px rgba(167, 139, 250, 0.4);
       }
 
+      .money-map-link {
+        position: fixed;
+        top: 1cm;
+        right: calc(1cm + 110px);
+        z-index: 10;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 32px;
+        padding: 0 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28),
+                    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        color: rgba(255, 255, 255, 0.94);
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .money-map-link:hover {
+        background: rgba(255, 255, 255, 0.18);
+        border-color: rgba(255, 255, 255, 0.34);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34),
+                    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+      }
+
       @media (max-width: 768px) {
         .language-selector {
           top: 60px !important;
           right: 100px !important;
+          z-index: 5 !important;
+        }
+
+        .money-map-link {
+          top: 60px !important;
+          right: 15px !important;
+          min-height: 28px;
+          padding: 0 10px;
+          font-size: 10px;
           z-index: 5 !important;
         }
         
@@ -3000,6 +3044,14 @@
       <button class="language-btn active" data-lang="fr" id="lang-fr">FR</button>
       <button class="language-btn" data-lang="en" id="lang-en">EN</button>
     </div>
+
+    <a
+      class="money-map-link"
+      href="/france-money-map/"
+      aria-label="Ouvrir France Money Map"
+    >
+      France Money Map
+    </a>
     
     <!-- Contrôle musique -->
     <div class="music-control" id="music-control" title="Lancer la musique">

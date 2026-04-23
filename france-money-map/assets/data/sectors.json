@@ -1,0 +1,91 @@
+[
+  {
+    "id": "ferro",
+    "name": "Ferro privé",
+    "icon": "🚂",
+    "description": "Sécurité chantier, voie, caténaire, signalisation et sous-stations avec logique tickets -> branche -> employeurs.",
+    "laneCount": 8,
+    "laneIds": [
+      "ferro_sec",
+      "ferro_attx",
+      "ferro_voie",
+      "ferro_cat",
+      "ferro_sig",
+      "ferro_tel",
+      "ferro_eale",
+      "ferro_ct"
+    ],
+    "branchCount": 8,
+    "ticketCount": 9
+  },
+  {
+    "id": "nuclear",
+    "name": "Nucléaire",
+    "icon": "☢️",
+    "description": "Radioprotection, CND, maintenance, logistique et environnements à forte contrainte procédurale.",
+    "laneCount": 5,
+    "laneIds": [
+      "nuc_rp",
+      "nuc_cnd",
+      "nuc_meca",
+      "nuc_log",
+      "nuc_echaf"
+    ],
+    "branchCount": 5,
+    "ticketCount": 3
+  },
+  {
+    "id": "industrial",
+    "name": "Industrie critique",
+    "icon": "⚙️",
+    "description": "Maintenance postée, automatisme, CVC industriel et itinérance technique pour sites sensibles.",
+    "laneCount": 3,
+    "laneIds": [
+      "ind_tsmi",
+      "ind_auto",
+      "ind_cvc"
+    ],
+    "branchCount": 3,
+    "ticketCount": 3
+  },
+  {
+    "id": "renewables",
+    "name": "Éolien / ENR",
+    "icon": "🌬️",
+    "description": "Maintenance éolienne, HTA et raccordement pour filières où la sécurité et la mobilité font la différence.",
+    "laneCount": 2,
+    "laneIds": [
+      "ren_eol",
+      "ren_hta"
+    ],
+    "branchCount": 2,
+    "ticketCount": 4
+  },
+  {
+    "id": "special",
+    "name": "Travaux spéciaux",
+    "icon": "🧗",
+    "description": "Cordes, levage et tuyauterie grand déplacement avec variable cash très dépendante des conditions de mission.",
+    "laneCount": 3,
+    "laneIds": [
+      "spec_rope",
+      "spec_levage",
+      "spec_tuyaut"
+    ],
+    "branchCount": 3,
+    "ticketCount": 4
+  },
+  {
+    "id": "critical",
+    "name": "Data centers / environnements critiques",
+    "icon": "🖥️",
+    "description": "Maintenance CVC, électrique et facility pour sites où la stabilité et la continuité de service priment.",
+    "laneCount": 2,
+    "laneIds": [
+      "crit_dc",
+      "crit_fac"
+    ],
+    "branchCount": 2,
+    "ticketCount": 2
+  }
+]

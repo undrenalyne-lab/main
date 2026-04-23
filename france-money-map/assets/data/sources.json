@@ -1,0 +1,82 @@
+[
+  {
+    "id": "france-travail-infrastructure-ferroviaire",
+    "title": "France Travail — Infrastructure ferroviaire",
+    "url": "https://www.francetravail.fr/actualites/le-dossier/transport-et-logistique/transport-ferroviaire-1/linfrastructure-ferroviaire.html",
+    "note": "Voie, caténaires, signalisation, télécoms, ingénierie, maintenance.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  },
+  {
+    "id": "colas-rail-palette-de-12-metiers",
+    "title": "Colas Rail — Palette de 12 métiers",
+    "url": "https://www.colasrail.com/fr",
+    "note": "Voie, signalisation, caténaire, courants faibles/télécoms, sous-stations, sécurité, maintenance, matériel lourd, gestion des infrastructures.",
+    "kind": "public-source",
+    "confidenceLevel": "medium"
+  },
+  {
+    "id": "tso-signalisation",
+    "title": "TSO Signalisation",
+    "url": "https://www.tso.fr/tso-signalisation/",
+    "note": "Signalisation + télécoms + installation + maintenance + experts ferro.",
+    "kind": "public-source",
+    "confidenceLevel": "medium"
+  },
+  {
+    "id": "tso-telecom-ferroviaire",
+    "title": "TSO — Télécom ferroviaire",
+    "url": "https://www.tso.fr/medias/tso-signalisation-diversifie-son-activite-et-finalise-sa-premiere-realisation-en-telecom-ferroviaire/",
+    "note": "Réseaux radio/fixes, vidéosurveillance, contrôle d’accès, CFa.",
+    "kind": "public-source",
+    "confidenceLevel": "medium"
+  },
+  {
+    "id": "prestafer",
+    "title": "Prestafer",
+    "url": "https://www.prestafer.fr/",
+    "note": "Annonceur, sentinelle, ASP, LAM, S9, PN, structure de paie avec déplacements.",
+    "kind": "public-source",
+    "confidenceLevel": "medium"
+  },
+  {
+    "id": "france-travail-12-metiers-du-nucleaire",
+    "title": "France Travail — 12 métiers du nucléaire",
+    "url": "https://www.francetravail.fr/actualites/le-dossier/industrie/nucleaire/maintenance-nucleaire--12-metier.html",
+    "note": "Panorama maintenance nucléaire + ponts métiers.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  },
+  {
+    "id": "france-travail-automaticien",
+    "title": "France Travail — Automaticien",
+    "url": "https://www.francetravail.fr/actualites/le-dossier/industrie/autres-metiers-de-lindustrie/automaticien--un-metier-en-deman.html",
+    "note": "Métier transverse demandé dans toute l’industrie.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  },
+  {
+    "id": "france-travail-technicien-maintenance-eoliennes",
+    "title": "France Travail — Technicien maintenance éoliennes",
+    "url": "https://www.francetravail.fr/region/pays-de-la-loire/candidat/formation/technicien-superieur-de-maintena.html",
+    "note": "Titre pro + GWO + SST + habilitations électriques.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  },
+  {
+    "id": "france-competences-travailler-sur-cordes-confirme",
+    "title": "France Compétences — Travailler sur cordes confirmé",
+    "url": "https://www.francecompetences.fr/recherche/RS/6611",
+    "note": "Niveau confirmé pour cordistes et contextes complexes.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  },
+  {
+    "id": "france-travail-offre-technicien-data-center",
+    "title": "France Travail — Offre Technicien Data Center",
+    "url": "https://candidat.francetravail.fr/offres/recherche/detail/205WYXZ",
+    "note": "3x8, CVC-électricité, BMS/GTB, environnement critique.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  }
+]

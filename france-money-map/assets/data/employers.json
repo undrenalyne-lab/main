@@ -1,0 +1,1695 @@
+[
+  {
+    "id": "acousticordes",
+    "name": "AcoustiCordes",
+    "category": "specialist",
+    "sectors": [
+      "special"
+    ],
+    "branches": [
+      "Travaux sur cordes"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Cordiste industriel"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "spec_rope"
+    ]
+  },
+  {
+    "id": "actemium",
+    "name": "Actemium",
+    "category": "specialist",
+    "sectors": [
+      "industrial"
+    ],
+    "branches": [
+      "Automatisme / mise en service / itinérance"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Automaticien / mise en service"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ind_auto"
+    ]
+  },
+  {
+    "id": "apave",
+    "name": "Apave",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "CND / inspections"
+    ],
+    "url": "https://www.apave.com/fr-fr/carrieres",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: CND nucléaire / industrie lourde"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "nuc_cnd"
+    ]
+  },
+  {
+    "id": "arcelormittal",
+    "name": "ArcelorMittal",
+    "category": "specialist",
+    "sectors": [
+      "industrial"
+    ],
+    "branches": [
+      "Maintenance industrielle postée"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: TSMI / maintenance 3x8"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ind_tsmi"
+    ]
+  },
+  {
+    "id": "atman",
+    "name": "Atman",
+    "category": "specialist",
+    "sectors": [
+      "critical"
+    ],
+    "branches": [
+      "Data center / électricité / CVC critique"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Data center CVC/électricité"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "crit_dc"
+    ]
+  },
+  {
+    "id": "boccard",
+    "name": "Boccard",
+    "category": "specialist",
+    "sectors": [
+      "special"
+    ],
+    "branches": [
+      "Tuyauterie / soudage grand déplacement"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Tuyauterie / soudage GD"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "spec_tuyaut"
+    ]
+  },
+  {
+    "id": "bouygues-energies-services-chantier",
+    "name": "Bouygues Energies services chantier",
+    "category": "specialist",
+    "sectors": [
+      "special"
+    ],
+    "branches": [
+      "Levage / rigging / grues mobiles"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Levage lourd / grues mobiles"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "spec_levage"
+    ]
+  },
+  {
+    "id": "bureau-veritas",
+    "name": "Bureau Veritas",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "CND / inspections"
+    ],
+    "url": "https://careers.bureauveritas.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: CND nucléaire / industrie lourde"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "nuc_cnd"
+    ]
+  },
+  {
+    "id": "cegelec",
+    "name": "Cegelec",
+    "category": "major",
+    "sectors": [
+      "industrial",
+      "renewables"
+    ],
+    "branches": [
+      "Automatisme / mise en service / itinérance",
+      "HTA / raccordement / postes ENR"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Automaticien / mise en service",
+      "Porte liée: HTA / raccordement ENR"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ind_auto",
+      "ren_hta"
+    ]
+  },
+  {
+    "id": "centres-formation-ferro-specialises",
+    "name": "Centres formation ferro spécialisés",
+    "category": "training",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Métiers du train / trains travaux"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: AATTX / Trains travaux"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ferro_attx"
+    ]
+  },
+  {
+    "id": "colas-rail",
+    "name": "Colas Rail",
+    "category": "major",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Métiers du train / trains travaux",
+      "Voie",
+      "Caténaire / ITE",
+      "Signalisation",
+      "Télécoms / courants faibles ferro",
+      "Sous-stations / EALE / alimentation",
+      "Encadrement travaux ferro"
+    ],
+    "url": "https://www.colasrail.com/fr/carrieres/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: AATTX / Trains travaux",
+      "Porte liée: Voie ferrée",
+      "Porte liée: Caténaire / ITE",
+      "Porte liée: Signalisation ferro",
+      "Porte liée: Télécoms / CFa ferro",
+      "Porte liée: Sous-stations / EALE",
+      "Porte liée: Encadrement travaux ferro"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_attx",
+      "ferro_voie",
+      "ferro_cat",
+      "ferro_sig",
+      "ferro_tel",
+      "ferro_eale",
+      "ferro_ct"
+    ]
+  },
+  {
+    "id": "cristal-union",
+    "name": "Cristal Union",
+    "category": "specialist",
+    "sectors": [
+      "industrial"
+    ],
+    "branches": [
+      "Maintenance industrielle postée"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: TSMI / maintenance 3x8"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ind_tsmi"
+    ]
+  },
+  {
+    "id": "dalkia",
+    "name": "Dalkia",
+    "category": "major",
+    "sectors": [
+      "industrial",
+      "critical"
+    ],
+    "branches": [
+      "CVC industriel / froid critique",
+      "Facility critique / GTB / BMS"
+    ],
+    "url": "https://www.dalkia.fr/fr/carrieres",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: CVC industriel / froid critique",
+      "Porte liée: Facility technique critique"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ind_cvc",
+      "crit_fac"
+    ]
+  },
+  {
+    "id": "data4",
+    "name": "DATA4",
+    "category": "specialist",
+    "sectors": [
+      "critical"
+    ],
+    "branches": [
+      "Data center / électricité / CVC critique"
+    ],
+    "url": "https://www.data4group.com/en/careers/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Data center CVC/électricité"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "crit_dc"
+    ]
+  },
+  {
+    "id": "digital-realty-interxion",
+    "name": "Digital Realty / Interxion",
+    "category": "specialist",
+    "sectors": [
+      "critical"
+    ],
+    "branches": [
+      "Data center / électricité / CVC critique"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Data center CVC/électricité"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "crit_dc"
+    ]
+  },
+  {
+    "id": "edf-prestataires",
+    "name": "EDF prestataires",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "Logistique / déchets / décontamination"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Logistique nucléaire"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "nuc_log"
+    ]
+  },
+  {
+    "id": "eiffage-energie-projets",
+    "name": "Eiffage énergie projets",
+    "category": "specialist",
+    "sectors": [
+      "special"
+    ],
+    "branches": [
+      "Levage / rigging / grues mobiles"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Levage lourd / grues mobiles"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "spec_levage"
+    ]
+  },
+  {
+    "id": "endel",
+    "name": "Endel",
+    "category": "major",
+    "sectors": [
+      "nuclear",
+      "special"
+    ],
+    "branches": [
+      "Radioprotection",
+      "Robinetterie / machines tournantes / maintenance méca",
+      "Échafaudage / calorifuge / peinture industrielle",
+      "Tuyauterie / soudage grand déplacement"
+    ],
+    "url": "https://www.endel.fr/fr/recrutement",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Radioprotection",
+      "Porte liée: Maintenance méca nucléaire",
+      "Porte liée: Échafaudage / calorifuge nucléaire",
+      "Porte liée: Tuyauterie / soudage GD"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "nuc_rp",
+      "nuc_meca",
+      "nuc_echaf",
+      "spec_tuyaut"
+    ]
+  },
+  {
+    "id": "enercon",
+    "name": "Enercon",
+    "category": "specialist",
+    "sectors": [
+      "renewables"
+    ],
+    "branches": [
+      "Maintenance éolienne"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Maintenance éolienne"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ren_eol"
+    ]
+  },
+  {
+    "id": "engie-solutions",
+    "name": "ENGIE Solutions",
+    "category": "specialist",
+    "sectors": [
+      "industrial"
+    ],
+    "branches": [
+      "CVC industriel / froid critique"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: CVC industriel / froid critique"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ind_cvc"
+    ]
+  },
+  {
+    "id": "entreprises-de-travaux-sur-cordes",
+    "name": "Entreprises de travaux sur cordes",
+    "category": "specialist",
+    "sectors": [
+      "special"
+    ],
+    "branches": [
+      "Travaux sur cordes"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Cordiste industriel"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "spec_rope"
+    ]
+  },
+  {
+    "id": "entreprises-voie-locales-regionales",
+    "name": "Entreprises voie locales / régionales",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Voie"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Voie ferrée"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ferro_voie"
+    ]
+  },
+  {
+    "id": "equans",
+    "name": "Equans",
+    "category": "major",
+    "sectors": [
+      "ferro",
+      "industrial",
+      "renewables",
+      "critical"
+    ],
+    "branches": [
+      "Caténaire / ITE",
+      "Télécoms / courants faibles ferro",
+      "Sous-stations / EALE / alimentation",
+      "Encadrement travaux ferro",
+      "CVC industriel / froid critique",
+      "HTA / raccordement / postes ENR",
+      "Facility critique / GTB / BMS"
+    ],
+    "url": "https://jobs.equans.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Caténaire / ITE",
+      "Porte liée: Télécoms / CFa ferro",
+      "Porte liée: Sous-stations / EALE",
+      "Porte liée: Encadrement travaux ferro",
+      "Porte liée: CVC industriel / froid critique",
+      "Porte liée: HTA / raccordement ENR",
+      "Porte liée: Facility technique critique"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_cat",
+      "ferro_tel",
+      "ferro_eale",
+      "ferro_ct",
+      "ind_cvc",
+      "ren_hta",
+      "crit_fac"
+    ]
+  },
+  {
+    "id": "equans-ineo-scle",
+    "name": "Equans Ineo SCLE",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Signalisation"
+    ],
+    "url": "https://jobs.equans.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Signalisation ferro"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_sig"
+    ]
+  },
+  {
+    "id": "equinix",
+    "name": "Equinix",
+    "category": "specialist",
+    "sectors": [
+      "critical"
+    ],
+    "branches": [
+      "Data center / électricité / CVC critique"
+    ],
+    "url": "https://careers.equinix.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Data center CVC/électricité"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "crit_dc"
+    ]
+  },
+  {
+    "id": "etf",
+    "name": "ETF",
+    "category": "major",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Métiers du train / trains travaux",
+      "Voie",
+      "Encadrement travaux ferro"
+    ],
+    "url": "https://www.etf.fr/rejoignez-nous/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: AATTX / Trains travaux",
+      "Porte liée: Voie ferrée",
+      "Porte liée: Encadrement travaux ferro"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_attx",
+      "ferro_voie",
+      "ferro_ct"
+    ]
+  },
+  {
+    "id": "etf-catenaires",
+    "name": "ETF Caténaires",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Caténaire / ITE"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Caténaire / ITE"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ferro_cat"
+    ]
+  },
+  {
+    "id": "etf-services",
+    "name": "ETF Services",
+    "category": "major",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Sécurité chantier ferro"
+    ],
+    "url": "https://www.etf.fr/rejoignez-nous/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Sécurité chantier ferro"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_sec"
+    ]
+  },
+  {
+    "id": "fives",
+    "name": "Fives",
+    "category": "major",
+    "sectors": [
+      "industrial",
+      "special"
+    ],
+    "branches": [
+      "Automatisme / mise en service / itinérance",
+      "Tuyauterie / soudage grand déplacement"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Automaticien / mise en service",
+      "Porte liée: Tuyauterie / soudage GD"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ind_auto",
+      "spec_tuyaut"
+    ]
+  },
+  {
+    "id": "groupe-d-s",
+    "name": "Groupe D&S",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "Radioprotection"
+    ],
+    "url": "https://www.groupe-ds.fr/",
+    "applyChannel": "candidature directe",
+    "notes": [
+      "Porte liée: Radioprotection"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "nuc_rp"
+    ]
+  },
+  {
+    "id": "hitachi-rail-france",
+    "name": "Hitachi Rail France",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Signalisation"
+    ],
+    "url": "https://www.hitachirail.com/careers/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Signalisation ferro"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_sig"
+    ]
+  },
+  {
+    "id": "integrateurs-machines-process",
+    "name": "Intégrateurs machines / process",
+    "category": "specialist",
+    "sectors": [
+      "industrial"
+    ],
+    "branches": [
+      "Automatisme / mise en service / itinérance"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Automaticien / mise en service"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ind_auto"
+    ]
+  },
+  {
+    "id": "integrateurs-postes-traction",
+    "name": "Intégrateurs postes / traction",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Sous-stations / EALE / alimentation"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Sous-stations / EALE"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ferro_eale"
+    ]
+  },
+  {
+    "id": "jarnias-groupes-specialises",
+    "name": "Jarnias / groupes spécialisés",
+    "category": "specialist",
+    "sectors": [
+      "special"
+    ],
+    "branches": [
+      "Travaux sur cordes"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Cordiste industriel"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "spec_rope"
+    ]
+  },
+  {
+    "id": "mainteneurs-regionaux-de-parcs",
+    "name": "Mainteneurs régionaux de parcs",
+    "category": "specialist",
+    "sectors": [
+      "renewables"
+    ],
+    "branches": [
+      "Maintenance éolienne"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Maintenance éolienne"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ren_eol"
+    ]
+  },
+  {
+    "id": "mammoet",
+    "name": "Mammoet",
+    "category": "specialist",
+    "sectors": [
+      "special"
+    ],
+    "branches": [
+      "Levage / rigging / grues mobiles"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Levage lourd / grues mobiles"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "spec_levage"
+    ]
+  },
+  {
+    "id": "nge-ferroviaire",
+    "name": "NGE Ferroviaire",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Voie"
+    ],
+    "url": "https://www.nge.fr/rejoignez-nous/",
+    "applyChannel": "site carrière groupe",
+    "notes": [
+      "Porte liée: Voie ferrée"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_voie"
+    ]
+  },
+  {
+    "id": "nordex",
+    "name": "Nordex",
+    "category": "specialist",
+    "sectors": [
+      "renewables"
+    ],
+    "branches": [
+      "Maintenance éolienne"
+    ],
+    "url": "https://jobs.nordex-online.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Maintenance éolienne"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ren_eol"
+    ]
+  },
+  {
+    "id": "omexom",
+    "name": "Omexom",
+    "category": "specialist",
+    "sectors": [
+      "renewables"
+    ],
+    "branches": [
+      "HTA / raccordement / postes ENR"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: HTA / raccordement ENR"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ren_hta"
+    ]
+  },
+  {
+    "id": "onet-technologies",
+    "name": "Onet Technologies",
+    "category": "major",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "Radioprotection",
+      "Robinetterie / machines tournantes / maintenance méca",
+      "Logistique / déchets / décontamination",
+      "Échafaudage / calorifuge / peinture industrielle"
+    ],
+    "url": "https://www.groupeonet.com/fr/carrieres",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Radioprotection",
+      "Porte liée: Maintenance méca nucléaire",
+      "Porte liée: Logistique nucléaire",
+      "Porte liée: Échafaudage / calorifuge nucléaire"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "nuc_rp",
+      "nuc_meca",
+      "nuc_log",
+      "nuc_echaf"
+    ]
+  },
+  {
+    "id": "orano",
+    "name": "Orano",
+    "category": "major",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "CND / inspections",
+      "Robinetterie / machines tournantes / maintenance méca",
+      "Logistique / déchets / décontamination"
+    ],
+    "url": "https://www.orano.group/jobs/fr",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: CND nucléaire / industrie lourde",
+      "Porte liée: Maintenance méca nucléaire",
+      "Porte liée: Logistique nucléaire"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "nuc_cnd",
+      "nuc_meca",
+      "nuc_log"
+    ]
+  },
+  {
+    "id": "orano-ds",
+    "name": "Orano DS",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "Radioprotection"
+    ],
+    "url": "https://www.orano.group/jobs/fr",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Radioprotection"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "nuc_rp"
+    ]
+  },
+  {
+    "id": "orano-sous-traitance",
+    "name": "Orano sous-traitance",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "Échafaudage / calorifuge / peinture industrielle"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Échafaudage / calorifuge nucléaire"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "nuc_echaf"
+    ]
+  },
+  {
+    "id": "paprec",
+    "name": "Paprec",
+    "category": "specialist",
+    "sectors": [
+      "industrial"
+    ],
+    "branches": [
+      "Maintenance industrielle postée"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: TSMI / maintenance 3x8"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ind_tsmi"
+    ]
+  },
+  {
+    "id": "pme-cnd-de-niche",
+    "name": "PME CND de niche",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "CND / inspections"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: CND nucléaire / industrie lourde"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "nuc_cnd"
+    ]
+  },
+  {
+    "id": "pme-cordistes-industrielles",
+    "name": "PME cordistes industrielles",
+    "category": "specialist",
+    "sectors": [
+      "special"
+    ],
+    "branches": [
+      "Travaux sur cordes"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Cordiste industriel"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "spec_rope"
+    ]
+  },
+  {
+    "id": "pme-courants-faibles-ferro",
+    "name": "PME courants faibles ferro",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Télécoms / courants faibles ferro"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Télécoms / CFa ferro"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ferro_tel"
+    ]
+  },
+  {
+    "id": "pme-echafaudage-calorifuge",
+    "name": "PME échafaudage/calorifuge",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "Échafaudage / calorifuge / peinture industrielle"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Échafaudage / calorifuge nucléaire"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "nuc_echaf"
+    ]
+  },
+  {
+    "id": "pme-fm-critiques",
+    "name": "PME FM critiques",
+    "category": "specialist",
+    "sectors": [
+      "critical"
+    ],
+    "branches": [
+      "Facility critique / GTB / BMS"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Facility technique critique"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "crit_fac"
+    ]
+  },
+  {
+    "id": "pme-froid-industriel",
+    "name": "PME froid industriel",
+    "category": "specialist",
+    "sectors": [
+      "industrial"
+    ],
+    "branches": [
+      "CVC industriel / froid critique"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: CVC industriel / froid critique"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ind_cvc"
+    ]
+  },
+  {
+    "id": "pme-levage-lourd",
+    "name": "PME levage lourd",
+    "category": "specialist",
+    "sectors": [
+      "special"
+    ],
+    "branches": [
+      "Levage / rigging / grues mobiles"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Levage lourd / grues mobiles"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "spec_levage"
+    ]
+  },
+  {
+    "id": "pme-logistique-specialisee",
+    "name": "PME logistique spécialisée",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "Logistique / déchets / décontamination"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Logistique nucléaire"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "nuc_log"
+    ]
+  },
+  {
+    "id": "pme-raccordement-postes",
+    "name": "PME raccordement / postes",
+    "category": "specialist",
+    "sectors": [
+      "renewables"
+    ],
+    "branches": [
+      "HTA / raccordement / postes ENR"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: HTA / raccordement ENR"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ren_hta"
+    ]
+  },
+  {
+    "id": "pme-travaux-ferro-specialisees",
+    "name": "PME travaux ferro spécialisées",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Encadrement travaux ferro"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Encadrement travaux ferro"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ferro_ct"
+    ]
+  },
+  {
+    "id": "pme-travaux-signalisation",
+    "name": "PME travaux signalisation",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Signalisation"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Signalisation ferro"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ferro_sig"
+    ]
+  },
+  {
+    "id": "pme-tuyauterie-arrets-industriels",
+    "name": "PME tuyauterie / arrêts industriels",
+    "category": "specialist",
+    "sectors": [
+      "special"
+    ],
+    "branches": [
+      "Tuyauterie / soudage grand déplacement"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Tuyauterie / soudage GD"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "spec_tuyaut"
+    ]
+  },
+  {
+    "id": "ponticelli",
+    "name": "Ponticelli",
+    "category": "major",
+    "sectors": [
+      "nuclear",
+      "special"
+    ],
+    "branches": [
+      "Robinetterie / machines tournantes / maintenance méca",
+      "Tuyauterie / soudage grand déplacement"
+    ],
+    "url": "https://recrutement.ponticelli.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Maintenance méca nucléaire",
+      "Porte liée: Tuyauterie / soudage GD"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "nuc_meca",
+      "spec_tuyaut"
+    ]
+  },
+  {
+    "id": "prestafer",
+    "name": "Prestafer",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Sécurité chantier ferro"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Sécurité chantier ferro"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ferro_sec"
+    ]
+  },
+  {
+    "id": "prestataires-fm-critiques",
+    "name": "Prestataires FM critiques",
+    "category": "interim",
+    "sectors": [
+      "critical"
+    ],
+    "branches": [
+      "Data center / électricité / CVC critique"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Data center CVC/électricité"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "crit_dc"
+    ]
+  },
+  {
+    "id": "prestataires-inspection",
+    "name": "Prestataires inspection",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "CND / inspections"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: CND nucléaire / industrie lourde"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "nuc_cnd"
+    ]
+  },
+  {
+    "id": "prestataires-intervention",
+    "name": "Prestataires intervention",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "Échafaudage / calorifuge / peinture industrielle"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Échafaudage / calorifuge nucléaire"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "nuc_echaf"
+    ]
+  },
+  {
+    "id": "prestataires-logistiques-nucleaires",
+    "name": "Prestataires logistiques nucléaires",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "Logistique / déchets / décontamination"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Logistique nucléaire"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "nuc_log"
+    ]
+  },
+  {
+    "id": "prestataires-maintenance-multi-technique",
+    "name": "Prestataires maintenance multi-technique",
+    "category": "specialist",
+    "sectors": [
+      "industrial"
+    ],
+    "branches": [
+      "Maintenance industrielle postée"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: TSMI / maintenance 3x8"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ind_tsmi"
+    ]
+  },
+  {
+    "id": "prestataires-maintenance-tranche",
+    "name": "Prestataires maintenance tranche",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "Robinetterie / machines tournantes / maintenance méca"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Maintenance méca nucléaire"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "nuc_meca"
+    ]
+  },
+  {
+    "id": "prestataires-rp-specialises",
+    "name": "Prestataires RP spécialisés",
+    "category": "specialist",
+    "sectors": [
+      "nuclear"
+    ],
+    "branches": [
+      "Radioprotection"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Radioprotection"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "nuc_rp"
+    ]
+  },
+  {
+    "id": "sarens",
+    "name": "Sarens",
+    "category": "specialist",
+    "sectors": [
+      "special"
+    ],
+    "branches": [
+      "Levage / rigging / grues mobiles"
+    ],
+    "url": "https://www.sarens.com/jobs",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Levage lourd / grues mobiles"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "spec_levage"
+    ]
+  },
+  {
+    "id": "savoirfer",
+    "name": "SavoirFer",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Sécurité chantier ferro"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Sécurité chantier ferro"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ferro_sec"
+    ]
+  },
+  {
+    "id": "sferis",
+    "name": "Sferis",
+    "category": "major",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Sécurité chantier ferro",
+      "Métiers du train / trains travaux"
+    ],
+    "url": "https://www.sferis.fr/recrutement/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Sécurité chantier ferro",
+      "Porte liée: AATTX / Trains travaux"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_sec",
+      "ferro_attx"
+    ]
+  },
+  {
+    "id": "siemens-gamesa",
+    "name": "Siemens Gamesa",
+    "category": "specialist",
+    "sectors": [
+      "renewables"
+    ],
+    "branches": [
+      "Maintenance éolienne"
+    ],
+    "url": "https://www.siemensgamesa.com/en-int/explore/join-us",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Maintenance éolienne"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ren_eol"
+    ]
+  },
+  {
+    "id": "sites-industriels-multi-secteurs",
+    "name": "Sites industriels multi-secteurs",
+    "category": "specialist",
+    "sectors": [
+      "industrial"
+    ],
+    "branches": [
+      "Maintenance industrielle postée"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: TSMI / maintenance 3x8"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ind_tsmi"
+    ]
+  },
+  {
+    "id": "sodexo-fm",
+    "name": "Sodexo FM",
+    "category": "major",
+    "sectors": [
+      "critical"
+    ],
+    "branches": [
+      "Facility critique / GTB / BMS"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Facility technique critique"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "crit_fac"
+    ]
+  },
+  {
+    "id": "sous-traitants-ite-regionaux",
+    "name": "Sous-traitants ITE régionaux",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Caténaire / ITE"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: Caténaire / ITE"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ferro_cat"
+    ]
+  },
+  {
+    "id": "spie",
+    "name": "SPIE",
+    "category": "major",
+    "sectors": [
+      "ferro",
+      "industrial",
+      "renewables"
+    ],
+    "branches": [
+      "Sous-stations / EALE / alimentation",
+      "Automatisme / mise en service / itinérance",
+      "HTA / raccordement / postes ENR"
+    ],
+    "url": "https://carrieres.spie.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Sous-stations / EALE",
+      "Porte liée: Automaticien / mise en service",
+      "Porte liée: HTA / raccordement ENR"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_eale",
+      "ind_auto",
+      "ren_hta"
+    ]
+  },
+  {
+    "id": "spie-citynetworks",
+    "name": "SPIE CityNetworks",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Télécoms / courants faibles ferro"
+    ],
+    "url": "https://carrieres.spie.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Télécoms / CFa ferro"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_tel"
+    ]
+  },
+  {
+    "id": "spie-facilities",
+    "name": "SPIE Facilities",
+    "category": "major",
+    "sectors": [
+      "industrial",
+      "critical"
+    ],
+    "branches": [
+      "CVC industriel / froid critique",
+      "Facility critique / GTB / BMS"
+    ],
+    "url": "",
+    "applyChannel": "direct / recherche manuelle",
+    "notes": [
+      "Porte liée: CVC industriel / froid critique",
+      "Porte liée: Facility technique critique"
+    ],
+    "confidenceLevel": "low",
+    "laneIds": [
+      "ind_cvc",
+      "crit_fac"
+    ]
+  },
+  {
+    "id": "tso",
+    "name": "TSO",
+    "category": "major",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Métiers du train / trains travaux",
+      "Voie",
+      "Sous-stations / EALE / alimentation",
+      "Encadrement travaux ferro"
+    ],
+    "url": "https://www.tso.fr/rejoignez-nous/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: AATTX / Trains travaux",
+      "Porte liée: Voie ferrée",
+      "Porte liée: Sous-stations / EALE",
+      "Porte liée: Encadrement travaux ferro"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_attx",
+      "ferro_voie",
+      "ferro_eale",
+      "ferro_ct"
+    ]
+  },
+  {
+    "id": "tso-catenaires",
+    "name": "TSO Caténaires",
+    "category": "specialist",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Caténaire / ITE"
+    ],
+    "url": "https://www.tso.fr/rejoignez-nous/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Caténaire / ITE"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_cat"
+    ]
+  },
+  {
+    "id": "tso-signalisation",
+    "name": "TSO Signalisation",
+    "category": "major",
+    "sectors": [
+      "ferro"
+    ],
+    "branches": [
+      "Signalisation",
+      "Télécoms / courants faibles ferro"
+    ],
+    "url": "https://www.tso.fr/tso-signalisation/",
+    "applyChannel": "site société / réseau",
+    "notes": [
+      "Porte liée: Signalisation ferro",
+      "Porte liée: Télécoms / CFa ferro"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ferro_sig",
+      "ferro_tel"
+    ]
+  },
+  {
+    "id": "vestas",
+    "name": "Vestas",
+    "category": "major",
+    "sectors": [
+      "renewables"
+    ],
+    "branches": [
+      "Maintenance éolienne"
+    ],
+    "url": "https://careers.vestas.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "Porte liée: Maintenance éolienne"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "ren_eol"
+    ]
+  }
+]

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>France Money Map · Employeurs</title>
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/layout.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+  </head>
+  <body class="page-employers">
+    <header class="site-header">
+      <div class="shell nav-row">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">€</span>
+          <span class="brand-copy">
+            France Money Map
+            <small>cash réel · tickets · routes</small>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a class="nav-link" href="./index.html">Entrée</a>
+          <a class="nav-link" href="./parcours.html">Parcours</a>
+          <a class="nav-link" href="./tickets.html">Tickets</a>
+          <a class="nav-link is-current" href="./employeurs.html">Employeurs</a>
+          <a class="nav-link" href="./sources.html">Sources</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell page-stack">
+      <section class="page-hero">
+        <div class="content-grid">
+          <span class="eyebrow">Canaux de candidature</span>
+          <h1 class="display-title">
+            Où postuler, avec quel angle et sur
+            <span class="accent">quelles branches</span>.
+          </h1>
+          <p class="hero-copy">
+            Les cartes employeur ne remplacent pas ta candidature, mais elles
+            réduisent le flou: type de boîte, secteurs, branches et canal
+            d'entrée principal.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <article class="filter-panel filter-bar">
+          <div class="chip-set" id="employerSectorFilters"></div>
+          <div class="chip-set" id="employerBranchFilters"></div>
+          <div class="search-wrap">
+            <label class="mini-label" for="employerSearch">Recherche employeur</label>
+            <input
+              id="employerSearch"
+              class="search-input"
+              type="search"
+              placeholder="ETF, Dalkia, Sferis, Nuvia..."
+            />
+          </div>
+        </article>
+        <div class="employer-grid" id="employerGrid"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./assets/js/employers-page.js"></script>
+  </body>
+</html>
