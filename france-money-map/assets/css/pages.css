@@ -1,0 +1,111 @@
+.landing-goals .card,
+.sector-cards .card {
+  display: grid;
+  gap: 10px;
+}
+
+.landing-goals .card h3,
+.sector-cards .card h3,
+.detail-column h3,
+.filter-panel h3,
+.panel h3 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.7rem;
+  line-height: 0.96;
+}
+
+.routes-layout {
+  display: grid;
+  gap: 16px;
+}
+
+.sticky-column {
+  display: grid;
+  gap: 16px;
+}
+
+.top-results,
+.all-results,
+.ticket-grid,
+.employer-grid,
+.source-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.top-results .result-card {
+  border-color: rgba(255, 125, 48, 0.18);
+  background:
+    linear-gradient(135deg, rgba(255, 125, 48, 0.07), transparent 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+}
+
+.detail-layout {
+  display: grid;
+  gap: 16px;
+}
+
+.detail-column {
+  display: grid;
+  gap: 14px;
+}
+
+.scenario-strip {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.detail-header {
+  display: grid;
+  gap: 16px;
+}
+
+.ticket-card,
+.employer-card,
+.source-card {
+  display: grid;
+  gap: 12px;
+}
+
+.filter-bar {
+  display: grid;
+  gap: 14px;
+}
+
+.method-grid {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 900px) {
+  .routes-layout {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: start;
+  }
+
+  .sticky-column {
+    position: sticky;
+    top: 92px;
+  }
+
+  .top-results {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .all-results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ticket-grid,
+  .employer-grid,
+  .source-grid,
+  .method-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .detail-layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  }
+}

@@ -1,0 +1,3146 @@
+[
+  {
+    "id": "ferro_sec",
+    "sector": "ferro",
+    "sectorLabel": "Ferro privé",
+    "branch": "Sécurité chantier ferro",
+    "subBranch": "Annonceur · Sentinelle · ASP · LAM · S9 · PN",
+    "title": "Sécurité chantier ferro",
+    "shortDescription": "Base modeste, mais les déplacements, nuits, week-ends et découchés font gonfler le cash retenu.",
+    "tags": [
+      "Tickets sécurité ferro",
+      "Mobilité nationale",
+      "Rigueur procédure",
+      "Sécurité",
+      "Terrain",
+      "Rail"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "moyen/haut",
+    "targetProfiles": [
+      "securite",
+      "terrain",
+      "rail"
+    ],
+    "ticketsRequired": [
+      "secuferro",
+      "05001"
+    ],
+    "ticketsRecommended": [
+      "asp",
+      "lam",
+      "s9pn"
+    ],
+    "entryPath": [
+      "05001 / annonce humaine",
+      "ASP",
+      "Agent LAM",
+      "S9 / PN selon voie choisie"
+    ],
+    "opens": [
+      "Voie chantier",
+      "Caténaire chantier",
+      "Encadrement sécurité",
+      "AATTX / trains travaux",
+      "Référent sécurité",
+      "QHSE ferro chantier"
+    ],
+    "doesNotOpen": [
+      "N’ouvre pas directement la signalisation ou la conduite de travaux."
+    ],
+    "rebounds": [
+      "Voie chantier",
+      "Caténaire chantier",
+      "Encadrement sécurité"
+    ],
+    "verticalProgression": [
+      "AATTX / trains travaux",
+      "Référent sécurité",
+      "QHSE ferro chantier"
+    ],
+    "employerIds": [
+      "etf-services",
+      "prestafer",
+      "savoirfer",
+      "sferis"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 1800,
+      "max": 2200
+    },
+    "salaryBaseNetEstimate": 1560,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1560,
+      "nightBonus": 76,
+      "weekendBonus": 55,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 2171,
+      "estimatedPocket": 1271,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1560,
+      "nightBonus": 190,
+      "weekendBonus": 110,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 2911,
+      "estimatedPocket": 2011,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1560,
+      "nightBonus": 304,
+      "weekendBonus": 165,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 3867,
+      "estimatedPocket": 2967,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base modeste",
+      "GD / déplacement lourd",
+      "Nuits / WE",
+      "Découchés"
+    ],
+    "applicationChannels": [
+      "candidature directe majors",
+      "France Travail / Indeed",
+      "agences spécialisées / réseau chantier"
+    ],
+    "scores": {
+      "speed": 4,
+      "competition": 2,
+      "stability": 6,
+      "durability": 4,
+      "fatigue": 3,
+      "volatility": 5
+    },
+    "managerTrack": false,
+    "ticketCount": 5,
+    "sourceIds": [
+      "prestafer"
+    ],
+    "notes": [
+      "Base modeste, mais les déplacements, nuits, week-ends et découchés font gonfler le cash retenu.",
+      "Limite déclarée: N’ouvre pas directement la signalisation ou la conduite de travaux.",
+      "Balises source: Prestafer, France Travail infra ferro"
+    ]
+  },
+  {
+    "id": "ferro_attx",
+    "sector": "ferro",
+    "sectorLabel": "Ferro privé",
+    "branch": "Métiers du train / trains travaux",
+    "subBranch": "AATTX / ATTX / environnement train-travaux",
+    "title": "AATTX / Trains travaux",
+    "shortDescription": "Peu visible publiquement, donc moins de foule. Cash tiré par l’environnement chantier, horaires et mobilité.",
+    "tags": [
+      "Base sécurité ferro utile",
+      "Procédures train travaux",
+      "Disponibilité chantier",
+      "Rail",
+      "Sécurité",
+      "Terrain"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "très faible",
+    "saturationLevel": "très faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 4,
+      "label": "élevé"
+    },
+    "confidenceLevel": "moyen",
+    "targetProfiles": [
+      "rail",
+      "securite",
+      "terrain"
+    ],
+    "ticketsRequired": [
+      "secuferro",
+      "aattx"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "AATTX / ATTX",
+      "Environnement sécurité train travaux",
+      "Spécialisation chantier"
+    ],
+    "opens": [
+      "Sécurité chantier ferro",
+      "Voie chantier",
+      "Coordination train travaux",
+      "Branches chantier ferro adjacentes"
+    ],
+    "doesNotOpen": [
+      "N’ouvre pas automatiquement caténaire, signalisation ou conduite de travaux."
+    ],
+    "rebounds": [
+      "Sécurité chantier ferro",
+      "Voie chantier"
+    ],
+    "verticalProgression": [
+      "Coordination train travaux",
+      "Branches chantier ferro adjacentes"
+    ],
+    "employerIds": [
+      "etf",
+      "tso",
+      "colas-rail",
+      "sferis",
+      "centres-formation-ferro-specialises"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2000,
+      "max": 2500
+    },
+    "salaryBaseNetEstimate": 1755,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1755,
+      "nightBonus": 76,
+      "weekendBonus": 55,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 2366,
+      "estimatedPocket": 1466,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1755,
+      "nightBonus": 190,
+      "weekendBonus": 110,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 3106,
+      "estimatedPocket": 2206,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1755,
+      "nightBonus": 304,
+      "weekendBonus": 165,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 4062,
+      "estimatedPocket": 3162,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base terrain",
+      "Variables horaires",
+      "Déplacements / découchés"
+    ],
+    "applicationChannels": [
+      "candidature directe majors",
+      "France Travail / Indeed",
+      "agences spécialisées / réseau chantier"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 1,
+      "stability": 6,
+      "durability": 4,
+      "fatigue": 3,
+      "volatility": 5
+    },
+    "managerTrack": false,
+    "ticketCount": 2,
+    "sourceIds": [],
+    "notes": [
+      "Peu visible publiquement, donc moins de foule. Cash tiré par l’environnement chantier, horaires et mobilité.",
+      "Limite déclarée: N’ouvre pas automatiquement caténaire, signalisation ou conduite de travaux.",
+      "Balises source: Catalogues ferro spécialisés"
+    ]
+  },
+  {
+    "id": "ferro_voie",
+    "sector": "ferro",
+    "sectorLabel": "Ferro privé",
+    "branch": "Voie",
+    "subBranch": "Pose · réglage · maintenance · appareils de voie",
+    "title": "Voie ferrée",
+    "shortDescription": "Voie = base chantier + nuits + grands déplacements + opérations lourdes. Forte répétabilité du cash terrain.",
+    "tags": [
+      "Tickets sécurité ferro selon chantier",
+      "Travail de nuit fréquent",
+      "Robustesse terrain",
+      "Terrain",
+      "Rail",
+      "Mécanique"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 4,
+      "label": "élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "terrain",
+      "rail",
+      "meca"
+    ],
+    "ticketsRequired": [
+      "secuferro"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Entrée chantier voie",
+      "Appareils de voie / maintenance",
+      "Chef d’équipe voie"
+    ],
+    "opens": [
+      "Matériel lourd voie",
+      "Sécurité chantier ferro",
+      "Maintenance voie",
+      "Chef équipe voie",
+      "Conduite travaux voie"
+    ],
+    "doesNotOpen": [
+      "Ne fait pas de toi un signaleur ou un caténairiste par magie."
+    ],
+    "rebounds": [
+      "Matériel lourd voie",
+      "Sécurité chantier ferro"
+    ],
+    "verticalProgression": [
+      "Maintenance voie",
+      "Chef équipe voie",
+      "Conduite travaux voie"
+    ],
+    "employerIds": [
+      "tso",
+      "etf",
+      "colas-rail",
+      "nge-ferroviaire",
+      "entreprises-voie-locales-regionales"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2000,
+      "max": 2600
+    },
+    "salaryBaseNetEstimate": 1794,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1794,
+      "nightBonus": 76,
+      "weekendBonus": 55,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 2405,
+      "estimatedPocket": 1505,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1794,
+      "nightBonus": 190,
+      "weekendBonus": 110,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 3145,
+      "estimatedPocket": 2245,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1794,
+      "nightBonus": 304,
+      "weekendBonus": 165,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 4101,
+      "estimatedPocket": 3201,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base chantier",
+      "Nuits",
+      "GD",
+      "Découchés"
+    ],
+    "applicationChannels": [
+      "candidature directe majors",
+      "France Travail / Indeed",
+      "agences spécialisées / réseau chantier"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 2,
+      "stability": 6,
+      "durability": 5,
+      "fatigue": 4,
+      "volatility": 5
+    },
+    "managerTrack": false,
+    "ticketCount": 1,
+    "sourceIds": [
+      "colas-rail-palette-de-12-metiers"
+    ],
+    "notes": [
+      "Voie = base chantier + nuits + grands déplacements + opérations lourdes. Forte répétabilité du cash terrain.",
+      "Limite déclarée: Ne fait pas de toi un signaleur ou un caténairiste par magie.",
+      "Balises source: France Travail infra ferro, Colas Rail"
+    ]
+  },
+  {
+    "id": "ferro_cat",
+    "sector": "ferro",
+    "sectorLabel": "Ferro privé",
+    "branch": "Caténaire / ITE",
+    "subBranch": "Montage · maintenance · perchage · 1500V/25kV",
+    "title": "Caténaire / ITE",
+    "shortDescription": "Le mix électrification + mobilité + nuits donne de très gros mois terrain sans que la base seule raconte la réalité.",
+    "tags": [
+      "Tickets sécurité ferro utiles",
+      "Habilitations électriques adaptées",
+      "Travail de nuit fréquent",
+      "Électricité",
+      "Terrain",
+      "Rail"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 4,
+      "label": "élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "elec",
+      "terrain",
+      "rail"
+    ],
+    "ticketsRequired": [
+      "secuferro",
+      "habelFerro"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Base caténaire chantier",
+      "Perchage / réglage",
+      "Chef équipe caténaire"
+    ],
+    "opens": [
+      "Sous-stations / EALE",
+      "Sécurité électrique chantier ferro",
+      "Maintenance caténaire",
+      "Chef équipe caténaire",
+      "Conduite travaux caténaire"
+    ],
+    "doesNotOpen": [
+      "Ne mène pas automatiquement à la signalisation ou à la conduite de travaux sans vraie branche supplémentaire."
+    ],
+    "rebounds": [
+      "Sous-stations / EALE",
+      "Sécurité électrique chantier ferro"
+    ],
+    "verticalProgression": [
+      "Maintenance caténaire",
+      "Chef équipe caténaire",
+      "Conduite travaux caténaire"
+    ],
+    "employerIds": [
+      "colas-rail",
+      "tso-catenaires",
+      "etf-catenaires",
+      "equans",
+      "sous-traitants-ite-regionaux"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2100,
+      "max": 2800
+    },
+    "salaryBaseNetEstimate": 1911,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1911,
+      "nightBonus": 76,
+      "weekendBonus": 55,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 2522,
+      "estimatedPocket": 1622,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1911,
+      "nightBonus": 190,
+      "weekendBonus": 110,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 3262,
+      "estimatedPocket": 2362,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1911,
+      "nightBonus": 304,
+      "weekendBonus": 165,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 4218,
+      "estimatedPocket": 3318,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base chantier élec",
+      "Nuits",
+      "GD",
+      "Primes environnement"
+    ],
+    "applicationChannels": [
+      "candidature directe majors",
+      "France Travail / Indeed",
+      "agences spécialisées / réseau chantier"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 2,
+      "stability": 6,
+      "durability": 5,
+      "fatigue": 4,
+      "volatility": 5
+    },
+    "managerTrack": false,
+    "ticketCount": 2,
+    "sourceIds": [
+      "colas-rail-palette-de-12-metiers"
+    ],
+    "notes": [
+      "Le mix électrification + mobilité + nuits donne de très gros mois terrain sans que la base seule raconte la réalité.",
+      "Limite déclarée: Ne mène pas automatiquement à la signalisation ou à la conduite de travaux sans vraie branche supplémentaire.",
+      "Balises source: Colas Rail, France Travail infra ferro"
+    ]
+  },
+  {
+    "id": "ferro_sig",
+    "sector": "ferro",
+    "sectorLabel": "Ferro privé",
+    "branch": "Signalisation",
+    "subBranch": "Signalisation électrique · mécanique · essais",
+    "title": "Signalisation ferro",
+    "shortDescription": "Voie niche, plus technique, moins foule. Le cash grimpe via chantiers, nuits et rareté relative.",
+    "tags": [
+      "Base génie électrique utile",
+      "Culture procédures",
+      "Patience technique",
+      "Électricité",
+      "Rail",
+      "Automatisme"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "très faible",
+    "saturationLevel": "très faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "elec",
+      "rail",
+      "automation"
+    ],
+    "ticketsRequired": [
+      "signalBase"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Monteur signalisation",
+      "Technicien production / essais",
+      "Chef équipe / travaux"
+    ],
+    "opens": [
+      "Télécoms ferro",
+      "Études exécution / DAO",
+      "Essais / VT",
+      "Signalisation mécanique",
+      "Conduite de travaux signalisation"
+    ],
+    "doesNotOpen": [
+      "Un ticket sécurité chantier ou CH1/CB1 seul ne t’y projette pas directement."
+    ],
+    "rebounds": [
+      "Télécoms ferro",
+      "Études exécution / DAO"
+    ],
+    "verticalProgression": [
+      "Essais / VT",
+      "Signalisation mécanique",
+      "Conduite de travaux signalisation"
+    ],
+    "employerIds": [
+      "tso-signalisation",
+      "colas-rail",
+      "equans-ineo-scle",
+      "hitachi-rail-france",
+      "pme-travaux-signalisation"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2100,
+      "max": 2900
+    },
+    "salaryBaseNetEstimate": 1950,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1950,
+      "nightBonus": 76,
+      "weekendBonus": 55,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 2561,
+      "estimatedPocket": 1661,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1950,
+      "nightBonus": 190,
+      "weekendBonus": 110,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 3301,
+      "estimatedPocket": 2401,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1950,
+      "nightBonus": 304,
+      "weekendBonus": 165,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 4257,
+      "estimatedPocket": 3357,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base plus technique",
+      "Nuits chantier",
+      "Déplacements",
+      "Rareté"
+    ],
+    "applicationChannels": [
+      "candidature directe majors",
+      "France Travail / Indeed",
+      "agences spécialisées / réseau chantier"
+    ],
+    "scores": {
+      "speed": 2,
+      "competition": 1,
+      "stability": 6,
+      "durability": 5,
+      "fatigue": 3,
+      "volatility": 5
+    },
+    "managerTrack": false,
+    "ticketCount": 1,
+    "sourceIds": [
+      "colas-rail-palette-de-12-metiers",
+      "tso-signalisation"
+    ],
+    "notes": [
+      "Voie niche, plus technique, moins foule. Le cash grimpe via chantiers, nuits et rareté relative.",
+      "Limite déclarée: Un ticket sécurité chantier ou CH1/CB1 seul ne t’y projette pas directement.",
+      "Balises source: TSO Signalisation, Colas Rail"
+    ]
+  },
+  {
+    "id": "ferro_tel",
+    "sector": "ferro",
+    "sectorLabel": "Ferro privé",
+    "branch": "Télécoms / courants faibles ferro",
+    "subBranch": "Radio · fibre · vidéosurveillance · CFa",
+    "title": "Télécoms / CFa ferro",
+    "shortDescription": "Moins raconté, plus technique, donc moins de concurrence. Les environnements tunnel et emprises ferro filtrent fort.",
+    "tags": [
+      "Base élec / réseaux utile",
+      "Travail tunnel / emprises",
+      "Méthode",
+      "Électricité",
+      "Automatisme",
+      "Rail"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "très faible",
+    "saturationLevel": "très faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "elec",
+      "automation",
+      "rail"
+    ],
+    "ticketsRequired": [
+      "signalBase",
+      "habelFerro"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Installations télécom ferro",
+      "Maintenance / mise en service",
+      "Chef de lot télécom"
+    ],
+    "opens": [
+      "Signalisation télécom adjacente",
+      "Sous-stations auxiliaires",
+      "CFa ferro",
+      "Supervision technique",
+      "Maintenance réseaux emprises"
+    ],
+    "doesNotOpen": [
+      "N’est pas la même branche que la signalisation même si elles se croisent chez certains employeurs."
+    ],
+    "rebounds": [
+      "Signalisation télécom adjacente",
+      "Sous-stations auxiliaires"
+    ],
+    "verticalProgression": [
+      "CFa ferro",
+      "Supervision technique",
+      "Maintenance réseaux emprises"
+    ],
+    "employerIds": [
+      "tso-signalisation",
+      "colas-rail",
+      "equans",
+      "spie-citynetworks",
+      "pme-courants-faibles-ferro"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2100,
+      "max": 2900
+    },
+    "salaryBaseNetEstimate": 1950,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1950,
+      "nightBonus": 76,
+      "weekendBonus": 55,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 2561,
+      "estimatedPocket": 1661,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1950,
+      "nightBonus": 190,
+      "weekendBonus": 110,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 3301,
+      "estimatedPocket": 2401,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1950,
+      "nightBonus": 304,
+      "weekendBonus": 165,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 4257,
+      "estimatedPocket": 3357,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base technique",
+      "Déplacements",
+      "Nuits selon chantiers",
+      "Prime environnement"
+    ],
+    "applicationChannels": [
+      "candidature directe majors",
+      "France Travail / Indeed",
+      "agences spécialisées / réseau chantier"
+    ],
+    "scores": {
+      "speed": 2,
+      "competition": 1,
+      "stability": 6,
+      "durability": 5,
+      "fatigue": 3,
+      "volatility": 5
+    },
+    "managerTrack": false,
+    "ticketCount": 2,
+    "sourceIds": [
+      "colas-rail-palette-de-12-metiers"
+    ],
+    "notes": [
+      "Moins raconté, plus technique, donc moins de concurrence. Les environnements tunnel et emprises ferro filtrent fort.",
+      "Limite déclarée: N’est pas la même branche que la signalisation même si elles se croisent chez certains employeurs.",
+      "Balises source: TSO télécom ferro, Colas Rail"
+    ]
+  },
+  {
+    "id": "ferro_eale",
+    "sector": "ferro",
+    "sectorLabel": "Ferro privé",
+    "branch": "Sous-stations / EALE / alimentation",
+    "subBranch": "Postes · distribution · auxiliaires",
+    "title": "Sous-stations / EALE",
+    "shortDescription": "Très bon levier pour profils élec. Rareté + responsabilités + chantiers = comp supérieure.",
+    "tags": [
+      "Électrotechnique solide",
+      "Habilitations électriques lourdes",
+      "Rigueur HT",
+      "Électricité",
+      "Automatisme",
+      "Rail"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "très faible",
+    "saturationLevel": "très faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "elec",
+      "automation",
+      "rail"
+    ],
+    "ticketsRequired": [
+      "habelFerro",
+      "hta"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Électrotechnicien ferro énergie",
+      "Mise en service / essais",
+      "Chef équipe énergie ferro"
+    ],
+    "opens": [
+      "ENR HTA",
+      "Postes électriques critiques",
+      "HT / distribution traction",
+      "Mise en service",
+      "Conduite travaux énergie ferro"
+    ],
+    "doesNotOpen": [
+      "Ce n’est pas la même branche que caténaire même si elles cohabitent souvent."
+    ],
+    "rebounds": [
+      "ENR HTA",
+      "Postes électriques critiques"
+    ],
+    "verticalProgression": [
+      "HT / distribution traction",
+      "Mise en service",
+      "Conduite travaux énergie ferro"
+    ],
+    "employerIds": [
+      "colas-rail",
+      "tso",
+      "equans",
+      "spie",
+      "integrateurs-postes-traction"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2400,
+      "max": 3200
+    },
+    "salaryBaseNetEstimate": 2184,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2184,
+      "nightBonus": 76,
+      "weekendBonus": 55,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 2795,
+      "estimatedPocket": 1895,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2184,
+      "nightBonus": 190,
+      "weekendBonus": 110,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 3535,
+      "estimatedPocket": 2635,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2184,
+      "nightBonus": 304,
+      "weekendBonus": 165,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 45,
+      "estimatedPayslipNet": 4491,
+      "estimatedPocket": 3591,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base technique élevée",
+      "Déplacements",
+      "HT / environnement",
+      "Astreintes possibles"
+    ],
+    "applicationChannels": [
+      "candidature directe majors",
+      "France Travail / Indeed",
+      "agences spécialisées / réseau chantier"
+    ],
+    "scores": {
+      "speed": 2,
+      "competition": 1,
+      "stability": 6,
+      "durability": 5,
+      "fatigue": 3,
+      "volatility": 5
+    },
+    "managerTrack": false,
+    "ticketCount": 2,
+    "sourceIds": [],
+    "notes": [
+      "Très bon levier pour profils élec. Rareté + responsabilités + chantiers = comp supérieure.",
+      "Limite déclarée: Ce n’est pas la même branche que caténaire même si elles cohabitent souvent.",
+      "Balises source: Colas Rail sous-stations"
+    ]
+  },
+  {
+    "id": "ferro_ct",
+    "sector": "ferro",
+    "sectorLabel": "Ferro privé",
+    "branch": "Encadrement travaux ferro",
+    "subBranch": "Chef équipe · conducteur travaux · chargé d’affaires",
+    "title": "Encadrement travaux ferro",
+    "shortDescription": "Gros levier si tu as déjà une vraie branche technique. Très mauvais pari si tu veux skipper le terrain.",
+    "tags": [
+      "Branche technique réelle",
+      "Coordination",
+      "Production + sécurité",
+      "Gestion",
+      "Rail",
+      "Terrain"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "très faible",
+    "saturationLevel": "très faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "moyen/haut",
+    "targetProfiles": [
+      "gestion",
+      "rail",
+      "terrain"
+    ],
+    "ticketsRequired": [
+      "secuferro"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Chef équipe",
+      "Chef chantier",
+      "Conducteur de travaux"
+    ],
+    "opens": [
+      "QHSE / méthodes",
+      "AMO/MOE selon boîte",
+      "Chargé d’affaires",
+      "Responsable travaux",
+      "Production multi-sites"
+    ],
+    "doesNotOpen": [
+      "N’est pas un ticket d’entrée. C’est une évolution, pas une porte magique."
+    ],
+    "rebounds": [
+      "QHSE / méthodes",
+      "AMO/MOE selon boîte"
+    ],
+    "verticalProgression": [
+      "Chargé d’affaires",
+      "Responsable travaux",
+      "Production multi-sites"
+    ],
+    "employerIds": [
+      "tso",
+      "colas-rail",
+      "etf",
+      "equans",
+      "pme-travaux-ferro-specialisees"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 3000,
+      "max": 4200
+    },
+    "salaryBaseNetEstimate": 2808,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2808,
+      "nightBonus": 50,
+      "weekendBonus": 55,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 220,
+      "panierBonus": 62,
+      "riskBonus": 20,
+      "estimatedPayslipNet": 3275,
+      "estimatedPocket": 2375,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2808,
+      "nightBonus": 125,
+      "weekendBonus": 110,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 550,
+      "panierBonus": 104,
+      "riskBonus": 20,
+      "estimatedPayslipNet": 3837,
+      "estimatedPocket": 2937,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2808,
+      "nightBonus": 200,
+      "weekendBonus": 165,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 990,
+      "panierBonus": 146,
+      "riskBonus": 20,
+      "estimatedPayslipNet": 4569,
+      "estimatedPocket": 3669,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base cadre / ETAM haute",
+      "Déplacements",
+      "Téléphone / astreinte",
+      "Responsabilité"
+    ],
+    "applicationChannels": [
+      "candidature directe majors",
+      "France Travail / Indeed",
+      "agences spécialisées / réseau chantier"
+    ],
+    "scores": {
+      "speed": 1,
+      "competition": 1,
+      "stability": 7,
+      "durability": 5,
+      "fatigue": 4,
+      "volatility": 4
+    },
+    "managerTrack": true,
+    "ticketCount": 1,
+    "sourceIds": [],
+    "notes": [
+      "Gros levier si tu as déjà une vraie branche technique. Très mauvais pari si tu veux skipper le terrain.",
+      "Limite déclarée: N’est pas un ticket d’entrée. C’est une évolution, pas une porte magique.",
+      "Balises source: Offres conducteurs travaux ferro"
+    ]
+  },
+  {
+    "id": "nuc_rp",
+    "sector": "nuclear",
+    "sectorLabel": "Nucléaire",
+    "branch": "Radioprotection",
+    "subBranch": "RP1/RP2 · surveillance chantier · prévention",
+    "title": "Radioprotection",
+    "shortDescription": "L’environnement réglementé et les arrêts de tranche tirent le revenu bien au-delà de la base nue.",
+    "tags": [
+      "Formation nucléaire",
+      "Culture sûreté",
+      "Visites terrain",
+      "Sécurité",
+      "Nucléaire",
+      "Terrain"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "securite",
+      "nuclear",
+      "terrain"
+    ],
+    "ticketsRequired": [
+      "scnrp"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Socle RP / sûreté",
+      "Technicien RP chantier",
+      "Référent RP"
+    ],
+    "opens": [
+      "Logistique nucléaire",
+      "Sûreté / HSE",
+      "Prévention radiologique",
+      "QHSE nucléaire",
+      "Supervision RP"
+    ],
+    "doesNotOpen": [
+      "N’ouvre pas mécaniquement la maintenance méca ou l’automatisme."
+    ],
+    "rebounds": [
+      "Logistique nucléaire",
+      "Sûreté / HSE"
+    ],
+    "verticalProgression": [
+      "Prévention radiologique",
+      "QHSE nucléaire",
+      "Supervision RP"
+    ],
+    "employerIds": [
+      "groupe-d-s",
+      "orano-ds",
+      "onet-technologies",
+      "endel",
+      "prestataires-rp-specialises"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2000,
+      "max": 2800
+    },
+    "salaryBaseNetEstimate": 1872,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1872,
+      "nightBonus": 68,
+      "weekendBonus": 50,
+      "overtimeBonus": 64,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 2519,
+      "estimatedPocket": 1569,
+      "livingCostDefault": 950
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1872,
+      "nightBonus": 170,
+      "weekendBonus": 100,
+      "overtimeBonus": 128,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 3246,
+      "estimatedPocket": 2296,
+      "livingCostDefault": 950
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1872,
+      "nightBonus": 272,
+      "weekendBonus": 150,
+      "overtimeBonus": 256,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 4193,
+      "estimatedPocket": 3243,
+      "livingCostDefault": 950
+    },
+    "payoutModel": [
+      "Base technique",
+      "Primes environnement",
+      "GD / déplacements",
+      "Arrêts de tranche"
+    ],
+    "applicationChannels": [
+      "prestataires directs",
+      "France Travail",
+      "LinkedIn / cooptation site"
+    ],
+    "scores": {
+      "speed": 2,
+      "competition": 2,
+      "stability": 7,
+      "durability": 5,
+      "fatigue": 3,
+      "volatility": 4
+    },
+    "managerTrack": false,
+    "ticketCount": 1,
+    "sourceIds": [],
+    "notes": [
+      "L’environnement réglementé et les arrêts de tranche tirent le revenu bien au-delà de la base nue.",
+      "Limite déclarée: N’ouvre pas mécaniquement la maintenance méca ou l’automatisme.",
+      "Balises source: France Travail nucléaire 12 métiers"
+    ]
+  },
+  {
+    "id": "nuc_cnd",
+    "sector": "nuclear",
+    "sectorLabel": "Nucléaire",
+    "branch": "CND / inspections",
+    "subBranch": "Ressuage · magnétoscopie · UT · RX",
+    "title": "CND nucléaire / industrie lourde",
+    "shortDescription": "Très bon exemple de niche filtrée: technique + certification + mobilité = premium durable.",
+    "tags": [
+      "Formation technique",
+      "Certifications méthodes",
+      "Déplacements fréquents",
+      "Mécanique",
+      "Industrie",
+      "Nucléaire"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "très faible",
+    "saturationLevel": "très faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "meca",
+      "industrie",
+      "nuclear"
+    ],
+    "ticketsRequired": [
+      "cnd",
+      "scnrp"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Base chaudronnerie / méca utile",
+      "Certifications CND",
+      "Technicien CND confirmé"
+    ],
+    "opens": [
+      "Pétrochimie / offshore",
+      "Cordiste inspection",
+      "Expert méthode CND",
+      "Inspection avancée",
+      "Chef équipe inspection"
+    ],
+    "doesNotOpen": [
+      "Ne te transforme pas en radioprotection sans la couche sûreté/RP."
+    ],
+    "rebounds": [
+      "Pétrochimie / offshore",
+      "Cordiste inspection"
+    ],
+    "verticalProgression": [
+      "Expert méthode CND",
+      "Inspection avancée",
+      "Chef équipe inspection"
+    ],
+    "employerIds": [
+      "apave",
+      "bureau-veritas",
+      "orano",
+      "prestataires-inspection",
+      "pme-cnd-de-niche"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2300,
+      "max": 3100
+    },
+    "salaryBaseNetEstimate": 2106,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2106,
+      "nightBonus": 68,
+      "weekendBonus": 50,
+      "overtimeBonus": 64,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 2753,
+      "estimatedPocket": 1803,
+      "livingCostDefault": 950
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2106,
+      "nightBonus": 170,
+      "weekendBonus": 100,
+      "overtimeBonus": 128,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 3480,
+      "estimatedPocket": 2530,
+      "livingCostDefault": 950
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2106,
+      "nightBonus": 272,
+      "weekendBonus": 150,
+      "overtimeBonus": 256,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 4427,
+      "estimatedPocket": 3477,
+      "livingCostDefault": 950
+    },
+    "payoutModel": [
+      "Base technique",
+      "Déplacements",
+      "Environnement critique",
+      "Certifs valorisées"
+    ],
+    "applicationChannels": [
+      "prestataires directs",
+      "France Travail",
+      "LinkedIn / cooptation site"
+    ],
+    "scores": {
+      "speed": 2,
+      "competition": 1,
+      "stability": 7,
+      "durability": 5,
+      "fatigue": 3,
+      "volatility": 4
+    },
+    "managerTrack": false,
+    "ticketCount": 2,
+    "sourceIds": [],
+    "notes": [
+      "Très bon exemple de niche filtrée: technique + certification + mobilité = premium durable.",
+      "Limite déclarée: Ne te transforme pas en radioprotection sans la couche sûreté/RP.",
+      "Balises source: France Travail nucléaire 12 métiers"
+    ]
+  },
+  {
+    "id": "nuc_meca",
+    "sector": "nuclear",
+    "sectorLabel": "Nucléaire",
+    "branch": "Robinetterie / machines tournantes / maintenance méca",
+    "subBranch": "Mécanicien robinetier · MMT",
+    "title": "Maintenance méca nucléaire",
+    "shortDescription": "Cash régulier sur arrêts, grands déplacements et contraintes sûreté plus que sur le brut de base.",
+    "tags": [
+      "Méca solide",
+      "Sûreté / habilitations nucléaires",
+      "Disponibilité arrêts",
+      "Mécanique",
+      "Industrie",
+      "Nucléaire",
+      "Terrain"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 4,
+      "label": "élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "meca",
+      "industrie",
+      "nuclear",
+      "terrain"
+    ],
+    "ticketsRequired": [
+      "scnrp"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Base maintenance ou mécanique",
+      "Site nucléaire / arrêt de tranche",
+      "Chef équipe maintenance"
+    ],
+    "opens": [
+      "Industrie lourde",
+      "Pétrochimie",
+      "Robinetterie avancée",
+      "Machines tournantes",
+      "Encadrement maintenance"
+    ],
+    "doesNotOpen": [
+      "Ne vaut pas ticket automatique vers RP ou CND."
+    ],
+    "rebounds": [
+      "Industrie lourde",
+      "Pétrochimie"
+    ],
+    "verticalProgression": [
+      "Robinetterie avancée",
+      "Machines tournantes",
+      "Encadrement maintenance"
+    ],
+    "employerIds": [
+      "orano",
+      "endel",
+      "ponticelli",
+      "onet-technologies",
+      "prestataires-maintenance-tranche"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2200,
+      "max": 3000
+    },
+    "salaryBaseNetEstimate": 2028,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2028,
+      "nightBonus": 68,
+      "weekendBonus": 50,
+      "overtimeBonus": 64,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 2675,
+      "estimatedPocket": 1725,
+      "livingCostDefault": 950
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2028,
+      "nightBonus": 170,
+      "weekendBonus": 100,
+      "overtimeBonus": 128,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 3402,
+      "estimatedPocket": 2452,
+      "livingCostDefault": 950
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2028,
+      "nightBonus": 272,
+      "weekendBonus": 150,
+      "overtimeBonus": 256,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 4349,
+      "estimatedPocket": 3399,
+      "livingCostDefault": 950
+    },
+    "payoutModel": [
+      "Base maintenance",
+      "Arrêts / pics",
+      "GD",
+      "Astreintes"
+    ],
+    "applicationChannels": [
+      "prestataires directs",
+      "France Travail",
+      "LinkedIn / cooptation site"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 2,
+      "stability": 7,
+      "durability": 5,
+      "fatigue": 4,
+      "volatility": 4
+    },
+    "managerTrack": false,
+    "ticketCount": 1,
+    "sourceIds": [],
+    "notes": [
+      "Cash régulier sur arrêts, grands déplacements et contraintes sûreté plus que sur le brut de base.",
+      "Limite déclarée: Ne vaut pas ticket automatique vers RP ou CND.",
+      "Balises source: France Travail nucléaire 12 métiers"
+    ]
+  },
+  {
+    "id": "nuc_log",
+    "sector": "nuclear",
+    "sectorLabel": "Nucléaire",
+    "branch": "Logistique / déchets / décontamination",
+    "subBranch": "Logisticien nucléaire · support chantiers",
+    "title": "Logistique nucléaire",
+    "shortDescription": "Moins spectaculaire, mais intéressant si tu valorises la stabilité des arrêts et les primes environnement.",
+    "tags": [
+      "Culture procédures",
+      "Flux / déchets / gardiennage chantier",
+      "RP utile",
+      "Logistique",
+      "Nucléaire",
+      "Terrain"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 4,
+      "label": "élevé"
+    },
+    "confidenceLevel": "moyen/haut",
+    "targetProfiles": [
+      "logistique",
+      "nuclear",
+      "terrain"
+    ],
+    "ticketsRequired": [
+      "scnrp"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Socle logistique + nucléaire",
+      "Support de chantier",
+      "Coordination logistique"
+    ],
+    "opens": [
+      "Radioprotection support",
+      "Supply nucléaire",
+      "Coordination chantier",
+      "Gestion déchets",
+      "Support exploitation"
+    ],
+    "doesNotOpen": [
+      "Ne mène pas directement aux métiers techniques avancés sans spécialisation."
+    ],
+    "rebounds": [
+      "Radioprotection support",
+      "Supply nucléaire"
+    ],
+    "verticalProgression": [
+      "Coordination chantier",
+      "Gestion déchets",
+      "Support exploitation"
+    ],
+    "employerIds": [
+      "orano",
+      "onet-technologies",
+      "prestataires-logistiques-nucleaires",
+      "edf-prestataires",
+      "pme-logistique-specialisee"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 1900,
+      "max": 2500
+    },
+    "salaryBaseNetEstimate": 1716,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1716,
+      "nightBonus": 68,
+      "weekendBonus": 50,
+      "overtimeBonus": 64,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 2363,
+      "estimatedPocket": 1413,
+      "livingCostDefault": 950
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1716,
+      "nightBonus": 170,
+      "weekendBonus": 100,
+      "overtimeBonus": 128,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 3090,
+      "estimatedPocket": 2140,
+      "livingCostDefault": 950
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1716,
+      "nightBonus": 272,
+      "weekendBonus": 150,
+      "overtimeBonus": 256,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 4037,
+      "estimatedPocket": 3087,
+      "livingCostDefault": 950
+    },
+    "payoutModel": [
+      "Base modérée",
+      "Environnement critique",
+      "GD / arrêts",
+      "Primes terrain"
+    ],
+    "applicationChannels": [
+      "prestataires directs",
+      "France Travail",
+      "LinkedIn / cooptation site"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 2,
+      "stability": 7,
+      "durability": 4,
+      "fatigue": 3,
+      "volatility": 4
+    },
+    "managerTrack": false,
+    "ticketCount": 1,
+    "sourceIds": [],
+    "notes": [
+      "Moins spectaculaire, mais intéressant si tu valorises la stabilité des arrêts et les primes environnement.",
+      "Limite déclarée: Ne mène pas directement aux métiers techniques avancés sans spécialisation.",
+      "Balises source: France Travail nucléaire 12 métiers"
+    ]
+  },
+  {
+    "id": "nuc_echaf",
+    "sector": "nuclear",
+    "sectorLabel": "Nucléaire",
+    "branch": "Échafaudage / calorifuge / peinture industrielle",
+    "subBranch": "Métiers arrêts de tranche",
+    "title": "Échafaudage / calorifuge nucléaire",
+    "shortDescription": "Les pics d’activité, le cadre nucléaire et la pénibilité tirent les mois haut pour les profils mobiles.",
+    "tags": [
+      "Métier manuel qualifié",
+      "Habilitations nucléaires",
+      "Travail en hauteur",
+      "Terrain",
+      "Nucléaire",
+      "Hauteur"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 4,
+      "label": "élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "terrain",
+      "nuclear",
+      "hauteur"
+    ],
+    "ticketsRequired": [
+      "scnrp",
+      "corde1"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "CQP / base métier",
+      "Environnement nucléaire",
+      "Chef équipe intervention"
+    ],
+    "opens": [
+      "Cordiste industriel",
+      "BTP industriel",
+      "Chef équipe intervention",
+      "Spécialiste arrêt de tranche"
+    ],
+    "doesNotOpen": [
+      "Ne donne pas une passerelle naturelle vers automatiques / RP / CND."
+    ],
+    "rebounds": [
+      "Cordiste industriel",
+      "BTP industriel"
+    ],
+    "verticalProgression": [
+      "Chef équipe intervention",
+      "Spécialiste arrêt de tranche"
+    ],
+    "employerIds": [
+      "onet-technologies",
+      "endel",
+      "orano-sous-traitance",
+      "prestataires-intervention",
+      "pme-echafaudage-calorifuge"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2100,
+      "max": 2800
+    },
+    "salaryBaseNetEstimate": 1911,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1911,
+      "nightBonus": 68,
+      "weekendBonus": 50,
+      "overtimeBonus": 64,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 2558,
+      "estimatedPocket": 1608,
+      "livingCostDefault": 950
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1911,
+      "nightBonus": 170,
+      "weekendBonus": 100,
+      "overtimeBonus": 128,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 3285,
+      "estimatedPocket": 2335,
+      "livingCostDefault": 950
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1911,
+      "nightBonus": 272,
+      "weekendBonus": 150,
+      "overtimeBonus": 256,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 90,
+      "estimatedPayslipNet": 4232,
+      "estimatedPocket": 3282,
+      "livingCostDefault": 950
+    },
+    "payoutModel": [
+      "Base métier",
+      "Pénibilité",
+      "GD",
+      "Environnement nucléaire"
+    ],
+    "applicationChannels": [
+      "prestataires directs",
+      "France Travail",
+      "LinkedIn / cooptation site"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 2,
+      "stability": 7,
+      "durability": 4,
+      "fatigue": 4,
+      "volatility": 4
+    },
+    "managerTrack": false,
+    "ticketCount": 2,
+    "sourceIds": [],
+    "notes": [
+      "Les pics d’activité, le cadre nucléaire et la pénibilité tirent les mois haut pour les profils mobiles.",
+      "Limite déclarée: Ne donne pas une passerelle naturelle vers automatiques / RP / CND.",
+      "Balises source: France Travail nucléaire 12 métiers"
+    ]
+  },
+  {
+    "id": "ind_tsmi",
+    "sector": "industrial",
+    "sectorLabel": "Industrie critique",
+    "branch": "Maintenance industrielle postée",
+    "subBranch": "TSMI · maintenance 3x8/5x8",
+    "title": "TSMI / maintenance 3x8",
+    "shortDescription": "Le brut seul est banal. Ce sont les 3x8, week-ends, astreintes et environnements sensibles qui font monter.",
+    "tags": [
+      "Méca + élec + auto",
+      "Postes horaires",
+      "Diagnostic rapide",
+      "Industrie",
+      "Mécanique",
+      "Électricité",
+      "Automatisme"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "moyen",
+    "saturationLevel": "moyen",
+    "stabilityLevel": "stable",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 3,
+      "label": "moyen"
+    },
+    "confidenceLevel": "moyen/haut",
+    "targetProfiles": [
+      "industrie",
+      "meca",
+      "elec",
+      "automation"
+    ],
+    "ticketsRequired": [
+      "tsmi"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "TSMI ou équivalent",
+      "Technicien maintenance postée",
+      "Référent / methods"
+    ],
+    "opens": [
+      "Data center",
+      "Éolien",
+      "Process critique",
+      "Automaticien de maintenance",
+      "Méthodes maintenance",
+      "Supervision équipe"
+    ],
+    "doesNotOpen": [
+      "N’ouvre pas automatiquement le nucléaire ou les data centers sans tickets contexte."
+    ],
+    "rebounds": [
+      "Data center",
+      "Éolien",
+      "Process critique"
+    ],
+    "verticalProgression": [
+      "Automaticien de maintenance",
+      "Méthodes maintenance",
+      "Supervision équipe"
+    ],
+    "employerIds": [
+      "sites-industriels-multi-secteurs",
+      "paprec",
+      "arcelormittal",
+      "cristal-union",
+      "prestataires-maintenance-multi-technique"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2100,
+      "max": 2800
+    },
+    "salaryBaseNetEstimate": 1911,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1911,
+      "nightBonus": 56,
+      "weekendBonus": 42,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 220,
+      "panierBonus": 45,
+      "riskBonus": 25,
+      "estimatedPayslipNet": 2359,
+      "estimatedPocket": 1409,
+      "livingCostDefault": 950
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1911,
+      "nightBonus": 140,
+      "weekendBonus": 84,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 550,
+      "panierBonus": 75,
+      "riskBonus": 25,
+      "estimatedPayslipNet": 2905,
+      "estimatedPocket": 1955,
+      "livingCostDefault": 950
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1911,
+      "nightBonus": 224,
+      "weekendBonus": 126,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 990,
+      "panierBonus": 105,
+      "riskBonus": 25,
+      "estimatedPayslipNet": 3621,
+      "estimatedPocket": 2671,
+      "livingCostDefault": 950
+    },
+    "payoutModel": [
+      "Base standard",
+      "Postes horaires",
+      "Astreintes",
+      "Prime environnement"
+    ],
+    "applicationChannels": [
+      "sites carrière",
+      "intérim spécialisé",
+      "France Travail"
+    ],
+    "scores": {
+      "speed": 4,
+      "competition": 3,
+      "stability": 8,
+      "durability": 5,
+      "fatigue": 4,
+      "volatility": 3
+    },
+    "managerTrack": false,
+    "ticketCount": 1,
+    "sourceIds": [],
+    "notes": [
+      "Le brut seul est banal. Ce sont les 3x8, week-ends, astreintes et environnements sensibles qui font monter.",
+      "Limite déclarée: N’ouvre pas automatiquement le nucléaire ou les data centers sans tickets contexte.",
+      "Balises source: France Travail automaticien"
+    ]
+  },
+  {
+    "id": "ind_auto",
+    "sector": "industrial",
+    "sectorLabel": "Industrie critique",
+    "branch": "Automatisme / mise en service / itinérance",
+    "subBranch": "Automaticien · metteur au point · SAV",
+    "title": "Automaticien / mise en service",
+    "shortDescription": "Très bon levier si tu acceptes l’itinérance ou la mise en service. L’argent vient de la rareté et du déplacement.",
+    "tags": [
+      "Automatisme solide",
+      "Lecture schémas",
+      "Déplacements / clients",
+      "Automatisme",
+      "Électricité",
+      "Industrie"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 4,
+      "label": "élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "automation",
+      "elec",
+      "industrie"
+    ],
+    "ticketsRequired": [
+      "auto"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Base auto / électrotech",
+      "Mise en service / maintenance avancée",
+      "Lead / expert process"
+    ],
+    "opens": [
+      "Nucléaire auto",
+      "Data center BMS",
+      "ENR supervision",
+      "Expert contrôle-commande",
+      "Lead commissioning",
+      "Responsable service"
+    ],
+    "doesNotOpen": [
+      "N’est pas une branche chantier ferro sans couche ferro spécifique."
+    ],
+    "rebounds": [
+      "Nucléaire auto",
+      "Data center BMS",
+      "ENR supervision"
+    ],
+    "verticalProgression": [
+      "Expert contrôle-commande",
+      "Lead commissioning",
+      "Responsable service"
+    ],
+    "employerIds": [
+      "actemium",
+      "spie",
+      "fives",
+      "cegelec",
+      "integrateurs-machines-process"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2400,
+      "max": 3400
+    },
+    "salaryBaseNetEstimate": 2262,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2262,
+      "nightBonus": 56,
+      "weekendBonus": 42,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 220,
+      "panierBonus": 45,
+      "riskBonus": 25,
+      "estimatedPayslipNet": 2710,
+      "estimatedPocket": 1760,
+      "livingCostDefault": 950
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2262,
+      "nightBonus": 140,
+      "weekendBonus": 84,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 550,
+      "panierBonus": 75,
+      "riskBonus": 25,
+      "estimatedPayslipNet": 3256,
+      "estimatedPocket": 2306,
+      "livingCostDefault": 950
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2262,
+      "nightBonus": 224,
+      "weekendBonus": 126,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 990,
+      "panierBonus": 105,
+      "riskBonus": 25,
+      "estimatedPayslipNet": 3972,
+      "estimatedPocket": 3022,
+      "livingCostDefault": 950
+    },
+    "payoutModel": [
+      "Base technique",
+      "Déplacements",
+      "Astreintes",
+      "Prime mise en service"
+    ],
+    "applicationChannels": [
+      "sites carrière",
+      "intérim spécialisé",
+      "France Travail"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 2,
+      "stability": 8,
+      "durability": 5,
+      "fatigue": 3,
+      "volatility": 3
+    },
+    "managerTrack": false,
+    "ticketCount": 1,
+    "sourceIds": [],
+    "notes": [
+      "Très bon levier si tu acceptes l’itinérance ou la mise en service. L’argent vient de la rareté et du déplacement.",
+      "Limite déclarée: N’est pas une branche chantier ferro sans couche ferro spécifique.",
+      "Balises source: France Travail automaticien"
+    ]
+  },
+  {
+    "id": "ind_cvc",
+    "sector": "industrial",
+    "sectorLabel": "Industrie critique",
+    "branch": "CVC industriel / froid critique",
+    "subBranch": "CVC process · groupes froids · GTB",
+    "title": "CVC industriel / froid critique",
+    "shortDescription": "La différence se fait sur l’astreinte, la criticité et les environnements où la panne coûte cher.",
+    "tags": [
+      "CVC + élec",
+      "Astreinte",
+      "Procédures",
+      "CVC",
+      "Électricité",
+      "Industrie"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 4,
+      "label": "élevé"
+    },
+    "confidenceLevel": "moyen",
+    "targetProfiles": [
+      "cvc",
+      "elec",
+      "industrie"
+    ],
+    "ticketsRequired": [
+      "cvc"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Base CVC / élec",
+      "Sites critiques / process",
+      "Chef équipe ou expert"
+    ],
+    "opens": [
+      "GTB / BMS",
+      "Énergie site",
+      "Data center",
+      "Hospitalier critique",
+      "Facility critique"
+    ],
+    "doesNotOpen": [
+      "N’est pas la même logique qu’un métier purement chantier BTP résidentiel."
+    ],
+    "rebounds": [
+      "GTB / BMS",
+      "Énergie site"
+    ],
+    "verticalProgression": [
+      "Data center",
+      "Hospitalier critique",
+      "Facility critique"
+    ],
+    "employerIds": [
+      "dalkia",
+      "equans",
+      "spie-facilities",
+      "engie-solutions",
+      "pme-froid-industriel"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2200,
+      "max": 3100
+    },
+    "salaryBaseNetEstimate": 2067,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2067,
+      "nightBonus": 56,
+      "weekendBonus": 42,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 220,
+      "panierBonus": 45,
+      "riskBonus": 25,
+      "estimatedPayslipNet": 2515,
+      "estimatedPocket": 1565,
+      "livingCostDefault": 950
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2067,
+      "nightBonus": 140,
+      "weekendBonus": 84,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 550,
+      "panierBonus": 75,
+      "riskBonus": 25,
+      "estimatedPayslipNet": 3061,
+      "estimatedPocket": 2111,
+      "livingCostDefault": 950
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2067,
+      "nightBonus": 224,
+      "weekendBonus": 126,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 990,
+      "panierBonus": 105,
+      "riskBonus": 25,
+      "estimatedPayslipNet": 3777,
+      "estimatedPocket": 2827,
+      "livingCostDefault": 950
+    },
+    "payoutModel": [
+      "Base technique",
+      "Astreinte",
+      "Site critique",
+      "Nuits ponctuelles"
+    ],
+    "applicationChannels": [
+      "sites carrière",
+      "intérim spécialisé",
+      "France Travail"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 2,
+      "stability": 8,
+      "durability": 5,
+      "fatigue": 3,
+      "volatility": 3
+    },
+    "managerTrack": false,
+    "ticketCount": 1,
+    "sourceIds": [],
+    "notes": [
+      "La différence se fait sur l’astreinte, la criticité et les environnements où la panne coûte cher.",
+      "Limite déclarée: N’est pas la même logique qu’un métier purement chantier BTP résidentiel.",
+      "Balises source: Offres maintenance critique"
+    ]
+  },
+  {
+    "id": "ren_eol",
+    "sector": "renewables",
+    "sectorLabel": "Éolien / ENR",
+    "branch": "Maintenance éolienne",
+    "subBranch": "Titre pro + GWO + habilitations élec",
+    "title": "Maintenance éolienne",
+    "shortDescription": "L’éolien filtre par hauteur, mobilité et tickets sécurité. L’argent grimpe avec déplacements et astreintes.",
+    "tags": [
+      "GWO",
+      "SST",
+      "Habilitations B1V/B2V/BR/BC/H0V",
+      "Hauteur + mobilité + anglais utile",
+      "Électricité",
+      "Mécanique",
+      "Hauteur",
+      "Itinérance"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "elec",
+      "meca",
+      "hauteur",
+      "itinérance"
+    ],
+    "ticketsRequired": [
+      "tpEol",
+      "gwo"
+    ],
+    "ticketsRecommended": [
+      "hta"
+    ],
+    "entryPath": [
+      "Titre pro maintenance éoliennes",
+      "Technicien parc",
+      "Lead maintenance"
+    ],
+    "opens": [
+      "CVC critique",
+      "HTA / énergie",
+      "Data center pour profils maintenance",
+      "Lead tech",
+      "Support technique",
+      "Coordination parc"
+    ],
+    "doesNotOpen": [
+      "Ne donne pas directement une équivalence nucléaire ou ferro sans autres tickets."
+    ],
+    "rebounds": [
+      "CVC critique",
+      "HTA / énergie",
+      "Data center pour profils maintenance"
+    ],
+    "verticalProgression": [
+      "Lead tech",
+      "Support technique",
+      "Coordination parc"
+    ],
+    "employerIds": [
+      "vestas",
+      "nordex",
+      "siemens-gamesa",
+      "enercon",
+      "mainteneurs-regionaux-de-parcs"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2200,
+      "max": 3000
+    },
+    "salaryBaseNetEstimate": 2028,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2028,
+      "nightBonus": 44,
+      "weekendBonus": 35,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 65,
+      "estimatedPayslipNet": 2607,
+      "estimatedPocket": 1657,
+      "livingCostDefault": 950
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2028,
+      "nightBonus": 110,
+      "weekendBonus": 70,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 65,
+      "estimatedPayslipNet": 3279,
+      "estimatedPocket": 2329,
+      "livingCostDefault": 950
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2028,
+      "nightBonus": 176,
+      "weekendBonus": 105,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 65,
+      "estimatedPayslipNet": 4167,
+      "estimatedPocket": 3217,
+      "livingCostDefault": 950
+    },
+    "payoutModel": [
+      "Base bac+2 terrain",
+      "Déplacements",
+      "Hauteur",
+      "Astreintes"
+    ],
+    "applicationChannels": [
+      "sites carrière",
+      "France Travail",
+      "LinkedIn technique"
+    ],
+    "scores": {
+      "speed": 2,
+      "competition": 2,
+      "stability": 6,
+      "durability": 5,
+      "fatigue": 3,
+      "volatility": 5
+    },
+    "managerTrack": false,
+    "ticketCount": 3,
+    "sourceIds": [],
+    "notes": [
+      "L’éolien filtre par hauteur, mobilité et tickets sécurité. L’argent grimpe avec déplacements et astreintes.",
+      "Limite déclarée: Ne donne pas directement une équivalence nucléaire ou ferro sans autres tickets.",
+      "Balises source: France Travail formation éolien"
+    ]
+  },
+  {
+    "id": "ren_hta",
+    "sector": "renewables",
+    "sectorLabel": "Éolien / ENR",
+    "branch": "HTA / raccordement / postes ENR",
+    "subBranch": "Postes · raccordement · mise en service",
+    "title": "HTA / raccordement ENR",
+    "shortDescription": "Très bon levier pour profils élec qui veulent un environnement moins saturé que les voies grand public.",
+    "tags": [
+      "Élec/HT solide",
+      "Déplacements",
+      "Procédures sécurité",
+      "Électricité",
+      "Automatisme",
+      "Itinérance"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "très faible",
+    "saturationLevel": "très faible",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "moyen",
+    "targetProfiles": [
+      "elec",
+      "automation",
+      "itinérance"
+    ],
+    "ticketsRequired": [
+      "hta",
+      "habelFerro"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Électrotechnique HTA",
+      "Mise en service postes",
+      "Chef équipe / commissioning"
+    ],
+    "opens": [
+      "EALE ferro",
+      "Data center énergie",
+      "Mise en service énergie",
+      "Postes critiques",
+      "Sous-stations ferro"
+    ],
+    "doesNotOpen": [
+      "N’est pas la même chose que maintenance d’éoliennes pure."
+    ],
+    "rebounds": [
+      "EALE ferro",
+      "Data center énergie"
+    ],
+    "verticalProgression": [
+      "Mise en service énergie",
+      "Postes critiques",
+      "Sous-stations ferro"
+    ],
+    "employerIds": [
+      "spie",
+      "equans",
+      "cegelec",
+      "omexom",
+      "pme-raccordement-postes"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2500,
+      "max": 3400
+    },
+    "salaryBaseNetEstimate": 2301,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2301,
+      "nightBonus": 44,
+      "weekendBonus": 35,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 65,
+      "estimatedPayslipNet": 2880,
+      "estimatedPocket": 1930,
+      "livingCostDefault": 950
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2301,
+      "nightBonus": 110,
+      "weekendBonus": 70,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 65,
+      "estimatedPayslipNet": 3552,
+      "estimatedPocket": 2602,
+      "livingCostDefault": 950
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2301,
+      "nightBonus": 176,
+      "weekendBonus": 105,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 65,
+      "estimatedPayslipNet": 4440,
+      "estimatedPocket": 3490,
+      "livingCostDefault": 950
+    },
+    "payoutModel": [
+      "Base technique élevée",
+      "Déplacements",
+      "Commissioning",
+      "Astreintes possibles"
+    ],
+    "applicationChannels": [
+      "sites carrière",
+      "France Travail",
+      "LinkedIn technique"
+    ],
+    "scores": {
+      "speed": 2,
+      "competition": 1,
+      "stability": 6,
+      "durability": 5,
+      "fatigue": 3,
+      "volatility": 5
+    },
+    "managerTrack": false,
+    "ticketCount": 2,
+    "sourceIds": [],
+    "notes": [
+      "Très bon levier pour profils élec qui veulent un environnement moins saturé que les voies grand public.",
+      "Limite déclarée: N’est pas la même chose que maintenance d’éoliennes pure.",
+      "Balises source: Marché ENR / postes"
+    ]
+  },
+  {
+    "id": "spec_rope",
+    "sector": "special",
+    "sectorLabel": "Travaux spéciaux",
+    "branch": "Travaux sur cordes",
+    "subBranch": "Initial · confirmé · applications industrielles",
+    "title": "Cordiste industriel",
+    "shortDescription": "La rareté vient du filtre physique et technique. Le vrai levier apparaît quand tu ajoutes une spécialité métier.",
+    "tags": [
+      "Ticket cordes",
+      "Hauteur",
+      "Métier support utile",
+      "Terrain",
+      "Industrie"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "moyen",
+    "fatigueLevel": "très élevé",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "hauteur",
+      "terrain",
+      "industrie"
+    ],
+    "ticketsRequired": [
+      "corde1",
+      "corde2"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "RS / CQP initial",
+      "Niveau confirmé",
+      "Spécialité métier"
+    ],
+    "opens": [
+      "CND en hauteur",
+      "Éolien",
+      "BTP industriel",
+      "Cordiste inspection",
+      "Cordiste maintenance",
+      "Lead cordes"
+    ],
+    "doesNotOpen": [
+      "Le ticket cordes seul n’a pas le même poids qu’un métier support + cordes."
+    ],
+    "rebounds": [
+      "CND en hauteur",
+      "Éolien",
+      "BTP industriel"
+    ],
+    "verticalProgression": [
+      "Cordiste inspection",
+      "Cordiste maintenance",
+      "Lead cordes"
+    ],
+    "employerIds": [
+      "jarnias-groupes-specialises",
+      "acousticordes",
+      "entreprises-de-travaux-sur-cordes",
+      "pme-cordistes-industrielles"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2100,
+      "max": 2900
+    },
+    "salaryBaseNetEstimate": 1950,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1950,
+      "nightBonus": 52,
+      "weekendBonus": 38,
+      "overtimeBonus": 64,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 80,
+      "estimatedPayslipNet": 2559,
+      "estimatedPocket": 1659,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1950,
+      "nightBonus": 130,
+      "weekendBonus": 76,
+      "overtimeBonus": 128,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 80,
+      "estimatedPayslipNet": 3250,
+      "estimatedPocket": 2350,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1950,
+      "nightBonus": 208,
+      "weekendBonus": 114,
+      "overtimeBonus": 256,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 80,
+      "estimatedPayslipNet": 4161,
+      "estimatedPocket": 3261,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base chantier",
+      "Prime hauteur",
+      "Déplacements",
+      "Pénibilité"
+    ],
+    "applicationChannels": [
+      "candidature directe",
+      "réseau métier",
+      "intérim spécialisé"
+    ],
+    "scores": {
+      "speed": 2,
+      "competition": 2,
+      "stability": 5,
+      "durability": 4,
+      "fatigue": 5,
+      "volatility": 6
+    },
+    "managerTrack": false,
+    "ticketCount": 2,
+    "sourceIds": [],
+    "notes": [
+      "La rareté vient du filtre physique et technique. Le vrai levier apparaît quand tu ajoutes une spécialité métier.",
+      "Limite déclarée: Le ticket cordes seul n’a pas le même poids qu’un métier support + cordes.",
+      "Balises source: France Compétences RS6611"
+    ]
+  },
+  {
+    "id": "spec_levage",
+    "sector": "special",
+    "sectorLabel": "Travaux spéciaux",
+    "branch": "Levage / rigging / grues mobiles",
+    "subBranch": "Levage lourd · montage industriel",
+    "title": "Levage lourd / grues mobiles",
+    "shortDescription": "La rareté vient du ticket réglementé, de la responsabilité et de la mobilité sur gros chantiers.",
+    "tags": [
+      "Tickets réglementés",
+      "Sécurité",
+      "Mobilité chantier",
+      "Terrain",
+      "Mécanique"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "très faible",
+    "saturationLevel": "très faible",
+    "stabilityLevel": "moyen",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "moyen",
+    "targetProfiles": [
+      "terrain",
+      "meca",
+      "securite"
+    ],
+    "ticketsRequired": [
+      "grues"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Tickets levage / conduite",
+      "Chantiers lourds",
+      "Chef manœuvre / supervision"
+    ],
+    "opens": [
+      "Échafaudage / montage",
+      "Offshore / portuaire",
+      "Rigging",
+      "Chefferie levage",
+      "Montages industriels"
+    ],
+    "doesNotOpen": [
+      "Ne mène pas automatiquement à ferro ou nucléaire sans contexte secteur."
+    ],
+    "rebounds": [
+      "Échafaudage / montage",
+      "Offshore / portuaire"
+    ],
+    "verticalProgression": [
+      "Rigging",
+      "Chefferie levage",
+      "Montages industriels"
+    ],
+    "employerIds": [
+      "sarens",
+      "mammoet",
+      "bouygues-energies-services-chantier",
+      "eiffage-energie-projets",
+      "pme-levage-lourd"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2400,
+      "max": 3300
+    },
+    "salaryBaseNetEstimate": 2223,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2223,
+      "nightBonus": 52,
+      "weekendBonus": 38,
+      "overtimeBonus": 64,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 80,
+      "estimatedPayslipNet": 2832,
+      "estimatedPocket": 1932,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2223,
+      "nightBonus": 130,
+      "weekendBonus": 76,
+      "overtimeBonus": 128,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 80,
+      "estimatedPayslipNet": 3523,
+      "estimatedPocket": 2623,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2223,
+      "nightBonus": 208,
+      "weekendBonus": 114,
+      "overtimeBonus": 256,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 80,
+      "estimatedPayslipNet": 4434,
+      "estimatedPocket": 3534,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base réglementée",
+      "Déplacements",
+      "Gros chantiers",
+      "Responsabilité"
+    ],
+    "applicationChannels": [
+      "candidature directe",
+      "réseau métier",
+      "intérim spécialisé"
+    ],
+    "scores": {
+      "speed": 2,
+      "competition": 1,
+      "stability": 5,
+      "durability": 4,
+      "fatigue": 4,
+      "volatility": 6
+    },
+    "managerTrack": false,
+    "ticketCount": 1,
+    "sourceIds": [],
+    "notes": [
+      "La rareté vient du ticket réglementé, de la responsabilité et de la mobilité sur gros chantiers.",
+      "Limite déclarée: Ne mène pas automatiquement à ferro ou nucléaire sans contexte secteur.",
+      "Balises source: Marché levage lourd"
+    ]
+  },
+  {
+    "id": "spec_tuyaut",
+    "sector": "special",
+    "sectorLabel": "Travaux spéciaux",
+    "branch": "Tuyauterie / soudage grand déplacement",
+    "subBranch": "Chaudronnerie · soudage · arrêts / chantiers",
+    "title": "Tuyauterie / soudage GD",
+    "shortDescription": "Le cash vient du grand déplacement répété, des arrêts, des qualifs et des contextes lourds.",
+    "tags": [
+      "Métier qualifié",
+      "Mobilité",
+      "Qualifs procédés",
+      "Mécanique",
+      "Terrain",
+      "Industrie"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "moyen",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 4,
+      "label": "élevé"
+    },
+    "confidenceLevel": "moyen/haut",
+    "targetProfiles": [
+      "meca",
+      "terrain",
+      "industrie"
+    ],
+    "ticketsRequired": [
+      "scnrp"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "CAP/Bac/BTS + qualifications soudage",
+      "Chantiers industriels",
+      "Chef équipe / qualité"
+    ],
+    "opens": [
+      "CND",
+      "Nucléaire maintenance",
+      "QA/QC soudage",
+      "Supervision chaudronnerie",
+      "Nucléaire / pétrochimie"
+    ],
+    "doesNotOpen": [
+      "Ne devient pas CND ou RP par voisinage."
+    ],
+    "rebounds": [
+      "CND",
+      "Nucléaire maintenance"
+    ],
+    "verticalProgression": [
+      "QA/QC soudage",
+      "Supervision chaudronnerie",
+      "Nucléaire / pétrochimie"
+    ],
+    "employerIds": [
+      "ponticelli",
+      "boccard",
+      "endel",
+      "fives",
+      "pme-tuyauterie-arrets-industriels"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2200,
+      "max": 3200
+    },
+    "salaryBaseNetEstimate": 2106,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2106,
+      "nightBonus": 52,
+      "weekendBonus": 38,
+      "overtimeBonus": 64,
+      "grandDeplacementBonus": 313,
+      "panierBonus": 62,
+      "riskBonus": 80,
+      "estimatedPayslipNet": 2715,
+      "estimatedPocket": 1815,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2106,
+      "nightBonus": 130,
+      "weekendBonus": 76,
+      "overtimeBonus": 128,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 104,
+      "riskBonus": 80,
+      "estimatedPayslipNet": 3406,
+      "estimatedPocket": 2506,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2106,
+      "nightBonus": 208,
+      "weekendBonus": 114,
+      "overtimeBonus": 256,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 146,
+      "riskBonus": 80,
+      "estimatedPayslipNet": 4317,
+      "estimatedPocket": 3417,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base métier",
+      "GD",
+      "Pénibilité",
+      "Environnement industriel"
+    ],
+    "applicationChannels": [
+      "candidature directe",
+      "réseau métier",
+      "intérim spécialisé"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 2,
+      "stability": 5,
+      "durability": 5,
+      "fatigue": 4,
+      "volatility": 6
+    },
+    "managerTrack": false,
+    "ticketCount": 1,
+    "sourceIds": [],
+    "notes": [
+      "Le cash vient du grand déplacement répété, des arrêts, des qualifs et des contextes lourds.",
+      "Limite déclarée: Ne devient pas CND ou RP par voisinage.",
+      "Balises source: France Travail nucléaire + industrie"
+    ]
+  },
+  {
+    "id": "crit_dc",
+    "sector": "critical",
+    "sectorLabel": "Data centers / environnements critiques",
+    "branch": "Data center / électricité / CVC critique",
+    "subBranch": "3x8 · BMS · refroidissement",
+    "title": "Data center CVC/électricité",
+    "shortDescription": "Ce n’est pas la boue des chantiers, mais le 3x8, l’astreinte et la criticité créent un vrai premium.",
+    "tags": [
+      "B2V/BR/BC/H0V utiles",
+      "GTB/BMS",
+      "Réactivité incident",
+      "CVC",
+      "Électricité",
+      "Industrie",
+      "Automatisme"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "stable",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 4,
+      "label": "élevé"
+    },
+    "confidenceLevel": "haut",
+    "targetProfiles": [
+      "cvc",
+      "elec",
+      "industrie",
+      "automation"
+    ],
+    "ticketsRequired": [
+      "cvc",
+      "bms"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Base élec/CVC",
+      "Shift 3x8",
+      "Senior critical environment"
+    ],
+    "opens": [
+      "Hôpitaux / sites sensibles",
+      "CVC critique industriel",
+      "Facility critique",
+      "Responsable quart",
+      "Lead site"
+    ],
+    "doesNotOpen": [
+      "N’est pas équivalent à maintenance industrielle générale sans culture site critique."
+    ],
+    "rebounds": [
+      "Hôpitaux / sites sensibles",
+      "CVC critique industriel"
+    ],
+    "verticalProgression": [
+      "Facility critique",
+      "Responsable quart",
+      "Lead site"
+    ],
+    "employerIds": [
+      "data4",
+      "equinix",
+      "digital-realty-interxion",
+      "atman",
+      "prestataires-fm-critiques"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2500,
+      "max": 3300
+    },
+    "salaryBaseNetEstimate": 2262,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2262,
+      "nightBonus": 160,
+      "weekendBonus": 45,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 45,
+      "riskBonus": 60,
+      "estimatedPayslipNet": 2632,
+      "estimatedPocket": 1582,
+      "livingCostDefault": 1050
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2262,
+      "nightBonus": 256,
+      "weekendBonus": 90,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 75,
+      "riskBonus": 60,
+      "estimatedPayslipNet": 2863,
+      "estimatedPocket": 1813,
+      "livingCostDefault": 1050
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2262,
+      "nightBonus": 320,
+      "weekendBonus": 135,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 105,
+      "riskBonus": 60,
+      "estimatedPayslipNet": 3122,
+      "estimatedPocket": 2072,
+      "livingCostDefault": 1050
+    },
+    "payoutModel": [
+      "Base plus propre",
+      "3x8",
+      "Primes quart",
+      "Astreinte"
+    ],
+    "applicationChannels": [
+      "sites carrière",
+      "LinkedIn",
+      "intérim technique"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 2,
+      "stability": 9,
+      "durability": 5,
+      "fatigue": 4,
+      "volatility": 2
+    },
+    "managerTrack": false,
+    "ticketCount": 2,
+    "sourceIds": [],
+    "notes": [
+      "Ce n’est pas la boue des chantiers, mais le 3x8, l’astreinte et la criticité créent un vrai premium.",
+      "Limite déclarée: N’est pas équivalent à maintenance industrielle générale sans culture site critique.",
+      "Balises source: France Travail offre Data Center"
+    ]
+  },
+  {
+    "id": "crit_fac",
+    "sector": "critical",
+    "sectorLabel": "Data centers / environnements critiques",
+    "branch": "Facility critique / GTB / BMS",
+    "subBranch": "Sites sensibles · campus techniques",
+    "title": "Facility technique critique",
+    "shortDescription": "Moins sexy, plus stable. Très bon compromis pour profils techniques qui veulent du critique sans boue.",
+    "tags": [
+      "CVC/élec",
+      "Procédures",
+      "Astreinte",
+      "CVC",
+      "Électricité",
+      "Admin",
+      "Gestion"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 4,
+      "label": "élevé"
+    },
+    "confidenceLevel": "moyen",
+    "targetProfiles": [
+      "cvc",
+      "elec",
+      "admin",
+      "gestion"
+    ],
+    "ticketsRequired": [
+      "cvc",
+      "bms"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Base maintenance / CVC / BMS",
+      "Site sensible",
+      "Responsable technique"
+    ],
+    "opens": [
+      "Hospitalier",
+      "Campus industrie / pharma",
+      "Data center",
+      "Responsable technique multi-sites"
+    ],
+    "doesNotOpen": [
+      "Pas un raccourci vers commissioning industriel lourd."
+    ],
+    "rebounds": [
+      "Hospitalier",
+      "Campus industrie / pharma"
+    ],
+    "verticalProgression": [
+      "Data center",
+      "Responsable technique multi-sites"
+    ],
+    "employerIds": [
+      "dalkia",
+      "spie-facilities",
+      "equans",
+      "sodexo-fm",
+      "pme-fm-critiques"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2400,
+      "max": 3200
+    },
+    "salaryBaseNetEstimate": 2184,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2184,
+      "nightBonus": 160,
+      "weekendBonus": 45,
+      "overtimeBonus": 60,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 45,
+      "riskBonus": 60,
+      "estimatedPayslipNet": 2554,
+      "estimatedPocket": 1504,
+      "livingCostDefault": 1050
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2184,
+      "nightBonus": 256,
+      "weekendBonus": 90,
+      "overtimeBonus": 120,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 75,
+      "riskBonus": 60,
+      "estimatedPayslipNet": 2785,
+      "estimatedPocket": 1735,
+      "livingCostDefault": 1050
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2184,
+      "nightBonus": 320,
+      "weekendBonus": 135,
+      "overtimeBonus": 240,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 105,
+      "riskBonus": 60,
+      "estimatedPayslipNet": 3044,
+      "estimatedPocket": 1994,
+      "livingCostDefault": 1050
+    },
+    "payoutModel": [
+      "Base technique",
+      "Astreinte",
+      "Primes site sensible"
+    ],
+    "applicationChannels": [
+      "sites carrière",
+      "LinkedIn",
+      "intérim technique"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 2,
+      "stability": 8,
+      "durability": 5,
+      "fatigue": 3,
+      "volatility": 3
+    },
+    "managerTrack": false,
+    "ticketCount": 2,
+    "sourceIds": [],
+    "notes": [
+      "Moins sexy, plus stable. Très bon compromis pour profils techniques qui veulent du critique sans boue.",
+      "Limite déclarée: Pas un raccourci vers commissioning industriel lourd.",
+      "Balises source: Marché FM critique"
+    ]
+  }
+]

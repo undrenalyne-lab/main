@@ -1,0 +1,2185 @@
+[
+  {
+    "laneId": "ferro_sec",
+    "baseGrossMonthly": 2000,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 38,
+      "weekendPerShiftNet": 55,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 45
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1560,
+        "nightBonus": 76,
+        "weekendBonus": 55,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 2171,
+        "estimatedPocket": 1271,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 1560,
+        "nightBonus": 190,
+        "weekendBonus": 110,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 2911,
+        "estimatedPocket": 2011,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 1560,
+        "nightBonus": 304,
+        "weekendBonus": 165,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 3867,
+        "estimatedPocket": 2967,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base modeste",
+      "GD / déplacement lourd",
+      "Nuits / WE",
+      "Découchés"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 1.8–2.2k brut",
+      "Fourchette pocket observée: 2.7–3.6k pocket -> 4.0–5.3k pocket"
+    ]
+  },
+  {
+    "laneId": "ferro_attx",
+    "baseGrossMonthly": 2250,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 38,
+      "weekendPerShiftNet": 55,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 45
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1755,
+        "nightBonus": 76,
+        "weekendBonus": 55,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 2366,
+        "estimatedPocket": 1466,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 1755,
+        "nightBonus": 190,
+        "weekendBonus": 110,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 3106,
+        "estimatedPocket": 2206,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 1755,
+        "nightBonus": 304,
+        "weekendBonus": 165,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 4062,
+        "estimatedPocket": 3162,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base terrain",
+      "Variables horaires",
+      "Déplacements / découchés"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.0–2.5k brut",
+      "Fourchette pocket observée: 3.2–4.1k pocket -> 4.3–5.8k pocket"
+    ]
+  },
+  {
+    "laneId": "ferro_voie",
+    "baseGrossMonthly": 2300,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 38,
+      "weekendPerShiftNet": 55,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 45
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1794,
+        "nightBonus": 76,
+        "weekendBonus": 55,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 2405,
+        "estimatedPocket": 1505,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 1794,
+        "nightBonus": 190,
+        "weekendBonus": 110,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 3145,
+        "estimatedPocket": 2245,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 1794,
+        "nightBonus": 304,
+        "weekendBonus": 165,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 4101,
+        "estimatedPocket": 3201,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base chantier",
+      "Nuits",
+      "GD",
+      "Découchés"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.0–2.6k brut",
+      "Fourchette pocket observée: 3.1–4.1k pocket -> 4.2–5.7k pocket"
+    ]
+  },
+  {
+    "laneId": "ferro_cat",
+    "baseGrossMonthly": 2450,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 38,
+      "weekendPerShiftNet": 55,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 45
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1911,
+        "nightBonus": 76,
+        "weekendBonus": 55,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 2522,
+        "estimatedPocket": 1622,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 1911,
+        "nightBonus": 190,
+        "weekendBonus": 110,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 3262,
+        "estimatedPocket": 2362,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 1911,
+        "nightBonus": 304,
+        "weekendBonus": 165,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 4218,
+        "estimatedPocket": 3318,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base chantier élec",
+      "Nuits",
+      "GD",
+      "Primes environnement"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.1–2.8k brut",
+      "Fourchette pocket observée: 3.3–4.4k pocket -> 4.4–5.9k pocket"
+    ]
+  },
+  {
+    "laneId": "ferro_sig",
+    "baseGrossMonthly": 2500,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 38,
+      "weekendPerShiftNet": 55,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 45
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1950,
+        "nightBonus": 76,
+        "weekendBonus": 55,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 2561,
+        "estimatedPocket": 1661,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 1950,
+        "nightBonus": 190,
+        "weekendBonus": 110,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 3301,
+        "estimatedPocket": 2401,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 1950,
+        "nightBonus": 304,
+        "weekendBonus": 165,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 4257,
+        "estimatedPocket": 3357,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base plus technique",
+      "Nuits chantier",
+      "Déplacements",
+      "Rareté"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.1–2.9k brut",
+      "Fourchette pocket observée: 3.2–4.3k pocket -> 4.3–5.8k pocket"
+    ]
+  },
+  {
+    "laneId": "ferro_tel",
+    "baseGrossMonthly": 2500,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 38,
+      "weekendPerShiftNet": 55,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 45
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1950,
+        "nightBonus": 76,
+        "weekendBonus": 55,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 2561,
+        "estimatedPocket": 1661,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 1950,
+        "nightBonus": 190,
+        "weekendBonus": 110,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 3301,
+        "estimatedPocket": 2401,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 1950,
+        "nightBonus": 304,
+        "weekendBonus": 165,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 4257,
+        "estimatedPocket": 3357,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base technique",
+      "Déplacements",
+      "Nuits selon chantiers",
+      "Prime environnement"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.1–2.9k brut",
+      "Fourchette pocket observée: 3.0–4.2k pocket -> 4.1–5.5k pocket"
+    ]
+  },
+  {
+    "laneId": "ferro_eale",
+    "baseGrossMonthly": 2800,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 38,
+      "weekendPerShiftNet": 55,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 45
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2184,
+        "nightBonus": 76,
+        "weekendBonus": 55,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 2795,
+        "estimatedPocket": 1895,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 2184,
+        "nightBonus": 190,
+        "weekendBonus": 110,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 3535,
+        "estimatedPocket": 2635,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 2184,
+        "nightBonus": 304,
+        "weekendBonus": 165,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 45,
+        "estimatedPayslipNet": 4491,
+        "estimatedPocket": 3591,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base technique élevée",
+      "Déplacements",
+      "HT / environnement",
+      "Astreintes possibles"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.4–3.2k brut",
+      "Fourchette pocket observée: 3.5–4.8k pocket -> 4.7–6.2k pocket"
+    ]
+  },
+  {
+    "laneId": "ferro_ct",
+    "baseGrossMonthly": 3600,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 55,
+      "parisDaily": 70
+    },
+    "allowances": {
+      "nightPerShiftNet": 25,
+      "weekendPerShiftNet": 55,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 20
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 7,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2808,
+        "nightBonus": 50,
+        "weekendBonus": 55,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 220,
+        "panierBonus": 62,
+        "riskBonus": 20,
+        "estimatedPayslipNet": 3275,
+        "estimatedPocket": 2375,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 2808,
+        "nightBonus": 125,
+        "weekendBonus": 110,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 550,
+        "panierBonus": 104,
+        "riskBonus": 20,
+        "estimatedPayslipNet": 3837,
+        "estimatedPocket": 2937,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 2808,
+        "nightBonus": 200,
+        "weekendBonus": 165,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 990,
+        "panierBonus": 146,
+        "riskBonus": 20,
+        "estimatedPayslipNet": 4569,
+        "estimatedPocket": 3669,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base cadre / ETAM haute",
+      "Déplacements",
+      "Téléphone / astreinte",
+      "Responsabilité"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 3.0–4.2k brut",
+      "Fourchette pocket observée: 4.0–5.2k pocket -> 5.2–6.8k pocket"
+    ]
+  },
+  {
+    "laneId": "nuc_rp",
+    "baseGrossMonthly": 2400,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 34,
+      "weekendPerShiftNet": 50,
+      "overtimePerHourNet": 16,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 90
+    },
+    "livingCostDefault": 950,
+    "regularityIndex": 7,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1872,
+        "nightBonus": 68,
+        "weekendBonus": 50,
+        "overtimeBonus": 64,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 2519,
+        "estimatedPocket": 1569,
+        "livingCostDefault": 950
+      },
+      "stable": {
+        "baseNetEstimate": 1872,
+        "nightBonus": 170,
+        "weekendBonus": 100,
+        "overtimeBonus": 128,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 3246,
+        "estimatedPocket": 2296,
+        "livingCostDefault": 950
+      },
+      "max": {
+        "baseNetEstimate": 1872,
+        "nightBonus": 272,
+        "weekendBonus": 150,
+        "overtimeBonus": 256,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 4193,
+        "estimatedPocket": 3243,
+        "livingCostDefault": 950
+      }
+    },
+    "payoutModel": [
+      "Base technique",
+      "Primes environnement",
+      "GD / déplacements",
+      "Arrêts de tranche"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.0–2.8k brut",
+      "Fourchette pocket observée: 3.0–4.0k pocket -> 4.0–5.4k pocket"
+    ]
+  },
+  {
+    "laneId": "nuc_cnd",
+    "baseGrossMonthly": 2700,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 34,
+      "weekendPerShiftNet": 50,
+      "overtimePerHourNet": 16,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 90
+    },
+    "livingCostDefault": 950,
+    "regularityIndex": 7,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2106,
+        "nightBonus": 68,
+        "weekendBonus": 50,
+        "overtimeBonus": 64,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 2753,
+        "estimatedPocket": 1803,
+        "livingCostDefault": 950
+      },
+      "stable": {
+        "baseNetEstimate": 2106,
+        "nightBonus": 170,
+        "weekendBonus": 100,
+        "overtimeBonus": 128,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 3480,
+        "estimatedPocket": 2530,
+        "livingCostDefault": 950
+      },
+      "max": {
+        "baseNetEstimate": 2106,
+        "nightBonus": 272,
+        "weekendBonus": 150,
+        "overtimeBonus": 256,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 4427,
+        "estimatedPocket": 3477,
+        "livingCostDefault": 950
+      }
+    },
+    "payoutModel": [
+      "Base technique",
+      "Déplacements",
+      "Environnement critique",
+      "Certifs valorisées"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.3–3.1k brut",
+      "Fourchette pocket observée: 3.4–4.5k pocket -> 4.6–6.0k pocket"
+    ]
+  },
+  {
+    "laneId": "nuc_meca",
+    "baseGrossMonthly": 2600,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 34,
+      "weekendPerShiftNet": 50,
+      "overtimePerHourNet": 16,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 90
+    },
+    "livingCostDefault": 950,
+    "regularityIndex": 7,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2028,
+        "nightBonus": 68,
+        "weekendBonus": 50,
+        "overtimeBonus": 64,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 2675,
+        "estimatedPocket": 1725,
+        "livingCostDefault": 950
+      },
+      "stable": {
+        "baseNetEstimate": 2028,
+        "nightBonus": 170,
+        "weekendBonus": 100,
+        "overtimeBonus": 128,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 3402,
+        "estimatedPocket": 2452,
+        "livingCostDefault": 950
+      },
+      "max": {
+        "baseNetEstimate": 2028,
+        "nightBonus": 272,
+        "weekendBonus": 150,
+        "overtimeBonus": 256,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 4349,
+        "estimatedPocket": 3399,
+        "livingCostDefault": 950
+      }
+    },
+    "payoutModel": [
+      "Base maintenance",
+      "Arrêts / pics",
+      "GD",
+      "Astreintes"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.2–3.0k brut",
+      "Fourchette pocket observée: 3.3–4.4k pocket -> 4.5–5.9k pocket"
+    ]
+  },
+  {
+    "laneId": "nuc_log",
+    "baseGrossMonthly": 2200,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 34,
+      "weekendPerShiftNet": 50,
+      "overtimePerHourNet": 16,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 90
+    },
+    "livingCostDefault": 950,
+    "regularityIndex": 7,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1716,
+        "nightBonus": 68,
+        "weekendBonus": 50,
+        "overtimeBonus": 64,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 2363,
+        "estimatedPocket": 1413,
+        "livingCostDefault": 950
+      },
+      "stable": {
+        "baseNetEstimate": 1716,
+        "nightBonus": 170,
+        "weekendBonus": 100,
+        "overtimeBonus": 128,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 3090,
+        "estimatedPocket": 2140,
+        "livingCostDefault": 950
+      },
+      "max": {
+        "baseNetEstimate": 1716,
+        "nightBonus": 272,
+        "weekendBonus": 150,
+        "overtimeBonus": 256,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 4037,
+        "estimatedPocket": 3087,
+        "livingCostDefault": 950
+      }
+    },
+    "payoutModel": [
+      "Base modérée",
+      "Environnement critique",
+      "GD / arrêts",
+      "Primes terrain"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 1.9–2.5k brut",
+      "Fourchette pocket observée: 2.8–3.8k pocket -> 3.8–4.9k pocket"
+    ]
+  },
+  {
+    "laneId": "nuc_echaf",
+    "baseGrossMonthly": 2450,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 34,
+      "weekendPerShiftNet": 50,
+      "overtimePerHourNet": 16,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 90
+    },
+    "livingCostDefault": 950,
+    "regularityIndex": 7,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1911,
+        "nightBonus": 68,
+        "weekendBonus": 50,
+        "overtimeBonus": 64,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 2558,
+        "estimatedPocket": 1608,
+        "livingCostDefault": 950
+      },
+      "stable": {
+        "baseNetEstimate": 1911,
+        "nightBonus": 170,
+        "weekendBonus": 100,
+        "overtimeBonus": 128,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 3285,
+        "estimatedPocket": 2335,
+        "livingCostDefault": 950
+      },
+      "max": {
+        "baseNetEstimate": 1911,
+        "nightBonus": 272,
+        "weekendBonus": 150,
+        "overtimeBonus": 256,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 90,
+        "estimatedPayslipNet": 4232,
+        "estimatedPocket": 3282,
+        "livingCostDefault": 950
+      }
+    },
+    "payoutModel": [
+      "Base métier",
+      "Pénibilité",
+      "GD",
+      "Environnement nucléaire"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.1–2.8k brut",
+      "Fourchette pocket observée: 3.2–4.3k pocket -> 4.4–5.8k pocket"
+    ]
+  },
+  {
+    "laneId": "ind_tsmi",
+    "baseGrossMonthly": 2450,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 55,
+      "parisDaily": 70
+    },
+    "allowances": {
+      "nightPerShiftNet": 28,
+      "weekendPerShiftNet": 42,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 7.5,
+      "environmentMonthlyNet": 25
+    },
+    "livingCostDefault": 950,
+    "regularityIndex": 8,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1911,
+        "nightBonus": 56,
+        "weekendBonus": 42,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 220,
+        "panierBonus": 45,
+        "riskBonus": 25,
+        "estimatedPayslipNet": 2359,
+        "estimatedPocket": 1409,
+        "livingCostDefault": 950
+      },
+      "stable": {
+        "baseNetEstimate": 1911,
+        "nightBonus": 140,
+        "weekendBonus": 84,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 550,
+        "panierBonus": 75,
+        "riskBonus": 25,
+        "estimatedPayslipNet": 2905,
+        "estimatedPocket": 1955,
+        "livingCostDefault": 950
+      },
+      "max": {
+        "baseNetEstimate": 1911,
+        "nightBonus": 224,
+        "weekendBonus": 126,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 990,
+        "panierBonus": 105,
+        "riskBonus": 25,
+        "estimatedPayslipNet": 3621,
+        "estimatedPocket": 2671,
+        "livingCostDefault": 950
+      }
+    },
+    "payoutModel": [
+      "Base standard",
+      "Postes horaires",
+      "Astreintes",
+      "Prime environnement"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.1–2.8k brut",
+      "Fourchette pocket observée: 2.9–3.9k pocket -> 3.8–4.9k pocket"
+    ]
+  },
+  {
+    "laneId": "ind_auto",
+    "baseGrossMonthly": 2900,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 55,
+      "parisDaily": 70
+    },
+    "allowances": {
+      "nightPerShiftNet": 28,
+      "weekendPerShiftNet": 42,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 7.5,
+      "environmentMonthlyNet": 25
+    },
+    "livingCostDefault": 950,
+    "regularityIndex": 8,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2262,
+        "nightBonus": 56,
+        "weekendBonus": 42,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 220,
+        "panierBonus": 45,
+        "riskBonus": 25,
+        "estimatedPayslipNet": 2710,
+        "estimatedPocket": 1760,
+        "livingCostDefault": 950
+      },
+      "stable": {
+        "baseNetEstimate": 2262,
+        "nightBonus": 140,
+        "weekendBonus": 84,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 550,
+        "panierBonus": 75,
+        "riskBonus": 25,
+        "estimatedPayslipNet": 3256,
+        "estimatedPocket": 2306,
+        "livingCostDefault": 950
+      },
+      "max": {
+        "baseNetEstimate": 2262,
+        "nightBonus": 224,
+        "weekendBonus": 126,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 990,
+        "panierBonus": 105,
+        "riskBonus": 25,
+        "estimatedPayslipNet": 3972,
+        "estimatedPocket": 3022,
+        "livingCostDefault": 950
+      }
+    },
+    "payoutModel": [
+      "Base technique",
+      "Déplacements",
+      "Astreintes",
+      "Prime mise en service"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.4–3.4k brut",
+      "Fourchette pocket observée: 3.3–4.5k pocket -> 4.5–5.8k pocket"
+    ]
+  },
+  {
+    "laneId": "ind_cvc",
+    "baseGrossMonthly": 2650,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 55,
+      "parisDaily": 70
+    },
+    "allowances": {
+      "nightPerShiftNet": 28,
+      "weekendPerShiftNet": 42,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 7.5,
+      "environmentMonthlyNet": 25
+    },
+    "livingCostDefault": 950,
+    "regularityIndex": 8,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2067,
+        "nightBonus": 56,
+        "weekendBonus": 42,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 220,
+        "panierBonus": 45,
+        "riskBonus": 25,
+        "estimatedPayslipNet": 2515,
+        "estimatedPocket": 1565,
+        "livingCostDefault": 950
+      },
+      "stable": {
+        "baseNetEstimate": 2067,
+        "nightBonus": 140,
+        "weekendBonus": 84,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 550,
+        "panierBonus": 75,
+        "riskBonus": 25,
+        "estimatedPayslipNet": 3061,
+        "estimatedPocket": 2111,
+        "livingCostDefault": 950
+      },
+      "max": {
+        "baseNetEstimate": 2067,
+        "nightBonus": 224,
+        "weekendBonus": 126,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 990,
+        "panierBonus": 105,
+        "riskBonus": 25,
+        "estimatedPayslipNet": 3777,
+        "estimatedPocket": 2827,
+        "livingCostDefault": 950
+      }
+    },
+    "payoutModel": [
+      "Base technique",
+      "Astreinte",
+      "Site critique",
+      "Nuits ponctuelles"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.2–3.1k brut",
+      "Fourchette pocket observée: 3.0–4.1k pocket -> 4.0–5.2k pocket"
+    ]
+  },
+  {
+    "laneId": "ren_eol",
+    "baseGrossMonthly": 2600,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 22,
+      "weekendPerShiftNet": 35,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 65
+    },
+    "livingCostDefault": 950,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2028,
+        "nightBonus": 44,
+        "weekendBonus": 35,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 65,
+        "estimatedPayslipNet": 2607,
+        "estimatedPocket": 1657,
+        "livingCostDefault": 950
+      },
+      "stable": {
+        "baseNetEstimate": 2028,
+        "nightBonus": 110,
+        "weekendBonus": 70,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 65,
+        "estimatedPayslipNet": 3279,
+        "estimatedPocket": 2329,
+        "livingCostDefault": 950
+      },
+      "max": {
+        "baseNetEstimate": 2028,
+        "nightBonus": 176,
+        "weekendBonus": 105,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 65,
+        "estimatedPayslipNet": 4167,
+        "estimatedPocket": 3217,
+        "livingCostDefault": 950
+      }
+    },
+    "payoutModel": [
+      "Base bac+2 terrain",
+      "Déplacements",
+      "Hauteur",
+      "Astreintes"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.2–3.0k brut",
+      "Fourchette pocket observée: 3.0–4.2k pocket -> 4.1–5.4k pocket"
+    ]
+  },
+  {
+    "laneId": "ren_hta",
+    "baseGrossMonthly": 2950,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 22,
+      "weekendPerShiftNet": 35,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 65
+    },
+    "livingCostDefault": 950,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2301,
+        "nightBonus": 44,
+        "weekendBonus": 35,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 65,
+        "estimatedPayslipNet": 2880,
+        "estimatedPocket": 1930,
+        "livingCostDefault": 950
+      },
+      "stable": {
+        "baseNetEstimate": 2301,
+        "nightBonus": 110,
+        "weekendBonus": 70,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 65,
+        "estimatedPayslipNet": 3552,
+        "estimatedPocket": 2602,
+        "livingCostDefault": 950
+      },
+      "max": {
+        "baseNetEstimate": 2301,
+        "nightBonus": 176,
+        "weekendBonus": 105,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 65,
+        "estimatedPayslipNet": 4440,
+        "estimatedPocket": 3490,
+        "livingCostDefault": 950
+      }
+    },
+    "payoutModel": [
+      "Base technique élevée",
+      "Déplacements",
+      "Commissioning",
+      "Astreintes possibles"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.5–3.4k brut",
+      "Fourchette pocket observée: 3.4–4.8k pocket -> 4.6–6.0k pocket"
+    ]
+  },
+  {
+    "laneId": "spec_rope",
+    "baseGrossMonthly": 2500,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 26,
+      "weekendPerShiftNet": 38,
+      "overtimePerHourNet": 16,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 80
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 5,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1950,
+        "nightBonus": 52,
+        "weekendBonus": 38,
+        "overtimeBonus": 64,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 80,
+        "estimatedPayslipNet": 2559,
+        "estimatedPocket": 1659,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 1950,
+        "nightBonus": 130,
+        "weekendBonus": 76,
+        "overtimeBonus": 128,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 80,
+        "estimatedPayslipNet": 3250,
+        "estimatedPocket": 2350,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 1950,
+        "nightBonus": 208,
+        "weekendBonus": 114,
+        "overtimeBonus": 256,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 80,
+        "estimatedPayslipNet": 4161,
+        "estimatedPocket": 3261,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base chantier",
+      "Prime hauteur",
+      "Déplacements",
+      "Pénibilité"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.1–2.9k brut",
+      "Fourchette pocket observée: 3.0–4.2k pocket -> 4.2–5.6k pocket"
+    ]
+  },
+  {
+    "laneId": "spec_levage",
+    "baseGrossMonthly": 2850,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 26,
+      "weekendPerShiftNet": 38,
+      "overtimePerHourNet": 16,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 80
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 5,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2223,
+        "nightBonus": 52,
+        "weekendBonus": 38,
+        "overtimeBonus": 64,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 80,
+        "estimatedPayslipNet": 2832,
+        "estimatedPocket": 1932,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 2223,
+        "nightBonus": 130,
+        "weekendBonus": 76,
+        "overtimeBonus": 128,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 80,
+        "estimatedPayslipNet": 3523,
+        "estimatedPocket": 2623,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 2223,
+        "nightBonus": 208,
+        "weekendBonus": 114,
+        "overtimeBonus": 256,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 80,
+        "estimatedPayslipNet": 4434,
+        "estimatedPocket": 3534,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base réglementée",
+      "Déplacements",
+      "Gros chantiers",
+      "Responsabilité"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.4–3.3k brut",
+      "Fourchette pocket observée: 3.5–4.7k pocket -> 4.8–6.2k pocket"
+    ]
+  },
+  {
+    "laneId": "spec_tuyaut",
+    "baseGrossMonthly": 2700,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 26,
+      "weekendPerShiftNet": 38,
+      "overtimePerHourNet": 16,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 80
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 5,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 6,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 10,
+        "nightShifts": 5,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 14,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2106,
+        "nightBonus": 52,
+        "weekendBonus": 38,
+        "overtimeBonus": 64,
+        "grandDeplacementBonus": 313,
+        "panierBonus": 62,
+        "riskBonus": 80,
+        "estimatedPayslipNet": 2715,
+        "estimatedPocket": 1815,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 2106,
+        "nightBonus": 130,
+        "weekendBonus": 76,
+        "overtimeBonus": 128,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 104,
+        "riskBonus": 80,
+        "estimatedPayslipNet": 3406,
+        "estimatedPocket": 2506,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 2106,
+        "nightBonus": 208,
+        "weekendBonus": 114,
+        "overtimeBonus": 256,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 146,
+        "riskBonus": 80,
+        "estimatedPayslipNet": 4317,
+        "estimatedPocket": 3417,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base métier",
+      "GD",
+      "Pénibilité",
+      "Environnement industriel"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.2–3.2k brut",
+      "Fourchette pocket observée: 3.5–4.8k pocket -> 4.8–6.3k pocket"
+    ]
+  },
+  {
+    "laneId": "crit_dc",
+    "baseGrossMonthly": 2900,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 0,
+      "parisDaily": 0
+    },
+    "allowances": {
+      "nightPerShiftNet": 32,
+      "weekendPerShiftNet": 45,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 7.5,
+      "environmentMonthlyNet": 60
+    },
+    "livingCostDefault": 1050,
+    "regularityIndex": 9,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 0,
+        "panierDays": 6,
+        "nightShifts": 5,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 0,
+        "panierDays": 10,
+        "nightShifts": 8,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 0,
+        "panierDays": 14,
+        "nightShifts": 10,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2262,
+        "nightBonus": 160,
+        "weekendBonus": 45,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 45,
+        "riskBonus": 60,
+        "estimatedPayslipNet": 2632,
+        "estimatedPocket": 1582,
+        "livingCostDefault": 1050
+      },
+      "stable": {
+        "baseNetEstimate": 2262,
+        "nightBonus": 256,
+        "weekendBonus": 90,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 75,
+        "riskBonus": 60,
+        "estimatedPayslipNet": 2863,
+        "estimatedPocket": 1813,
+        "livingCostDefault": 1050
+      },
+      "max": {
+        "baseNetEstimate": 2262,
+        "nightBonus": 320,
+        "weekendBonus": 135,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 105,
+        "riskBonus": 60,
+        "estimatedPayslipNet": 3122,
+        "estimatedPocket": 2072,
+        "livingCostDefault": 1050
+      }
+    },
+    "payoutModel": [
+      "Base plus propre",
+      "3x8",
+      "Primes quart",
+      "Astreinte"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.5–3.3k brut",
+      "Fourchette pocket observée: 3.0–4.0k pocket -> 4.0–4.9k pocket"
+    ]
+  },
+  {
+    "laneId": "crit_fac",
+    "baseGrossMonthly": 2800,
+    "netRatio": 0.78,
+    "mobility": {
+      "provinceDaily": 0,
+      "parisDaily": 0
+    },
+    "allowances": {
+      "nightPerShiftNet": 32,
+      "weekendPerShiftNet": 45,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 7.5,
+      "environmentMonthlyNet": 60
+    },
+    "livingCostDefault": 1050,
+    "regularityIndex": 8,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 0,
+        "panierDays": 6,
+        "nightShifts": 5,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 0,
+        "panierDays": 10,
+        "nightShifts": 8,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 0,
+        "panierDays": 14,
+        "nightShifts": 10,
+        "weekendShifts": 3,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2184,
+        "nightBonus": 160,
+        "weekendBonus": 45,
+        "overtimeBonus": 60,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 45,
+        "riskBonus": 60,
+        "estimatedPayslipNet": 2554,
+        "estimatedPocket": 1504,
+        "livingCostDefault": 1050
+      },
+      "stable": {
+        "baseNetEstimate": 2184,
+        "nightBonus": 256,
+        "weekendBonus": 90,
+        "overtimeBonus": 120,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 75,
+        "riskBonus": 60,
+        "estimatedPayslipNet": 2785,
+        "estimatedPocket": 1735,
+        "livingCostDefault": 1050
+      },
+      "max": {
+        "baseNetEstimate": 2184,
+        "nightBonus": 320,
+        "weekendBonus": 135,
+        "overtimeBonus": 240,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 105,
+        "riskBonus": 60,
+        "estimatedPayslipNet": 3044,
+        "estimatedPocket": 1994,
+        "livingCostDefault": 1050
+      }
+    },
+    "payoutModel": [
+      "Base technique",
+      "Astreinte",
+      "Primes site sensible"
+    ],
+    "notes": [
+      "Base visée depuis la source Red Team: 2.4–3.2k brut",
+      "Fourchette pocket observée: 3.0–4.1k pocket -> 4.0–5.0k pocket"
+    ]
+  }
+]

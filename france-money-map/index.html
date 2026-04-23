@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>France Money Map</title>
+    <meta
+      name="description"
+      content="France Money Map trie des trajectoires techniques à cash réel en France avec scoring, tickets, employeurs et simulateur de paie."
+    />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/layout.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+  </head>
+  <body class="page-home">
+    <header class="site-header">
+      <div class="shell nav-row">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">€</span>
+          <span class="brand-copy">
+            France Money Map
+            <small>cash réel · tickets · routes</small>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a class="nav-link is-current" href="./index.html">Entrée</a>
+          <a class="nav-link" href="./parcours.html">Parcours</a>
+          <a class="nav-link" href="./tickets.html">Tickets</a>
+          <a class="nav-link" href="./employeurs.html">Employeurs</a>
+          <a class="nav-link" href="./sources.html">Sources</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell page-stack">
+      <section class="page-hero">
+        <div class="hero-grid">
+          <div class="content-grid">
+            <span class="eyebrow">Routeur de trajectoires à cash réel</span>
+            <h1 class="hero-title">
+              Trouve une voie qui <span class="accent">paie vraiment</span>,
+              puis vois ce qu'il faut débloquer.
+            </h1>
+            <p class="hero-copy">
+              Le produit ne montre pas juste des intitulés de métiers. Il trie
+              des portes concrètes selon ton profil, estime le cash réel,
+              affiche les tickets d'entrée, les rebonds crédibles et les boîtes
+              où postuler.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="./parcours.html">
+                Lancer le parcours
+              </a>
+              <a class="button secondary" href="./sources.html">
+                Voir la méthode
+              </a>
+            </div>
+          </div>
+          <div class="metric-strip" id="heroStats">
+            <article class="metric-card">
+              <span class="metric-label">Portes indexées</span>
+              <strong class="metric-value" data-stat="lanes">--</strong>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">Tickets structurés</span>
+              <strong class="metric-value" data-stat="tickets">--</strong>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">Employeurs visibles</span>
+              <strong class="metric-value" data-stat="employers">--</strong>
+            </article>
+            <article class="metric-card">
+              <span class="metric-label">Secteurs V1</span>
+              <strong class="metric-value" data-stat="sectors">--</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Commencer par ton objectif</h2>
+            <p class="section-copy">
+              Tu n'as pas à fouiller 80 fiches. Choisis l'angle d'attaque et on
+              t'envoie vers les routes qui collent.
+            </p>
+          </div>
+        </div>
+        <div class="card-grid card-grid-2 landing-goals" id="goalCards"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Les six secteurs V1</h2>
+            <p class="section-copy">
+              Ferro, nucléaire, maintenance critique, ENR, travaux spéciaux et
+              environnements critiques. Chaque secteur garde sa logique de
+              tickets, de paie et de portes suivantes.
+            </p>
+          </div>
+        </div>
+        <div class="card-grid card-grid-3 sector-cards" id="sectorCards"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Ce qui remonte déjà</h2>
+            <p class="section-copy">
+              Prévisualisation sur un profil terrain / technique par défaut. Le
+              vrai tri se fait dans la page parcours avec tes préférences.
+            </p>
+          </div>
+          <a class="button secondary" href="./parcours.html">Voir tout le tri</a>
+        </div>
+        <div class="card-grid card-grid-2" id="featuredRoutes"></div>
+      </section>
+    </main>
+
+    <footer class="shell site-footer">
+      <p>
+        France Money Map V1 est pensé pour GitHub Pages: HTML statique, JSON
+        séparés, JS modulaire simple et navigation relative.
+      </p>
+    </footer>
+
+    <script type="module" src="./assets/js/app.js"></script>
+  </body>
+</html>

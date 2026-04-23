@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>France Money Map · Sources</title>
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/layout.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+  </head>
+  <body class="page-sources">
+    <header class="site-header">
+      <div class="shell nav-row">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">€</span>
+          <span class="brand-copy">
+            France Money Map
+            <small>cash réel · tickets · routes</small>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a class="nav-link" href="./index.html">Entrée</a>
+          <a class="nav-link" href="./parcours.html">Parcours</a>
+          <a class="nav-link" href="./tickets.html">Tickets</a>
+          <a class="nav-link" href="./employeurs.html">Employeurs</a>
+          <a class="nav-link is-current" href="./sources.html">Sources</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell page-stack">
+      <section class="page-hero">
+        <div class="content-grid">
+          <span class="eyebrow">Transparence</span>
+          <h1 class="display-title">
+            Montrer le cash tôt, oui.
+            <span class="accent">Prétendre à l'exactitude absolue, non.</span>
+          </h1>
+          <p class="hero-copy">
+            Cette V1 affiche une mécanique explicite: base, variables horaires,
+            déplacement, environnement, coût de vie et pocket estimé. Les
+            chiffres sont comparatifs et actionnables, pas une promesse contractuelle.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="method-grid" id="methodGrid">
+          <article class="card">
+            <h3>Base / stable / max plausible</h3>
+            <p class="muted">
+              Chaque lane garde trois sorties: scénario bas, scénario stable et
+              scénario max plausible. Le stable est la lecture par défaut.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Tickets avant storytelling</h3>
+            <p class="muted">
+              On part du ticket ou du socle réel qui ouvre une porte, pas du
+              récit marketing d'une filière entière.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Niveau de confiance</h3>
+            <p class="muted">
+              Les lanes gardent une confiance qualitative et des sources
+              publiques visibles. Quand une URL manque, la confiance baisse.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Sources publiques utilisées</h2>
+            <p class="section-copy">
+              Cette V1 garde les liens publics présents dans la base Red Team.
+              Elle pourra ensuite être enrichie par branche.
+            </p>
+          </div>
+        </div>
+        <div class="source-grid" id="sourceGrid"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./assets/js/sources-page.js"></script>
+  </body>
+</html>

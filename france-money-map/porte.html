@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>France Money Map · Porte</title>
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/layout.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+  </head>
+  <body class="page-detail">
+    <header class="site-header">
+      <div class="shell nav-row">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">€</span>
+          <span class="brand-copy">
+            France Money Map
+            <small>cash réel · tickets · routes</small>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a class="nav-link" href="./index.html">Entrée</a>
+          <a class="nav-link" href="./parcours.html">Parcours</a>
+          <a class="nav-link" href="./tickets.html">Tickets</a>
+          <a class="nav-link" href="./employeurs.html">Employeurs</a>
+          <a class="nav-link" href="./sources.html">Sources</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell page-stack">
+      <section class="page-hero detail-header" id="routeHero"></section>
+      <section class="detail-layout">
+        <div class="detail-column">
+          <article class="panel" id="matchPanel"></article>
+          <article class="panel" id="simulatorPanel"></article>
+          <article class="panel" id="pathPanel"></article>
+          <article class="panel" id="ticketsPanel"></article>
+          <article class="panel" id="employersPanel"></article>
+        </div>
+        <aside class="detail-column">
+          <article class="panel" id="scorePanel"></article>
+          <article class="panel" id="reboundsPanel"></article>
+          <article class="panel" id="limitsPanel"></article>
+          <article class="panel" id="sourcesPanel"></article>
+        </aside>
+      </section>
+    </main>
+
+    <script type="module" src="./assets/js/route-detail-page.js"></script>
+  </body>
+</html>

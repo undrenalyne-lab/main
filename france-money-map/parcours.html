@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>France Money Map · Parcours</title>
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/layout.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+  </head>
+  <body class="page-routes">
+    <header class="site-header">
+      <div class="shell nav-row">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">€</span>
+          <span class="brand-copy">
+            France Money Map
+            <small>cash réel · tickets · routes</small>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a class="nav-link" href="./index.html">Entrée</a>
+          <a class="nav-link is-current" href="./parcours.html">Parcours</a>
+          <a class="nav-link" href="./tickets.html">Tickets</a>
+          <a class="nav-link" href="./employeurs.html">Employeurs</a>
+          <a class="nav-link" href="./sources.html">Sources</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell page-stack">
+      <section class="page-hero">
+        <div class="content-grid">
+          <span class="eyebrow">Parcours</span>
+          <h1 class="display-title">
+            Trie les voies selon ton
+            <span class="accent">objectif, ton passé et ta tolérance</span>.
+          </h1>
+          <p class="hero-copy">
+            Le moteur combine cinq agents internes: cash, tickets, saturation,
+            rebonds et stabilité. Tu règles ensuite vitesse d'entrée, besoin de
+            stabilité, tolérance physique et mobilité.
+          </p>
+        </div>
+      </section>
+
+      <section class="routes-layout">
+        <div class="content-grid">
+          <article class="filter-panel">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">1. Ton objectif</h2>
+                <p class="section-copy">
+                  Choisis une seule intention principale. Elle change les poids
+                  de scoring.
+                </p>
+              </div>
+            </div>
+            <div class="chip-set" id="goalFilters"></div>
+          </article>
+
+          <article class="filter-panel">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">2. Ton profil</h2>
+                <p class="section-copy">
+                  Coche ce qui décrit déjà ton terrain de jeu ou ce que tu peux
+                  recycler tout de suite.
+                </p>
+              </div>
+            </div>
+            <div class="chip-set" id="profileFilters"></div>
+          </article>
+
+          <article class="filter-panel">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">3. Tes contraintes</h2>
+                <p class="section-copy">
+                  Ici tu dis si tu veux du cash rapide, du régulier, ou si tu
+                  peux encaisser du physique et de la mobilité.
+                </p>
+              </div>
+            </div>
+            <div class="search-wrap">
+              <label class="mini-label" for="routeSearch">Recherche</label>
+              <input
+                id="routeSearch"
+                class="search-input"
+                type="search"
+                placeholder="caténaire, AATTX, radioprotection, BMS..."
+              />
+            </div>
+            <div class="chip-set" id="sortFilters"></div>
+            <div class="range-grid" id="rangeControls"></div>
+          </article>
+
+          <section class="section">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">Top 3 proposés</h2>
+                <p class="section-copy" id="topSummary">
+                  Le moteur classe les portes selon la configuration en cours.
+                </p>
+              </div>
+            </div>
+            <div class="top-results" id="topResults"></div>
+          </section>
+
+          <section class="section">
+            <div class="section-head">
+              <div>
+                <h2 class="section-title">Toutes les portes filtrées</h2>
+                <p class="section-copy" id="resultsSummary"></p>
+              </div>
+            </div>
+            <div class="all-results" id="allResults"></div>
+          </section>
+        </div>
+
+        <aside class="sticky-column">
+          <article class="filter-panel">
+            <h3>Comment le score sort</h3>
+            <p class="muted">
+              Les badges d'agent montrent ce qui pousse une route vers le haut.
+              Le score n'est pas une vérité RH, c'est un routeur d'action.
+            </p>
+            <div class="list">
+              <div class="list-item">
+                <span class="list-index">1</span>
+                <div>
+                  <strong>Agent CASH</strong>
+                  <div class="muted">Stable + max plausible.</div>
+                </div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">2</span>
+                <div>
+                  <strong>Agent TICKETS</strong>
+                  <div class="muted">Friction d'entrée et fit avec ton passé.</div>
+                </div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">3</span>
+                <div>
+                  <strong>Agent SATURATION</strong>
+                  <div class="muted">Pénalité sur les voies trop racontées.</div>
+                </div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">4</span>
+                <div>
+                  <strong>Agent REBONDS</strong>
+                  <div class="muted">Portes ouvertes et robustesse future.</div>
+                </div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">5</span>
+                <div>
+                  <strong>Agent STABILITÉ</strong>
+                  <div class="muted">Risque de mois pourris vs régularité.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="filter-panel" id="selectionSnapshot">
+            <h3>Snapshot actuel</h3>
+            <div class="pill-row" id="snapshotPills"></div>
+          </article>
+        </aside>
+      </section>
+    </main>
+
+    <script type="module" src="./assets/js/route-page.js"></script>
+  </body>
+</html>

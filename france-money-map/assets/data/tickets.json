@@ -1,0 +1,495 @@
+[
+  {
+    "id": "05001",
+    "name": "05001 Annonce manuelle",
+    "type": "Qualification SNCF",
+    "sectorLinks": [
+      "ferro"
+    ],
+    "branchLinks": [
+      "Sécurité chantier ferro"
+    ],
+    "duration": "quelques jours",
+    "costRange": "souvent employeur",
+    "prerequisite": "Accès généralement porté par un employeur ou un organisme ferro habilité.",
+    "opensLaneIds": [
+      "ferro_sec"
+    ],
+    "notes": "Ouvre surtout: annonceur · sentinelle selon organisation",
+    "confidenceLevel": "high",
+    "providerExamples": [
+      "centres ferro habilités"
+    ]
+  },
+  {
+    "id": "aattx",
+    "name": "AATTX / ATTX",
+    "type": "Train travaux",
+    "sectorLinks": [
+      "ferro"
+    ],
+    "branchLinks": [
+      "Métiers du train / trains travaux"
+    ],
+    "duration": "35 h à 231 h selon parcours",
+    "costRange": "organisme ferro / employeur",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "ferro_attx"
+    ],
+    "notes": "Ouvre surtout: AATTX · environnement trains travaux",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "organismes ferro spécialisés"
+    ]
+  },
+  {
+    "id": "lam",
+    "name": "Agent LAM / 09301",
+    "type": "Sécurité ferro",
+    "sectorLinks": [
+      "ferro"
+    ],
+    "branchLinks": [
+      "Sécurité chantier ferro"
+    ],
+    "duration": "module court",
+    "costRange": "souvent employeur",
+    "prerequisite": "Accès généralement porté par un employeur ou un organisme ferro habilité.",
+    "opensLaneIds": [
+      "ferro_sec"
+    ],
+    "notes": "Ouvre surtout: agent LAM · coordination limitation annonce",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "organismes ferro"
+    ]
+  },
+  {
+    "id": "asp",
+    "name": "ASP",
+    "type": "Sécurité ferro",
+    "sectorLinks": [
+      "ferro"
+    ],
+    "branchLinks": [
+      "Sécurité chantier ferro"
+    ],
+    "duration": "quelques jours à 1 semaine",
+    "costRange": "souvent employeur",
+    "prerequisite": "Accès généralement porté par un employeur ou un organisme ferro habilité.",
+    "opensLaneIds": [
+      "ferro_sec"
+    ],
+    "notes": "Ouvre surtout: ASP · évolution sécurité chantier",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "organismes ferro"
+    ]
+  },
+  {
+    "id": "signalBase",
+    "name": "Base génie électrique / signalisation",
+    "type": "Technique",
+    "sectorLinks": [
+      "ferro"
+    ],
+    "branchLinks": [
+      "Signalisation",
+      "Télécoms / courants faibles ferro"
+    ],
+    "duration": "variable",
+    "costRange": "selon parcours",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "ferro_sig",
+      "ferro_tel"
+    ],
+    "notes": "Ouvre surtout: signalisation ferro · essais · télécoms ferro",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "BTS",
+      "organismes",
+      "formation interne"
+    ]
+  },
+  {
+    "id": "bms",
+    "name": "BMS / GTB / GMAO",
+    "type": "Outil / système",
+    "sectorLinks": [
+      "critical"
+    ],
+    "branchLinks": [
+      "Data center / électricité / CVC critique",
+      "Facility critique / GTB / BMS"
+    ],
+    "duration": "formation courte ou terrain",
+    "costRange": "variable",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "crit_dc",
+      "crit_fac"
+    ],
+    "notes": "Ouvre surtout: facility critique · data center",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "fabricants",
+      "employeur"
+    ]
+  },
+  {
+    "id": "grues",
+    "name": "CACES / levage / rigging",
+    "type": "Levage",
+    "sectorLinks": [
+      "special"
+    ],
+    "branchLinks": [
+      "Levage / rigging / grues mobiles"
+    ],
+    "duration": "quelques jours à semaines",
+    "costRange": "organisme agréé",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "spec_levage"
+    ],
+    "notes": "Ouvre surtout: grue mobile · levage lourd · rigging",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "organismes CACES",
+      "levage"
+    ]
+  },
+  {
+    "id": "cnd",
+    "name": "Certification CND / COFREND",
+    "type": "Contrôle non destructif",
+    "sectorLinks": [
+      "nuclear"
+    ],
+    "branchLinks": [
+      "CND / inspections"
+    ],
+    "duration": "plusieurs jours à semaines",
+    "costRange": "élevé / employeur",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "nuc_cnd"
+    ],
+    "notes": "Ouvre surtout: ressuage · UT · RX · inspection avancée",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "centres CND"
+    ]
+  },
+  {
+    "id": "gwo",
+    "name": "GWO BST/BTT",
+    "type": "Sécurité éolien",
+    "sectorLinks": [
+      "renewables"
+    ],
+    "branchLinks": [
+      "Maintenance éolienne"
+    ],
+    "duration": "plusieurs jours",
+    "costRange": "organisme éolien",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "ren_eol"
+    ],
+    "notes": "Ouvre surtout: maintenance éolienne · hauteur éolien",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "centres GWO"
+    ]
+  },
+  {
+    "id": "habelFerro",
+    "name": "Habilitations électriques ferro",
+    "type": "Électricité ferro",
+    "sectorLinks": [
+      "ferro",
+      "renewables"
+    ],
+    "branchLinks": [
+      "Caténaire / ITE",
+      "Télécoms / courants faibles ferro",
+      "Sous-stations / EALE / alimentation",
+      "HTA / raccordement / postes ENR"
+    ],
+    "duration": "quelques jours",
+    "costRange": "organisme + recyclages",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "ferro_cat",
+      "ferro_tel",
+      "ferro_eale",
+      "ren_hta"
+    ],
+    "notes": "Ouvre surtout: caténaire · EALE · protection électrique",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "organismes élec",
+      "ferro"
+    ]
+  },
+  {
+    "id": "hta",
+    "name": "Habilitations HTA / raccordement",
+    "type": "Électricité HTA",
+    "sectorLinks": [
+      "ferro",
+      "renewables"
+    ],
+    "branchLinks": [
+      "Sous-stations / EALE / alimentation",
+      "Maintenance éolienne",
+      "HTA / raccordement / postes ENR"
+    ],
+    "duration": "quelques jours",
+    "costRange": "organismes élec",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "ferro_eale",
+      "ren_eol",
+      "ren_hta"
+    ],
+    "notes": "Ouvre surtout: raccordement ENR · postes / EALE",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "centres élec",
+      "employeur"
+    ]
+  },
+  {
+    "id": "secuferro",
+    "name": "Pack sécurité ferro chantier",
+    "type": "Qualification sécurité ferro",
+    "sectorLinks": [
+      "ferro"
+    ],
+    "branchLinks": [
+      "Sécurité chantier ferro",
+      "Métiers du train / trains travaux",
+      "Voie",
+      "Caténaire / ITE",
+      "Encadrement travaux ferro"
+    ],
+    "duration": "5 à 20 jours selon modules",
+    "costRange": "souvent via employeur / organisme privé",
+    "prerequisite": "Accès généralement porté par un employeur ou un organisme ferro habilité.",
+    "opensLaneIds": [
+      "ferro_sec",
+      "ferro_attx",
+      "ferro_voie",
+      "ferro_cat",
+      "ferro_ct"
+    ],
+    "notes": "Ouvre surtout: sécurité chantier ferro · voie chantier · caténaire chantier",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "Prestafer",
+      "ETF",
+      "centres ferro privés"
+    ]
+  },
+  {
+    "id": "corde1",
+    "name": "RS6610 / travailler sur cordes initial",
+    "type": "Ticket hauteur",
+    "sectorLinks": [
+      "nuclear",
+      "special"
+    ],
+    "branchLinks": [
+      "Échafaudage / calorifuge / peinture industrielle",
+      "Travaux sur cordes"
+    ],
+    "duration": "plusieurs jours",
+    "costRange": "organisme spécialisé",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "nuc_echaf",
+      "spec_rope"
+    ],
+    "notes": "Ouvre surtout: cordiste junior",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "centres cordistes"
+    ]
+  },
+  {
+    "id": "corde2",
+    "name": "RS6611 / confirmé",
+    "type": "Ticket hauteur confirmé",
+    "sectorLinks": [
+      "special"
+    ],
+    "branchLinks": [
+      "Travaux sur cordes"
+    ],
+    "duration": "plusieurs jours",
+    "costRange": "organisme spécialisé",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "spec_rope"
+    ],
+    "notes": "Ouvre surtout: cordiste confirmé · autonomie chantier",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "centres cordistes"
+    ]
+  },
+  {
+    "id": "s9pn",
+    "name": "S9 / PN",
+    "type": "Sécurité ferro spécialisée",
+    "sectorLinks": [
+      "ferro"
+    ],
+    "branchLinks": [
+      "Sécurité chantier ferro"
+    ],
+    "duration": "module court",
+    "costRange": "souvent employeur",
+    "prerequisite": "Accès généralement porté par un employeur ou un organisme ferro habilité.",
+    "opensLaneIds": [
+      "ferro_sec"
+    ],
+    "notes": "Ouvre surtout: prestataire S9 · prestataire PN",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "organismes ferro"
+    ]
+  },
+  {
+    "id": "scnrp",
+    "name": "SCN / RP / CSQ",
+    "type": "Nucléaire réglementaire",
+    "sectorLinks": [
+      "nuclear",
+      "special"
+    ],
+    "branchLinks": [
+      "Radioprotection",
+      "CND / inspections",
+      "Robinetterie / machines tournantes / maintenance méca",
+      "Logistique / déchets / décontamination",
+      "Échafaudage / calorifuge / peinture industrielle",
+      "Tuyauterie / soudage grand déplacement"
+    ],
+    "duration": "quelques jours",
+    "costRange": "souvent employeur / organisme",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "nuc_rp",
+      "nuc_cnd",
+      "nuc_meca",
+      "nuc_log",
+      "nuc_echaf",
+      "spec_tuyaut"
+    ],
+    "notes": "Ouvre surtout: radioprotection · maintenance nucléaire · logistique nucléaire",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "centres habilités nucléaire"
+    ]
+  },
+  {
+    "id": "auto",
+    "name": "Socle automatisme / électrotechnique",
+    "type": "BTS / titre / expérience",
+    "sectorLinks": [
+      "industrial"
+    ],
+    "branchLinks": [
+      "Automatisme / mise en service / itinérance"
+    ],
+    "duration": "long",
+    "costRange": "variable",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "ind_auto"
+    ],
+    "notes": "Ouvre surtout: automaticien · mise en service · BMS/GTB",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "BTS CIRA, électrotechnique, AFPA"
+    ]
+  },
+  {
+    "id": "cvc",
+    "name": "Socle CVC / froid / électricité",
+    "type": "Technique bâtiment critique",
+    "sectorLinks": [
+      "industrial",
+      "critical"
+    ],
+    "branchLinks": [
+      "CVC industriel / froid critique",
+      "Data center / électricité / CVC critique",
+      "Facility critique / GTB / BMS"
+    ],
+    "duration": "variable",
+    "costRange": "selon parcours",
+    "prerequisite": "Pré requis variables selon organisme, contexte chantier et employeur.",
+    "opensLaneIds": [
+      "ind_cvc",
+      "crit_dc",
+      "crit_fac"
+    ],
+    "notes": "Ouvre surtout: CVC critique · facility · data center",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "BTS FED, titres CVC, expérience"
+    ]
+  },
+  {
+    "id": "tpEol",
+    "name": "TP maintenance éoliennes",
+    "type": "Titre professionnel niveau 5",
+    "sectorLinks": [
+      "renewables"
+    ],
+    "branchLinks": [
+      "Maintenance éolienne"
+    ],
+    "duration": "560h + 280h ou 889h",
+    "costRange": "finançable selon dispositif",
+    "prerequisite": "Temps de formation plus long, financement ou dispositif de reconversion à prévoir.",
+    "opensLaneIds": [
+      "ren_eol"
+    ],
+    "notes": "Ouvre surtout: technicien maintenance éolienne",
+    "confidenceLevel": "high",
+    "providerExamples": [
+      "France Travail",
+      "centres spécialisés"
+    ]
+  },
+  {
+    "id": "tsmi",
+    "name": "TSMI / maintenance industrielle",
+    "type": "Titre professionnel",
+    "sectorLinks": [
+      "industrial"
+    ],
+    "branchLinks": [
+      "Maintenance industrielle postée"
+    ],
+    "duration": "~1100 à 1200 h",
+    "costRange": "finançable CPF / région / FT",
+    "prerequisite": "Temps de formation plus long, financement ou dispositif de reconversion à prévoir.",
+    "opensLaneIds": [
+      "ind_tsmi"
+    ],
+    "notes": "Ouvre surtout: maintenance 3x8 · CVC critique · process",
+    "confidenceLevel": "high",
+    "providerExamples": [
+      "AFPA",
+      "centres industriels"
+    ]
+  }
+]

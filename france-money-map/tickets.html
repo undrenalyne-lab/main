@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>France Money Map · Tickets</title>
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/layout.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+  </head>
+  <body class="page-tickets">
+    <header class="site-header">
+      <div class="shell nav-row">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark">€</span>
+          <span class="brand-copy">
+            France Money Map
+            <small>cash réel · tickets · routes</small>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a class="nav-link" href="./index.html">Entrée</a>
+          <a class="nav-link" href="./parcours.html">Parcours</a>
+          <a class="nav-link is-current" href="./tickets.html">Tickets</a>
+          <a class="nav-link" href="./employeurs.html">Employeurs</a>
+          <a class="nav-link" href="./sources.html">Sources</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell page-stack">
+      <section class="page-hero">
+        <div class="content-grid">
+          <span class="eyebrow">Bibliothèque des tickets</span>
+          <h1 class="display-title">
+            Les tickets ne valent que par
+            <span class="accent">les portes qu'ils ouvrent vraiment</span>.
+          </h1>
+          <p class="hero-copy">
+            Chaque ticket indique son type, sa durée, son coût indicatif, ses
+            prérequis, ses organismes types et les lanes qu'il débloque.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <article class="filter-panel filter-bar">
+          <div class="chip-set" id="ticketSectorFilters"></div>
+          <div class="search-wrap">
+            <label class="mini-label" for="ticketSearch">Recherche ticket</label>
+            <input
+              id="ticketSearch"
+              class="search-input"
+              type="search"
+              placeholder="GWO, HTA, ASP, CACES, SCN..."
+            />
+          </div>
+        </article>
+        <div class="ticket-grid" id="ticketGrid"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./assets/js/ticket-page.js"></script>
+  </body>
+</html>
