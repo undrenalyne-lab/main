@@ -63,13 +63,24 @@ export function linkChip(label, href) {
   return `<a class="link-chip" href="${href}">${escapeHtml(label)}</a>`;
 }
 
-export function scenarioBoxHtml(label, scenario, tone = "") {
+export function scenarioBoxHtml(label, scenario, tone = "", options = {}) {
   const className = tone ? `money-value is-${tone}` : "money-value";
+  const primaryValue =
+    options.primaryValue ??
+    scenario.estimatedCashAvailable ??
+    scenario.estimatedPocket;
+  const subline =
+    options.subline ??
+    (scenario.estimatedExpenseCoverage !== undefined
+      ? `fiche ${money(scenario.estimatedPayslipNet)} · indemnités ${money(
+          scenario.estimatedExpenseCoverage,
+        )}`
+      : `fiche ${money(scenario.estimatedPayslipNet)}`);
   return `
     <div class="money-box">
       <span class="mini-label">${escapeHtml(label)}</span>
-      <strong class="${className}">${money(scenario.estimatedPocket)}</strong>
-      <div class="muted">pocket estimé · fiche ${money(scenario.estimatedPayslipNet)}</div>
+      <strong class="${className}">${money(primaryValue)}</strong>
+      <div class="muted">${escapeHtml(subline)}</div>
     </div>
   `;
 }

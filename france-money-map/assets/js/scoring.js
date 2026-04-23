@@ -1,3 +1,5 @@
+import { money } from "./ui.js";
+
 const GOAL_WEIGHTS = {
   "argent-vite": {
     cash: 0.24,
@@ -109,10 +111,12 @@ function toleranceFit(tolerance, demand) {
 
 function buildMetricRanges(lanes) {
   return {
-    stablePocket: buildRange(
-      lanes.map((lane) => lane.salaryStableScenario.estimatedPocket),
+    stableCash: buildRange(
+      lanes.map((lane) => lane.salaryStableScenario.estimatedCashAvailable),
     ),
-    maxPocket: buildRange(lanes.map((lane) => lane.salaryMaxScenario.estimatedPocket)),
+    maxCash: buildRange(
+      lanes.map((lane) => lane.salaryMaxScenario.estimatedCashAvailable),
+    ),
     speed: buildRange(lanes.map((lane) => lane.scores.speed)),
     competition: buildRange(lanes.map((lane) => lane.scores.competition)),
     rebounds: buildRange(lanes.map((lane) => lane.rebounds.length)),
@@ -151,7 +155,7 @@ function buildReasons(lane, profileMatch, agentScores, metrics) {
   if (agentScores.cash >= 70) {
     candidates.push({
       priority: 90,
-      text: `Le couple stable (${metrics.cashStable}) / max plausible (${metrics.cashMax}) est au-dessus de la moyenne.`,
+      text: `Le couple stable (${money(metrics.cashStable)}) / max plausible (${money(metrics.cashMax)}) sort au-dessus de la moyenne.`,
     });
   }
 
@@ -198,8 +202,8 @@ function buildReasons(lane, profileMatch, agentScores, metrics) {
 
 function analyzeLane(lane, ranges, selection) {
   const weights = GOAL_WEIGHTS[selection.goal] || GOAL_WEIGHTS["argent-vite"];
-  const stablePocket = lane.salaryStableScenario.estimatedPocket;
-  const maxPocket = lane.salaryMaxScenario.estimatedPocket;
+  const stableCash = lane.salaryStableScenario.estimatedCashAvailable;
+  const maxCash = lane.salaryMaxScenario.estimatedCashAvailable;
   const speedNorm = normalize(lane.scores.speed, ranges.speed.min, ranges.speed.max);
   const competitionInverse =
     1 -
@@ -245,14 +249,14 @@ function analyzeLane(lane, ranges, selection) {
   const accessEase = 1 - (lane.accessDifficulty.score - 1) / 4;
   const profileMatch = profileSignal(lane, selection);
   const cashStableNorm = normalize(
-    stablePocket,
-    ranges.stablePocket.min,
-    ranges.stablePocket.max,
+    stableCash,
+    ranges.stableCash.min,
+    ranges.stableCash.max,
   );
   const cashMaxNorm = normalize(
-    maxPocket,
-    ranges.maxPocket.min,
-    ranges.maxPocket.max,
+    maxCash,
+    ranges.maxCash.min,
+    ranges.maxCash.max,
   );
   const cashFocus = selection.goal === "cash-max" ? 0.65 : 0.45;
   const cashAgent = (cashStableNorm * (1 - cashFocus) + cashMaxNorm * cashFocus) * 100;
@@ -288,9 +292,9 @@ function analyzeLane(lane, ranges, selection) {
     mobilityFit * weights.mobility;
 
   const metrics = {
-    cashStable: stablePocket,
-    cashMax: maxPocket,
-    lowPocket: lane.salaryLowScenario.estimatedPocket,
+    cashStable: stableCash,
+    cashMax: maxCash,
+    lowCash: lane.salaryLowScenario.estimatedCashAvailable,
   };
 
   const agentScores = {
@@ -310,8 +314,8 @@ function analyzeLane(lane, ranges, selection) {
     metrics,
     sortValues: {
       score: Math.round(totalScore * 100),
-      "cash-max": maxPocket,
-      "cash-stable": stablePocket,
+      "cash-max": maxCash,
+      "cash-stable": stableCash,
       speed: Math.round((speedNorm * 0.7 + accessEase * 0.3) * 100),
       "anti-foule": Math.round(competitionInverse * 100),
       "long-terme": Math.round(
