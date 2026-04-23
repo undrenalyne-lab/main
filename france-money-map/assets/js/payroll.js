@@ -26,29 +26,42 @@ export function createPayrollState(rule, scenarioId = "stable") {
   return applyScenarioPreset(rule, scenarioId);
 }
 
+function calculateOvertimeNet(rule, state) {
+  const overtimeHours = Math.max(0, Number(state.overtimeHours) || 0);
+  const hourlyGross = rule.baseGrossMonthly / 151.67;
+  const firstBandHours = Math.min(8, overtimeHours);
+  const secondBandHours = Math.max(0, overtimeHours - 8);
+  const overtimeGross =
+    firstBandHours * hourlyGross * 1.25 + secondBandHours * hourlyGross * 1.5;
+  const overtimeRatio = rule.ratios?.overtimeNet ?? 0.905;
+
+  return overtimeGross * overtimeRatio;
+}
+
 export function calculatePayroll(rule, state) {
   const zoneRate =
     state.zone === "paris"
       ? rule.mobility.parisDaily
       : rule.mobility.provinceDaily;
-  const baseNetEstimate = rule.baseGrossMonthly * rule.netRatio;
+  const baseNetEstimate =
+    rule.baseNetMonthly ?? rule.baseGrossMonthly * rule.netRatio;
   const nightBonus = state.nightShifts * rule.allowances.nightPerShiftNet;
   const weekendBonus = state.weekendShifts * rule.allowances.weekendPerShiftNet;
-  const overtimeBonus = state.overtimeHours * rule.allowances.overtimePerHourNet;
+  const overtimeBonus = calculateOvertimeNet(rule, state);
   const grandDeplacementBonus = state.gdDays * zoneRate;
   const panierBonus = state.panierDays * rule.allowances.panierPerDayNet;
   const riskBonus = state.riskEnabled
     ? rule.allowances.environmentMonthlyNet
     : 0;
-  const totalEstimatedNet =
-    baseNetEstimate +
-    nightBonus +
-    weekendBonus +
-    overtimeBonus +
-    grandDeplacementBonus +
-    panierBonus +
-    riskBonus;
-  const pocketAfterLiving = Math.max(0, totalEstimatedNet - state.livingCost);
+  const estimatedPayslipNet =
+    baseNetEstimate + nightBonus + weekendBonus + overtimeBonus + riskBonus;
+  const estimatedExpenseCoverage = grandDeplacementBonus + panierBonus;
+  const estimatedCashAvailable =
+    estimatedPayslipNet + estimatedExpenseCoverage;
+  const pocketAfterLiving = Math.max(
+    0,
+    estimatedCashAvailable - state.livingCost,
+  );
 
   return {
     baseNetEstimate: Math.round(baseNetEstimate),
@@ -58,7 +71,14 @@ export function calculatePayroll(rule, state) {
     grandDeplacementBonus: Math.round(grandDeplacementBonus),
     panierBonus: Math.round(panierBonus),
     riskBonus: Math.round(riskBonus),
-    totalEstimatedNet: Math.round(totalEstimatedNet),
+    taxableVariableNet: Math.round(
+      nightBonus + weekendBonus + overtimeBonus + riskBonus,
+    ),
+    estimatedPayslipNet: Math.round(estimatedPayslipNet),
+    estimatedExpenseCoverage: Math.round(estimatedExpenseCoverage),
+    estimatedCashAvailable: Math.round(estimatedCashAvailable),
+    totalEstimatedNet: Math.round(estimatedPayslipNet),
+    totalEstimatedCash: Math.round(estimatedCashAvailable),
     pocketAfterLiving: Math.round(pocketAfterLiving),
     livingCost: Math.round(state.livingCost),
   };

@@ -169,8 +169,8 @@ function routeCardHtml(result, featured = false) {
         </div>
       </div>
       <div>
-        <span class="mini-label">Potentiel stable</span>
-        <strong>${money(lane.salaryStableScenario.estimatedPocket)}</strong>
+        <span class="mini-label">Cash stable avant dépenses</span>
+        <strong>${money(lane.salaryStableScenario.estimatedCashAvailable)}</strong>
       </div>
       <div class="button-row">
         <a class="button primary" href="${laneHref(lane.id)}">Ouvrir la fiche</a>

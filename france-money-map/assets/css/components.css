@@ -94,6 +94,7 @@
 .result-card,
 .filter-panel,
 .note-card {
+  min-width: 0;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius);
@@ -115,7 +116,7 @@
 }
 
 .metric-strip {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
 .metric-card {
@@ -128,8 +129,10 @@
   color: var(--muted);
   font-family: var(--mono);
   font-size: 0.68rem;
+  line-height: 1.4;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
 
 .metric-value,
@@ -137,8 +140,10 @@
   display: block;
   margin-top: 8px;
   font-family: var(--display);
-  font-size: clamp(1.9rem, 4vw, 2.8rem);
-  line-height: 0.94;
+  font-size: clamp(1.55rem, 4vw, 2.55rem);
+  line-height: 0.98;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .money-value.is-green {
@@ -251,6 +256,7 @@
   font-family: var(--display);
   font-size: clamp(1.7rem, 4vw, 2.5rem);
   line-height: 0.95;
+  overflow-wrap: anywhere;
 }
 
 .result-subtitle {
@@ -266,14 +272,22 @@
 .money-row {
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
 }
 
 .money-box {
+  min-width: 0;
   padding: 14px;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(255, 255, 255, 0.06);
   background: rgba(255, 255, 255, 0.03);
+}
+
+.money-box .muted,
+.metric-card .muted,
+.result-subtitle {
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .list {
@@ -354,11 +368,13 @@
 .breakdown-table td {
   padding: 10px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  vertical-align: top;
 }
 
 .breakdown-table td:last-child {
   text-align: right;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .empty-state {
@@ -386,7 +402,7 @@
 @media (min-width: 720px) {
   .metric-strip,
   .kpi-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 
   .range-grid {

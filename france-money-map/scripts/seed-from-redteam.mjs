@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
 import { fileURLToPath } from "node:url";
+import Engine from "publicodes";
+import socialModel from "modele-social";
 
 const SOURCE_HTML =
   "/Users/undrenalyne/Downloads/france_money_map_v4_redteam.html";
@@ -9,6 +11,10 @@ const SOURCE_HTML =
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DATA_DIR = path.resolve(__dirname, "../assets/data");
+const STANDARD_MONTHLY_HOURS = 151.67;
+const FIRST_OVERTIME_BAND_HOURS = 8;
+const FIRST_OVERTIME_MULTIPLIER = 1.25;
+const SECOND_OVERTIME_MULTIPLIER = 1.5;
 
 const sectorMeta = {
   ferro: {
@@ -103,6 +109,25 @@ const publicSourceConfidence = {
   "tso.fr": "medium",
 };
 
+const baseNetCache = new Map();
+const overtimeRatioCache = new Map();
+
+function withMutedConsole(run) {
+  const warn = console.warn;
+  const error = console.error;
+  console.warn = () => {};
+  console.error = () => {};
+
+  try {
+    return run();
+  } finally {
+    console.warn = warn;
+    console.error = error;
+  }
+}
+
+const socialEngine = withMutedConsole(() => new Engine(socialModel));
+
 function slugify(value) {
   return value
     .normalize("NFD")
@@ -114,6 +139,60 @@ function slugify(value) {
 
 function round(value) {
   return Math.round(value);
+}
+
+function salarySituation(baseGrossMonthly, extra = {}) {
+  return {
+    "salarié . contrat": "'CDI'",
+    "salarié . contrat . salaire brut": `${round(baseGrossMonthly)} €/mois`,
+    ...extra,
+  };
+}
+
+function evaluateEmployeeNet(baseGrossMonthly, extra = {}) {
+  return withMutedConsole(() =>
+    socialEngine
+      .setSituation(salarySituation(baseGrossMonthly, extra))
+      .evaluate("salarié . rémunération . net . à payer avant impôt").nodeValue,
+  );
+}
+
+function estimateBaseNetMonthly(baseGrossMonthly) {
+  const cacheKey = round(baseGrossMonthly);
+  if (!baseNetCache.has(cacheKey)) {
+    baseNetCache.set(cacheKey, evaluateEmployeeNet(baseGrossMonthly));
+  }
+  return baseNetCache.get(cacheKey);
+}
+
+function estimateOvertimeNetRatio(baseGrossMonthly) {
+  const cacheKey = round(baseGrossMonthly);
+  if (!overtimeRatioCache.has(cacheKey)) {
+    const baseNet = estimateBaseNetMonthly(baseGrossMonthly);
+    const overtimeNet =
+      evaluateEmployeeNet(baseGrossMonthly, {
+        "salarié . temps de travail . heures supplémentaires": "1 heure/mois",
+      }) - baseNet;
+    const overtimeGross =
+      (baseGrossMonthly / STANDARD_MONTHLY_HOURS) * FIRST_OVERTIME_MULTIPLIER;
+    overtimeRatioCache.set(
+      cacheKey,
+      overtimeGross > 0 ? overtimeNet / overtimeGross : 0.9,
+    );
+  }
+  return overtimeRatioCache.get(cacheKey);
+}
+
+function calculateOvertimeNet(baseGrossMonthly, overtimeHours) {
+  const safeHours = Math.max(0, Number(overtimeHours) || 0);
+  const hourlyGross = baseGrossMonthly / STANDARD_MONTHLY_HOURS;
+  const firstBandHours = Math.min(FIRST_OVERTIME_BAND_HOURS, safeHours);
+  const secondBandHours = Math.max(0, safeHours - FIRST_OVERTIME_BAND_HOURS);
+  const overtimeGross =
+    firstBandHours * hourlyGross * FIRST_OVERTIME_MULTIPLIER +
+    secondBandHours * hourlyGross * SECOND_OVERTIME_MULTIPLIER;
+
+  return overtimeGross * estimateOvertimeNetRatio(baseGrossMonthly);
 }
 
 function ensureDir(dir) {
@@ -227,16 +306,17 @@ function scenarioPresetForLane(lane, tier) {
 
 function calculateScenario(baseGrossMonthly, pay, preset) {
   const gdRate = preset.zone === "paris" ? pay.gdParis : pay.gdProvince;
-  const baseNet = baseGrossMonthly * pay.netRatio;
+  const baseNet = estimateBaseNetMonthly(baseGrossMonthly);
   const night = preset.nightShifts * pay.nightNet;
   const weekend = preset.weekendShifts * pay.weekendNet;
-  const overtime = preset.overtimeHours * pay.otNet;
+  const overtime = calculateOvertimeNet(baseGrossMonthly, preset.overtimeHours);
   const grandDeplacement = preset.gdDays * gdRate;
   const panier = preset.panierDays * pay.panier;
   const risk = preset.riskEnabled ? pay.risk : 0;
-  const estimatedPayslipNet =
-    baseNet + night + weekend + overtime + grandDeplacement + panier + risk;
-  const estimatedPocket = Math.max(0, estimatedPayslipNet - pay.living);
+  const estimatedPayslipNet = baseNet + night + weekend + overtime + risk;
+  const estimatedExpenseCoverage = grandDeplacement + panier;
+  const estimatedCashAvailable = estimatedPayslipNet + estimatedExpenseCoverage;
+  const estimatedPocket = Math.max(0, estimatedCashAvailable - pay.living);
 
   return {
     baseNetEstimate: round(baseNet),
@@ -246,7 +326,10 @@ function calculateScenario(baseGrossMonthly, pay, preset) {
     grandDeplacementBonus: round(grandDeplacement),
     panierBonus: round(panier),
     riskBonus: round(risk),
+    taxableVariableNet: round(night + weekend + overtime + risk),
     estimatedPayslipNet: round(estimatedPayslipNet),
+    estimatedExpenseCoverage: round(estimatedExpenseCoverage),
+    estimatedCashAvailable: round(estimatedCashAvailable),
     estimatedPocket: round(estimatedPocket),
     livingCostDefault: round(pay.living),
   };
@@ -309,7 +392,7 @@ function normalizeLane(sourceLane, laneEmployerIds, sourceIds, compensationRule)
       min: round(sourceLane.baseRange[0] * 1000),
       max: round(sourceLane.baseRange[1] * 1000),
     },
-    salaryBaseNetEstimate: round(sourceLane.baseGrossMed * sourceLane.pay.netRatio),
+    salaryBaseNetEstimate: compensationRule.baseNetMonthly,
     salaryLowScenario: compensationRule.scenarioOutputs.low,
     salaryStableScenario: compensationRule.scenarioOutputs.stable,
     salaryMaxScenario: compensationRule.scenarioOutputs.max,
@@ -436,7 +519,13 @@ function main() {
     return {
       laneId: lane.id,
       baseGrossMonthly: round(lane.baseGrossMed),
+      baseNetMonthly: round(estimateBaseNetMonthly(lane.baseGrossMed)),
       netRatio: lane.pay.netRatio,
+      ratios: {
+        overtimeNet: Number(
+          estimateOvertimeNetRatio(lane.baseGrossMed).toFixed(3),
+        ),
+      },
       mobility: {
         provinceDaily: lane.pay.gdProvince,
         parisDaily: lane.pay.gdParis,
@@ -463,7 +552,9 @@ function main() {
       payoutModel: lane.model,
       notes: [
         `Base visée depuis la source Red Team: ${lane.base}`,
-        `Fourchette pocket observée: ${lane.floor} -> ${lane.intense}`,
+        `Net de base recalé via modele-social (moteur Mon Entreprise / Urssaf).`,
+        `Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.`,
+        `Fourchette pocket observée dans la base source: ${lane.floor} -> ${lane.intense}`,
       ],
     };
   });

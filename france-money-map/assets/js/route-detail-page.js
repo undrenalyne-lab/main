@@ -71,20 +71,20 @@ function renderHero() {
     </div>
     <div class="metric-strip">
       <article class="metric-card">
-        <span class="metric-label">Pocket bas</span>
-        <strong class="metric-value">${money(lane.salaryLowScenario.estimatedPocket)}</strong>
+        <span class="metric-label">Cash bas</span>
+        <strong class="metric-value">${money(lane.salaryLowScenario.estimatedCashAvailable)}</strong>
       </article>
       <article class="metric-card">
-        <span class="metric-label">Pocket stable</span>
-        <strong class="metric-value">${money(lane.salaryStableScenario.estimatedPocket)}</strong>
+        <span class="metric-label">Cash stable</span>
+        <strong class="metric-value">${money(lane.salaryStableScenario.estimatedCashAvailable)}</strong>
       </article>
       <article class="metric-card">
-        <span class="metric-label">Pocket max plausible</span>
-        <strong class="metric-value">${money(lane.salaryMaxScenario.estimatedPocket)}</strong>
+        <span class="metric-label">Cash max plausible</span>
+        <strong class="metric-value">${money(lane.salaryMaxScenario.estimatedCashAvailable)}</strong>
       </article>
       <article class="metric-card">
-        <span class="metric-label">Base brute médiane</span>
-        <strong class="metric-value">${money(rule.baseGrossMonthly)}</strong>
+        <span class="metric-label">Net sur fiche stable</span>
+        <strong class="metric-value">${money(lane.salaryStableScenario.estimatedPayslipNet)}</strong>
       </article>
     </div>
   `;
@@ -339,7 +339,7 @@ function renderSimulatorPanel() {
   simulatorPanel.innerHTML = `
     <h3>Simulateur de fiche de paie</h3>
     <p class="muted">
-      Lecture simple: base nette estimée + horaires + mobilité + environnement - coût de vie.
+      Lecture propre: net sur fiche d'un côté, indemnités chantier de l'autre, puis reste après tes dépenses.
     </p>
     <div class="scenario-strip">
       ${SCENARIO_META.map(
@@ -355,25 +355,59 @@ function renderSimulatorPanel() {
       ).join("")}
     </div>
     <div class="money-row">
-      ${scenarioBoxHtml("Pocket estimé", {
-        estimatedPocket: payroll.pocketAfterLiving,
-        estimatedPayslipNet: payroll.totalEstimatedNet,
-      }, "green")}
-      ${scenarioBoxHtml("Fiche estimée", {
-        estimatedPocket: payroll.totalEstimatedNet,
-        estimatedPayslipNet: payroll.totalEstimatedNet,
-      }, "gold")}
-      ${scenarioBoxHtml("Base nette", {
-        estimatedPocket: payroll.baseNetEstimate,
-        estimatedPayslipNet: payroll.baseNetEstimate,
-      }, "blue")}
+      ${scenarioBoxHtml(
+        "Net sur fiche",
+        {
+          estimatedCashAvailable: payroll.estimatedPayslipNet,
+          estimatedPayslipNet: payroll.estimatedPayslipNet,
+        },
+        "gold",
+        {
+          subline: `base ${money(payroll.baseNetEstimate)} · variables ${money(
+            payroll.taxableVariableNet,
+          )}`,
+        },
+      )}
+      ${scenarioBoxHtml(
+        "Indemnités",
+        {
+          estimatedCashAvailable: payroll.estimatedExpenseCoverage,
+          estimatedPayslipNet: payroll.estimatedPayslipNet,
+        },
+        "blue",
+        {
+          subline: `GD ${money(payroll.grandDeplacementBonus)} · repas ${money(
+            payroll.panierBonus,
+          )}`,
+        },
+      )}
+      ${scenarioBoxHtml(
+        "Cash avant dépenses",
+        {
+          estimatedCashAvailable: payroll.estimatedCashAvailable,
+          estimatedPayslipNet: payroll.estimatedPayslipNet,
+          estimatedExpenseCoverage: payroll.estimatedExpenseCoverage,
+        },
+        "green",
+      )}
+      ${scenarioBoxHtml(
+        "Reste après dépenses",
+        {
+          estimatedCashAvailable: payroll.pocketAfterLiving,
+          estimatedPayslipNet: payroll.estimatedPayslipNet,
+        },
+        "blue",
+        {
+          subline: `coût de vie ${money(payroll.livingCost)}`,
+        },
+      )}
     </div>
     <div class="range-grid">
-      ${simulatorRange("gdDays", "Grand déplacement", payrollState.gdDays, 0, 24, 1, "Jours indemnisés au mois.")}
-      ${simulatorRange("panierDays", "Paniers", payrollState.panierDays, 0, 24, 1, "Jours avec panier net estimé.")}
-      ${simulatorRange("nightShifts", "Nuits", payrollState.nightShifts, 0, 20, 1, "Nuits ou shifts de nuit estimés.")}
-      ${simulatorRange("weekendShifts", "Week-end", payrollState.weekendShifts, 0, 8, 1, "Week-end ou fériés travaillés.")}
-      ${simulatorRange("overtimeHours", "Heures sup", payrollState.overtimeHours, 0, 40, 2, "Heures sup nettes moyennes.")}
+      ${simulatorRange("gdDays", "Grand déplacement", payrollState.gdDays, 0, 24, 1, "Jours indemnisés hors salaire net.")}
+      ${simulatorRange("panierDays", "Paniers", payrollState.panierDays, 0, 24, 1, "Repas / chantier remboursés.")}
+      ${simulatorRange("nightShifts", "Nuits", payrollState.nightShifts, 0, 20, 1, "Primes nettes estimées par shift.")}
+      ${simulatorRange("weekendShifts", "Week-end", payrollState.weekendShifts, 0, 8, 1, "Majoration nette estimée.")}
+      ${simulatorRange("overtimeHours", "Heures sup", payrollState.overtimeHours, 0, 40, 2, "Calculées avec majoration 25 % puis 50 %.")}
       ${simulatorRange("livingCost", "Coût de vie", payrollState.livingCost, 300, 2000, 50, "Dépenses perso mensuelles estimées.")}
     </div>
     <div class="button-row">
@@ -401,16 +435,21 @@ function renderSimulatorPanel() {
     </div>
     <table class="breakdown-table">
       <tr><td>Base nette estimée</td><td>${money(payroll.baseNetEstimate)}</td></tr>
-      <tr><td>Prime nuit</td><td>${money(payroll.nightBonus)}</td></tr>
-      <tr><td>Week-end / fériés</td><td>${money(payroll.weekendBonus)}</td></tr>
-      <tr><td>Heures sup</td><td>${money(payroll.overtimeBonus)}</td></tr>
-      <tr><td>Grand déplacement</td><td>${money(payroll.grandDeplacementBonus)}</td></tr>
-      <tr><td>Paniers</td><td>${money(payroll.panierBonus)}</td></tr>
-      <tr><td>Environnement / risque</td><td>${money(payroll.riskBonus)}</td></tr>
-      <tr><td>Total estimé sur fiche</td><td>${money(payroll.totalEstimatedNet)}</td></tr>
+      <tr><td>Prime nuit estimée</td><td>${money(payroll.nightBonus)}</td></tr>
+      <tr><td>Week-end / fériés estimés</td><td>${money(payroll.weekendBonus)}</td></tr>
+      <tr><td>Heures sup estimées</td><td>${money(payroll.overtimeBonus)}</td></tr>
+      <tr><td>Prime environnement</td><td>${money(payroll.riskBonus)}</td></tr>
+      <tr><td><strong>Net sur fiche estimé</strong></td><td><strong>${money(payroll.estimatedPayslipNet)}</strong></td></tr>
+      <tr><td>Indemnités grand déplacement</td><td>${money(payroll.grandDeplacementBonus)}</td></tr>
+      <tr><td>Indemnités repas / paniers</td><td>${money(payroll.panierBonus)}</td></tr>
+      <tr><td><strong>Cash avant dépenses</strong></td><td><strong>${money(payroll.estimatedCashAvailable)}</strong></td></tr>
       <tr><td>Coût de vie</td><td>- ${money(payroll.livingCost)}</td></tr>
-      <tr><td><strong>Pocket estimé</strong></td><td><strong>${money(payroll.pocketAfterLiving)}</strong></td></tr>
+      <tr><td><strong>Reste après dépenses</strong></td><td><strong>${money(payroll.pocketAfterLiving)}</strong></td></tr>
     </table>
+    <p class="muted">
+      Le grand déplacement et les paniers sont traités ici comme indemnités de frais.
+      Ils ne remplacent pas le net salarial de la fiche.
+    </p>
   `;
 }
 
