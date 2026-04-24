@@ -64,7 +64,7 @@ function renderHero() {
       </div>
       <div class="button-row">
         <a class="button secondary" href="./parcours.html">Retour au tri</a>
-        <a class="button secondary" href="./tickets.html?search=${encodeURIComponent(lane.ticketsRequired[0] || lane.title)}">
+        <a class="button secondary" href="./tickets.html?id=${encodeURIComponent(lane.ticketsRequired[0] || "")}">
           Voir les tickets
         </a>
       </div>
@@ -133,10 +133,32 @@ function renderScorePanel() {
 }
 
 function renderPathPanel() {
+  const routeList = lane.careerQuest?.length ? lane.careerQuest : lane.entryPath;
+
   pathPanel.innerHTML = `
     <h3>Route d'entrée</h3>
+    ${
+      lane.entryTimeline
+        ? `
+          <div class="detail-facts">
+            <div class="detail-fact">
+              <span class="mini-label">Temps de formation</span>
+              <div>${escapeHtml(lane.entryTimeline.trainingDuration)}</div>
+            </div>
+            <div class="detail-fact">
+              <span class="mini-label">Avant premier job</span>
+              <div>${escapeHtml(lane.entryTimeline.firstJobWindow)}</div>
+            </div>
+            <div class="detail-fact">
+              <span class="mini-label">Mode d'accès crédible</span>
+              <div>${escapeHtml(lane.entryTimeline.accessMode)}</div>
+            </div>
+          </div>
+        `
+        : ""
+    }
     <div class="list">
-      ${lane.entryPath
+      ${routeList
         .map(
           (step, index) => `
             <div class="list-item">
@@ -147,10 +169,34 @@ function renderPathPanel() {
         )
         .join("")}
     </div>
+    ${
+      lane.fitChecks?.length
+        ? `
+          <div>
+            <span class="mini-label">Capacités à cocher</span>
+            <div class="pill-row">
+              ${lane.fitChecks.map((item) => pill(item, "blue")).join("")}
+            </div>
+          </div>
+        `
+        : ""
+    }
     <div class="warning-card">
       <strong>Modèle de paie dominant:</strong>
       ${escapeHtml(lane.payoutModel.join(" · "))}
     </div>
+    ${
+      lane.workPattern
+        ? `
+          <div class="warning-card">
+            <strong>Rythme de vie probable:</strong>
+            ${escapeHtml(lane.workPattern.summary)}
+            <br />
+            ${escapeHtml(lane.workPattern.stablePreset || "")}
+          </div>
+        `
+        : ""
+    }
   `;
 }
 
@@ -165,18 +211,49 @@ function renderTicketsPanel() {
   ticketsPanel.innerHTML = `
     <h3>Tickets à débloquer</h3>
     <p class="muted">Les tickets d'entrée ne sont pas interchangeables avec toute la filière.</p>
-    <div class="list">
+    <div class="ticket-grid compact-grid">
       ${required
         .map(
           (ticket, index) => `
-            <div class="list-item">
-              <span class="list-index">${index + 1}</span>
+            <article class="card ticket-detail-card">
+              <div class="pill-row">
+                ${pill(`Étape ${index + 1}`, "gold")}
+                ${pill(ticket.type, "blue")}
+              </div>
               <div>
                 <strong>${escapeHtml(ticket.name)}</strong>
                 <div class="muted">${escapeHtml(ticket.type)} · ${escapeHtml(ticket.duration)}</div>
                 <div class="muted">${escapeHtml(ticket.costRange)}</div>
               </div>
-            </div>
+              <p class="muted">${escapeHtml(ticket.summary || ticket.notes)}</p>
+              ${
+                ticket.jobReadiness
+                  ? `<div><span class="mini-label">Avant job</span><div>${escapeHtml(ticket.jobReadiness)}</div></div>`
+                  : ""
+              }
+              ${
+                ticket.accessMode
+                  ? `<div><span class="mini-label">Mode d'accès</span><div>${escapeHtml(ticket.accessMode)}</div></div>`
+                  : ""
+              }
+              ${
+                ticket.accessChecks?.length
+                  ? `
+                    <div>
+                      <span class="mini-label">Pré-requis concrets</span>
+                      <div class="pill-row">
+                        ${ticket.accessChecks.slice(0, 3).map((item) => pill(item, "orange")).join("")}
+                      </div>
+                    </div>
+                  `
+                  : ""
+              }
+              <div class="button-row">
+                <a class="button secondary" href="./tickets.html?id=${encodeURIComponent(ticket.id)}">
+                  Ouvrir le ticket
+                </a>
+              </div>
+            </article>
           `,
         )
         .join("")}
@@ -191,7 +268,7 @@ function renderTicketsPanel() {
                 .map((ticket) =>
                   linkChip(
                     ticket.name,
-                    `./tickets.html?search=${encodeURIComponent(ticket.name)}`,
+                    `./tickets.html?id=${encodeURIComponent(ticket.id)}`,
                   ),
                 )
                 .join("")}
@@ -335,12 +412,33 @@ function simulatorRange(field, label, value, min, max, step, help) {
 
 function renderSimulatorPanel() {
   const payroll = calculatePayroll(rule, payrollState);
+  const gdBounds = rule.sliderBounds?.gdDays || { min: 0, max: 31, step: 1 };
+  const panierBounds = rule.sliderBounds?.panierDays || { min: 0, max: 31, step: 1 };
+  const nightBounds = rule.sliderBounds?.nightShifts || { min: 0, max: 31, step: 1 };
+  const weekendBounds = rule.sliderBounds?.weekendShifts || { min: 0, max: 8, step: 1 };
+  const overtimeBounds = rule.sliderBounds?.overtimeHours || { min: 0, max: 50, step: 2 };
+  const livingBounds = rule.sliderBounds?.livingCost || { min: 300, max: 2000, step: 50 };
+  const scenarioPatternNote =
+    payrollState.scenario === "max"
+      ? rule.patternNotes?.maxPreset
+      : rule.patternNotes?.stablePreset;
 
   simulatorPanel.innerHTML = `
     <h3>Simulateur de fiche de paie</h3>
     <p class="muted">
       Lecture propre: net sur fiche d'un côté, indemnités chantier de l'autre, puis reste après tes dépenses.
     </p>
+    ${
+      rule.patternNotes?.summary
+        ? `
+          <div class="warning-card">
+            <strong>Pattern métier:</strong>
+            ${escapeHtml(rule.patternNotes.summary)}
+            ${scenarioPatternNote ? `<br />${escapeHtml(scenarioPatternNote)}` : ""}
+          </div>
+        `
+        : ""
+    }
     <div class="scenario-strip">
       ${SCENARIO_META.map(
         (scenario) => `
@@ -403,12 +501,12 @@ function renderSimulatorPanel() {
       )}
     </div>
     <div class="range-grid">
-      ${simulatorRange("gdDays", "Grand déplacement", payrollState.gdDays, 0, 24, 1, "Jours indemnisés hors salaire net.")}
-      ${simulatorRange("panierDays", "Paniers", payrollState.panierDays, 0, 24, 1, "Repas / chantier remboursés.")}
-      ${simulatorRange("nightShifts", "Nuits", payrollState.nightShifts, 0, 20, 1, "Primes nettes estimées par shift.")}
-      ${simulatorRange("weekendShifts", "Week-end", payrollState.weekendShifts, 0, 8, 1, "Majoration nette estimée.")}
-      ${simulatorRange("overtimeHours", "Heures sup", payrollState.overtimeHours, 0, 40, 2, "Calculées avec majoration 25 % puis 50 %.")}
-      ${simulatorRange("livingCost", "Coût de vie", payrollState.livingCost, 300, 2000, 50, "Dépenses perso mensuelles estimées.")}
+      ${simulatorRange("gdDays", "Grand déplacement", payrollState.gdDays, gdBounds.min, gdBounds.max, gdBounds.step, "Jours indemnisés hors salaire net.")}
+      ${simulatorRange("panierDays", "Paniers", payrollState.panierDays, panierBounds.min, panierBounds.max, panierBounds.step, "Repas / chantier remboursés.")}
+      ${simulatorRange("nightShifts", "Nuits", payrollState.nightShifts, nightBounds.min, nightBounds.max, nightBounds.step, "Primes nettes estimées par shift.")}
+      ${simulatorRange("weekendShifts", "Week-end", payrollState.weekendShifts, weekendBounds.min, weekendBounds.max, weekendBounds.step, "Majoration nette estimée.")}
+      ${simulatorRange("overtimeHours", "Heures sup", payrollState.overtimeHours, overtimeBounds.min, overtimeBounds.max, overtimeBounds.step, "Calculées avec majoration 25 % puis 50 %.")}
+      ${simulatorRange("livingCost", "Coût de vie", payrollState.livingCost, livingBounds.min, livingBounds.max, livingBounds.step, "Dépenses perso mensuelles estimées.")}
     </div>
     <div class="button-row">
       <button
@@ -507,13 +605,13 @@ async function init() {
   }
 
   rule = data.compensationMap.get(lane.id);
-  payrollState = createPayrollState(rule, "stable");
-
   const selection = mergeSelection(
     DEFAULT_SELECTION,
     loadSavedSelection(),
     parseSelectionFromUrl(),
   );
+  const initialScenario = selection.goal === "cash-max" ? "max" : "stable";
+  payrollState = createPayrollState(rule, initialScenario);
   ranking = scoreLanes(data.lanes, selection);
   rankedLane = scoreSingleLane(lane, data.lanes, selection);
 

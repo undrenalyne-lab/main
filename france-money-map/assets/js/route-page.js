@@ -168,6 +168,16 @@ function routeCardHtml(result, featured = false) {
           ${nextDoors.map((door) => pill(door, "blue")).join("")}
         </div>
       </div>
+      ${
+        lane.entryTimeline?.firstJobWindow
+          ? `
+            <div>
+              <span class="mini-label">Avant premier job</span>
+              <strong>${escapeHtml(lane.entryTimeline.firstJobWindow)}</strong>
+            </div>
+          `
+          : ""
+      }
       <div>
         <span class="mini-label">Cash stable avant dépenses</span>
         <strong>${money(lane.salaryStableScenario.estimatedCashAvailable)}</strong>
