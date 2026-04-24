@@ -300,8 +300,17 @@ export function matchesTicketSearch(ticket, search) {
       ticket.costRange,
       ticket.prerequisite,
       ticket.notes,
+      ticket.summary,
+      ticket.accessMode,
+      ticket.jobReadiness,
+      ticket.validity,
       ...(ticket.providerExamples || []),
       ...(ticket.branchLinks || []),
+      ...(ticket.accessChecks || []),
+      ...(ticket.capacityChecks || []),
+      ...(ticket.modules || []),
+      ...(ticket.doesNotOpen || []),
+      ...(ticket.targetRoles || []),
     ].join(" "),
   );
 

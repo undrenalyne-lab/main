@@ -69,6 +69,10 @@
   gap: 12px;
 }
 
+.compact-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
 .filter-bar {
   display: grid;
   gap: 14px;
@@ -107,5 +111,9 @@
 
   .detail-layout {
     grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  }
+
+  .detail-layout.compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

@@ -78,5 +78,69 @@
     "note": "3x8, CVC-électricité, BMS/GTB, environnement critique.",
     "kind": "public-source",
     "confidenceLevel": "high"
+  },
+  {
+    "id": "campusfer-ch1cb1-percheur",
+    "title": "CampusFer — CH1CB1 / KH1KB1 initiale",
+    "url": "https://www.campusfer.com/formation/travaux-catenaires-percheur-catenaire-ch1-cb1-initiale/",
+    "note": "Prérequis TES M et aptitude médicale/psychologique ; 5 jours / 35 h ; gestes métier percheur 1500 V / 25 kV.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  },
+  {
+    "id": "emploi-sncf-monteur-cables-aeriens",
+    "title": "Emploi SNCF — Monteur ou monteuse de câbles électriques aériens",
+    "url": "https://emploi.sncf.com/nos-metiers/maintenance-mecanique/monteur-cables-electriques-aeriens",
+    "note": "Horaires décalés, nuits, week-ends et jours fériés ; titre IV Opérateur caténaire à la prise de poste.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  },
+  {
+    "id": "france-travail-offre-monteur-catenaire-204xctb",
+    "title": "France Travail — Offre monteur caténaire (204XCTB)",
+    "url": "https://candidat.francetravail.fr/offres/recherche/detail/204XCTB",
+    "note": "Travaux en hauteur ; horaires décalés de nuit ou week-end possibles selon les chantiers.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  },
+  {
+    "id": "france-travail-pack-secufer-tesm-c0-lam-s9-ch1cb1",
+    "title": "France Travail — Pack sécurité ferroviaire + CH1 CB1",
+    "url": "https://monemploienidf.francetravail.fr/je-me-forme/formation/securite-ferroviaire-secufer-tes-m-c0-risques-catenaires-tsae-op-agent-lam-tsae-op-agent-prestataire-s9a1-tsae-op-ch1-cb1-7b8209f0",
+    "note": "Pack couvrant SECUFER, TES M, C0 risques caténaires, LAM, S9 et CH1-CB1 avec objectifs détaillés.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  },
+  {
+    "id": "omnifer-monteur-catenaires-initiale",
+    "title": "Omnifer — Monteur caténaires initiale",
+    "url": "https://www.omnifer.fr/action/monteur-catenaires-initiale/",
+    "note": "Prérequis SECUFER, C0, CH1CB1, ASP et travail en hauteur ; 40 jours / 280 h ; délai d'accès 8 jours à 3 mois.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  },
+  {
+    "id": "omnifer-tsae-ch1cb1-initiale",
+    "title": "Omnifer — TSAE CH1CB1 initiale",
+    "url": "https://www.omnifer.fr/action/tsae-ch1cb1-initiale/",
+    "note": "Prérequis 18 ans, français B1, SECUFER AAE, C0 et ASP ; 5 jours / 35 h ; perchage et connexions ligne/rail.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  },
+  {
+    "id": "sferis-ch1cb1",
+    "title": "Sferis — CH1 CB1",
+    "url": "https://www.sferis.fr/wp-content/uploads/2025/02/01_CH1-CB1.pdf",
+    "note": "B1, aptitudes médicales/psychologiques, SECUFER, C0 et TES M requis ; durée 5 jours / 35 h.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
+  },
+  {
+    "id": "sncf-reseau-operateur-catenaire",
+    "title": "SNCF Réseau — Titre opérateur caténaire",
+    "url": "https://www.sncf-reseau.com/medias-publics/2024-06/fiche_titre_catenaire_-_operateur_catenaire_-_decembre_2023_1_.pdf?VersionId=3kNvlFuSTEeyeZWrfMutXSKkoig_4eDi",
+    "note": "Formation certifiante en 14 mois en moyenne ; TES M, TES C, TES F et TSAE Agent LAM nécessaires pour exercer.",
+    "kind": "public-source",
+    "confidenceLevel": "high"
   }
 ]

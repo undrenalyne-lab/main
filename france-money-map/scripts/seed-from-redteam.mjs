@@ -4,6 +4,13 @@ import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 import Engine from "publicodes";
 import socialModel from "modele-social";
+import {
+  extraSources,
+  laneOverrides,
+  manualTickets,
+  scenarioPresetOverrides,
+  ticketOverrides,
+} from "./seed-overrides.mjs";
 
 const SOURCE_HTML =
   "/Users/undrenalyne/Downloads/france_money_map_v4_redteam.html";
@@ -105,12 +112,29 @@ const employerCategoryOverrides = {
 const publicSourceConfidence = {
   "francetravail.fr": "high",
   "francecompetences.fr": "high",
+  "emploi.sncf.com": "high",
+  "sncf-reseau.com": "high",
+  "omnifer.fr": "high",
+  "campusfer.com": "medium",
+  "sferis.fr": "medium",
   "colasrail.com": "medium",
   "tso.fr": "medium",
 };
 
 const baseNetCache = new Map();
 const overtimeRatioCache = new Map();
+const defaultSliderBounds = {
+  gdDays: { min: 0, max: 31, step: 1 },
+  panierDays: { min: 0, max: 31, step: 1 },
+  nightShifts: { min: 0, max: 31, step: 1 },
+  weekendShifts: { min: 0, max: 8, step: 1 },
+  overtimeHours: { min: 0, max: 50, step: 2 },
+  livingCost: { min: 300, max: 2000, step: 50 },
+};
+
+function uniqueValues(values) {
+  return Array.from(new Set(values.filter(Boolean)));
+}
 
 function withMutedConsole(run) {
   const warn = console.warn;
@@ -254,6 +278,22 @@ function inferPrerequisite(type) {
   return "Pré requis variables selon organisme, contexte chantier et employeur.";
 }
 
+function buildWorkPatternNotes(lane, scenarioPresets) {
+  const override = laneOverrides[lane.id]?.workPattern;
+  if (override) {
+    return override;
+  }
+
+  const stable = scenarioPresets.stable;
+  const max = scenarioPresets.max;
+
+  return {
+    summary: `${lane.branch} est piloté par ${lane.model.join(" · ").toLowerCase()}.`,
+    stablePreset: `Preset stable: ${stable.gdDays} GD, ${stable.panierDays} paniers, ${stable.nightShifts} nuits, ${stable.weekendShifts} week-ends, ${stable.overtimeHours} h sup.`,
+    maxPreset: `Preset max: ${max.gdDays} GD, ${max.panierDays} paniers, ${max.nightShifts} nuits, ${max.weekendShifts} week-ends, ${max.overtimeHours} h sup.`,
+  };
+}
+
 function extractDb(source) {
   const start = source.indexOf("const DB = ");
   const end = source.indexOf("const state=");
@@ -270,6 +310,11 @@ function extractDb(source) {
 }
 
 function scenarioPresetForLane(lane, tier) {
+  const override = scenarioPresetOverrides[lane.id];
+  if (override?.[tier]) {
+    return override[tier];
+  }
+
   const isCritical = lane.sector === "critical";
   const presets = {
     low: {
@@ -358,7 +403,7 @@ function normalizeLane(sourceLane, laneEmployerIds, sourceIds, compensationRule)
     sourceLane.ticketKeys.length,
   );
 
-  return {
+  const baseLane = {
     id: sourceLane.id,
     sector: sourceLane.sector,
     sectorLabel: sectorMeta[sourceLane.sector].name,
@@ -415,6 +460,92 @@ function normalizeLane(sourceLane, laneEmployerIds, sourceIds, compensationRule)
       `Balises source: ${sourceLane.sourceTags.join(", ")}`,
     ],
   };
+
+  const override = laneOverrides[sourceLane.id] || {};
+
+  return {
+    ...baseLane,
+    ...override,
+    tags: uniqueValues([...(baseLane.tags || []), ...(override.tags || [])]),
+    ticketsRequired: override.ticketsRequired || baseLane.ticketsRequired,
+    ticketsRecommended:
+      override.ticketsRecommended || baseLane.ticketsRecommended,
+    entryPath: override.entryPath || baseLane.entryPath,
+    opens: uniqueValues([...(baseLane.opens || []), ...(override.opens || [])]),
+    doesNotOpen: uniqueValues([
+      ...(baseLane.doesNotOpen || []),
+      ...(override.doesNotOpen || []),
+    ]),
+    rebounds: uniqueValues([
+      ...(baseLane.rebounds || []),
+      ...(override.rebounds || []),
+    ]),
+    verticalProgression: uniqueValues([
+      ...(baseLane.verticalProgression || []),
+      ...(override.verticalProgression || []),
+    ]),
+    applicationChannels: uniqueValues([
+      ...(baseLane.applicationChannels || []),
+      ...(override.applicationChannels || []),
+    ]),
+    sourceIds: uniqueValues([...(baseLane.sourceIds || []), ...(override.sourceIds || [])]),
+    notes: uniqueValues([...(baseLane.notes || []), ...(override.notes || [])]),
+  };
+}
+
+function normalizeTicketRecord(ticket, usage = null) {
+  const base = usage
+    ? {
+        id: ticket.id,
+        name: ticket.name,
+        type: ticket.type,
+        sectorLinks: Array.from(usage.sectors),
+        branchLinks: Array.from(usage.branches),
+        duration: ticket.duration,
+        costRange: ticket.cost,
+        prerequisite: inferPrerequisite(ticket.type),
+        opensLaneIds: Array.from(usage.lanes),
+        notes: `Ouvre surtout: ${ticket.opens.join(" · ")}`,
+        confidenceLevel: inferTicketConfidence(ticket.type),
+        providerExamples: parseProviderExamples(ticket.providers),
+      }
+    : { ...ticket };
+
+  const override = ticketOverrides[base.id] || {};
+
+  return {
+    ...base,
+    ...override,
+    sectorLinks: uniqueValues([
+      ...(override.sectorLinks || base.sectorLinks || []),
+    ]),
+    branchLinks: uniqueValues([
+      ...(override.branchLinks || base.branchLinks || []),
+    ]),
+    opensLaneIds: uniqueValues([
+      ...(override.opensLaneIds || base.opensLaneIds || []),
+    ]),
+    providerExamples: uniqueValues([
+      ...(override.providerExamples || base.providerExamples || []),
+    ]),
+    sourceIds: uniqueValues(override.sourceIds || base.sourceIds || []),
+    accessChecks: uniqueValues([
+      ...(override.accessChecks || base.accessChecks || []),
+    ]),
+    capacityChecks: uniqueValues([
+      ...(override.capacityChecks || base.capacityChecks || []),
+    ]),
+    modules: uniqueValues([...(override.modules || base.modules || [])]),
+    doesNotOpen: uniqueValues([
+      ...(override.doesNotOpen || base.doesNotOpen || []),
+    ]),
+    nextTicketIds: uniqueValues([
+      ...(override.nextTicketIds || base.nextTicketIds || []),
+    ]),
+    targetRoles: uniqueValues([
+      ...(override.targetRoles || base.targetRoles || []),
+    ]),
+  };
 }
 
 function inferEmployerCategory(name, count) {
@@ -463,14 +594,19 @@ function main() {
   const html = fs.readFileSync(SOURCE_HTML, "utf8");
   const db = extractDb(html);
 
-  const sources = db.sources.map((source) => ({
-    id: slugify(source.title),
-    title: source.title,
-    url: source.url,
-    note: source.note,
-    kind: "public-source",
-    confidenceLevel: sourceConfidence(source.url),
-  }));
+  const sources = uniqueValues([
+    ...db.sources.map((source) =>
+      JSON.stringify({
+        id: slugify(source.title),
+        title: source.title,
+        url: source.url,
+        note: source.note,
+        kind: "public-source",
+        confidenceLevel: sourceConfidence(source.url),
+      }),
+    ),
+    ...extraSources.map((source) => JSON.stringify(source)),
+  ]).map((value) => JSON.parse(value));
 
   const employerAccumulator = new Map();
   const laneSourceIdMap = new Map();
@@ -540,6 +676,8 @@ function main() {
       livingCostDefault: lane.pay.living,
       regularityIndex: lane.pay.regularity,
       scenarioPresets,
+      sliderBounds: defaultSliderBounds,
+      patternNotes: buildWorkPatternNotes(lane, scenarioPresets),
       scenarioOutputs: {
         low: calculateScenario(lane.baseGrossMed, lane.pay, scenarioPresets.low),
         stable: calculateScenario(
@@ -590,29 +728,17 @@ function main() {
     });
   });
 
-  const tickets = Object.entries(db.catalog)
-    .map(([id, ticket]) => {
-      const usage = ticketUsage.get(id) || {
-        sectors: new Set(),
-        branches: new Set(),
-        lanes: new Set(),
-      };
+  const generatedTickets = Object.entries(db.catalog).map(([id, ticket]) => {
+    const usage = ticketUsage.get(id) || {
+      sectors: new Set(),
+      branches: new Set(),
+      lanes: new Set(),
+    };
 
-      return {
-        id,
-        name: ticket.name,
-        type: ticket.type,
-        sectorLinks: Array.from(usage.sectors),
-        branchLinks: Array.from(usage.branches),
-        duration: ticket.duration,
-        costRange: ticket.cost,
-        prerequisite: inferPrerequisite(ticket.type),
-        opensLaneIds: Array.from(usage.lanes),
-        notes: `Ouvre surtout: ${ticket.opens.join(" · ")}`,
-        confidenceLevel: inferTicketConfidence(ticket.type),
-        providerExamples: parseProviderExamples(ticket.providers),
-      };
-    })
+    return normalizeTicketRecord({ id, ...ticket }, usage);
+  });
+
+  const tickets = [...generatedTickets, ...manualTickets.map((ticket) => normalizeTicketRecord(ticket))]
     .sort((left, right) => left.name.localeCompare(right.name, "fr"));
 
   const employers = Array.from(employerAccumulator.values())

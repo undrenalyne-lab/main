@@ -328,6 +328,41 @@
   background: var(--blue-soft);
   color: var(--blue);
   font-size: 0.84rem;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.link-chip:hover {
+  filter: brightness(1.08);
+}
+
+.detail-facts {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.detail-fact {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ticket-detail-panel,
+.ticket-detail-head,
+.ticket-detail-card {
+  display: grid;
+  gap: 12px;
+}
+
+.ticket-card.is-active {
+  border-color: rgba(255, 125, 48, 0.35);
+  box-shadow: 0 0 0 1px rgba(255, 125, 48, 0.2);
 }
 
 .score-grid {
