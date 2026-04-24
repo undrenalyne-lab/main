@@ -40,6 +40,46 @@
     ]
   },
   {
+    "id": "adecco-medical",
+    "name": "Adecco Medical",
+    "category": "interim",
+    "sectors": [
+      "health"
+    ],
+    "branches": [
+      "IDE intérim nuit / bloc / réanimation"
+    ],
+    "url": "https://www.adecco.fr/medical/",
+    "applyChannel": "site carrière / intérim",
+    "notes": [
+      "intérim paramédical"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "health_ide"
+    ]
+  },
+  {
+    "id": "airbus",
+    "name": "Airbus",
+    "category": "major",
+    "sectors": [
+      "aero"
+    ],
+    "branches": [
+      "Maintenance aéronautique / MRO / défense"
+    ],
+    "url": "https://www.airbus.com/en/careers",
+    "applyChannel": "site carrière",
+    "notes": [
+      "maintenance / défense / qualité"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "aero_mro"
+    ]
+  },
+  {
     "id": "apave",
     "name": "Apave",
     "category": "specialist",
@@ -57,6 +97,26 @@
     "confidenceLevel": "medium",
     "laneIds": [
       "nuc_cnd"
+    ]
+  },
+  {
+    "id": "appel-medical",
+    "name": "Appel Médical",
+    "category": "interim",
+    "sectors": [
+      "health"
+    ],
+    "branches": [
+      "IDE intérim nuit / bloc / réanimation"
+    ],
+    "url": "https://www.appelmedical.com/",
+    "applyChannel": "site carrière / intérim",
+    "notes": [
+      "intérim paramédical"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "health_ide"
     ]
   },
   {
@@ -117,6 +177,26 @@
     "confidenceLevel": "low",
     "laneIds": [
       "spec_tuyaut"
+    ]
+  },
+  {
+    "id": "bourbon",
+    "name": "Bourbon",
+    "category": "specialist",
+    "sectors": [
+      "maritime"
+    ],
+    "branches": [
+      "Maintenance navale / offshore"
+    ],
+    "url": "https://www.bourbonoffshore.com/careers/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "offshore / rotations"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "mar_offshore"
     ]
   },
   {
@@ -204,6 +284,26 @@
     ]
   },
   {
+    "id": "chantiers-de-l-atlantique",
+    "name": "Chantiers de l'Atlantique",
+    "category": "major",
+    "sectors": [
+      "maritime"
+    ],
+    "branches": [
+      "Maintenance navale / offshore"
+    ],
+    "url": "https://www.chantiers-atlantique.com/carrieres/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "naval / grands ensembles"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "mar_offshore"
+    ]
+  },
+  {
     "id": "colas-rail",
     "name": "Colas Rail",
     "category": "major",
@@ -239,6 +339,26 @@
       "ferro_tel",
       "ferro_eale",
       "ferro_ct"
+    ]
+  },
+  {
+    "id": "cooperl",
+    "name": "Cooperl",
+    "category": "major",
+    "sectors": [
+      "agro"
+    ],
+    "branches": [
+      "Process agro 5x8"
+    ],
+    "url": "https://carrieres.cooperl.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "agro industriel / posté"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "agro_5x8"
     ]
   },
   {
@@ -363,6 +483,28 @@
     "confidenceLevel": "low",
     "laneIds": [
       "spec_levage"
+    ]
+  },
+  {
+    "id": "eiffage-genie-civil",
+    "name": "Eiffage Génie Civil",
+    "category": "major",
+    "sectors": [
+      "construction"
+    ],
+    "branches": [
+      "TP en grand déplacement",
+      "Tunnel / ouvrages souterrains"
+    ],
+    "url": "https://jobs.eiffage.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "génie civil / ouvrages"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "btp_gd",
+      "btp_tunnel"
     ]
   },
   {
@@ -647,6 +789,66 @@
     ]
   },
   {
+    "id": "geodis-road",
+    "name": "GEODIS Road Transport",
+    "category": "major",
+    "sectors": [
+      "transport"
+    ],
+    "branches": [
+      "Transport exceptionnel / ADR / convois"
+    ],
+    "url": "https://careers.geodis.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "transport routier / spécialisé"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "transport_adr"
+    ]
+  },
+  {
+    "id": "groupe-bigard",
+    "name": "Groupe Bigard",
+    "category": "major",
+    "sectors": [
+      "agro"
+    ],
+    "branches": [
+      "Process agro 5x8"
+    ],
+    "url": "https://www.bigard.fr/recrutement/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "agro / froid / cadence"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "agro_5x8"
+    ]
+  },
+  {
+    "id": "groupe-charles-andre",
+    "name": "Groupe Charles André",
+    "category": "specialist",
+    "sectors": [
+      "transport"
+    ],
+    "branches": [
+      "Transport exceptionnel / ADR / convois"
+    ],
+    "url": "https://www.gca-groupe.com/recrutement/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "transport spécialisé / matières dangereuses"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "transport_adr"
+    ]
+  },
+  {
     "id": "groupe-d-s",
     "name": "Groupe D&S",
     "category": "specialist",
@@ -747,6 +949,26 @@
     ]
   },
   {
+    "id": "lactalis",
+    "name": "Lactalis",
+    "category": "major",
+    "sectors": [
+      "agro"
+    ],
+    "branches": [
+      "Process agro 5x8"
+    ],
+    "url": "https://careers.lactalis.com/fr/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "process continu / maintenance / conduite"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "agro_5x8"
+    ]
+  },
+  {
     "id": "mainteneurs-regionaux-de-parcs",
     "name": "Mainteneurs régionaux de parcs",
     "category": "specialist",
@@ -784,6 +1006,48 @@
     "confidenceLevel": "low",
     "laneIds": [
       "spec_levage"
+    ]
+  },
+  {
+    "id": "naval-group",
+    "name": "Naval Group",
+    "category": "major",
+    "sectors": [
+      "maritime"
+    ],
+    "branches": [
+      "Maintenance navale / offshore"
+    ],
+    "url": "https://www.naval-group.com/fr/talents",
+    "applyChannel": "site carrière",
+    "notes": [
+      "maintenance navale / défense"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "mar_offshore"
+    ]
+  },
+  {
+    "id": "nge",
+    "name": "NGE",
+    "category": "major",
+    "sectors": [
+      "construction"
+    ],
+    "branches": [
+      "TP en grand déplacement",
+      "Tunnel / ouvrages souterrains"
+    ],
+    "url": "https://www.groupe-nge.com/recrutement/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "majors TP / mobilité chantier"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "btp_gd",
+      "btp_tunnel"
     ]
   },
   {
@@ -844,6 +1108,46 @@
     "confidenceLevel": "low",
     "laneIds": [
       "ren_hta"
+    ]
+  },
+  {
+    "id": "omexom",
+    "name": "Omexom",
+    "category": "major",
+    "sectors": [
+      "energy"
+    ],
+    "branches": [
+      "Réseaux HT / lignard / postes"
+    ],
+    "url": "https://www.omexom.com/fr/carrieres/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "lignes / postes / réseaux"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "energy_lignard"
+    ]
+  },
+  {
+    "id": "onet-securite",
+    "name": "Onet Sécurité",
+    "category": "major",
+    "sectors": [
+      "security"
+    ],
+    "branches": [
+      "Sûreté nucléaire / site sensible"
+    ],
+    "url": "https://www.groupeonet.com/carrieres/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "sites sensibles / sûreté"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "sec_sensitive"
     ]
   },
   {
@@ -939,6 +1243,26 @@
     "confidenceLevel": "low",
     "laneIds": [
       "nuc_echaf"
+    ]
+  },
+  {
+    "id": "ortec-environnement",
+    "name": "Ortec Environnement",
+    "category": "major",
+    "sectors": [
+      "environment"
+    ],
+    "branches": [
+      "Désamiantage / dépollution / déchets dangereux"
+    ],
+    "url": "https://www.ortec-group.com/fr/carrieres",
+    "applyChannel": "site carrière",
+    "notes": [
+      "dépollution / déchets / environnement"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "env_ss4"
     ]
   },
   {
@@ -1386,6 +1710,88 @@
     ]
   },
   {
+    "id": "razel-bec",
+    "name": "Razel-Bec",
+    "category": "major",
+    "sectors": [
+      "construction"
+    ],
+    "branches": [
+      "TP en grand déplacement",
+      "Tunnel / ouvrages souterrains"
+    ],
+    "url": "https://www.razel-bec.fayat.com/fr/carrieres",
+    "applyChannel": "site carrière",
+    "notes": [
+      "génie civil / tunnel / grands chantiers"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "btp_gd",
+      "btp_tunnel"
+    ]
+  },
+  {
+    "id": "rte",
+    "name": "RTE",
+    "category": "major",
+    "sectors": [
+      "energy"
+    ],
+    "branches": [
+      "Réseaux HT / lignard / postes"
+    ],
+    "url": "https://www.rte-france.com/rejoignez-nos-equipes",
+    "applyChannel": "site carrière",
+    "notes": [
+      "réseaux / postes / astreintes"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "energy_lignard"
+    ]
+  },
+  {
+    "id": "sabena-technics",
+    "name": "Sabena Technics",
+    "category": "specialist",
+    "sectors": [
+      "aero"
+    ],
+    "branches": [
+      "Maintenance aéronautique / MRO / défense"
+    ],
+    "url": "https://www.sabenatechnics.com/careers/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "MRO"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "aero_mro"
+    ]
+  },
+  {
+    "id": "safran",
+    "name": "Safran",
+    "category": "major",
+    "sectors": [
+      "aero"
+    ],
+    "branches": [
+      "Maintenance aéronautique / MRO / défense"
+    ],
+    "url": "https://www.safran-group.com/fr/talents",
+    "applyChannel": "site carrière",
+    "notes": [
+      "aéronautique / moteurs / maintenance"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "aero_mro"
+    ]
+  },
+  {
     "id": "sarens",
     "name": "Sarens",
     "category": "specialist",
@@ -1423,6 +1829,46 @@
     "confidenceLevel": "low",
     "laneIds": [
       "ferro_sec"
+    ]
+  },
+  {
+    "id": "seche-environnement",
+    "name": "Séché Environnement",
+    "category": "major",
+    "sectors": [
+      "environment"
+    ],
+    "branches": [
+      "Désamiantage / dépollution / déchets dangereux"
+    ],
+    "url": "https://careers.seche.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "déchets dangereux / environnement"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "env_ss4"
+    ]
+  },
+  {
+    "id": "seris-security",
+    "name": "Seris Security",
+    "category": "major",
+    "sectors": [
+      "security"
+    ],
+    "branches": [
+      "Sûreté nucléaire / site sensible"
+    ],
+    "url": "https://careers.seris.fr/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "sécurité privée / sites sensibles"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "sec_sensitive"
     ]
   },
   {
@@ -1577,6 +2023,26 @@
     ]
   },
   {
+    "id": "spie-citynetworks",
+    "name": "SPIE CityNetworks",
+    "category": "major",
+    "sectors": [
+      "energy"
+    ],
+    "branches": [
+      "Réseaux HT / lignard / postes"
+    ],
+    "url": "https://www.spie-job.com/",
+    "applyChannel": "site carrière",
+    "notes": [
+      "réseaux / travaux extérieurs"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "energy_lignard"
+    ]
+  },
+  {
     "id": "spie-facilities",
     "name": "SPIE Facilities",
     "category": "major",
@@ -1670,6 +2136,26 @@
     "laneIds": [
       "ferro_sig",
       "ferro_tel"
+    ]
+  },
+  {
+    "id": "veolia-depollution",
+    "name": "Veolia",
+    "category": "major",
+    "sectors": [
+      "environment"
+    ],
+    "branches": [
+      "Désamiantage / dépollution / déchets dangereux"
+    ],
+    "url": "https://www.veolia.com/fr/carrieres",
+    "applyChannel": "site carrière",
+    "notes": [
+      "déchets / eau / environnement"
+    ],
+    "confidenceLevel": "medium",
+    "laneIds": [
+      "env_ss4"
     ]
   },
   {

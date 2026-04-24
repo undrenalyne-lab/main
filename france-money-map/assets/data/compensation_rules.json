@@ -3377,5 +3377,1479 @@
       "Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.",
       "Fourchette pocket observée dans la base source: 3.0–4.1k pocket -> 4.0–5.0k pocket"
     ]
+  },
+  {
+    "laneId": "btp_gd",
+    "baseGrossMonthly": 2500,
+    "baseNetMonthly": 1957,
+    "netRatio": 0.78,
+    "ratios": {
+      "overtimeNet": 0.905
+    },
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 28,
+      "weekendPerShiftNet": 55,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 30
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 8,
+        "panierDays": 10,
+        "nightShifts": 1,
+        "weekendShifts": 1,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 18,
+        "panierDays": 18,
+        "nightShifts": 3,
+        "weekendShifts": 1,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 26,
+        "panierDays": 24,
+        "nightShifts": 6,
+        "weekendShifts": 3,
+        "overtimeHours": 26,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "sliderBounds": {
+      "gdDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "panierDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "nightShifts": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "weekendShifts": {
+        "min": 0,
+        "max": 8,
+        "step": 1
+      },
+      "overtimeHours": {
+        "min": 0,
+        "max": 50,
+        "step": 2
+      },
+      "livingCost": {
+        "min": 300,
+        "max": 2000,
+        "step": 50
+      }
+    },
+    "patternNotes": {
+      "summary": "TP en grand déplacement est piloté par base chantier · igd · heures sup · mobilité.",
+      "stablePreset": "Preset stable: 18 GD, 18 paniers, 3 nuits, 1 week-ends, 16 h sup.",
+      "maxPreset": "Preset max: 26 GD, 24 paniers, 6 nuits, 3 week-ends, 26 h sup."
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1957,
+        "nightBonus": 28,
+        "weekendBonus": 55,
+        "overtimeBonus": 149,
+        "grandDeplacementBonus": 626,
+        "panierBonus": 104,
+        "riskBonus": 30,
+        "taxableVariableNet": 262,
+        "estimatedPayslipNet": 2219,
+        "estimatedExpenseCoverage": 730,
+        "estimatedCashAvailable": 2949,
+        "estimatedPocket": 2049,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 1957,
+        "nightBonus": 84,
+        "weekendBonus": 55,
+        "overtimeBonus": 328,
+        "grandDeplacementBonus": 1408,
+        "panierBonus": 187,
+        "riskBonus": 30,
+        "taxableVariableNet": 497,
+        "estimatedPayslipNet": 2454,
+        "estimatedExpenseCoverage": 1595,
+        "estimatedCashAvailable": 4049,
+        "estimatedPocket": 3149,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 1957,
+        "nightBonus": 168,
+        "weekendBonus": 165,
+        "overtimeBonus": 552,
+        "grandDeplacementBonus": 2033,
+        "panierBonus": 250,
+        "riskBonus": 30,
+        "taxableVariableNet": 915,
+        "estimatedPayslipNet": 2872,
+        "estimatedExpenseCoverage": 2283,
+        "estimatedCashAvailable": 5155,
+        "estimatedPocket": 4255,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base chantier",
+      "IGD",
+      "heures sup",
+      "mobilité"
+    ],
+    "notes": [
+      "Base manuelle atlas: 2200–2900 brut mensuel.",
+      "Net de base recalé via modele-social (moteur Mon Entreprise / Urssaf).",
+      "Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.",
+      "Preset dérivé des notes atlas fournies par l'utilisateur."
+    ]
+  },
+  {
+    "laneId": "btp_tunnel",
+    "baseGrossMonthly": 2800,
+    "baseNetMonthly": 2195,
+    "netRatio": 0.78,
+    "ratios": {
+      "overtimeNet": 0.905
+    },
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 32,
+      "weekendPerShiftNet": 65,
+      "overtimePerHourNet": 18,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 120
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 5,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 10,
+        "panierDays": 12,
+        "nightShifts": 4,
+        "weekendShifts": 1,
+        "overtimeHours": 10,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 20,
+        "panierDays": 20,
+        "nightShifts": 8,
+        "weekendShifts": 2,
+        "overtimeHours": 18,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 28,
+        "panierDays": 26,
+        "nightShifts": 14,
+        "weekendShifts": 4,
+        "overtimeHours": 28,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "sliderBounds": {
+      "gdDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "panierDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "nightShifts": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "weekendShifts": {
+        "min": 0,
+        "max": 8,
+        "step": 1
+      },
+      "overtimeHours": {
+        "min": 0,
+        "max": 50,
+        "step": 2
+      },
+      "livingCost": {
+        "min": 300,
+        "max": 2000,
+        "step": 50
+      }
+    },
+    "patternNotes": {
+      "summary": "Tunnel / ouvrages souterrains est piloté par base tp · prime tunnel · gd · nuit · heures sup.",
+      "stablePreset": "Preset stable: 20 GD, 20 paniers, 8 nuits, 2 week-ends, 18 h sup.",
+      "maxPreset": "Preset max: 28 GD, 26 paniers, 14 nuits, 4 week-ends, 28 h sup."
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2195,
+        "nightBonus": 128,
+        "weekendBonus": 65,
+        "overtimeBonus": 217,
+        "grandDeplacementBonus": 782,
+        "panierBonus": 125,
+        "riskBonus": 120,
+        "taxableVariableNet": 530,
+        "estimatedPayslipNet": 2725,
+        "estimatedExpenseCoverage": 907,
+        "estimatedCashAvailable": 3631,
+        "estimatedPocket": 2731,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 2195,
+        "nightBonus": 256,
+        "weekendBonus": 130,
+        "overtimeBonus": 418,
+        "grandDeplacementBonus": 1564,
+        "panierBonus": 208,
+        "riskBonus": 120,
+        "taxableVariableNet": 924,
+        "estimatedPayslipNet": 3118,
+        "estimatedExpenseCoverage": 1772,
+        "estimatedCashAvailable": 4890,
+        "estimatedPocket": 3990,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 2195,
+        "nightBonus": 448,
+        "weekendBonus": 260,
+        "overtimeBonus": 668,
+        "grandDeplacementBonus": 2190,
+        "panierBonus": 270,
+        "riskBonus": 120,
+        "taxableVariableNet": 1496,
+        "estimatedPayslipNet": 3691,
+        "estimatedExpenseCoverage": 2460,
+        "estimatedCashAvailable": 6151,
+        "estimatedPocket": 5251,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base TP",
+      "prime tunnel",
+      "GD",
+      "nuit",
+      "heures sup"
+    ],
+    "notes": [
+      "Base manuelle atlas: 2400–3200 brut mensuel.",
+      "Net de base recalé via modele-social (moteur Mon Entreprise / Urssaf).",
+      "Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.",
+      "Preset dérivé des notes atlas fournies par l'utilisateur."
+    ]
+  },
+  {
+    "laneId": "energy_lignard",
+    "baseGrossMonthly": 2900,
+    "baseNetMonthly": 2274,
+    "netRatio": 0.78,
+    "ratios": {
+      "overtimeNet": 0.905
+    },
+    "mobility": {
+      "provinceDaily": 78.2,
+      "parisDaily": 98
+    },
+    "allowances": {
+      "nightPerShiftNet": 35,
+      "weekendPerShiftNet": 70,
+      "overtimePerHourNet": 18,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 100
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 6,
+        "panierDays": 8,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 14,
+        "panierDays": 14,
+        "nightShifts": 6,
+        "weekendShifts": 2,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 22,
+        "panierDays": 20,
+        "nightShifts": 10,
+        "weekendShifts": 4,
+        "overtimeHours": 24,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "sliderBounds": {
+      "gdDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "panierDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "nightShifts": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "weekendShifts": {
+        "min": 0,
+        "max": 8,
+        "step": 1
+      },
+      "overtimeHours": {
+        "min": 0,
+        "max": 50,
+        "step": 2
+      },
+      "livingCost": {
+        "min": 300,
+        "max": 2000,
+        "step": 50
+      }
+    },
+    "patternNotes": {
+      "summary": "Réseaux HT / lignard / postes est piloté par base énergie · astreinte · heures sup · mobilité · prime risque.",
+      "stablePreset": "Preset stable: 14 GD, 14 paniers, 6 nuits, 2 week-ends, 16 h sup.",
+      "maxPreset": "Preset max: 22 GD, 20 paniers, 10 nuits, 4 week-ends, 24 h sup."
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2274,
+        "nightBonus": 70,
+        "weekendBonus": 70,
+        "overtimeBonus": 173,
+        "grandDeplacementBonus": 469,
+        "panierBonus": 83,
+        "riskBonus": 100,
+        "taxableVariableNet": 413,
+        "estimatedPayslipNet": 2687,
+        "estimatedExpenseCoverage": 552,
+        "estimatedCashAvailable": 3239,
+        "estimatedPocket": 2339,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 2274,
+        "nightBonus": 210,
+        "weekendBonus": 140,
+        "overtimeBonus": 381,
+        "grandDeplacementBonus": 1095,
+        "panierBonus": 146,
+        "riskBonus": 100,
+        "taxableVariableNet": 831,
+        "estimatedPayslipNet": 3104,
+        "estimatedExpenseCoverage": 1240,
+        "estimatedCashAvailable": 4345,
+        "estimatedPocket": 3445,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 2274,
+        "nightBonus": 350,
+        "weekendBonus": 280,
+        "overtimeBonus": 588,
+        "grandDeplacementBonus": 1720,
+        "panierBonus": 208,
+        "riskBonus": 100,
+        "taxableVariableNet": 1318,
+        "estimatedPayslipNet": 3592,
+        "estimatedExpenseCoverage": 1928,
+        "estimatedCashAvailable": 5520,
+        "estimatedPocket": 4620,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base énergie",
+      "astreinte",
+      "heures sup",
+      "mobilité",
+      "prime risque"
+    ],
+    "notes": [
+      "Base manuelle atlas: 2500–3300 brut mensuel.",
+      "Net de base recalé via modele-social (moteur Mon Entreprise / Urssaf).",
+      "Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.",
+      "Preset dérivé des notes atlas fournies par l'utilisateur."
+    ]
+  },
+  {
+    "laneId": "mar_offshore",
+    "baseGrossMonthly": 3000,
+    "baseNetMonthly": 2353,
+    "netRatio": 0.78,
+    "ratios": {
+      "overtimeNet": 0.905
+    },
+    "mobility": {
+      "provinceDaily": 65,
+      "parisDaily": 85
+    },
+    "allowances": {
+      "nightPerShiftNet": 35,
+      "weekendPerShiftNet": 70,
+      "overtimePerHourNet": 18,
+      "panierPerDayNet": 14,
+      "environmentMonthlyNet": 120
+    },
+    "livingCostDefault": 750,
+    "regularityIndex": 5,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 10,
+        "panierDays": 15,
+        "nightShifts": 4,
+        "weekendShifts": 1,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 20,
+        "panierDays": 24,
+        "nightShifts": 8,
+        "weekendShifts": 2,
+        "overtimeHours": 16,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 28,
+        "panierDays": 28,
+        "nightShifts": 14,
+        "weekendShifts": 4,
+        "overtimeHours": 24,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "sliderBounds": {
+      "gdDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "panierDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "nightShifts": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "weekendShifts": {
+        "min": 0,
+        "max": 8,
+        "step": 1
+      },
+      "overtimeHours": {
+        "min": 0,
+        "max": 50,
+        "step": 2
+      },
+      "livingCost": {
+        "min": 300,
+        "max": 2000,
+        "step": 50
+      }
+    },
+    "patternNotes": {
+      "summary": "Maintenance navale / offshore est piloté par base embarquée · rotation · heures sup · primes offshore · dépenses compressées.",
+      "stablePreset": "Preset stable: 20 GD, 24 paniers, 8 nuits, 2 week-ends, 16 h sup.",
+      "maxPreset": "Preset max: 28 GD, 28 paniers, 14 nuits, 4 week-ends, 24 h sup."
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2353,
+        "nightBonus": 140,
+        "weekendBonus": 70,
+        "overtimeBonus": 179,
+        "grandDeplacementBonus": 650,
+        "panierBonus": 210,
+        "riskBonus": 120,
+        "taxableVariableNet": 509,
+        "estimatedPayslipNet": 2862,
+        "estimatedExpenseCoverage": 860,
+        "estimatedCashAvailable": 3722,
+        "estimatedPocket": 2972,
+        "livingCostDefault": 750
+      },
+      "stable": {
+        "baseNetEstimate": 2353,
+        "nightBonus": 280,
+        "weekendBonus": 140,
+        "overtimeBonus": 394,
+        "grandDeplacementBonus": 1300,
+        "panierBonus": 336,
+        "riskBonus": 120,
+        "taxableVariableNet": 934,
+        "estimatedPayslipNet": 3287,
+        "estimatedExpenseCoverage": 1636,
+        "estimatedCashAvailable": 4923,
+        "estimatedPocket": 4173,
+        "livingCostDefault": 750
+      },
+      "max": {
+        "baseNetEstimate": 2353,
+        "nightBonus": 490,
+        "weekendBonus": 280,
+        "overtimeBonus": 608,
+        "grandDeplacementBonus": 1820,
+        "panierBonus": 392,
+        "riskBonus": 120,
+        "taxableVariableNet": 1498,
+        "estimatedPayslipNet": 3851,
+        "estimatedExpenseCoverage": 2212,
+        "estimatedCashAvailable": 6063,
+        "estimatedPocket": 5313,
+        "livingCostDefault": 750
+      }
+    },
+    "payoutModel": [
+      "Base embarquée",
+      "rotation",
+      "heures sup",
+      "primes offshore",
+      "dépenses compressées"
+    ],
+    "notes": [
+      "Base manuelle atlas: 2500–3500 brut mensuel.",
+      "Net de base recalé via modele-social (moteur Mon Entreprise / Urssaf).",
+      "Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.",
+      "Preset dérivé des notes atlas fournies par l'utilisateur."
+    ]
+  },
+  {
+    "laneId": "aero_mro",
+    "baseGrossMonthly": 2900,
+    "baseNetMonthly": 2274,
+    "netRatio": 0.78,
+    "ratios": {
+      "overtimeNet": 0.905
+    },
+    "mobility": {
+      "provinceDaily": 0,
+      "parisDaily": 0
+    },
+    "allowances": {
+      "nightPerShiftNet": 32,
+      "weekendPerShiftNet": 65,
+      "overtimePerHourNet": 16,
+      "panierPerDayNet": 0,
+      "environmentMonthlyNet": 60
+    },
+    "livingCostDefault": 950,
+    "regularityIndex": 7,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 0,
+        "panierDays": 0,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 0,
+        "panierDays": 0,
+        "nightShifts": 6,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 0,
+        "panierDays": 0,
+        "nightShifts": 12,
+        "weekendShifts": 4,
+        "overtimeHours": 14,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "sliderBounds": {
+      "gdDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "panierDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "nightShifts": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "weekendShifts": {
+        "min": 0,
+        "max": 8,
+        "step": 1
+      },
+      "overtimeHours": {
+        "min": 0,
+        "max": 50,
+        "step": 2
+      },
+      "livingCost": {
+        "min": 300,
+        "max": 2000,
+        "step": 50
+      }
+    },
+    "patternNotes": {
+      "summary": "Maintenance aéronautique / MRO / défense est piloté par base technique · horaires décalés · qualité / défense.",
+      "stablePreset": "Preset stable: 0 GD, 0 paniers, 6 nuits, 2 week-ends, 8 h sup.",
+      "maxPreset": "Preset max: 0 GD, 0 paniers, 12 nuits, 4 week-ends, 14 h sup."
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2274,
+        "nightBonus": 64,
+        "weekendBonus": 65,
+        "overtimeBonus": 86,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 0,
+        "riskBonus": 60,
+        "taxableVariableNet": 275,
+        "estimatedPayslipNet": 2549,
+        "estimatedExpenseCoverage": 0,
+        "estimatedCashAvailable": 2549,
+        "estimatedPocket": 1599,
+        "livingCostDefault": 950
+      },
+      "stable": {
+        "baseNetEstimate": 2274,
+        "nightBonus": 192,
+        "weekendBonus": 130,
+        "overtimeBonus": 173,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 0,
+        "riskBonus": 60,
+        "taxableVariableNet": 555,
+        "estimatedPayslipNet": 2829,
+        "estimatedExpenseCoverage": 0,
+        "estimatedCashAvailable": 2829,
+        "estimatedPocket": 1879,
+        "livingCostDefault": 950
+      },
+      "max": {
+        "baseNetEstimate": 2274,
+        "nightBonus": 384,
+        "weekendBonus": 260,
+        "overtimeBonus": 329,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 0,
+        "riskBonus": 60,
+        "taxableVariableNet": 1033,
+        "estimatedPayslipNet": 3306,
+        "estimatedExpenseCoverage": 0,
+        "estimatedCashAvailable": 3306,
+        "estimatedPocket": 2356,
+        "livingCostDefault": 950
+      }
+    },
+    "payoutModel": [
+      "Base technique",
+      "horaires décalés",
+      "qualité / défense"
+    ],
+    "notes": [
+      "Base manuelle atlas: 2400–3400 brut mensuel.",
+      "Net de base recalé via modele-social (moteur Mon Entreprise / Urssaf).",
+      "Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.",
+      "Preset dérivé des notes atlas fournies par l'utilisateur."
+    ]
+  },
+  {
+    "laneId": "transport_adr",
+    "baseGrossMonthly": 2500,
+    "baseNetMonthly": 1957,
+    "netRatio": 0.78,
+    "ratios": {
+      "overtimeNet": 0.905
+    },
+    "mobility": {
+      "provinceDaily": 35,
+      "parisDaily": 45
+    },
+    "allowances": {
+      "nightPerShiftNet": 28,
+      "weekendPerShiftNet": 55,
+      "overtimePerHourNet": 16,
+      "panierPerDayNet": 13,
+      "environmentMonthlyNet": 80
+    },
+    "livingCostDefault": 850,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 6,
+        "panierDays": 14,
+        "nightShifts": 3,
+        "weekendShifts": 1,
+        "overtimeHours": 10,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 14,
+        "panierDays": 22,
+        "nightShifts": 6,
+        "weekendShifts": 2,
+        "overtimeHours": 18,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 22,
+        "panierDays": 28,
+        "nightShifts": 10,
+        "weekendShifts": 4,
+        "overtimeHours": 28,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "sliderBounds": {
+      "gdDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "panierDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "nightShifts": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "weekendShifts": {
+        "min": 0,
+        "max": 8,
+        "step": 1
+      },
+      "overtimeHours": {
+        "min": 0,
+        "max": 50,
+        "step": 2
+      },
+      "livingCost": {
+        "min": 300,
+        "max": 2000,
+        "step": 50
+      }
+    },
+    "patternNotes": {
+      "summary": "Transport exceptionnel / ADR / convois est piloté par base transport · découchés · panier · adr · heures.",
+      "stablePreset": "Preset stable: 14 GD, 22 paniers, 6 nuits, 2 week-ends, 18 h sup.",
+      "maxPreset": "Preset max: 22 GD, 28 paniers, 10 nuits, 4 week-ends, 28 h sup."
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1957,
+        "nightBonus": 84,
+        "weekendBonus": 55,
+        "overtimeBonus": 194,
+        "grandDeplacementBonus": 210,
+        "panierBonus": 182,
+        "riskBonus": 80,
+        "taxableVariableNet": 413,
+        "estimatedPayslipNet": 2370,
+        "estimatedExpenseCoverage": 392,
+        "estimatedCashAvailable": 2762,
+        "estimatedPocket": 1912,
+        "livingCostDefault": 850
+      },
+      "stable": {
+        "baseNetEstimate": 1957,
+        "nightBonus": 168,
+        "weekendBonus": 110,
+        "overtimeBonus": 373,
+        "grandDeplacementBonus": 490,
+        "panierBonus": 286,
+        "riskBonus": 80,
+        "taxableVariableNet": 731,
+        "estimatedPayslipNet": 2688,
+        "estimatedExpenseCoverage": 776,
+        "estimatedCashAvailable": 3464,
+        "estimatedPocket": 2614,
+        "livingCostDefault": 850
+      },
+      "max": {
+        "baseNetEstimate": 1957,
+        "nightBonus": 280,
+        "weekendBonus": 220,
+        "overtimeBonus": 597,
+        "grandDeplacementBonus": 770,
+        "panierBonus": 364,
+        "riskBonus": 80,
+        "taxableVariableNet": 1177,
+        "estimatedPayslipNet": 3134,
+        "estimatedExpenseCoverage": 1134,
+        "estimatedCashAvailable": 4268,
+        "estimatedPocket": 3418,
+        "livingCostDefault": 850
+      }
+    },
+    "payoutModel": [
+      "Base transport",
+      "découchés",
+      "panier",
+      "ADR",
+      "heures"
+    ],
+    "notes": [
+      "Base manuelle atlas: 2200–3100 brut mensuel.",
+      "Net de base recalé via modele-social (moteur Mon Entreprise / Urssaf).",
+      "Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.",
+      "Preset dérivé des notes atlas fournies par l'utilisateur."
+    ]
+  },
+  {
+    "laneId": "env_ss4",
+    "baseGrossMonthly": 2400,
+    "baseNetMonthly": 1878,
+    "netRatio": 0.78,
+    "ratios": {
+      "overtimeNet": 0.905
+    },
+    "mobility": {
+      "provinceDaily": 50,
+      "parisDaily": 65
+    },
+    "allowances": {
+      "nightPerShiftNet": 24,
+      "weekendPerShiftNet": 45,
+      "overtimePerHourNet": 15,
+      "panierPerDayNet": 10.4,
+      "environmentMonthlyNet": 110
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 4,
+        "panierDays": 8,
+        "nightShifts": 0,
+        "weekendShifts": 0,
+        "overtimeHours": 6,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 10,
+        "panierDays": 16,
+        "nightShifts": 2,
+        "weekendShifts": 1,
+        "overtimeHours": 12,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 18,
+        "panierDays": 22,
+        "nightShifts": 6,
+        "weekendShifts": 2,
+        "overtimeHours": 18,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "sliderBounds": {
+      "gdDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "panierDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "nightShifts": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "weekendShifts": {
+        "min": 0,
+        "max": 8,
+        "step": 1
+      },
+      "overtimeHours": {
+        "min": 0,
+        "max": 50,
+        "step": 2
+      },
+      "livingCost": {
+        "min": 300,
+        "max": 2000,
+        "step": 50
+      }
+    },
+    "patternNotes": {
+      "summary": "Désamiantage / dépollution / déchets dangereux est piloté par base chantier · prime risque · déchets · panier · heures.",
+      "stablePreset": "Preset stable: 10 GD, 16 paniers, 2 nuits, 1 week-ends, 12 h sup.",
+      "maxPreset": "Preset max: 18 GD, 22 paniers, 6 nuits, 2 week-ends, 18 h sup."
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1878,
+        "nightBonus": 0,
+        "weekendBonus": 0,
+        "overtimeBonus": 107,
+        "grandDeplacementBonus": 200,
+        "panierBonus": 83,
+        "riskBonus": 110,
+        "taxableVariableNet": 217,
+        "estimatedPayslipNet": 2095,
+        "estimatedExpenseCoverage": 283,
+        "estimatedCashAvailable": 2378,
+        "estimatedPocket": 1478,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 1878,
+        "nightBonus": 48,
+        "weekendBonus": 45,
+        "overtimeBonus": 229,
+        "grandDeplacementBonus": 500,
+        "panierBonus": 166,
+        "riskBonus": 110,
+        "taxableVariableNet": 432,
+        "estimatedPayslipNet": 2310,
+        "estimatedExpenseCoverage": 666,
+        "estimatedCashAvailable": 2976,
+        "estimatedPocket": 2076,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 1878,
+        "nightBonus": 144,
+        "weekendBonus": 90,
+        "overtimeBonus": 358,
+        "grandDeplacementBonus": 900,
+        "panierBonus": 229,
+        "riskBonus": 110,
+        "taxableVariableNet": 702,
+        "estimatedPayslipNet": 2580,
+        "estimatedExpenseCoverage": 1129,
+        "estimatedCashAvailable": 3709,
+        "estimatedPocket": 2809,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base chantier",
+      "prime risque",
+      "déchets",
+      "panier",
+      "heures"
+    ],
+    "notes": [
+      "Base manuelle atlas: 2100–2800 brut mensuel.",
+      "Net de base recalé via modele-social (moteur Mon Entreprise / Urssaf).",
+      "Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.",
+      "Preset dérivé des notes atlas fournies par l'utilisateur."
+    ]
+  },
+  {
+    "laneId": "sec_sensitive",
+    "baseGrossMonthly": 2300,
+    "baseNetMonthly": 1799,
+    "netRatio": 0.78,
+    "ratios": {
+      "overtimeNet": 0.905
+    },
+    "mobility": {
+      "provinceDaily": 0,
+      "parisDaily": 0
+    },
+    "allowances": {
+      "nightPerShiftNet": 28,
+      "weekendPerShiftNet": 55,
+      "overtimePerHourNet": 14,
+      "panierPerDayNet": 0,
+      "environmentMonthlyNet": 90
+    },
+    "livingCostDefault": 950,
+    "regularityIndex": 7,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 0,
+        "panierDays": 0,
+        "nightShifts": 6,
+        "weekendShifts": 2,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 0,
+        "panierDays": 0,
+        "nightShifts": 10,
+        "weekendShifts": 4,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 0,
+        "panierDays": 0,
+        "nightShifts": 16,
+        "weekendShifts": 6,
+        "overtimeHours": 14,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "sliderBounds": {
+      "gdDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "panierDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "nightShifts": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "weekendShifts": {
+        "min": 0,
+        "max": 8,
+        "step": 1
+      },
+      "overtimeHours": {
+        "min": 0,
+        "max": 50,
+        "step": 2
+      },
+      "livingCost": {
+        "min": 300,
+        "max": 2000,
+        "step": 50
+      }
+    },
+    "patternNotes": {
+      "summary": "Sûreté nucléaire / site sensible est piloté par base sécurité · nuit · week-end · site sensible.",
+      "stablePreset": "Preset stable: 0 GD, 0 paniers, 10 nuits, 4 week-ends, 8 h sup.",
+      "maxPreset": "Preset max: 0 GD, 0 paniers, 16 nuits, 6 week-ends, 14 h sup."
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1799,
+        "nightBonus": 168,
+        "weekendBonus": 110,
+        "overtimeBonus": 69,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 0,
+        "riskBonus": 90,
+        "taxableVariableNet": 437,
+        "estimatedPayslipNet": 2235,
+        "estimatedExpenseCoverage": 0,
+        "estimatedCashAvailable": 2235,
+        "estimatedPocket": 1285,
+        "livingCostDefault": 950
+      },
+      "stable": {
+        "baseNetEstimate": 1799,
+        "nightBonus": 280,
+        "weekendBonus": 220,
+        "overtimeBonus": 137,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 0,
+        "riskBonus": 90,
+        "taxableVariableNet": 727,
+        "estimatedPayslipNet": 2526,
+        "estimatedExpenseCoverage": 0,
+        "estimatedCashAvailable": 2526,
+        "estimatedPocket": 1576,
+        "livingCostDefault": 950
+      },
+      "max": {
+        "baseNetEstimate": 1799,
+        "nightBonus": 448,
+        "weekendBonus": 330,
+        "overtimeBonus": 261,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 0,
+        "riskBonus": 90,
+        "taxableVariableNet": 1129,
+        "estimatedPayslipNet": 2927,
+        "estimatedExpenseCoverage": 0,
+        "estimatedCashAvailable": 2927,
+        "estimatedPocket": 1977,
+        "livingCostDefault": 950
+      }
+    },
+    "payoutModel": [
+      "Base sécurité",
+      "nuit",
+      "week-end",
+      "site sensible"
+    ],
+    "notes": [
+      "Base manuelle atlas: 2000–2600 brut mensuel.",
+      "Net de base recalé via modele-social (moteur Mon Entreprise / Urssaf).",
+      "Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.",
+      "Preset dérivé des notes atlas fournies par l'utilisateur."
+    ]
+  },
+  {
+    "laneId": "health_ide",
+    "baseGrossMonthly": 3000,
+    "baseNetMonthly": 2353,
+    "netRatio": 0.78,
+    "ratios": {
+      "overtimeNet": 0.905
+    },
+    "mobility": {
+      "provinceDaily": 0,
+      "parisDaily": 0
+    },
+    "allowances": {
+      "nightPerShiftNet": 45,
+      "weekendPerShiftNet": 70,
+      "overtimePerHourNet": 18,
+      "panierPerDayNet": 0,
+      "environmentMonthlyNet": 420
+    },
+    "livingCostDefault": 1000,
+    "regularityIndex": 6,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 0,
+        "panierDays": 0,
+        "nightShifts": 4,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 0,
+        "panierDays": 0,
+        "nightShifts": 8,
+        "weekendShifts": 3,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 0,
+        "panierDays": 0,
+        "nightShifts": 14,
+        "weekendShifts": 5,
+        "overtimeHours": 14,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "sliderBounds": {
+      "gdDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "panierDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "nightShifts": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "weekendShifts": {
+        "min": 0,
+        "max": 8,
+        "step": 1
+      },
+      "overtimeHours": {
+        "min": 0,
+        "max": 50,
+        "step": 2
+      },
+      "livingCost": {
+        "min": 300,
+        "max": 2000,
+        "step": 50
+      }
+    },
+    "patternNotes": {
+      "summary": "IDE intérim nuit / bloc / réanimation est piloté par base ide · intérim · nuit · services tendus.",
+      "stablePreset": "Preset stable: 0 GD, 0 paniers, 8 nuits, 3 week-ends, 8 h sup.",
+      "maxPreset": "Preset max: 0 GD, 0 paniers, 14 nuits, 5 week-ends, 14 h sup."
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 2353,
+        "nightBonus": 180,
+        "weekendBonus": 70,
+        "overtimeBonus": 89,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 0,
+        "riskBonus": 420,
+        "taxableVariableNet": 759,
+        "estimatedPayslipNet": 3112,
+        "estimatedExpenseCoverage": 0,
+        "estimatedCashAvailable": 3112,
+        "estimatedPocket": 2112,
+        "livingCostDefault": 1000
+      },
+      "stable": {
+        "baseNetEstimate": 2353,
+        "nightBonus": 360,
+        "weekendBonus": 210,
+        "overtimeBonus": 179,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 0,
+        "riskBonus": 420,
+        "taxableVariableNet": 1169,
+        "estimatedPayslipNet": 3522,
+        "estimatedExpenseCoverage": 0,
+        "estimatedCashAvailable": 3522,
+        "estimatedPocket": 2522,
+        "livingCostDefault": 1000
+      },
+      "max": {
+        "baseNetEstimate": 2353,
+        "nightBonus": 630,
+        "weekendBonus": 350,
+        "overtimeBonus": 340,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 0,
+        "riskBonus": 420,
+        "taxableVariableNet": 1740,
+        "estimatedPayslipNet": 4093,
+        "estimatedExpenseCoverage": 0,
+        "estimatedCashAvailable": 4093,
+        "estimatedPocket": 3093,
+        "livingCostDefault": 1000
+      }
+    },
+    "payoutModel": [
+      "Base IDE",
+      "intérim",
+      "nuit",
+      "services tendus"
+    ],
+    "notes": [
+      "Base manuelle atlas: 2500–3300 brut mensuel.",
+      "Net de base recalé via modele-social (moteur Mon Entreprise / Urssaf).",
+      "Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.",
+      "Preset dérivé des notes atlas fournies par l'utilisateur."
+    ]
+  },
+  {
+    "laneId": "agro_5x8",
+    "baseGrossMonthly": 2400,
+    "baseNetMonthly": 1878,
+    "netRatio": 0.78,
+    "ratios": {
+      "overtimeNet": 0.905
+    },
+    "mobility": {
+      "provinceDaily": 0,
+      "parisDaily": 0
+    },
+    "allowances": {
+      "nightPerShiftNet": 30,
+      "weekendPerShiftNet": 55,
+      "overtimePerHourNet": 14,
+      "panierPerDayNet": 0,
+      "environmentMonthlyNet": 40
+    },
+    "livingCostDefault": 900,
+    "regularityIndex": 8,
+    "scenarioPresets": {
+      "low": {
+        "gdDays": 0,
+        "panierDays": 0,
+        "nightShifts": 6,
+        "weekendShifts": 1,
+        "overtimeHours": 4,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "stable": {
+        "gdDays": 0,
+        "panierDays": 0,
+        "nightShifts": 10,
+        "weekendShifts": 2,
+        "overtimeHours": 8,
+        "zone": "province",
+        "riskEnabled": true
+      },
+      "max": {
+        "gdDays": 0,
+        "panierDays": 0,
+        "nightShifts": 16,
+        "weekendShifts": 4,
+        "overtimeHours": 14,
+        "zone": "province",
+        "riskEnabled": true
+      }
+    },
+    "sliderBounds": {
+      "gdDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "panierDays": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "nightShifts": {
+        "min": 0,
+        "max": 31,
+        "step": 1
+      },
+      "weekendShifts": {
+        "min": 0,
+        "max": 8,
+        "step": 1
+      },
+      "overtimeHours": {
+        "min": 0,
+        "max": 50,
+        "step": 2
+      },
+      "livingCost": {
+        "min": 300,
+        "max": 2000,
+        "step": 50
+      }
+    },
+    "patternNotes": {
+      "summary": "Process agro 5x8 est piloté par base usine · 5x8 · nuit · week-end.",
+      "stablePreset": "Preset stable: 0 GD, 0 paniers, 10 nuits, 2 week-ends, 8 h sup.",
+      "maxPreset": "Preset max: 0 GD, 0 paniers, 16 nuits, 4 week-ends, 14 h sup."
+    },
+    "scenarioOutputs": {
+      "low": {
+        "baseNetEstimate": 1878,
+        "nightBonus": 180,
+        "weekendBonus": 55,
+        "overtimeBonus": 72,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 0,
+        "riskBonus": 40,
+        "taxableVariableNet": 347,
+        "estimatedPayslipNet": 2224,
+        "estimatedExpenseCoverage": 0,
+        "estimatedCashAvailable": 2224,
+        "estimatedPocket": 1324,
+        "livingCostDefault": 900
+      },
+      "stable": {
+        "baseNetEstimate": 1878,
+        "nightBonus": 300,
+        "weekendBonus": 110,
+        "overtimeBonus": 143,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 0,
+        "riskBonus": 40,
+        "taxableVariableNet": 593,
+        "estimatedPayslipNet": 2471,
+        "estimatedExpenseCoverage": 0,
+        "estimatedCashAvailable": 2471,
+        "estimatedPocket": 1571,
+        "livingCostDefault": 900
+      },
+      "max": {
+        "baseNetEstimate": 1878,
+        "nightBonus": 480,
+        "weekendBonus": 220,
+        "overtimeBonus": 272,
+        "grandDeplacementBonus": 0,
+        "panierBonus": 0,
+        "riskBonus": 40,
+        "taxableVariableNet": 1012,
+        "estimatedPayslipNet": 2890,
+        "estimatedExpenseCoverage": 0,
+        "estimatedCashAvailable": 2890,
+        "estimatedPocket": 1990,
+        "livingCostDefault": 900
+      }
+    },
+    "payoutModel": [
+      "Base usine",
+      "5x8",
+      "nuit",
+      "week-end"
+    ],
+    "notes": [
+      "Base manuelle atlas: 2100–2800 brut mensuel.",
+      "Net de base recalé via modele-social (moteur Mon Entreprise / Urssaf).",
+      "Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.",
+      "Preset dérivé des notes atlas fournies par l'utilisateur."
+    ]
   }
 ]

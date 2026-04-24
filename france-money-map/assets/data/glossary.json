@@ -1,0 +1,98 @@
+[
+  {
+    "term": "TES M (05001)",
+    "domain": "Ferroviaire",
+    "definition": "Socle annonceur / sentinelle. Sert à protéger le personnel par annonce des circulations.",
+    "scope": "Base sécurité chantier simple.",
+    "doesNotMean": "Ce n'est ni du S9, ni de la protection électrique caténaire.",
+    "next": "ASP, S9 ou autres briques sécurité selon voie choisie."
+  },
+  {
+    "term": "ASP",
+    "domain": "Ferroviaire",
+    "definition": "Agent de Sécurité du Personnel. Monte d'un cran par rapport au simple annonceur.",
+    "scope": "Gestion sécurité équipe / mesures d'annonce selon organisation.",
+    "doesNotMean": "N'ouvre pas automatiquement CH1-CB1, PEC ou signalisation.",
+    "next": "LAM, S9, AATTX ou base caténaire selon branche."
+  },
+  {
+    "term": "S9 (08300)",
+    "domain": "Ferroviaire",
+    "definition": "Spécialiste du bouclage / débouclage de chantier et des mesures de fermeture de voie.",
+    "scope": "Fermeture de voie, balisage, procédures chantier.",
+    "doesNotMean": "Ce n'est pas un électricien caténaire.",
+    "next": "Chef de chantier, coordination sécurité, progression travaux."
+  },
+  {
+    "term": "PEC (08501)",
+    "domain": "Ferroviaire",
+    "definition": "Protection Électrique Caténaire. Consignation et sécurisation électrique de la ligne.",
+    "scope": "Consignation caténaire, vérification d'absence de tension, équipotentialité.",
+    "doesNotMean": "Ne couvre pas les tâches S9 de fermeture de voie.",
+    "next": "Niveaux supérieurs électricité ferro / encadrement."
+  },
+  {
+    "term": "IGD / Grand Déplacement",
+    "domain": "BTP / chantier",
+    "definition": "Indemnité de logement et repas liée au chantier éloigné.",
+    "scope": "Transforme un salaire chantier banal en bon net mensuel.",
+    "doesNotMean": "Ce n'est pas du salaire de base ; c'est de l'indemnitaire.",
+    "next": "Se combine avec CACES, tunnel, nuit, astreinte ou mobilité nationale."
+  },
+  {
+    "term": "SCN1 / HN1",
+    "domain": "Nucléaire",
+    "definition": "Socle culture nucléaire + habilitation d'accès en environnement contrôlé.",
+    "scope": "Badge d'accès réglementaire aux centrales et arrêts de tranche.",
+    "doesNotMean": "HN1 seul n'est pas un métier.",
+    "next": "RP, logistique nucléaire, maintenance, échafaudage, CND."
+  },
+  {
+    "term": "RP1 / RP2",
+    "domain": "Nucléaire",
+    "definition": "Radioprotection. Contrôle doses, zones et gestes sous contrainte radiologique.",
+    "scope": "Valeur forte sur arrêts de tranche et environnements sensibles.",
+    "doesNotMean": "Ne remplace pas un vrai métier technique de maintenance.",
+    "next": "PCR, supervision radioprotection, coordination site."
+  },
+  {
+    "term": "GWO",
+    "domain": "Éolien",
+    "definition": "Pack sécurité global éolien: hauteur, incendie, premiers secours, manutention.",
+    "scope": "Passeport quasi obligatoire vers maintenance éolienne.",
+    "doesNotMean": "Ne fait pas de toi un technicien éolien à lui seul.",
+    "next": "TP maintenance éolienne, HTA, offshore si voie choisie."
+  },
+  {
+    "term": "IRATA",
+    "domain": "Cordes",
+    "definition": "Référentiel international travaux sur cordes.",
+    "scope": "Ouvre l'accès corde sous supervision croissante selon niveau.",
+    "doesNotMean": "Le niveau 1 n'est pas un métier complet en soi.",
+    "next": "Combiner avec CND, soudure, inspection, éolien ou nucléaire."
+  },
+  {
+    "term": "CACES R482",
+    "domain": "TP",
+    "definition": "Autorisation / recommandation pour conduire les engins de chantier.",
+    "scope": "Clé d'entrée vers la vraie stack VRD / terrassement / tunnel.",
+    "doesNotMean": "Ne vaut pas toutes les catégories ni tous les chantiers réseaux.",
+    "next": "AIPR, grands déplacements, engins plus lourds."
+  },
+  {
+    "term": "ADR",
+    "domain": "Transport",
+    "definition": "Qualification matières dangereuses pour le transport routier.",
+    "scope": "Ajoute une niche réglementaire mieux payée que le SPL standard.",
+    "doesNotMean": "Ne remplace pas l'expérience route ni le permis CE.",
+    "next": "Déchets dangereux, flux chimiques, convois mieux valorisés."
+  },
+  {
+    "term": "SS4",
+    "domain": "Environnement",
+    "definition": "Sous-section 4 amiante pour interventions ponctuelles sur matériaux amiantés.",
+    "scope": "Ouvre une vraie barrière réglementaire en dépollution.",
+    "doesNotMean": "Ce n'est pas la même chose que SS3 retrait lourd.",
+    "next": "Dépollution, déchets dangereux, HSE terrain."
+  }
+]

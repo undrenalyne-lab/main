@@ -108,6 +108,193 @@
     "sourceIds": []
   },
   {
+    "id": "adr",
+    "name": "ADR / matières dangereuses",
+    "type": "Transport spécialisé",
+    "sectorLinks": [
+      "transport",
+      "environment"
+    ],
+    "branchLinks": [
+      "Transport exceptionnel / ADR / convois",
+      "Désamiantage / dépollution / déchets dangereux"
+    ],
+    "duration": "quelques jours",
+    "costRange": "coût modéré",
+    "prerequisite": "Permis CE ou poste logistique dangereux visé.",
+    "opensLaneIds": [
+      "transport_adr",
+      "env_ss4"
+    ],
+    "notes": "Ajoute une vraie prime de niche sur des flux plus contraints.",
+    "confidenceLevel": "high",
+    "providerExamples": [
+      "organismes ADR",
+      "transporteurs",
+      "employeur"
+    ],
+    "summary": "L'ADR ne paie que s'il y a vraiment du flux dangereux derrière.",
+    "accessMode": "À passer après le permis CE ou dans un environnement déchets / chimie réel.",
+    "jobReadiness": "Renforce beaucoup le profil, mais seulement avec vraie conduite ou logistique derrière.",
+    "validity": "Recyclage réglementaire périodique.",
+    "accessChecks": [
+      "Base conduite",
+      "respect total des procédures",
+      "appétence réglementation"
+    ],
+    "capacityChecks": [
+      "stress",
+      "documentation",
+      "sécurité chargement"
+    ],
+    "modules": [
+      "classification matières",
+      "signalisation",
+      "documents",
+      "sécurité transport"
+    ],
+    "doesNotOpen": [
+      "Ne remplace pas l'expérience poids lourd ou déchets dangereux"
+    ],
+    "nextTicketIds": [],
+    "targetRoles": [
+      "chauffeur ADR",
+      "transport déchets dangereux"
+    ],
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ]
+  },
+  {
+    "id": "aipr",
+    "name": "AIPR opérateur / encadrant",
+    "type": "Réseaux enterrés",
+    "sectorLinks": [
+      "construction",
+      "energy",
+      "environment"
+    ],
+    "branchLinks": [
+      "TP en grand déplacement",
+      "Tunnel / ouvrages souterrains",
+      "Réseaux HT / lignard / postes",
+      "Désamiantage / dépollution / déchets dangereux"
+    ],
+    "duration": "1 jour",
+    "costRange": "faible coût, souvent porté par employeur",
+    "prerequisite": "Projet chantier avec proximité réseaux.",
+    "opensLaneIds": [
+      "btp_gd",
+      "btp_tunnel",
+      "energy_lignard",
+      "env_ss4"
+    ],
+    "notes": "Petit ticket, gros effet filtre sur les chantiers réseaux et VRD.",
+    "confidenceLevel": "high",
+    "providerExamples": [
+      "organismes TP",
+      "centre test AIPR",
+      "employeur"
+    ],
+    "summary": "Ce n'est pas glamour, mais sans AIPR beaucoup de chantiers VRD ou réseaux se ferment.",
+    "accessMode": "Simple à obtenir, souvent imposé très tôt sur chantier.",
+    "jobReadiness": "Accélère l'embauche chantier mais ne suffit jamais seul.",
+    "validity": "A renouveler selon statut et évolution du poste.",
+    "accessChecks": [
+      "Comprendre les réseaux",
+      "viser VRD / terrassement / réseaux",
+      "contexte chantier réel"
+    ],
+    "capacityChecks": [
+      "Lecture de plans simplifiés",
+      "discipline sécurité"
+    ],
+    "modules": [
+      "règles proximité réseaux",
+      "lecture marquage-piquetage",
+      "prévention endommagement"
+    ],
+    "doesNotOpen": [
+      "Ne remplace pas un CACES, ni une qualification métier"
+    ],
+    "nextTicketIds": [
+      "cacesR482",
+      "mreas",
+      "ss4"
+    ],
+    "targetRoles": [
+      "VRD",
+      "terrassement",
+      "réseaux",
+      "dépollution"
+    ],
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ]
+  },
+  {
+    "id": "ss4",
+    "name": "Amiante sous-section 4",
+    "type": "Désamiantage / environnement",
+    "sectorLinks": [
+      "environment"
+    ],
+    "branchLinks": [
+      "Désamiantage / dépollution / déchets dangereux"
+    ],
+    "duration": "1 jour initial simple ou plus selon fonction",
+    "costRange": "coût modéré",
+    "prerequisite": "Projet amiante / dépollution réel et respect strict des procédures.",
+    "opensLaneIds": [
+      "env_ss4"
+    ],
+    "notes": "Petit ticket en apparence, mais forte barrière réglementaire sur terrain.",
+    "confidenceLevel": "high",
+    "providerExamples": [
+      "organismes SS4",
+      "employeur",
+      "centre HSE"
+    ],
+    "summary": "Ouvre les interventions amiante courtes, pas les gros chantiers de retrait lourd à lui seul.",
+    "accessMode": "Très souvent imposé / sponsorisé par l'employeur dépollution.",
+    "jobReadiness": "Utile rapidement si tu rentres dans une boîte qui a les marchés.",
+    "validity": "Recyclage périodique et aptitudes médicales à maintenir.",
+    "accessChecks": [
+      "Aptitude médicale",
+      "acceptation EPI lourds",
+      "discipline forte"
+    ],
+    "capacityChecks": [
+      "confinement",
+      "salissure",
+      "procédure",
+      "extérieur"
+    ],
+    "modules": [
+      "risque amiante",
+      "EPI",
+      "mode opératoire",
+      "déchets"
+    ],
+    "doesNotOpen": [
+      "Ne remplace pas SS3 sur gros retrait ni une expertise HSE complète"
+    ],
+    "nextTicketIds": [
+      "adr"
+    ],
+    "targetRoles": [
+      "désamianteur SS4",
+      "dépollution chantier",
+      "déchets dangereux"
+    ],
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ]
+  },
+  {
     "id": "signalBase",
     "name": "Base génie électrique / signalisation",
     "type": "Technique",
@@ -334,6 +521,125 @@
     "targetRoles": []
   },
   {
+    "id": "cacesR482",
+    "name": "CACES R482 / engins TP",
+    "type": "Engins de chantier",
+    "sectorLinks": [
+      "construction"
+    ],
+    "branchLinks": [
+      "TP en grand déplacement",
+      "Tunnel / ouvrages souterrains"
+    ],
+    "duration": "2 à 5 jours selon catégorie",
+    "costRange": "souvent 500 à 1 000 € selon catégorie",
+    "prerequisite": "Aptitude médicale, mobilité chantier et projet engins réel.",
+    "opensLaneIds": [
+      "btp_gd",
+      "btp_tunnel"
+    ],
+    "notes": "Ticket clef pour passer de manoeuvre à conducteur d'engins et ouvrir la vraie stack TP grand déplacement.",
+    "confidenceLevel": "high",
+    "providerExamples": [
+      "organismes CACES",
+      "employeur TP",
+      "AFPA"
+    ],
+    "summary": "Sans CACES adapté, tu restes souvent cantonné au bas de l'échelle chantier.",
+    "accessMode": "Finançable en centre ou via employeur ; beaucoup plus rentable si tu assumes le grand déplacement derrière.",
+    "jobReadiness": "Peut débloquer vite un premier poste chantier si tu es mobile et si la boîte recrute sur volume.",
+    "validity": "Recommandation de recyclage périodique et contrôle employeur.",
+    "accessChecks": [
+      "Aimer le terrain et les horaires chantier",
+      "Être mobile",
+      "Être crédible pour une catégorie réellement demandée"
+    ],
+    "capacityChecks": [
+      "Concentration",
+      "manoeuvres précises",
+      "respect des consignes de circulation chantier"
+    ],
+    "modules": [
+      "prise en main engin",
+      "règles chantier",
+      "chargement / translation",
+      "vérifications journalières"
+    ],
+    "doesNotOpen": [
+      "Ne remplace pas l'AIPR ni la logique grand déplacement",
+      "Ne vaut pas pour toutes les catégories si tu n'as qu'une seule option"
+    ],
+    "nextTicketIds": [
+      "aipr",
+      "mreas"
+    ],
+    "targetRoles": [
+      "conducteur d'engins",
+      "terrassier mécanisé",
+      "tunnelier junior"
+    ],
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ]
+  },
+  {
+    "id": "cnapsSsiap",
+    "name": "Carte CNAPS / SSIAP / sûreté site sensible",
+    "type": "Sécurité spécialisée",
+    "sectorLinks": [
+      "security"
+    ],
+    "branchLinks": [
+      "Sûreté nucléaire / site sensible"
+    ],
+    "duration": "variable selon brique",
+    "costRange": "de quelques centaines à plus selon combinaison",
+    "prerequisite": "Casier compatible et vraie cible sûreté / sécurité.",
+    "opensLaneIds": [
+      "sec_sensitive"
+    ],
+    "notes": "Le vrai différenciateur vient ensuite des primes de site sensible, de nuit et d'astreinte.",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "organismes SSIAP",
+      "centres sûreté",
+      "employeur"
+    ],
+    "summary": "Sans carte et socle sécurité, tu ne rentres pas sur les sites qui paient mieux.",
+    "accessMode": "Accessible, mais l'argent n'arrive que sur les bons sites et les bons horaires.",
+    "jobReadiness": "Peut faire entrer vite en sécurité, pas forcément tout de suite sur les meilleurs sites.",
+    "validity": "Carte et recyclages à maintenir.",
+    "accessChecks": [
+      "Casier compatible",
+      "calme",
+      "nuit / week-end acceptés"
+    ],
+    "capacityChecks": [
+      "vigilance",
+      "gestion incident",
+      "discipline"
+    ],
+    "modules": [
+      "sécurité incendie / sûreté",
+      "procédures site",
+      "contrôle accès"
+    ],
+    "doesNotOpen": [
+      "Ne donne pas automatiquement la sûreté nucléaire premium"
+    ],
+    "nextTicketIds": [],
+    "targetRoles": [
+      "sûreté site sensible",
+      "SSIAP renforcé",
+      "agent nucléaire"
+    ],
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ]
+  },
+  {
     "id": "cnd",
     "name": "Certification CND / COFREND",
     "type": "Contrôle non destructif",
@@ -430,6 +736,122 @@
     ]
   },
   {
+    "id": "cima5x8",
+    "name": "CQP / conduite de ligne / process 5x8",
+    "type": "Agro-industrie",
+    "sectorLinks": [
+      "agro"
+    ],
+    "branchLinks": [
+      "Process agro 5x8"
+    ],
+    "duration": "quelques semaines à plusieurs mois selon parcours",
+    "costRange": "variable",
+    "prerequisite": "Projet usine process / maintenance légère / conduite de ligne.",
+    "opensLaneIds": [
+      "agro_5x8"
+    ],
+    "notes": "Le ticket seul ne vaut pas grand chose si l'usine ne paie pas ses primes correctement.",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "organismes agro",
+      "entreprise",
+      "CQP de branche"
+    ],
+    "summary": "Utile pour entrer en process, mais le vrai sujet est de viser les bonnes usines 5x8.",
+    "accessMode": "Accessible via usine, agence, CQP ou montée interne.",
+    "jobReadiness": "Peut ouvrir assez vite une ligne de production postée.",
+    "validity": "Variable selon branche / CQP.",
+    "accessChecks": [
+      "tenir le posté",
+      "cadence",
+      "environnement froid / bruit possible"
+    ],
+    "capacityChecks": [
+      "vigilance",
+      "répétition",
+      "maintenance de premier niveau"
+    ],
+    "modules": [
+      "conduite de ligne",
+      "qualité",
+      "hygiène",
+      "sécurité process"
+    ],
+    "doesNotOpen": [
+      "Ne garantit pas les usines les mieux payées"
+    ],
+    "nextTicketIds": [],
+    "targetRoles": [
+      "pilote d'installation",
+      "conduite de ligne",
+      "process continu"
+    ],
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ]
+  },
+  {
+    "id": "deIde",
+    "name": "Diplôme d'État infirmier",
+    "type": "Santé",
+    "sectorLinks": [
+      "health"
+    ],
+    "branchLinks": [
+      "IDE intérim nuit / bloc / réanimation"
+    ],
+    "duration": "3 ans",
+    "costRange": "parcours long diplômant",
+    "prerequisite": "Admission IFSI et parcours diplômant complet.",
+    "opensLaneIds": [
+      "health_ide"
+    ],
+    "notes": "Pas de route rapide ici: le levier cash vient ensuite de l'intérim, de la nuit et des services tendus.",
+    "confidenceLevel": "high",
+    "providerExamples": [
+      "IFSI",
+      "hôpitaux",
+      "intérim médical ensuite"
+    ],
+    "summary": "Le site doit le dire franchement: énorme upside, mais ticket long et réglementé.",
+    "accessMode": "Voie longue, pas une reconversion express.",
+    "jobReadiness": "Après diplôme, l'intérim et les services tendus accélèrent très fort le net.",
+    "validity": "Diplôme réglementé + conditions d'exercice professionnelles.",
+    "accessChecks": [
+      "tenir une formation longue",
+      "exposition au soin",
+      "charge mentale"
+    ],
+    "capacityChecks": [
+      "nuit",
+      "urgence",
+      "responsabilité",
+      "relationnel"
+    ],
+    "modules": [
+      "socle infirmier",
+      "stages",
+      "services critiques",
+      "bloc / réa selon parcours"
+    ],
+    "doesNotOpen": [
+      "Ne remplace pas les spécialisations IBODE / IADE si tu vises ces niches"
+    ],
+    "nextTicketIds": [],
+    "targetRoles": [
+      "IDE intérim",
+      "nuit",
+      "bloc",
+      "réa"
+    ],
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ]
+  },
+  {
     "id": "gwo",
     "name": "GWO BST/BTT",
     "type": "Sécurité éolien",
@@ -464,12 +886,14 @@
     "type": "Électricité HTA",
     "sectorLinks": [
       "ferro",
-      "renewables"
+      "renewables",
+      "energy"
     ],
     "branchLinks": [
       "Sous-stations / EALE / alimentation",
       "Maintenance éolienne",
-      "HTA / raccordement / postes ENR"
+      "HTA / raccordement / postes ENR",
+      "Réseaux HT / lignard / postes"
     ],
     "duration": "quelques jours",
     "costRange": "organismes élec",
@@ -477,7 +901,8 @@
     "opensLaneIds": [
       "ferro_eale",
       "ren_eol",
-      "ren_hta"
+      "ren_hta",
+      "energy_lignard"
     ],
     "notes": "Ouvre surtout: raccordement ENR · postes / EALE",
     "confidenceLevel": "medium",
@@ -622,6 +1047,121 @@
     ],
     "sourceIds": [
       "france-travail-pack-secufer-tesm-c0-lam-s9-ch1cb1"
+    ]
+  },
+  {
+    "id": "part66",
+    "name": "PART-66 / socle maintenance aéronautique",
+    "type": "Aéronautique",
+    "sectorLinks": [
+      "aero"
+    ],
+    "branchLinks": [
+      "Maintenance aéronautique / MRO / défense"
+    ],
+    "duration": "long parcours",
+    "costRange": "coût élevé ou parcours entreprise / armée",
+    "prerequisite": "Socle technique solide et projet MRO sérieux.",
+    "opensLaneIds": [
+      "aero_mro"
+    ],
+    "notes": "Voie sérieuse pour maintenance aéronautique ; pas un ticket express.",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "centres PART-147",
+      "armée",
+      "employeurs MRO"
+    ],
+    "summary": "La voie aéronautique paie quand elle cumule technicité, horaires et habilitations, pas via une petite formation miracle.",
+    "accessMode": "Souvent école longue, armée ou employeur structuré.",
+    "jobReadiness": "Pas une route cash rapide, mais un bon socle ensuite.",
+    "validity": "Licence / parcours réglementé avec exigences de maintien.",
+    "accessChecks": [
+      "niveau technique",
+      "anglais technique utile",
+      "discipline documentaire"
+    ],
+    "capacityChecks": [
+      "rigueur totale",
+      "travail posté possible",
+      "culture qualité"
+    ],
+    "modules": [
+      "cellule / moteur / avionique selon spécialité",
+      "procédures qualité",
+      "documentation maintenance"
+    ],
+    "doesNotOpen": [
+      "Ne te donne pas automatiquement une habilitation défense ou avionique lourde"
+    ],
+    "nextTicketIds": [],
+    "targetRoles": [
+      "mécanicien avion",
+      "technicien MRO",
+      "maintenance défense"
+    ],
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ]
+  },
+  {
+    "id": "permisCE",
+    "name": "Permis CE / SPL",
+    "type": "Conduite lourde",
+    "sectorLinks": [
+      "transport"
+    ],
+    "branchLinks": [
+      "Transport exceptionnel / ADR / convois"
+    ],
+    "duration": "quelques semaines selon parcours",
+    "costRange": "souvent plusieurs milliers d'euros ou financement public",
+    "prerequisite": "Permis B puis projet transport lourd réel.",
+    "opensLaneIds": [
+      "transport_adr"
+    ],
+    "notes": "Base obligatoire avant ADR, convoi spécial ou gros découchés rentables.",
+    "confidenceLevel": "high",
+    "providerExamples": [
+      "auto-écoles poids lourds",
+      "France Travail",
+      "transporteurs"
+    ],
+    "summary": "Sans CE, il n'y a pas de vraie stack transport spécialisé.",
+    "accessMode": "Finançable mais plus rentable si tu assumes la route, les découchés et le rythme.",
+    "jobReadiness": "Peut faire entrer vite sur du SPL, puis spécialiser vers ADR ou exceptionnel.",
+    "validity": "FIMO/FCO et suivi réglementaire à maintenir.",
+    "accessChecks": [
+      "Aimer la route",
+      "tenir les découchés",
+      "discipline réglementaire"
+    ],
+    "capacityChecks": [
+      "fatigue",
+      "anticipation",
+      "sécurité chargement"
+    ],
+    "modules": [
+      "conduite CE",
+      "réglementation",
+      "attelage",
+      "sécurité transport"
+    ],
+    "doesNotOpen": [
+      "Ne suffit pas pour l'ADR ni le transport exceptionnel complexe"
+    ],
+    "nextTicketIds": [
+      "adr"
+    ],
+    "targetRoles": [
+      "chauffeur SPL",
+      "transport exceptionnel",
+      "matières dangereuses"
+    ],
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
     ]
   },
   {
@@ -918,6 +1458,62 @@
     "targetRoles": []
   },
   {
+    "id": "stcw",
+    "name": "STCW / sécurité maritime",
+    "type": "Maritime / offshore",
+    "sectorLinks": [
+      "maritime"
+    ],
+    "branchLinks": [
+      "Maintenance navale / offshore"
+    ],
+    "duration": "quelques jours à 2 semaines",
+    "costRange": "souvent plusieurs centaines à milliers d'euros selon pack",
+    "prerequisite": "Projet maritime réel et aptitude embarquée.",
+    "opensLaneIds": [
+      "mar_offshore"
+    ],
+    "notes": "Passeport d'embarquement pour beaucoup de rôles navals ou offshore.",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "centres maritimes agréés",
+      "employeur",
+      "organismes offshore"
+    ],
+    "summary": "Sans socle maritime, les postes embarqués restent théoriques.",
+    "accessMode": "Plutôt pertinent quand une boîte ou une vraie piste embarquée existe déjà.",
+    "jobReadiness": "Utile pour embarquer, mais la mécanique ou l'électricité métier restent centrales.",
+    "validity": "Mises à jour et recyclages selon paquet suivi.",
+    "accessChecks": [
+      "Aptitude médicale embarquée",
+      "acceptation rotation / éloignement"
+    ],
+    "capacityChecks": [
+      "mer",
+      "isolement",
+      "sécurité collective"
+    ],
+    "modules": [
+      "survie",
+      "incendie",
+      "premiers secours",
+      "sécurité à bord"
+    ],
+    "doesNotOpen": [
+      "Ne te rend pas mécanicien naval à lui seul"
+    ],
+    "nextTicketIds": [],
+    "targetRoles": [
+      "maintenance navale",
+      "embarqué",
+      "offshore"
+    ],
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ]
+  },
+  {
     "id": "asp",
     "name": "TES M / ASP / Annonceur-Sentinelle",
     "type": "Sécurité ferro",
@@ -979,6 +1575,67 @@
     "sourceIds": [
       "prestafer",
       "france-travail-pack-secufer-tesm-c0-lam-s9-ch1cb1"
+    ]
+  },
+  {
+    "id": "mreas",
+    "name": "Titre / CQP monteur réseaux électriques aéro-souterrains",
+    "type": "Énergie / réseaux",
+    "sectorLinks": [
+      "energy"
+    ],
+    "branchLinks": [
+      "Réseaux HT / lignard / postes"
+    ],
+    "duration": "plusieurs mois",
+    "costRange": "parcours long, souvent alternance / employeur",
+    "prerequisite": "Socle élec, mobilité terrain et travail en hauteur.",
+    "opensLaneIds": [
+      "energy_lignard"
+    ],
+    "notes": "Le vrai socle pour sortir du simple exécutant chantier et entrer sur les réseaux.",
+    "confidenceLevel": "medium",
+    "providerExamples": [
+      "AFPA",
+      "entreprises réseaux",
+      "centre énergie"
+    ],
+    "summary": "Levier long terme pour les réseaux: moins rapide qu'un ticket court, bien plus robuste ensuite.",
+    "accessMode": "Voie sérieuse via alternance, reconversion ou employeur réseaux.",
+    "jobReadiness": "Plus lent à démarrer mais beaucoup plus propre pour une trajectoire durable.",
+    "validity": "Titre métier, pas simple habilitation court terme.",
+    "accessChecks": [
+      "Socle électrique",
+      "hauteur",
+      "mobilité nationale"
+    ],
+    "capacityChecks": [
+      "extérieur",
+      "astreinte",
+      "sécurité HT",
+      "travail d'équipe"
+    ],
+    "modules": [
+      "réseaux aériens",
+      "réseaux souterrains",
+      "équipements de poste",
+      "sécurité élec"
+    ],
+    "doesNotOpen": [
+      "Ne remplace pas les habilitations HT spécifiques de l'employeur"
+    ],
+    "nextTicketIds": [
+      "hta",
+      "travailHauteur"
+    ],
+    "targetRoles": [
+      "monteur réseaux",
+      "lignard",
+      "technicien poste source junior"
+    ],
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
     ]
   },
   {

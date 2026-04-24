@@ -87,5 +87,114 @@
     ],
     "branchCount": 2,
     "ticketCount": 2
+  },
+  {
+    "id": "construction",
+    "name": "BTP / TP",
+    "icon": "🏗️",
+    "description": "Grand déplacement, tunnels, VRD et génie civil lourd où l'IGD et les heures chantier changent tout.",
+    "laneCount": 2,
+    "laneIds": [
+      "btp_gd",
+      "btp_tunnel"
+    ],
+    "branchCount": 2,
+    "ticketCount": 3
+  },
+  {
+    "id": "energy",
+    "name": "Énergie / HT",
+    "icon": "⚡",
+    "description": "Réseaux aériens, postes, dépannage et astreintes pour monteurs réseaux et lignards.",
+    "laneCount": 1,
+    "laneIds": [
+      "energy_lignard"
+    ],
+    "branchCount": 1,
+    "ticketCount": 3
+  },
+  {
+    "id": "maritime",
+    "name": "Maritime / Offshore",
+    "icon": "🚢",
+    "description": "Naval, embarqué et offshore où la rotation, l'isolement et les contraintes embarquées pèsent sur la paie.",
+    "laneCount": 1,
+    "laneIds": [
+      "mar_offshore"
+    ],
+    "branchCount": 1,
+    "ticketCount": 1
+  },
+  {
+    "id": "aero",
+    "name": "Aéronautique / Défense",
+    "icon": "✈️",
+    "description": "Maintenance MRO et environnements défense plus lents à débloquer, mais techniquement solides.",
+    "laneCount": 1,
+    "laneIds": [
+      "aero_mro"
+    ],
+    "branchCount": 1,
+    "ticketCount": 1
+  },
+  {
+    "id": "transport",
+    "name": "Transport spécialisé",
+    "icon": "🚛",
+    "description": "SPL, ADR, convois et découchés où la réglementation et l'endurance font le différentiel.",
+    "laneCount": 1,
+    "laneIds": [
+      "transport_adr"
+    ],
+    "branchCount": 1,
+    "ticketCount": 2
+  },
+  {
+    "id": "environment",
+    "name": "Environnement / Dépollution",
+    "icon": "♻️",
+    "description": "Dépollution, amiante, déchets dangereux et interventions sales ou réglementées.",
+    "laneCount": 1,
+    "laneIds": [
+      "env_ss4"
+    ],
+    "branchCount": 1,
+    "ticketCount": 3
+  },
+  {
+    "id": "security",
+    "name": "Sécurité spécialisée",
+    "icon": "🛡️",
+    "description": "Sites sensibles, sûreté nucléaire et nuits/week-ends qui paient mieux que la sécurité standard.",
+    "laneCount": 1,
+    "laneIds": [
+      "sec_sensitive"
+    ],
+    "branchCount": 1,
+    "ticketCount": 1
+  },
+  {
+    "id": "health",
+    "name": "Santé technique",
+    "icon": "🏥",
+    "description": "Routes longues mais puissantes quand l'intérim, la nuit et les services tendus prennent le relais.",
+    "laneCount": 1,
+    "laneIds": [
+      "health_ide"
+    ],
+    "branchCount": 1,
+    "ticketCount": 1
+  },
+  {
+    "id": "agro",
+    "name": "Agro-industrie",
+    "icon": "🌾",
+    "description": "Process continu, 5x8, froid et usines qui valorisent vraiment les horaires décalés.",
+    "laneCount": 1,
+    "laneIds": [
+      "agro_5x8"
+    ],
+    "branchCount": 1,
+    "ticketCount": 1
   }
 ]

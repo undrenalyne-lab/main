@@ -11,6 +11,12 @@ import {
   scenarioPresetOverrides,
   ticketOverrides,
 } from "./seed-overrides.mjs";
+import {
+  atlasEmployers,
+  atlasLaneSeeds,
+  atlasSources,
+  atlasTickets,
+} from "./manual-atlas-data.mjs";
 
 const SOURCE_HTML =
   "/Users/undrenalyne/Downloads/france_money_map_v4_redteam.html";
@@ -65,6 +71,69 @@ const sectorMeta = {
     icon: "🖥️",
     description:
       "Maintenance CVC, électrique et facility pour sites où la stabilité et la continuité de service priment.",
+  },
+  construction: {
+    id: "construction",
+    name: "BTP / TP",
+    icon: "🏗️",
+    description:
+      "Grand déplacement, tunnels, VRD et génie civil lourd où l'IGD et les heures chantier changent tout.",
+  },
+  energy: {
+    id: "energy",
+    name: "Énergie / HT",
+    icon: "⚡",
+    description:
+      "Réseaux aériens, postes, dépannage et astreintes pour monteurs réseaux et lignards.",
+  },
+  maritime: {
+    id: "maritime",
+    name: "Maritime / Offshore",
+    icon: "🚢",
+    description:
+      "Naval, embarqué et offshore où la rotation, l'isolement et les contraintes embarquées pèsent sur la paie.",
+  },
+  aero: {
+    id: "aero",
+    name: "Aéronautique / Défense",
+    icon: "✈️",
+    description:
+      "Maintenance MRO et environnements défense plus lents à débloquer, mais techniquement solides.",
+  },
+  transport: {
+    id: "transport",
+    name: "Transport spécialisé",
+    icon: "🚛",
+    description:
+      "SPL, ADR, convois et découchés où la réglementation et l'endurance font le différentiel.",
+  },
+  environment: {
+    id: "environment",
+    name: "Environnement / Dépollution",
+    icon: "♻️",
+    description:
+      "Dépollution, amiante, déchets dangereux et interventions sales ou réglementées.",
+  },
+  security: {
+    id: "security",
+    name: "Sécurité spécialisée",
+    icon: "🛡️",
+    description:
+      "Sites sensibles, sûreté nucléaire et nuits/week-ends qui paient mieux que la sécurité standard.",
+  },
+  health: {
+    id: "health",
+    name: "Santé technique",
+    icon: "🏥",
+    description:
+      "Routes longues mais puissantes quand l'intérim, la nuit et les services tendus prennent le relais.",
+  },
+  agro: {
+    id: "agro",
+    name: "Agro-industrie",
+    icon: "🌾",
+    description:
+      "Process continu, 5x8, froid et usines qui valorisent vraiment les horaires décalés.",
   },
 };
 
@@ -163,6 +232,10 @@ function slugify(value) {
 
 function round(value) {
   return Math.round(value);
+}
+
+function roundTo(value, digits = 2) {
+  return Number(Number(value).toFixed(digits));
 }
 
 function salarySituation(baseGrossMonthly, extra = {}) {
@@ -288,9 +361,111 @@ function buildWorkPatternNotes(lane, scenarioPresets) {
   const max = scenarioPresets.max;
 
   return {
-    summary: `${lane.branch} est piloté par ${lane.model.join(" · ").toLowerCase()}.`,
+    summary: `${lane.branch} est piloté par ${((lane.model || lane.payoutModel || []).join(" · ")).toLowerCase()}.`,
     stablePreset: `Preset stable: ${stable.gdDays} GD, ${stable.panierDays} paniers, ${stable.nightShifts} nuits, ${stable.weekendShifts} week-ends, ${stable.overtimeHours} h sup.`,
     maxPreset: `Preset max: ${max.gdDays} GD, ${max.panierDays} paniers, ${max.nightShifts} nuits, ${max.weekendShifts} week-ends, ${max.overtimeHours} h sup.`,
+  };
+}
+
+function buildCompensationRuleFromSeed(seed) {
+  const scenarioPresets = {
+    low: seed.scenarioPresets.low,
+    stable: seed.scenarioPresets.stable,
+    max: seed.scenarioPresets.max,
+  };
+
+  return {
+    laneId: seed.id,
+    baseGrossMonthly: round(seed.pay.baseGrossMonthly),
+    baseNetMonthly: round(estimateBaseNetMonthly(seed.pay.baseGrossMonthly)),
+    netRatio: roundTo(
+      estimateBaseNetMonthly(seed.pay.baseGrossMonthly) / seed.pay.baseGrossMonthly,
+      2,
+    ),
+    ratios: {
+      overtimeNet: Number(
+        estimateOvertimeNetRatio(seed.pay.baseGrossMonthly).toFixed(3),
+      ),
+    },
+    mobility: {
+      provinceDaily: seed.pay.gdProvince,
+      parisDaily: seed.pay.gdParis,
+    },
+    allowances: {
+      nightPerShiftNet: seed.pay.nightNet,
+      weekendPerShiftNet: seed.pay.weekendNet,
+      overtimePerHourNet: seed.pay.otNet,
+      panierPerDayNet: seed.pay.panier,
+      environmentMonthlyNet: seed.pay.risk,
+    },
+    livingCostDefault: seed.pay.living,
+    regularityIndex: seed.pay.regularity,
+    scenarioPresets,
+    sliderBounds: defaultSliderBounds,
+    patternNotes: buildWorkPatternNotes(seed, scenarioPresets),
+    scenarioOutputs: {
+      low: calculateScenario(seed.pay.baseGrossMonthly, seed.pay, scenarioPresets.low),
+      stable: calculateScenario(
+        seed.pay.baseGrossMonthly,
+        seed.pay,
+        scenarioPresets.stable,
+      ),
+      max: calculateScenario(seed.pay.baseGrossMonthly, seed.pay, scenarioPresets.max),
+    },
+    payoutModel: seed.payoutModel,
+    notes: [
+      `Base manuelle atlas: ${seed.salaryBaseBrutRange.min}–${seed.salaryBaseBrutRange.max} brut mensuel.`,
+      "Net de base recalé via modele-social (moteur Mon Entreprise / Urssaf).",
+      "Les grands déplacements et paniers sont traités comme indemnités de frais, pas comme net salarial.",
+      "Preset dérivé des notes atlas fournies par l'utilisateur.",
+    ],
+  };
+}
+
+function buildManualLane(seed, compensationRule) {
+  return {
+    id: seed.id,
+    sector: seed.sector,
+    sectorLabel: sectorMeta[seed.sector].name,
+    branch: seed.branch,
+    subBranch: seed.subBranch,
+    title: seed.title,
+    shortDescription: seed.shortDescription,
+    tags: seed.tags,
+    hypeLevel: seed.hypeLevel || "sobre",
+    competitionLevel: levelFromFive(seed.scores.competition),
+    saturationLevel: levelFromFive(seed.scores.competition),
+    stabilityLevel: stabilityLabel(seed.scores.stability),
+    fatigueLevel: levelFromFive(seed.scores.fatigue),
+    accessDifficulty: inferAccessDifficulty(
+      seed.scores.speed,
+      seed.ticketsRequired.length + seed.ticketsRecommended.length,
+    ),
+    confidenceLevel: seed.confidenceLevel,
+    targetProfiles: seed.targetProfiles,
+    ticketsRequired: seed.ticketsRequired,
+    ticketsRecommended: seed.ticketsRecommended,
+    entryPath: seed.entryPath,
+    entryTimeline: seed.entryTimeline,
+    fitChecks: seed.fitChecks,
+    careerQuest: seed.careerQuest,
+    opens: seed.opens,
+    doesNotOpen: seed.doesNotOpen,
+    rebounds: seed.rebounds,
+    verticalProgression: seed.verticalProgression,
+    employerIds: seed.employerIds,
+    salaryBaseBrutRange: seed.salaryBaseBrutRange,
+    salaryBaseNetEstimate: compensationRule.baseNetMonthly,
+    salaryLowScenario: compensationRule.scenarioOutputs.low,
+    salaryStableScenario: compensationRule.scenarioOutputs.stable,
+    salaryMaxScenario: compensationRule.scenarioOutputs.max,
+    payoutModel: seed.payoutModel,
+    applicationChannels: seed.applicationChannels,
+    scores: seed.scores,
+    managerTrack: seed.managerTrack,
+    ticketCount: seed.ticketsRequired.length + seed.ticketsRecommended.length,
+    sourceIds: seed.sourceIds,
+    notes: seed.notes,
   };
 }
 
@@ -606,6 +781,7 @@ function main() {
       }),
     ),
     ...extraSources.map((source) => JSON.stringify(source)),
+    ...atlasSources.map((source) => JSON.stringify(source)),
   ]).map((value) => JSON.parse(value));
 
   const employerAccumulator = new Map();
@@ -701,6 +877,13 @@ function main() {
     compensationRules.map((rule) => [rule.laneId, rule]),
   );
 
+  const atlasCompensationRules = atlasLaneSeeds.map((seed) =>
+    buildCompensationRuleFromSeed(seed),
+  );
+  atlasCompensationRules.forEach((rule) =>
+    compensationByLaneId.set(rule.laneId, rule),
+  );
+
   const lanes = db.lanes.map((lane) => {
     const employerIds = lane.companies.map((company) => slugify(company.name));
     return normalizeLane(
@@ -710,6 +893,10 @@ function main() {
       compensationByLaneId.get(lane.id),
     );
   });
+  const atlasLanes = atlasLaneSeeds.map((seed) =>
+    buildManualLane(seed, compensationByLaneId.get(seed.id)),
+  );
+  const allLanes = [...lanes, ...atlasLanes];
 
   const ticketUsage = new Map();
 
@@ -728,6 +915,20 @@ function main() {
     });
   });
 
+  atlasLaneSeeds.forEach((lane) => {
+    [...lane.ticketsRequired, ...lane.ticketsRecommended].forEach((ticketId) => {
+      const usage = ticketUsage.get(ticketId) || {
+        sectors: new Set(),
+        branches: new Set(),
+        lanes: new Set(),
+      };
+      usage.sectors.add(lane.sector);
+      usage.branches.add(lane.branch);
+      usage.lanes.add(lane.id);
+      ticketUsage.set(ticketId, usage);
+    });
+  });
+
   const generatedTickets = Object.entries(db.catalog).map(([id, ticket]) => {
     const usage = ticketUsage.get(id) || {
       sectors: new Set(),
@@ -738,10 +939,15 @@ function main() {
     return normalizeTicketRecord({ id, ...ticket }, usage);
   });
 
-  const tickets = [...generatedTickets, ...manualTickets.map((ticket) => normalizeTicketRecord(ticket))]
+  const tickets = [
+    ...generatedTickets,
+    ...manualTickets.map((ticket) => normalizeTicketRecord(ticket)),
+    ...atlasTickets.map((ticket) => normalizeTicketRecord(ticket)),
+  ]
     .sort((left, right) => left.name.localeCompare(right.name, "fr"));
 
-  const employers = Array.from(employerAccumulator.values())
+  const employers = [
+    ...Array.from(employerAccumulator.values())
     .map((entry) => ({
       id: entry.id,
       name: entry.name,
@@ -754,10 +960,12 @@ function main() {
       confidenceLevel: entry.url ? "medium" : "low",
       laneIds: Array.from(entry.laneIds),
     }))
-    .sort((left, right) => left.name.localeCompare(right.name, "fr"));
+    .sort((left, right) => left.name.localeCompare(right.name, "fr")),
+    ...atlasEmployers,
+  ].sort((left, right) => left.name.localeCompare(right.name, "fr"));
 
   const sectors = Object.values(sectorMeta).map((sector) => {
-    const sectorLanes = lanes.filter((lane) => lane.sector === sector.id);
+    const sectorLanes = allLanes.filter((lane) => lane.sector === sector.id);
     return {
       ...sector,
       laneCount: sectorLanes.length,
@@ -769,17 +977,19 @@ function main() {
     };
   });
 
-  writeJsonFile("lanes.json", lanes);
+  const allCompensationRules = [...compensationRules, ...atlasCompensationRules];
+
+  writeJsonFile("lanes.json", allLanes);
   writeJsonFile("tickets.json", tickets);
   writeJsonFile("employers.json", employers);
-  writeJsonFile("compensation_rules.json", compensationRules);
+  writeJsonFile("compensation_rules.json", allCompensationRules);
   writeJsonFile("sources.json", sources);
   writeJsonFile("sectors.json", sectors);
 
   console.log(
     JSON.stringify(
       {
-        lanes: lanes.length,
+        lanes: allLanes.length,
         tickets: tickets.length,
         employers: employers.length,
         sources: sources.length,

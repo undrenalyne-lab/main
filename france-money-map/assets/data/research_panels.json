@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Stack de rémunération",
+    "tone": "gold",
+    "points": [
+      "1. Salaire de base brut",
+      "2. Majorations nuit / dimanche / heures sup",
+      "3. Indemnités mobilité: GD, paniers, découchés",
+      "4. Primes de contrainte: risque, hauteur, nucléaire, froid",
+      "5. Levier contractuel: intérim, CDI chantier, astreinte",
+      "6. Compression des dépenses: base-vie, hébergement, rotation"
+    ]
+  },
+  {
+    "title": "Confusions à tuer",
+    "tone": "blue",
+    "points": [
+      "S9 n'est pas PEC",
+      "HN1 n'est pas un métier nucléaire",
+      "IRATA niveau 1 n'est pas une spécialité complète",
+      "Un pack sécurité ferro ne vaut pas toute la filière",
+      "Le grand déplacement n'est pas du net salarial"
+    ]
+  },
+  {
+    "title": "Où le cash explose",
+    "tone": "green",
+    "points": [
+      "Ferro nuit + week-end + mobilité",
+      "TP / tunnel + IGD + heures sup",
+      "Nucléaire arrêt de tranche + primes + base-vie",
+      "Énergie HT + astreinte + dépannage",
+      "Intérim santé + nuits + services tendus"
+    ]
+  },
+  {
+    "title": "Ce qu'il ne faut pas vendre",
+    "tone": "red",
+    "points": [
+      "Un ticket court comme garantie d'embauche",
+      "Le salaire médian comme boussole unique",
+      "Le mois max comme revenu régulier",
+      "Une filière entière derrière un seul sigle",
+      "Une route longue comme si elle était rapide"
+    ]
+  },
+  {
+    "title": "Priorités V1 après extension",
+    "tone": "orange",
+    "points": [
+      "Ferro chantier et caténaire",
+      "Nucléaire maintenance / RP",
+      "BTP grand déplacement / tunnel",
+      "Industrie 3x8 et data centers",
+      "Énergie réseaux / astreintes"
+    ]
+  }
+]

@@ -142,5 +142,21 @@
     "note": "Formation certifiante en 14 mois en moyenne ; TES M, TES C, TES F et TSAE Agent LAM nécessaires pour exercer.",
     "kind": "public-source",
     "confidenceLevel": "high"
+  },
+  {
+    "id": "atlas-france-2025-2026",
+    "title": "Atlas des filières techniques à très haut potentiel (FR 2025-2026)",
+    "url": "",
+    "note": "Synthèse intégrée depuis le mémo utilisateur sur la stack de rémunération, les 15 secteurs France et les confusions critiques à éviter.",
+    "kind": "internal-research",
+    "confidenceLevel": "medium"
+  },
+  {
+    "id": "deep-research-money-map-fr-au",
+    "title": "Deep research report Money Map (France / Australia)",
+    "url": "",
+    "note": "Synthèse comparative intégrée pour élargir la taxonomie, les branches manquantes et les logiques de rémunération.",
+    "kind": "internal-research",
+    "confidenceLevel": "medium"
   }
 ]

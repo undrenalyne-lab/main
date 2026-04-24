@@ -3551,5 +3551,1603 @@
       "Limite déclarée: Pas un raccourci vers commissioning industriel lourd.",
       "Balises source: Marché FM critique"
     ]
+  },
+  {
+    "id": "btp_gd",
+    "sector": "construction",
+    "sectorLabel": "BTP / TP",
+    "branch": "TP en grand déplacement",
+    "subBranch": "Conducteur d'engins · VRD · terrassement",
+    "title": "Conducteur d'engins TP / VRD en GD",
+    "shortDescription": "Le cash n'est pas dans le poste nu. Il est dans IGD + heures sup + chantier loin de chez toi.",
+    "tags": [
+      "Grand déplacement",
+      "CACES R482",
+      "IGD",
+      "Terrain",
+      "Mobilité"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "moyen",
+    "saturationLevel": "moyen",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 3,
+      "label": "moyen"
+    },
+    "confidenceLevel": "medium",
+    "targetProfiles": [
+      "terrain",
+      "meca",
+      "logistique"
+    ],
+    "ticketsRequired": [
+      "cacesR482",
+      "aipr"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Passer un CACES réellement demandé",
+      "Ajouter l'AIPR pour réseaux / VRD",
+      "Accepter le grand déplacement et viser une major TP",
+      "Monter sur engins plus lourds puis chef d'équipe"
+    ],
+    "entryTimeline": {
+      "trainingDuration": "1 à 4 semaines selon financement et catégorie CACES",
+      "firstJobWindow": "2 à 8 semaines si tu assumes la mobilité nationale",
+      "accessMode": "Route rapide si tu es mobile ; beaucoup moins rentable si tu refuses le grand déplacement"
+    },
+    "fitChecks": [
+      "Permis B",
+      "mobilité forte",
+      "horaires chantier",
+      "extérieur",
+      "acceptation vie chantier"
+    ],
+    "careerQuest": [
+      "Niveau 1 · décrocher un CACES utile",
+      "Niveau 2 · viser les chantiers VRD / terrassement en GD",
+      "Niveau 3 · passer sur des engins mieux payés et du gros chantier",
+      "Niveau 4 · monter chef d'équipe / chef de manoeuvre"
+    ],
+    "opens": [
+      "Tunnel",
+      "VRD",
+      "terrassement lourd",
+      "chef d'équipe"
+    ],
+    "doesNotOpen": [
+      "Ne garantit pas le cash si tu restes local sans IGD"
+    ],
+    "rebounds": [
+      "VRD",
+      "réseaux",
+      "terrassement"
+    ],
+    "verticalProgression": [
+      "engins plus lourds",
+      "chef d'équipe",
+      "chef de chantier"
+    ],
+    "employerIds": [
+      "nge",
+      "razel-bec",
+      "eiffage-genie-civil"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2200,
+      "max": 2900
+    },
+    "salaryBaseNetEstimate": 1957,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1957,
+      "nightBonus": 28,
+      "weekendBonus": 55,
+      "overtimeBonus": 149,
+      "grandDeplacementBonus": 626,
+      "panierBonus": 104,
+      "riskBonus": 30,
+      "taxableVariableNet": 262,
+      "estimatedPayslipNet": 2219,
+      "estimatedExpenseCoverage": 730,
+      "estimatedCashAvailable": 2949,
+      "estimatedPocket": 2049,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1957,
+      "nightBonus": 84,
+      "weekendBonus": 55,
+      "overtimeBonus": 328,
+      "grandDeplacementBonus": 1408,
+      "panierBonus": 187,
+      "riskBonus": 30,
+      "taxableVariableNet": 497,
+      "estimatedPayslipNet": 2454,
+      "estimatedExpenseCoverage": 1595,
+      "estimatedCashAvailable": 4049,
+      "estimatedPocket": 3149,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1957,
+      "nightBonus": 168,
+      "weekendBonus": 165,
+      "overtimeBonus": 552,
+      "grandDeplacementBonus": 2033,
+      "panierBonus": 250,
+      "riskBonus": 30,
+      "taxableVariableNet": 915,
+      "estimatedPayslipNet": 2872,
+      "estimatedExpenseCoverage": 2283,
+      "estimatedCashAvailable": 5155,
+      "estimatedPocket": 4255,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base chantier",
+      "IGD",
+      "heures sup",
+      "mobilité"
+    ],
+    "applicationChannels": [
+      "site carrière majors TP",
+      "agences BTP",
+      "France Travail / Hellowork"
+    ],
+    "scores": {
+      "speed": 4,
+      "competition": 3,
+      "stability": 6,
+      "durability": 6,
+      "fatigue": 4,
+      "volatility": 4
+    },
+    "managerTrack": true,
+    "ticketCount": 2,
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ],
+    "notes": [
+      "La règle d'or est simple: sans IGD, le poste reste banal.",
+      "Le site doit distinguer chantier local et chantier éloigné."
+    ]
+  },
+  {
+    "id": "btp_tunnel",
+    "sector": "construction",
+    "sectorLabel": "BTP / TP",
+    "branch": "Tunnel / ouvrages souterrains",
+    "subBranch": "Mineur · tunnelier · coffrage lourd",
+    "title": "Mineur / tunnelier / génie souterrain",
+    "shortDescription": "Le tunnel paie par la contrainte: nuit, confinement, prime tunnel et grand déplacement.",
+    "tags": [
+      "Tunnel",
+      "prime de contrainte",
+      "GD",
+      "Terrain",
+      "Nuit"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "faible",
+    "saturationLevel": "faible",
+    "stabilityLevel": "moyen",
+    "fatigueLevel": "très élevé",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "medium",
+    "targetProfiles": [
+      "terrain",
+      "meca"
+    ],
+    "ticketsRequired": [
+      "cacesR482",
+      "aipr"
+    ],
+    "ticketsRecommended": [
+      "travailHauteur"
+    ],
+    "entryPath": [
+      "Entrer chantier lourd via TP / coffrage / engins",
+      "Basculer sur ouvrages souterrains / tunnel",
+      "Encaisser le rythme, la contrainte et la mobilité",
+      "Monter chef de poste / chef d'équipe"
+    ],
+    "entryTimeline": {
+      "trainingDuration": "souvent employer-led après entrée chantier",
+      "firstJobWindow": "plus rapide si tu viens déjà du TP lourd",
+      "accessMode": "Le tunnel s'ouvre surtout depuis le terrain lourd, pas depuis un ticket isolé"
+    },
+    "fitChecks": [
+      "claustrophobie faible",
+      "nuit",
+      "forte endurance",
+      "grand déplacement"
+    ],
+    "careerQuest": [
+      "Niveau 1 · entrer sur gros chantier TP",
+      "Niveau 2 · basculer tunnel / ouvrage souterrain",
+      "Niveau 3 · gagner sur la pénibilité et le rythme",
+      "Niveau 4 · chef de poste / tunnel"
+    ],
+    "opens": [
+      "chef de poste tunnel",
+      "chef d'équipe GC",
+      "ouvrages spéciaux"
+    ],
+    "doesNotOpen": [
+      "Ne convient pas si tu refuses la contrainte physique et les horaires atypiques"
+    ],
+    "rebounds": [
+      "génie civil lourd",
+      "coffrage",
+      "engins"
+    ],
+    "verticalProgression": [
+      "chef de poste",
+      "chef d'équipe",
+      "conduite de travaux"
+    ],
+    "employerIds": [
+      "nge",
+      "razel-bec",
+      "eiffage-genie-civil"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2400,
+      "max": 3200
+    },
+    "salaryBaseNetEstimate": 2195,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2195,
+      "nightBonus": 128,
+      "weekendBonus": 65,
+      "overtimeBonus": 217,
+      "grandDeplacementBonus": 782,
+      "panierBonus": 125,
+      "riskBonus": 120,
+      "taxableVariableNet": 530,
+      "estimatedPayslipNet": 2725,
+      "estimatedExpenseCoverage": 907,
+      "estimatedCashAvailable": 3631,
+      "estimatedPocket": 2731,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2195,
+      "nightBonus": 256,
+      "weekendBonus": 130,
+      "overtimeBonus": 418,
+      "grandDeplacementBonus": 1564,
+      "panierBonus": 208,
+      "riskBonus": 120,
+      "taxableVariableNet": 924,
+      "estimatedPayslipNet": 3118,
+      "estimatedExpenseCoverage": 1772,
+      "estimatedCashAvailable": 4890,
+      "estimatedPocket": 3990,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2195,
+      "nightBonus": 448,
+      "weekendBonus": 260,
+      "overtimeBonus": 668,
+      "grandDeplacementBonus": 2190,
+      "panierBonus": 270,
+      "riskBonus": 120,
+      "taxableVariableNet": 1496,
+      "estimatedPayslipNet": 3691,
+      "estimatedExpenseCoverage": 2460,
+      "estimatedCashAvailable": 6151,
+      "estimatedPocket": 5251,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base TP",
+      "prime tunnel",
+      "GD",
+      "nuit",
+      "heures sup"
+    ],
+    "applicationChannels": [
+      "site carrière majors TP",
+      "réseau tunnel / génie civil",
+      "agences chantier lourd"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 2,
+      "stability": 5,
+      "durability": 6,
+      "fatigue": 5,
+      "volatility": 4
+    },
+    "managerTrack": true,
+    "ticketCount": 3,
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ],
+    "notes": [
+      "Gros cash possible, mais au prix d'un rythme très dur."
+    ]
+  },
+  {
+    "id": "energy_lignard",
+    "sector": "energy",
+    "sectorLabel": "Énergie / HT",
+    "branch": "Réseaux HT / lignard / postes",
+    "subBranch": "Monteur réseaux · lignes aériennes · astreintes",
+    "title": "Monteur réseaux / lignard HT",
+    "shortDescription": "Le combo gagnant ici: hauteur, HT, dépannage, astreintes et mobilité.",
+    "tags": [
+      "Hauteur",
+      "HT",
+      "astreinte",
+      "extérieur",
+      "mobilité"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "moyen",
+    "saturationLevel": "moyen",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "medium",
+    "targetProfiles": [
+      "elec",
+      "terrain",
+      "hauteur"
+    ],
+    "ticketsRequired": [
+      "mreas",
+      "hta",
+      "travailHauteur"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Construire un vrai socle réseaux / élec",
+      "Ajouter HTA et travail en hauteur",
+      "Entrer sur lignes / postes / dépannage",
+      "Monter sur astreintes et interventions plus sensibles"
+    ],
+    "entryTimeline": {
+      "trainingDuration": "plusieurs mois pour le socle solide",
+      "firstJobWindow": "accélère si tu viens déjà de l'électricité terrain",
+      "accessMode": "Route plus solide que rapide ; la paie monte avec l'astreinte et l'expérience"
+    },
+    "fitChecks": [
+      "hauteur",
+      "extérieur",
+      "astreinte",
+      "sécurité électrique",
+      "mobilité"
+    ],
+    "careerQuest": [
+      "Niveau 1 · entrer sur réseaux aéro-souterrains",
+      "Niveau 2 · basculer HT / poste / ligne",
+      "Niveau 3 · astreintes, tempêtes, dépannage",
+      "Niveau 4 · chef d'équipe / poste source"
+    ],
+    "opens": [
+      "poste source",
+      "chef d'équipe HT",
+      "dépannage urgence"
+    ],
+    "doesNotOpen": [
+      "Ne remplace pas les habilitations internes de l'employeur ni l'expérience astreinte"
+    ],
+    "rebounds": [
+      "poste source",
+      "énergie critique",
+      "ENR raccordement"
+    ],
+    "verticalProgression": [
+      "chef d'équipe",
+      "poste source",
+      "chargé de travaux"
+    ],
+    "employerIds": [
+      "rte",
+      "omexom",
+      "spie-citynetworks"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2500,
+      "max": 3300
+    },
+    "salaryBaseNetEstimate": 2274,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2274,
+      "nightBonus": 70,
+      "weekendBonus": 70,
+      "overtimeBonus": 173,
+      "grandDeplacementBonus": 469,
+      "panierBonus": 83,
+      "riskBonus": 100,
+      "taxableVariableNet": 413,
+      "estimatedPayslipNet": 2687,
+      "estimatedExpenseCoverage": 552,
+      "estimatedCashAvailable": 3239,
+      "estimatedPocket": 2339,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2274,
+      "nightBonus": 210,
+      "weekendBonus": 140,
+      "overtimeBonus": 381,
+      "grandDeplacementBonus": 1095,
+      "panierBonus": 146,
+      "riskBonus": 100,
+      "taxableVariableNet": 831,
+      "estimatedPayslipNet": 3104,
+      "estimatedExpenseCoverage": 1240,
+      "estimatedCashAvailable": 4345,
+      "estimatedPocket": 3445,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2274,
+      "nightBonus": 350,
+      "weekendBonus": 280,
+      "overtimeBonus": 588,
+      "grandDeplacementBonus": 1720,
+      "panierBonus": 208,
+      "riskBonus": 100,
+      "taxableVariableNet": 1318,
+      "estimatedPayslipNet": 3592,
+      "estimatedExpenseCoverage": 1928,
+      "estimatedCashAvailable": 5520,
+      "estimatedPocket": 4620,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base énergie",
+      "astreinte",
+      "heures sup",
+      "mobilité",
+      "prime risque"
+    ],
+    "applicationChannels": [
+      "site carrière réseau",
+      "prestataires énergie",
+      "réseau électriciens terrain"
+    ],
+    "scores": {
+      "speed": 3,
+      "competition": 3,
+      "stability": 7,
+      "durability": 7,
+      "fatigue": 4,
+      "volatility": 3
+    },
+    "managerTrack": true,
+    "ticketCount": 3,
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ],
+    "notes": [
+      "Les tempêtes et dépannages font basculer la paie au-dessus du simple poste réseau."
+    ]
+  },
+  {
+    "id": "mar_offshore",
+    "sector": "maritime",
+    "sectorLabel": "Maritime / Offshore",
+    "branch": "Maintenance navale / offshore",
+    "subBranch": "Mécanique embarquée · rotations · base-vie",
+    "title": "Maintenance navale / offshore rotation",
+    "shortDescription": "Ce qui paie ici: embarquement, rotation, isolement et compression des dépenses.",
+    "tags": [
+      "rotation",
+      "embarqué",
+      "base-vie",
+      "mécanique",
+      "mobilité"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "moyen",
+    "saturationLevel": "moyen",
+    "stabilityLevel": "moyen",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "medium",
+    "targetProfiles": [
+      "meca",
+      "elec",
+      "terrain"
+    ],
+    "ticketsRequired": [
+      "stcw"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Arriver avec une vraie base mécanique / élec",
+      "Passer le socle sécurité maritime",
+      "Entrer sur navale / embarqué / offshore",
+      "Monter sur spécialités rares ou rotation longues"
+    ],
+    "entryTimeline": {
+      "trainingDuration": "quelques jours à quelques semaines selon pack maritime",
+      "firstJobWindow": "dépend fortement du vrai bagage technique déjà possédé",
+      "accessMode": "Le ticket maritime seul ne suffit pas ; il faut une compétence cœur de métier"
+    },
+    "fitChecks": [
+      "mer",
+      "rotation",
+      "éloignement",
+      "sécurité forte",
+      "anglais utile"
+    ],
+    "careerQuest": [
+      "Niveau 1 · bagage technique terre",
+      "Niveau 2 · embarquer grâce au socle maritime",
+      "Niveau 3 · spécialiser sur systèmes critiques / offshore",
+      "Niveau 4 · chef méca / référent bord"
+    ],
+    "opens": [
+      "chef mécanicien",
+      "maintenance offshore",
+      "rotation longues"
+    ],
+    "doesNotOpen": [
+      "Le STCW ne remplace pas une vraie compétence mécanique ou électrique"
+    ],
+    "rebounds": [
+      "naval défense",
+      "offshore",
+      "portuaire"
+    ],
+    "verticalProgression": [
+      "chef d'équipe embarqué",
+      "référent maintenance",
+      "offshore spécialisé"
+    ],
+    "employerIds": [
+      "naval-group",
+      "chantiers-de-l-atlantique",
+      "bourbon"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2500,
+      "max": 3500
+    },
+    "salaryBaseNetEstimate": 2353,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2353,
+      "nightBonus": 140,
+      "weekendBonus": 70,
+      "overtimeBonus": 179,
+      "grandDeplacementBonus": 650,
+      "panierBonus": 210,
+      "riskBonus": 120,
+      "taxableVariableNet": 509,
+      "estimatedPayslipNet": 2862,
+      "estimatedExpenseCoverage": 860,
+      "estimatedCashAvailable": 3722,
+      "estimatedPocket": 2972,
+      "livingCostDefault": 750
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2353,
+      "nightBonus": 280,
+      "weekendBonus": 140,
+      "overtimeBonus": 394,
+      "grandDeplacementBonus": 1300,
+      "panierBonus": 336,
+      "riskBonus": 120,
+      "taxableVariableNet": 934,
+      "estimatedPayslipNet": 3287,
+      "estimatedExpenseCoverage": 1636,
+      "estimatedCashAvailable": 4923,
+      "estimatedPocket": 4173,
+      "livingCostDefault": 750
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2353,
+      "nightBonus": 490,
+      "weekendBonus": 280,
+      "overtimeBonus": 608,
+      "grandDeplacementBonus": 1820,
+      "panierBonus": 392,
+      "riskBonus": 120,
+      "taxableVariableNet": 1498,
+      "estimatedPayslipNet": 3851,
+      "estimatedExpenseCoverage": 2212,
+      "estimatedCashAvailable": 6063,
+      "estimatedPocket": 5313,
+      "livingCostDefault": 750
+    },
+    "payoutModel": [
+      "Base embarquée",
+      "rotation",
+      "heures sup",
+      "primes offshore",
+      "dépenses compressées"
+    ],
+    "applicationChannels": [
+      "site carrière naval / offshore",
+      "réseau maintenance navale"
+    ],
+    "scores": {
+      "speed": 2,
+      "competition": 3,
+      "stability": 5,
+      "durability": 6,
+      "fatigue": 4,
+      "volatility": 4
+    },
+    "managerTrack": true,
+    "ticketCount": 1,
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ],
+    "notes": [
+      "L'isolement et la rotation améliorent parfois plus l'épargne que la fiche brute elle-même."
+    ]
+  },
+  {
+    "id": "aero_mro",
+    "sector": "aero",
+    "sectorLabel": "Aéronautique / Défense",
+    "branch": "Maintenance aéronautique / MRO / défense",
+    "subBranch": "Cellule · moteur · base militaire / civile",
+    "title": "Mécanicien aéronautique MRO / défense",
+    "shortDescription": "Filière plus verrouillée, mais stable et bien valorisée quand tu cumules technicité, documentation et horaires décalés.",
+    "tags": [
+      "MRO",
+      "défense",
+      "qualité",
+      "posté",
+      "technicité"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "moyen",
+    "saturationLevel": "moyen",
+    "stabilityLevel": "stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "medium",
+    "targetProfiles": [
+      "meca",
+      "elec",
+      "anglais"
+    ],
+    "ticketsRequired": [
+      "part66"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Construire une vraie base aéro",
+      "Entrer en MRO ou via défense / armée",
+      "Accepter qualité documentaire et horaires décalés",
+      "Monter sur systèmes plus rares"
+    ],
+    "entryTimeline": {
+      "trainingDuration": "voie longue et structurée",
+      "firstJobWindow": "plus lente qu'un métier chantier, plus propre ensuite",
+      "accessMode": "Chemin robuste mais pas express"
+    },
+    "fitChecks": [
+      "rigueur extrême",
+      "qualité documentaire",
+      "anglais technique utile",
+      "posté possible"
+    ],
+    "careerQuest": [
+      "Niveau 1 · construire la base licence / technique",
+      "Niveau 2 · entrer en maintenance aéronautique",
+      "Niveau 3 · viser moteurs, défense ou systèmes rares",
+      "Niveau 4 · référent / contrôle / encadrement"
+    ],
+    "opens": [
+      "systèmes rares",
+      "défense",
+      "contrôle qualité"
+    ],
+    "doesNotOpen": [
+      "Pas une route rapide ; ne pas vendre comme ticket express"
+    ],
+    "rebounds": [
+      "défense",
+      "MRO",
+      "qualité"
+    ],
+    "verticalProgression": [
+      "référent technique",
+      "contrôle",
+      "chef d'équipe"
+    ],
+    "employerIds": [
+      "airbus",
+      "safran",
+      "sabena-technics"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2400,
+      "max": 3400
+    },
+    "salaryBaseNetEstimate": 2274,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2274,
+      "nightBonus": 64,
+      "weekendBonus": 65,
+      "overtimeBonus": 86,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 0,
+      "riskBonus": 60,
+      "taxableVariableNet": 275,
+      "estimatedPayslipNet": 2549,
+      "estimatedExpenseCoverage": 0,
+      "estimatedCashAvailable": 2549,
+      "estimatedPocket": 1599,
+      "livingCostDefault": 950
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2274,
+      "nightBonus": 192,
+      "weekendBonus": 130,
+      "overtimeBonus": 173,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 0,
+      "riskBonus": 60,
+      "taxableVariableNet": 555,
+      "estimatedPayslipNet": 2829,
+      "estimatedExpenseCoverage": 0,
+      "estimatedCashAvailable": 2829,
+      "estimatedPocket": 1879,
+      "livingCostDefault": 950
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2274,
+      "nightBonus": 384,
+      "weekendBonus": 260,
+      "overtimeBonus": 329,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 0,
+      "riskBonus": 60,
+      "taxableVariableNet": 1033,
+      "estimatedPayslipNet": 3306,
+      "estimatedExpenseCoverage": 0,
+      "estimatedCashAvailable": 3306,
+      "estimatedPocket": 2356,
+      "livingCostDefault": 950
+    },
+    "payoutModel": [
+      "Base technique",
+      "horaires décalés",
+      "qualité / défense"
+    ],
+    "applicationChannels": [
+      "site carrière aéro",
+      "MRO / défense",
+      "réseau écoles aéro"
+    ],
+    "scores": {
+      "speed": 2,
+      "competition": 3,
+      "stability": 8,
+      "durability": 7,
+      "fatigue": 3,
+      "volatility": 2
+    },
+    "managerTrack": true,
+    "ticketCount": 1,
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ],
+    "notes": [
+      "Très bonne lisibilité long terme, moins spectaculaire en cash rapide."
+    ]
+  },
+  {
+    "id": "transport_adr",
+    "sector": "transport",
+    "sectorLabel": "Transport spécialisé",
+    "branch": "Transport exceptionnel / ADR / convois",
+    "subBranch": "SPL · matières dangereuses · découchés",
+    "title": "Chauffeur CE / ADR / convoi spécialisé",
+    "shortDescription": "Le transport paie quand tu acceptes découchés, attente, matière dangereuse et rythme route.",
+    "tags": [
+      "Permis CE",
+      "ADR",
+      "découchés",
+      "route",
+      "mobilité"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "moyen",
+    "saturationLevel": "moyen",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 3,
+      "label": "moyen"
+    },
+    "confidenceLevel": "medium",
+    "targetProfiles": [
+      "logistique",
+      "terrain"
+    ],
+    "ticketsRequired": [
+      "permisCE",
+      "adr"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Passer CE puis viser du vrai SPL",
+      "Ajouter ADR ou activité spéciale",
+      "Accepter découchés et route longue",
+      "Monter sur niches mieux valorisées"
+    ],
+    "entryTimeline": {
+      "trainingDuration": "quelques semaines à quelques mois selon financements",
+      "firstJobWindow": "assez rapide si tu prends la route et les découchés",
+      "accessMode": "Route simple à comprendre, dure à tenir sur la durée"
+    },
+    "fitChecks": [
+      "route longue",
+      "fatigue",
+      "découchés",
+      "sécurité stricte"
+    ],
+    "careerQuest": [
+      "Niveau 1 · CE / SPL",
+      "Niveau 2 · décrocher une base roulante",
+      "Niveau 3 · ajouter ADR / exceptionnel",
+      "Niveau 4 · viser niches à meilleure prime"
+    ],
+    "opens": [
+      "ADR lourd",
+      "transport exceptionnel",
+      "déchets dangereux"
+    ],
+    "doesNotOpen": [
+      "Ne convient pas si tu refuses l'éloignement et la fatigue route"
+    ],
+    "rebounds": [
+      "logistique dangereuse",
+      "convoi spécialisé"
+    ],
+    "verticalProgression": [
+      "chef de file",
+      "référent matière dangereuse"
+    ],
+    "employerIds": [
+      "groupe-charles-andre",
+      "geodis-road"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2200,
+      "max": 3100
+    },
+    "salaryBaseNetEstimate": 1957,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1957,
+      "nightBonus": 84,
+      "weekendBonus": 55,
+      "overtimeBonus": 194,
+      "grandDeplacementBonus": 210,
+      "panierBonus": 182,
+      "riskBonus": 80,
+      "taxableVariableNet": 413,
+      "estimatedPayslipNet": 2370,
+      "estimatedExpenseCoverage": 392,
+      "estimatedCashAvailable": 2762,
+      "estimatedPocket": 1912,
+      "livingCostDefault": 850
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1957,
+      "nightBonus": 168,
+      "weekendBonus": 110,
+      "overtimeBonus": 373,
+      "grandDeplacementBonus": 490,
+      "panierBonus": 286,
+      "riskBonus": 80,
+      "taxableVariableNet": 731,
+      "estimatedPayslipNet": 2688,
+      "estimatedExpenseCoverage": 776,
+      "estimatedCashAvailable": 3464,
+      "estimatedPocket": 2614,
+      "livingCostDefault": 850
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1957,
+      "nightBonus": 280,
+      "weekendBonus": 220,
+      "overtimeBonus": 597,
+      "grandDeplacementBonus": 770,
+      "panierBonus": 364,
+      "riskBonus": 80,
+      "taxableVariableNet": 1177,
+      "estimatedPayslipNet": 3134,
+      "estimatedExpenseCoverage": 1134,
+      "estimatedCashAvailable": 4268,
+      "estimatedPocket": 3418,
+      "livingCostDefault": 850
+    },
+    "payoutModel": [
+      "Base transport",
+      "découchés",
+      "panier",
+      "ADR",
+      "heures"
+    ],
+    "applicationChannels": [
+      "transporteurs spécialisés",
+      "agences transport",
+      "France Travail / Indeed"
+    ],
+    "scores": {
+      "speed": 4,
+      "competition": 3,
+      "stability": 6,
+      "durability": 5,
+      "fatigue": 4,
+      "volatility": 3
+    },
+    "managerTrack": false,
+    "ticketCount": 2,
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ],
+    "notes": [
+      "L'argent vient du rythme, pas du volant seul."
+    ]
+  },
+  {
+    "id": "env_ss4",
+    "sector": "environment",
+    "sectorLabel": "Environnement / Dépollution",
+    "branch": "Désamiantage / dépollution / déchets dangereux",
+    "subBranch": "SS4 · déchets spéciaux · interventions confinées",
+    "title": "Désamiantage SS4 / dépollution chantier",
+    "shortDescription": "Petit ticket, grosse contrainte. L'argent vient du risque, du confinement et des marchés durs.",
+    "tags": [
+      "SS4",
+      "confinement",
+      "dépollution",
+      "risque",
+      "déchets"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "moyen",
+    "saturationLevel": "moyen",
+    "stabilityLevel": "moyen",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 4,
+      "label": "élevé"
+    },
+    "confidenceLevel": "medium",
+    "targetProfiles": [
+      "terrain",
+      "logistique"
+    ],
+    "ticketsRequired": [
+      "ss4"
+    ],
+    "ticketsRecommended": [
+      "adr",
+      "aipr"
+    ],
+    "entryPath": [
+      "Passer SS4",
+      "Entrer dans une boîte avec vrais marchés pollution / amiante",
+      "Monter sur interventions plus sensibles ou déchets dangereux",
+      "Basculer chef d'équipe / HSE terrain"
+    ],
+    "entryTimeline": {
+      "trainingDuration": "très court sur le papier",
+      "firstJobWindow": "rapide si l'employeur a du volume chantier",
+      "accessMode": "Tout dépend de la boîte ; le ticket seul ne paie rien si le marché derrière est faible"
+    },
+    "fitChecks": [
+      "EPI lourds",
+      "confinement",
+      "salissure",
+      "procédures fortes"
+    ],
+    "careerQuest": [
+      "Niveau 1 · SS4",
+      "Niveau 2 · vraie expérience terrain amiante / pollution",
+      "Niveau 3 · déchets dangereux / niches mieux payées",
+      "Niveau 4 · chef d'équipe / HSE"
+    ],
+    "opens": [
+      "déchets dangereux",
+      "hydrocurage",
+      "chef d'équipe dépollution"
+    ],
+    "doesNotOpen": [
+      "SS4 n'est pas SS3 et n'autorise pas tous les chantiers amiante"
+    ],
+    "rebounds": [
+      "déchets dangereux",
+      "HSE terrain"
+    ],
+    "verticalProgression": [
+      "chef d'équipe",
+      "HSE terrain",
+      "logistique dangereuse"
+    ],
+    "employerIds": [
+      "ortec-environnement",
+      "seche-environnement",
+      "veolia-depollution"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2100,
+      "max": 2800
+    },
+    "salaryBaseNetEstimate": 1878,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1878,
+      "nightBonus": 0,
+      "weekendBonus": 0,
+      "overtimeBonus": 107,
+      "grandDeplacementBonus": 200,
+      "panierBonus": 83,
+      "riskBonus": 110,
+      "taxableVariableNet": 217,
+      "estimatedPayslipNet": 2095,
+      "estimatedExpenseCoverage": 283,
+      "estimatedCashAvailable": 2378,
+      "estimatedPocket": 1478,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1878,
+      "nightBonus": 48,
+      "weekendBonus": 45,
+      "overtimeBonus": 229,
+      "grandDeplacementBonus": 500,
+      "panierBonus": 166,
+      "riskBonus": 110,
+      "taxableVariableNet": 432,
+      "estimatedPayslipNet": 2310,
+      "estimatedExpenseCoverage": 666,
+      "estimatedCashAvailable": 2976,
+      "estimatedPocket": 2076,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1878,
+      "nightBonus": 144,
+      "weekendBonus": 90,
+      "overtimeBonus": 358,
+      "grandDeplacementBonus": 900,
+      "panierBonus": 229,
+      "riskBonus": 110,
+      "taxableVariableNet": 702,
+      "estimatedPayslipNet": 2580,
+      "estimatedExpenseCoverage": 1129,
+      "estimatedCashAvailable": 3709,
+      "estimatedPocket": 2809,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base chantier",
+      "prime risque",
+      "déchets",
+      "panier",
+      "heures"
+    ],
+    "applicationChannels": [
+      "site carrière dépollution",
+      "agences environnement",
+      "réseau chantier"
+    ],
+    "scores": {
+      "speed": 4,
+      "competition": 3,
+      "stability": 5,
+      "durability": 5,
+      "fatigue": 4,
+      "volatility": 4
+    },
+    "managerTrack": true,
+    "ticketCount": 3,
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ],
+    "notes": [
+      "Bonne niche si tu supportes le sale, les EPI et les règles."
+    ]
+  },
+  {
+    "id": "sec_sensitive",
+    "sector": "security",
+    "sectorLabel": "Sécurité spécialisée",
+    "branch": "Sûreté nucléaire / site sensible",
+    "subBranch": "Nuit · week-end · astreinte · site critique",
+    "title": "Sûreté site sensible / nucléaire",
+    "shortDescription": "La sécurité paie mieux quand tu sors du gardiennage simple et que tu prends les sites sensibles, la nuit et les astreintes.",
+    "tags": [
+      "CNAPS",
+      "SSIAP",
+      "nuit",
+      "site sensible",
+      "astreinte"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "élevé",
+    "saturationLevel": "élevé",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 3,
+      "label": "moyen"
+    },
+    "confidenceLevel": "medium",
+    "targetProfiles": [
+      "securite",
+      "terrain"
+    ],
+    "ticketsRequired": [
+      "cnapsSsiap"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Valider le socle réglementaire sécurité",
+      "Viser site sensible plutôt que sûreté basique",
+      "Accepter nuit / week-end / astreinte",
+      "Monter chef de poste / site"
+    ],
+    "entryTimeline": {
+      "trainingDuration": "quelques jours à semaines selon brique CNAPS / SSIAP",
+      "firstJobWindow": "rapide sur sécurité classique ; plus lent sur les meilleurs sites",
+      "accessMode": "L'argent est dans le site et l'horaire, pas dans la carte seule"
+    },
+    "fitChecks": [
+      "nuit",
+      "week-end",
+      "calme",
+      "casier compatible",
+      "procédure"
+    ],
+    "careerQuest": [
+      "Niveau 1 · obtenir la carte et entrer en sûreté",
+      "Niveau 2 · viser un site sensible",
+      "Niveau 3 · accumuler nuits / week-ends / astreintes",
+      "Niveau 4 · chef de poste / site"
+    ],
+    "opens": [
+      "chef de poste",
+      "sûreté nucléaire",
+      "site stratégique"
+    ],
+    "doesNotOpen": [
+      "La carte sécurité ne garantit pas une prime de site sensible"
+    ],
+    "rebounds": [
+      "site sensible",
+      "nucléaire",
+      "chef de poste"
+    ],
+    "verticalProgression": [
+      "chef de poste",
+      "adjoint site",
+      "site stratégique"
+    ],
+    "employerIds": [
+      "onet-securite",
+      "seris-security"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2000,
+      "max": 2600
+    },
+    "salaryBaseNetEstimate": 1799,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1799,
+      "nightBonus": 168,
+      "weekendBonus": 110,
+      "overtimeBonus": 69,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 0,
+      "riskBonus": 90,
+      "taxableVariableNet": 437,
+      "estimatedPayslipNet": 2235,
+      "estimatedExpenseCoverage": 0,
+      "estimatedCashAvailable": 2235,
+      "estimatedPocket": 1285,
+      "livingCostDefault": 950
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1799,
+      "nightBonus": 280,
+      "weekendBonus": 220,
+      "overtimeBonus": 137,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 0,
+      "riskBonus": 90,
+      "taxableVariableNet": 727,
+      "estimatedPayslipNet": 2526,
+      "estimatedExpenseCoverage": 0,
+      "estimatedCashAvailable": 2526,
+      "estimatedPocket": 1576,
+      "livingCostDefault": 950
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1799,
+      "nightBonus": 448,
+      "weekendBonus": 330,
+      "overtimeBonus": 261,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 0,
+      "riskBonus": 90,
+      "taxableVariableNet": 1129,
+      "estimatedPayslipNet": 2927,
+      "estimatedExpenseCoverage": 0,
+      "estimatedCashAvailable": 2927,
+      "estimatedPocket": 1977,
+      "livingCostDefault": 950
+    },
+    "payoutModel": [
+      "Base sécurité",
+      "nuit",
+      "week-end",
+      "site sensible"
+    ],
+    "applicationChannels": [
+      "sites carrières sécurité",
+      "réseau sites sensibles"
+    ],
+    "scores": {
+      "speed": 4,
+      "competition": 4,
+      "stability": 7,
+      "durability": 5,
+      "fatigue": 3,
+      "volatility": 2
+    },
+    "managerTrack": true,
+    "ticketCount": 1,
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ],
+    "notes": [
+      "Ne pas vendre comme jackpot automatique; tout dépend du site et des horaires."
+    ]
+  },
+  {
+    "id": "health_ide",
+    "sector": "health",
+    "sectorLabel": "Santé technique",
+    "branch": "IDE intérim nuit / bloc / réanimation",
+    "subBranch": "Intérim paramédical · nuit · services tendus",
+    "title": "IDE intérim nuit / bloc / réa",
+    "shortDescription": "Gros cash possible, mais ticket long. Ici le site doit montrer le vrai trade-off: 3 ans de diplôme avant la stack intérim/nuit.",
+    "tags": [
+      "Diplôme long",
+      "intérim",
+      "nuit",
+      "bloc",
+      "réanimation"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "moyen",
+    "saturationLevel": "moyen",
+    "stabilityLevel": "plutôt stable",
+    "fatigueLevel": "élevé",
+    "accessDifficulty": {
+      "score": 5,
+      "label": "très élevé"
+    },
+    "confidenceLevel": "medium",
+    "targetProfiles": [
+      "admin",
+      "terrain"
+    ],
+    "ticketsRequired": [
+      "deIde"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Passer le diplôme d'État",
+      "Construire de l'expérience service",
+      "Basculer sur intérim / nuit / bloc / réa",
+      "Monter sur niches plus valorisées"
+    ],
+    "entryTimeline": {
+      "trainingDuration": "3 ans de diplôme avant premier vrai levier cash",
+      "firstJobWindow": "rapide après diplôme sur services tendus, lent avant",
+      "accessMode": "À présenter comme voie longue à forte récompense, pas comme ticket court"
+    },
+    "fitChecks": [
+      "formation longue",
+      "charge mentale",
+      "nuit",
+      "urgence"
+    ],
+    "careerQuest": [
+      "Niveau 1 · obtenir le diplôme",
+      "Niveau 2 · prendre de l'expérience service",
+      "Niveau 3 · basculer intérim / nuit / bloc / réa",
+      "Niveau 4 · spécialisation plus lourde si voulu"
+    ],
+    "opens": [
+      "bloc",
+      "réa",
+      "intérim premium",
+      "spécialisations"
+    ],
+    "doesNotOpen": [
+      "Pas de cash immédiat sans diplôme ni expérience"
+    ],
+    "rebounds": [
+      "bloc",
+      "réa",
+      "intérim premium"
+    ],
+    "verticalProgression": [
+      "services critiques",
+      "spécialisation",
+      "cadre / expertise"
+    ],
+    "employerIds": [
+      "appel-medical",
+      "adecco-medical"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2500,
+      "max": 3300
+    },
+    "salaryBaseNetEstimate": 2353,
+    "salaryLowScenario": {
+      "baseNetEstimate": 2353,
+      "nightBonus": 180,
+      "weekendBonus": 70,
+      "overtimeBonus": 89,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 0,
+      "riskBonus": 420,
+      "taxableVariableNet": 759,
+      "estimatedPayslipNet": 3112,
+      "estimatedExpenseCoverage": 0,
+      "estimatedCashAvailable": 3112,
+      "estimatedPocket": 2112,
+      "livingCostDefault": 1000
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 2353,
+      "nightBonus": 360,
+      "weekendBonus": 210,
+      "overtimeBonus": 179,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 0,
+      "riskBonus": 420,
+      "taxableVariableNet": 1169,
+      "estimatedPayslipNet": 3522,
+      "estimatedExpenseCoverage": 0,
+      "estimatedCashAvailable": 3522,
+      "estimatedPocket": 2522,
+      "livingCostDefault": 1000
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 2353,
+      "nightBonus": 630,
+      "weekendBonus": 350,
+      "overtimeBonus": 340,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 0,
+      "riskBonus": 420,
+      "taxableVariableNet": 1740,
+      "estimatedPayslipNet": 4093,
+      "estimatedExpenseCoverage": 0,
+      "estimatedCashAvailable": 4093,
+      "estimatedPocket": 3093,
+      "livingCostDefault": 1000
+    },
+    "payoutModel": [
+      "Base IDE",
+      "intérim",
+      "nuit",
+      "services tendus"
+    ],
+    "applicationChannels": [
+      "agences intérim médical",
+      "hôpitaux / cliniques",
+      "réseau paramédical"
+    ],
+    "scores": {
+      "speed": 1,
+      "competition": 3,
+      "stability": 7,
+      "durability": 7,
+      "fatigue": 4,
+      "volatility": 3
+    },
+    "managerTrack": true,
+    "ticketCount": 1,
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ],
+    "notes": [
+      "Gros upside net mais route longue; à dire clairement à l'utilisateur."
+    ]
+  },
+  {
+    "id": "agro_5x8",
+    "sector": "agro",
+    "sectorLabel": "Agro-industrie",
+    "branch": "Process agro 5x8",
+    "subBranch": "Pilote d'installation · process continu · froid",
+    "title": "Pilote d'installation agro 5x8",
+    "shortDescription": "Métier sous-raconté: quand l'usine paie bien ses nuits et week-ends, le posté régulier devient une bonne machine à net.",
+    "tags": [
+      "5x8",
+      "posté",
+      "froid",
+      "process",
+      "industrie"
+    ],
+    "hypeLevel": "sobre",
+    "competitionLevel": "élevé",
+    "saturationLevel": "élevé",
+    "stabilityLevel": "stable",
+    "fatigueLevel": "moyen",
+    "accessDifficulty": {
+      "score": 3,
+      "label": "moyen"
+    },
+    "confidenceLevel": "medium",
+    "targetProfiles": [
+      "industrie",
+      "terrain",
+      "logistique"
+    ],
+    "ticketsRequired": [
+      "cima5x8"
+    ],
+    "ticketsRecommended": [],
+    "entryPath": [
+      "Entrer sur conduite de ligne / installation",
+      "Viser les grosses usines qui paient vraiment le posté",
+      "Accumuler nuits / week-ends",
+      "Monter conducteur expert / chef d'équipe"
+    ],
+    "entryTimeline": {
+      "trainingDuration": "court à moyen selon CQP / montée interne",
+      "firstJobWindow": "plutôt rapide si tu acceptes le posté",
+      "accessMode": "L'enjeu principal est de choisir la bonne usine, pas juste le bon intitulé"
+    },
+    "fitChecks": [
+      "tenir le posté",
+      "froid ou odeurs possibles",
+      "cadence",
+      "répétition"
+    ],
+    "careerQuest": [
+      "Niveau 1 · entrer en process / ligne",
+      "Niveau 2 · viser un vrai 5x8 qui paie",
+      "Niveau 3 · devenir pilote d'installation fiable",
+      "Niveau 4 · chef d'équipe / référent process"
+    ],
+    "opens": [
+      "chef d'équipe",
+      "maintenance de ligne",
+      "process continu"
+    ],
+    "doesNotOpen": [
+      "Toutes les usines agro ne paient pas pareil ; bien choisir l'employeur"
+    ],
+    "rebounds": [
+      "process continu",
+      "maintenance légère",
+      "chef d'équipe"
+    ],
+    "verticalProgression": [
+      "pilote expert",
+      "chef d'équipe",
+      "coordination process"
+    ],
+    "employerIds": [
+      "lactalis",
+      "cooperl",
+      "groupe-bigard"
+    ],
+    "salaryBaseBrutRange": {
+      "min": 2100,
+      "max": 2800
+    },
+    "salaryBaseNetEstimate": 1878,
+    "salaryLowScenario": {
+      "baseNetEstimate": 1878,
+      "nightBonus": 180,
+      "weekendBonus": 55,
+      "overtimeBonus": 72,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 0,
+      "riskBonus": 40,
+      "taxableVariableNet": 347,
+      "estimatedPayslipNet": 2224,
+      "estimatedExpenseCoverage": 0,
+      "estimatedCashAvailable": 2224,
+      "estimatedPocket": 1324,
+      "livingCostDefault": 900
+    },
+    "salaryStableScenario": {
+      "baseNetEstimate": 1878,
+      "nightBonus": 300,
+      "weekendBonus": 110,
+      "overtimeBonus": 143,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 0,
+      "riskBonus": 40,
+      "taxableVariableNet": 593,
+      "estimatedPayslipNet": 2471,
+      "estimatedExpenseCoverage": 0,
+      "estimatedCashAvailable": 2471,
+      "estimatedPocket": 1571,
+      "livingCostDefault": 900
+    },
+    "salaryMaxScenario": {
+      "baseNetEstimate": 1878,
+      "nightBonus": 480,
+      "weekendBonus": 220,
+      "overtimeBonus": 272,
+      "grandDeplacementBonus": 0,
+      "panierBonus": 0,
+      "riskBonus": 40,
+      "taxableVariableNet": 1012,
+      "estimatedPayslipNet": 2890,
+      "estimatedExpenseCoverage": 0,
+      "estimatedCashAvailable": 2890,
+      "estimatedPocket": 1990,
+      "livingCostDefault": 900
+    },
+    "payoutModel": [
+      "Base usine",
+      "5x8",
+      "nuit",
+      "week-end"
+    ],
+    "applicationChannels": [
+      "site carrière agro",
+      "agences industrie",
+      "réseau usines régionales"
+    ],
+    "scores": {
+      "speed": 4,
+      "competition": 4,
+      "stability": 8,
+      "durability": 6,
+      "fatigue": 3,
+      "volatility": 2
+    },
+    "managerTrack": true,
+    "ticketCount": 1,
+    "sourceIds": [
+      "atlas-france-2025-2026",
+      "deep-research-money-map-fr-au"
+    ],
+    "notes": [
+      "Très bon ratio stabilité / net si l'usine paie réellement le posté."
+    ]
   }
 ]

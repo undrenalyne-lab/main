@@ -19,14 +19,27 @@ export async function loadAllData() {
       loadJson("compensation_rules.json"),
       loadJson("sources.json"),
       loadJson("sectors.json"),
+      loadJson("glossary.json"),
+      loadJson("research_panels.json"),
     ]).then(
-      ([lanes, tickets, employers, compensationRules, sources, sectors]) => ({
+      ([
         lanes,
         tickets,
         employers,
         compensationRules,
         sources,
         sectors,
+        glossary,
+        researchPanels,
+      ]) => ({
+        lanes,
+        tickets,
+        employers,
+        compensationRules,
+        sources,
+        sectors,
+        glossary,
+        researchPanels,
         laneMap: new Map(lanes.map((item) => [item.id, item])),
         ticketMap: new Map(tickets.map((item) => [item.id, item])),
         employerMap: new Map(employers.map((item) => [item.id, item])),

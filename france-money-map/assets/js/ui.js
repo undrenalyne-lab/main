@@ -13,6 +13,15 @@ const sectorIcons = {
   renewables: "🌬️",
   special: "🧗",
   critical: "🖥️",
+  construction: "🏗️",
+  energy: "⚡",
+  maritime: "🚢",
+  aero: "✈️",
+  transport: "🚛",
+  environment: "♻️",
+  security: "🛡️",
+  health: "🏥",
+  agro: "🌾",
 };
 
 const agentMeta = {
