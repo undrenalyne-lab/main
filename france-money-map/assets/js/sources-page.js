@@ -1,12 +1,18 @@
-import { loadAllData } from "./data.js";
+import { loadAllData, loadSourceExtras } from "./data.js";
 import { confidenceTone, escapeHtml, pill } from "./ui.js";
 
 const researchPanelsGrid = document.getElementById("researchPanelsGrid");
+const australiaPanelsGrid = document.getElementById("australiaPanelsGrid");
+const australiaPlaybooksGrid = document.getElementById("australiaPlaybooksGrid");
 const glossaryGrid = document.getElementById("glossaryGrid");
 const sourceGrid = document.getElementById("sourceGrid");
 
-function renderResearchPanels(panels) {
-  researchPanelsGrid.innerHTML = panels
+function renderPanelGrid(container, panels) {
+  if (!container) {
+    return;
+  }
+
+  container.innerHTML = panels
     .map(
       (panel) => `
         <article class="card source-card">
@@ -22,6 +28,48 @@ function renderResearchPanels(panels) {
                 `,
               )
               .join("")}
+          </div>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderAustraliaPlaybooks(playbooks) {
+  if (!australiaPlaybooksGrid) {
+    return;
+  }
+
+  australiaPlaybooksGrid.innerHTML = playbooks
+    .map(
+      (playbook) => `
+        <article class="card source-card">
+          <div class="pill-row">
+            ${pill(playbook.track, playbook.tone || "blue")}
+            ${pill(playbook.title, "gold")}
+          </div>
+          <p class="muted">${escapeHtml(playbook.summary)}</p>
+          <div class="list">
+            <div>
+              <span class="mini-label">Temps avant d'être vendable</span>
+              <div>${escapeHtml(playbook.timeToReady)}</div>
+            </div>
+            <div>
+              <span class="mini-label">Portes d'entrée réelles</span>
+              <div>${playbook.gates.map((gate) => `<div>${escapeHtml(gate)}</div>`).join("")}</div>
+            </div>
+            <div>
+              <span class="mini-label">D'où vient le cash</span>
+              <div>${escapeHtml(playbook.cashStack)}</div>
+            </div>
+            <div>
+              <span class="mini-label">Étapes suivantes</span>
+              <div>${playbook.nextMoves.map((move) => `<div>${escapeHtml(move)}</div>`).join("")}</div>
+            </div>
+            <div>
+              <span class="mini-label">Pièges</span>
+              <div>${playbook.redFlags.map((flag) => `<div>${escapeHtml(flag)}</div>`).join("")}</div>
+            </div>
           </div>
         </article>
       `,
@@ -77,8 +125,10 @@ function renderSources(sources) {
 }
 
 async function init() {
-  const data = await loadAllData();
-  renderResearchPanels(data.researchPanels);
+  const [data, extras] = await Promise.all([loadAllData(), loadSourceExtras()]);
+  renderPanelGrid(researchPanelsGrid, data.researchPanels);
+  renderPanelGrid(australiaPanelsGrid, extras.australiaPanels);
+  renderAustraliaPlaybooks(extras.australiaPlaybooks);
   renderGlossary(data.glossary);
   renderSources(data.sources);
 }

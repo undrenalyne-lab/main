@@ -94,5 +94,61 @@
     "scope": "Ouvre une vraie barrière réglementaire en dépollution.",
     "doesNotMean": "Ce n'est pas la même chose que SS3 retrait lourd.",
     "next": "Dépollution, déchets dangereux, HSE terrain."
+  },
+  {
+    "term": "White Card",
+    "domain": "Australia / Construction",
+    "definition": "General construction induction card. Porte d'entrée construction obligatoire sur beaucoup de sites.",
+    "scope": "Socle sécurité construction reconnu entre juridictions, tant que la carte reste valide.",
+    "doesNotMean": "Ce n'est ni une promesse de job FIFO, ni une induction mine complète, ni une licence métier.",
+    "next": "Ajouter work rights, induction site, médical/D&A et tickets réellement demandés par le poste."
+  },
+  {
+    "term": "HRW Licence",
+    "domain": "Australia / High risk work",
+    "definition": "High risk work licence délivrée par le régulateur local après formation/assessment et demande formelle.",
+    "scope": "Dogging, rigging, scaffolding, forklift, EWP > 11 m, etc.",
+    "doesNotMean": "Le simple passage en RTO ne suffit pas ; il faut aussi la licence reconnue.",
+    "next": "Choisir une classe qui colle au vrai marché visé, puis accumuler de l'expérience vendable."
+  },
+  {
+    "term": "RII",
+    "domain": "Australia / Mining",
+    "definition": "Training package Resources and Infrastructure Industry. C'est une architecture de compétences, pas un passe magique.",
+    "scope": "Base pour des unités et qualifications mines, civil, resources.",
+    "doesNotMean": "Une unité RII seule ne remplace pas les exigences site, médicales ou d'employeur.",
+    "next": "L'utiliser pour structurer une route cohérente avec le poste réellement visé."
+  },
+  {
+    "term": "Standard 11",
+    "domain": "Australia / Queensland coal",
+    "definition": "Référence Queensland pour induction et schéma de formation en mines de charbon.",
+    "scope": "Sert de cadre pour l'entrée et le maintien de la compétence en charbon QLD.",
+    "doesNotMean": "Ce n'est pas une licence nationale qui ouvre toutes les mines d'Australie.",
+    "next": "Compléter avec exigences site et health assessment selon le rôle."
+  },
+  {
+    "term": "Coal Mine Workers’ Health Scheme",
+    "domain": "Australia / Queensland coal",
+    "definition": "Schéma de surveillance santé pour travailleurs charbon QLD, avec health assessment à l'entrée et suivi périodique.",
+    "scope": "Filtre d'accès réel pour beaucoup de postes charbon hors low risk tasks.",
+    "doesNotMean": "Ce n'est pas une formalité accessoire que tu peux ignorer jusqu'après embauche.",
+    "next": "Passer par l'AMA et le process employeur avant entrée site."
+  },
+  {
+    "term": "Casual loading",
+    "domain": "Australia / Pay",
+    "definition": "Montant additionnel versé aux casuals en plus du taux de base selon award, agreement ou contrat.",
+    "scope": "Peut gonfler le cash, mais dépend du statut et des règles applicables.",
+    "doesNotMean": "Ce n'est pas une prime universelle qui se cumule toujours avec tout.",
+    "next": "Lire l'award ou l'accord avant de vendre un scénario cash."
+  },
+  {
+    "term": "Super guarantee",
+    "domain": "Australia / Pay",
+    "definition": "Contribution retraite employeur. Couche distincte du salaire versée au super fund.",
+    "scope": "Ajoute de la valeur totale, mais pas le même effet que du cash disponible mensuel.",
+    "doesNotMean": "Ce n'est pas du pocket immédiat.",
+    "next": "Séparer cash mensuel, allowances et super quand tu compares deux routes."
   }
 ]

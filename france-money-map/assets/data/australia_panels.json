@@ -1,0 +1,53 @@
+[
+  {
+    "title": "Australia: portes d'entrée réelles",
+    "tone": "green",
+    "points": [
+      "White Card = entrée construction, pas job FIFO garanti",
+      "Il faut souvent cumuler work rights, permis, mobilité, D&A/medical et induction site",
+      "Le labour hire et les shutdowns ouvrent souvent plus vite que les postes mining premium directs",
+      "Le remote cash vient surtout des rosters, de l'isolement et des contraintes réelles"
+    ]
+  },
+  {
+    "title": "Australia: tickets qui comptent",
+    "tone": "blue",
+    "points": [
+      "CPCCWHS1001 est l'unité derrière la White Card",
+      "Les HRW licences couvrent rigging, dogging, scaffold, forklift, EWP > 11 m",
+      "Les packages RII structurent la compétence mines, mais n'effacent pas les exigences site",
+      "En charbon QLD, Standard 11 et le health scheme restent des filtres sérieux"
+    ]
+  },
+  {
+    "title": "Australia: stack du cash",
+    "tone": "gold",
+    "points": [
+      "Base hourly ou annual",
+      "Casual loading ou award penalties selon le contrat",
+      "Overtime / nights / weekends / remote roster loadings",
+      "Camp, flights, board et parfois housing",
+      "Super en plus du salaire, pas dans le cash mensuel"
+    ]
+  },
+  {
+    "title": "Australia: pièges à tuer",
+    "tone": "red",
+    "points": [
+      "Vendre la White Card comme accès mining complet",
+      "Ignorer les limites de visa et les vrais work rights",
+      "Compter le super comme argent de poche immédiat",
+      "Confondre formation RTO, licence HRW et autorisation site"
+    ]
+  },
+  {
+    "title": "Australia: lecture métier propre",
+    "tone": "orange",
+    "points": [
+      "Routes rapides: labour, shutdown TA, site services, transport lourd",
+      "Routes robustes: trades reconnus, rigging/scaffold, heavy diesel, lignes HT",
+      "Routes charbon: QLD/NSW ont plus de couches santé/induction que le récit LinkedIn le laisse croire",
+      "Toujours séparer accès chantier, accès mine, licence métier et expérience réellement vendable"
+    ]
+  }
+]

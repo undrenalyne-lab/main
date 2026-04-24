@@ -1,6 +1,7 @@
 const DATA_ROOT = new URL("../data/", import.meta.url);
 
 let dataCache;
+let sourceExtrasCache;
 
 async function loadJson(filename) {
   const response = await fetch(new URL(filename, DATA_ROOT));
@@ -53,4 +54,18 @@ export async function loadAllData() {
   }
 
   return dataCache;
+}
+
+export async function loadSourceExtras() {
+  if (!sourceExtrasCache) {
+    sourceExtrasCache = Promise.all([
+      loadJson("australia_panels.json"),
+      loadJson("australia_playbooks.json"),
+    ]).then(([australiaPanels, australiaPlaybooks]) => ({
+      australiaPanels,
+      australiaPlaybooks,
+    }));
+  }
+
+  return sourceExtrasCache;
 }

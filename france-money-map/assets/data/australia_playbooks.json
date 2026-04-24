@@ -1,0 +1,75 @@
+[
+  {
+    "title": "FIFO / remote construction entry",
+    "track": "Entrée rapide",
+    "tone": "green",
+    "summary": "La version crédible n'est pas White Card puis cash. C'est White Card + work rights + permis + mobilité + médical/D&A + première porte labour / TA / shutdown.",
+    "timeToReady": "1 jour pour la White Card ; plusieurs jours à quelques semaines pour réunir les autres filtres et décrocher une première mission.",
+    "gates": [
+      "Droit de travailler en Australie",
+      "White Card valide",
+      "Permis et mobilité vers les hubs remote",
+      "Tolérance roster, camp et isolement",
+      "Médical / drug & alcohol selon le site"
+    ],
+    "cashStack": "Le cash vient du roster, des heures et du remote package. Pas de la White Card seule.",
+    "nextMoves": [
+      "Forklift / EWP / HR licence si le marché local le demande",
+      "Passer par labour hire ou shutdown contractors",
+      "Documenter une vraie première expérience site"
+    ],
+    "redFlags": [
+      "Visitor visa ou ETA",
+      "Promesse de job vendue avec une simple formation",
+      "Aucune mobilité vers WA / QLD / NT"
+    ]
+  },
+  {
+    "title": "Rigging / scaffolding shutdown path",
+    "track": "Niche cash",
+    "tone": "gold",
+    "summary": "Route plus lente mais plus monétisable que l'entrée généraliste. Le vrai levier est la licence HRW reconnue puis l'expérience sur shutdowns et maintenance lourde.",
+    "timeToReady": "Quelques semaines à quelques mois selon disponibilité formation, évaluation HRW et première mission encadrée.",
+    "gates": [
+      "White Card pour les environnements construction",
+      "Statement of attainment puis demande de licence HRW",
+      "Âge minimum et dépôt dans les délais du régulateur",
+      "Disponibilité pour shutdowns et horaires pénibles"
+    ],
+    "cashStack": "Base + casual loading éventuel + overtime + week-end + shutdown intensity. Le cumul exact dépend de l'award ou de l'accord.",
+    "nextMoves": [
+      "Dogging puis rigging si tu vas vers levage",
+      "Scaffolding si tu vas vers maintenance lourde",
+      "Cumuler tickets site seulement quand une mission les exige"
+    ],
+    "redFlags": [
+      "Croire qu'un RTO suffit sans licence formelle",
+      "Ignorer les règles locales de régulateur",
+      "Compter toutes les pénalités comme cumulatives"
+    ]
+  },
+  {
+    "title": "Queensland coal route",
+    "track": "Charbon QLD",
+    "tone": "blue",
+    "summary": "Le charbon QLD a ses propres portes. Il ne suffit pas d'être 'bon chantier'. Il faut passer par l'induction coal, les exigences santé et les filtres site.",
+    "timeToReady": "Rapide si l'employeur sponsorise l'entrée ; sinon plusieurs semaines entre médical, induction et onboarding.",
+    "gates": [
+      "Induction Queensland coal sous le cadre Recognised Standard 11",
+      "Health assessment à l'entrée hors low risk tasks",
+      "Employer / AMA / dossier site complet",
+      "Compréhension du travail roster et sécurité charbon"
+    ],
+    "cashStack": "Les vrais plus viennent du roster charbon, des shifts, de la remote life et de la continuité du site.",
+    "nextMoves": [
+      "Entrée via services site, opérateur junior ou TA",
+      "Puis spécialisation opérateur, maintenance ou rôle safety-critical",
+      "Ensuite seulement empiler tickets métier rentables"
+    ],
+    "redFlags": [
+      "Vendre un simple ticket comme passe universel",
+      "Oublier que le health scheme revient périodiquement",
+      "Confondre QLD coal et autres environnements mines"
+    ]
+  }
+]
