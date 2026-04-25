@@ -1,6 +1,7 @@
 import { readSearchParams, replaceUrlParams } from "./router.js";
 
-export const STORAGE_KEY = "france-money-map-selection-v1";
+export const STORAGE_KEY = "backchannel-atlas-france-selection-v1";
+export const LEGACY_STORAGE_KEYS = ["france-money-map-selection-v1"];
 
 export const GOALS = [
   {
@@ -213,7 +214,11 @@ export function parseSelectionFromUrl(search = window.location.search) {
 
 export function loadSavedSelection() {
   try {
-    const rawValue = window.localStorage.getItem(STORAGE_KEY);
+    const rawValue =
+      window.localStorage.getItem(STORAGE_KEY) ||
+      LEGACY_STORAGE_KEYS.map((key) => window.localStorage.getItem(key)).find(
+        Boolean,
+      );
     if (!rawValue) {
       return null;
     }

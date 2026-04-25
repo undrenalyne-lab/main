@@ -1,0 +1,223 @@
+{
+  "version": "2026-04-25",
+  "defaults": {
+    "country": "france",
+    "nationality": "eu",
+    "ageBand": "25-34",
+    "mobility": "national",
+    "english": "functional",
+    "experienceTags": [
+      "terrain",
+      "elec"
+    ],
+    "goals": [
+      "fast-entry",
+      "reuse-experience"
+    ]
+  },
+  "fields": [
+    {
+      "id": "country",
+      "label": "Marché cible",
+      "description": "France est live. Australie est beta/research mais déjà actionnable. Les autres pays restent visibles plus bas en roadmap.",
+      "type": "single",
+      "control": "chips",
+      "options": [
+        {
+          "id": "france",
+          "label": "France",
+          "summary": "Live"
+        },
+        {
+          "id": "australia",
+          "label": "Australie",
+          "summary": "Beta / research"
+        }
+      ]
+    },
+    {
+      "id": "nationality",
+      "label": "Nationalité / droits au travail",
+      "description": "Le même statut admin ne produit pas la même friction en France et en Australie. Ce champ sert à éviter les faux raccourcis.",
+      "type": "single",
+      "control": "select",
+      "options": [
+        {
+          "id": "local",
+          "label": "Local / résident déjà autorisé à travailler"
+        },
+        {
+          "id": "eu",
+          "label": "UE / EEE / Suisse"
+        },
+        {
+          "id": "rights",
+          "label": "Autre nationalité, work rights déjà sécurisés"
+        },
+        {
+          "id": "sponsor",
+          "label": "Autre nationalité, visa / sponsor encore à obtenir"
+        }
+      ]
+    },
+    {
+      "id": "ageBand",
+      "label": "Tranche d'âge",
+      "description": "En France, l'âge joue surtout sur rythme, stabilité et contraintes physiques. En Australie, il influence aussi le réalisme de certaines hypothèses visa.",
+      "type": "single",
+      "control": "select",
+      "options": [
+        {
+          "id": "18-24",
+          "label": "18-24"
+        },
+        {
+          "id": "25-34",
+          "label": "25-34"
+        },
+        {
+          "id": "35-44",
+          "label": "35-44"
+        },
+        {
+          "id": "45+",
+          "label": "45+"
+        }
+      ]
+    },
+    {
+      "id": "mobility",
+      "label": "Mobilité réelle",
+      "description": "Local coupe une partie des routes itinérantes. Remote / roster garde ouvertes les couches FIFO, shutdowns et grands déplacements.",
+      "type": "single",
+      "control": "chips",
+      "options": [
+        {
+          "id": "local",
+          "label": "Local"
+        },
+        {
+          "id": "regional",
+          "label": "Régional"
+        },
+        {
+          "id": "national",
+          "label": "National"
+        },
+        {
+          "id": "remote-roster",
+          "label": "Remote / roster"
+        }
+      ]
+    },
+    {
+      "id": "english",
+      "label": "Anglais",
+      "description": "France: bonus secondaire. Australie: variable quasi bloquante dès qu'il faut passer screening, sécurité site et onboarding.",
+      "type": "single",
+      "control": "chips",
+      "options": [
+        {
+          "id": "none",
+          "label": "Faible"
+        },
+        {
+          "id": "basic",
+          "label": "Basique"
+        },
+        {
+          "id": "functional",
+          "label": "Opérationnel"
+        },
+        {
+          "id": "strong",
+          "label": "Solide"
+        }
+      ]
+    },
+    {
+      "id": "experienceTags",
+      "label": "Expérience vendable",
+      "description": "Choisis jusqu'à 4 signaux que tu peux vraiment défendre face à un employeur ou à un playbook d'entrée.",
+      "type": "multi",
+      "control": "chips",
+      "maxSelected": 4,
+      "options": [
+        {
+          "id": "terrain",
+          "label": "Terrain"
+        },
+        {
+          "id": "elec",
+          "label": "Élec"
+        },
+        {
+          "id": "meca",
+          "label": "Méca"
+        },
+        {
+          "id": "automation",
+          "label": "Automatisme"
+        },
+        {
+          "id": "securite",
+          "label": "Sécurité"
+        },
+        {
+          "id": "rail",
+          "label": "Rail"
+        },
+        {
+          "id": "nuclear",
+          "label": "Nucléaire"
+        },
+        {
+          "id": "hauteur",
+          "label": "Hauteur"
+        },
+        {
+          "id": "logistique",
+          "label": "Logistique"
+        },
+        {
+          "id": "gestion",
+          "label": "Gestion"
+        }
+      ]
+    },
+    {
+      "id": "goals",
+      "label": "Priorités",
+      "description": "Choisis jusqu'à 2 angles. Le premier sert de direction dominante, le second sert de garde-fou.",
+      "type": "multi",
+      "control": "chips",
+      "maxSelected": 2,
+      "options": [
+        {
+          "id": "fast-entry",
+          "label": "Entrée rapide"
+        },
+        {
+          "id": "cash-upside",
+          "label": "Cash haut"
+        },
+        {
+          "id": "stability",
+          "label": "Stable"
+        },
+        {
+          "id": "reuse-experience",
+          "label": "Recycler le passé"
+        },
+        {
+          "id": "low-competition",
+          "label": "Faible concurrence"
+        },
+        {
+          "id": "long-term",
+          "label": "Long terme"
+        }
+      ]
+    }
+  ]
+}

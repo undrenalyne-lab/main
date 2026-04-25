@@ -2,6 +2,7 @@ const DATA_ROOT = new URL("../data/", import.meta.url);
 
 let dataCache;
 let sourceExtrasCache;
+let homeModelCache;
 
 async function loadJson(filename) {
   const response = await fetch(new URL(filename, DATA_ROOT));
@@ -68,4 +69,33 @@ export async function loadSourceExtras() {
   }
 
   return sourceExtrasCache;
+}
+
+export async function loadHomeModel() {
+  if (!homeModelCache) {
+    homeModelCache = Promise.all([
+      loadJson("home_onboarding_schema.json"),
+      loadJson("home_country_configs.json"),
+      loadSourceExtras(),
+    ]).then(([schema, countryConfigData, extras]) => {
+      const countries = countryConfigData.countries || [];
+      const fields = schema.fields || [];
+
+      return {
+        schema,
+        defaults: schema.defaults || {},
+        fields,
+        fieldMap: new Map(fields.map((field) => [field.id, field])),
+        countries,
+        countryMap: new Map(countries.map((country) => [country.id, country])),
+        australiaPanels: extras.australiaPanels,
+        australiaPlaybooks: extras.australiaPlaybooks,
+        australiaPlaybookMap: new Map(
+          extras.australiaPlaybooks.map((playbook) => [playbook.title, playbook]),
+        ),
+      };
+    });
+  }
+
+  return homeModelCache;
 }

@@ -4,6 +4,555 @@
   gap: 10px;
 }
 
+.page-home .page-stack.home-shell {
+  gap: 28px;
+  padding-top: 30px;
+}
+
+.page-home .brand-mark-atlas {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+}
+
+.page-home #profileOnboarding,
+.page-home #worldMapZone {
+  scroll-margin-top: 104px;
+}
+
+.page-home .routefinder-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(22px, 3vw, 34px);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(102, 170, 255, 0.12), transparent 24%),
+    radial-gradient(circle at 82% 14%, rgba(243, 199, 74, 0.08), transparent 26%),
+    radial-gradient(circle at 76% 82%, rgba(44, 211, 154, 0.12), transparent 24%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    #111926;
+}
+
+.page-home .routefinder-hero::before,
+.page-home .routefinder-hero::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.page-home .routefinder-hero::before {
+  inset: auto auto -100px -60px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 125, 48, 0.18), transparent 68%);
+  filter: blur(6px);
+}
+
+.page-home .routefinder-hero::after {
+  inset: 0;
+  background:
+    linear-gradient(118deg, transparent 0%, rgba(102, 170, 255, 0.04) 46%, transparent 72%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 55%);
+  opacity: 0.9;
+}
+
+.page-home .routefinder-grid {
+  position: relative;
+  z-index: 1;
+  gap: 18px;
+  align-items: start;
+}
+
+.page-home .routefinder-copy {
+  gap: 20px;
+}
+
+.page-home .hero-copy-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.page-home .hero-kicker {
+  margin: 0;
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.page-home .routefinder-copy .hero-title {
+  max-width: 8ch;
+}
+
+.page-home .routefinder-copy .hero-copy {
+  max-width: 56ch;
+  font-size: 1.05rem;
+}
+
+.page-home .hero-sequence,
+.page-home .control-grid,
+.page-home .feature-layout,
+.page-home .onboarding-grid,
+.page-home .atlas-grid,
+.page-home .country-stack,
+.page-home .focus-list {
+  display: grid;
+  gap: 14px;
+}
+
+.page-home .sequence-card {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(9, 14, 24, 0.64);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.page-home .sequence-card h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.7rem;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+.page-home .sequence-card p,
+.page-home .hook-card p,
+.page-home .country-card p,
+.page-home .focus-item p {
+  margin: 0;
+}
+
+.page-home .sequence-index {
+  color: var(--orange);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.page-home .routefinder-console {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.page-home .console-head,
+.page-home .panel-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.page-home .console-title {
+  margin: 6px 0 0;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.page-home .console-screen {
+  position: relative;
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+  border-radius: calc(var(--radius) + 6px);
+  overflow: hidden;
+  background: linear-gradient(160deg, rgba(5, 12, 24, 0.96), rgba(16, 22, 36, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-home .console-screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.42;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.86), transparent);
+  pointer-events: none;
+}
+
+.page-home .console-lines,
+.page-home .aside-pill-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.page-home .console-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.page-home .console-row:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.page-home .console-key {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.page-home .console-value {
+  font-family: var(--display);
+  font-size: 1.28rem;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-align: right;
+}
+
+.page-home .routefinder-metrics {
+  position: relative;
+  z-index: 1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.page-home .routefinder-metrics .metric-card {
+  min-height: 132px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012));
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.page-home .console-note,
+.page-home .hook-card,
+.page-home .country-card {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(9, 14, 24, 0.56);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-home .console-note {
+  padding: 14px 16px;
+  border-style: dashed;
+}
+
+.page-home .console-note p {
+  margin: 0;
+}
+
+.page-home .onboarding-panel {
+  background:
+    radial-gradient(circle at top left, rgba(102, 170, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.012));
+}
+
+.page-home .atlas-panel {
+  background:
+    radial-gradient(circle at top right, rgba(44, 211, 154, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.012));
+}
+
+.page-home .hook-card h4,
+.page-home .country-card h4 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.6rem;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.page-home .selector-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.page-home .selector-chip {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 10px 14px;
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+}
+
+.page-home .selector-chip:hover {
+  transform: translateY(-1px);
+  border-color: var(--line-strong);
+}
+
+.page-home .selector-chip.is-current {
+  background: linear-gradient(135deg, rgba(255, 125, 48, 0.22), rgba(255, 125, 48, 0.08));
+  border-color: rgba(255, 125, 48, 0.4);
+  color: #ffd8c0;
+}
+
+.page-home .selector-chip.is-beta {
+  background: linear-gradient(135deg, rgba(102, 170, 255, 0.2), rgba(102, 170, 255, 0.08));
+  border-color: rgba(102, 170, 255, 0.38);
+  color: #cfe6ff;
+}
+
+.page-home .selector-chip.is-roadmap {
+  background: linear-gradient(135deg, rgba(243, 199, 74, 0.18), rgba(243, 199, 74, 0.06));
+  border-color: rgba(243, 199, 74, 0.32);
+  color: #ffe8a3;
+}
+
+.page-home .world-map-frame {
+  position: relative;
+  min-height: 340px;
+  border-radius: calc(var(--radius) + 6px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 30% 28%, rgba(102, 170, 255, 0.18), transparent 24%),
+    radial-gradient(circle at 65% 60%, rgba(44, 211, 154, 0.12), transparent 26%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    #0c1320;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-home .world-map-frame::before,
+.page-home .world-map-frame::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.page-home .world-map-frame::before {
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), transparent 100%);
+  opacity: 0.65;
+}
+
+.page-home .world-map-frame::after {
+  inset: 16% 18% 16% 14%;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 46% 54% 58% 42% / 54% 43% 57% 46%;
+  opacity: 0.55;
+  transform: rotate(-6deg);
+}
+
+.page-home .map-rings {
+  position: absolute;
+  inset: 18% 10%;
+  background:
+    radial-gradient(circle, transparent 0 48%, rgba(255, 255, 255, 0.07) 48.5% 49.5%, transparent 50%),
+    radial-gradient(circle, transparent 0 62%, rgba(255, 255, 255, 0.05) 62.5% 63.2%, transparent 64%);
+  opacity: 0.9;
+}
+
+.page-home .map-orbit {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+.page-home .map-orbit-a {
+  inset: 22% 20% 24% 18%;
+}
+
+.page-home .map-orbit-b {
+  inset: 30% 28% 34% 26%;
+  border-style: dashed;
+}
+
+.page-home .map-node {
+  position: absolute;
+  display: grid;
+  gap: 2px;
+  min-width: 88px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(9, 11, 17, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text);
+  text-align: left;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.24);
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+}
+
+.page-home .map-node:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+}
+
+.page-home .map-node.is-live {
+  background: linear-gradient(135deg, rgba(255, 125, 48, 0.18), rgba(255, 125, 48, 0.08));
+  border-color: rgba(255, 125, 48, 0.45);
+}
+
+.page-home .map-node.is-beta {
+  background: linear-gradient(135deg, rgba(102, 170, 255, 0.2), rgba(102, 170, 255, 0.08));
+  border-color: rgba(102, 170, 255, 0.4);
+}
+
+.page-home .map-node.is-roadmap {
+  background: linear-gradient(135deg, rgba(243, 199, 74, 0.18), rgba(243, 199, 74, 0.06));
+  border-color: rgba(243, 199, 74, 0.34);
+  border-style: dashed;
+}
+
+.page-home .map-node-code,
+.page-home .map-grid-label {
+  color: rgba(237, 244, 255, 0.72);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.page-home .map-node-name {
+  font-family: var(--display);
+  font-size: 1.22rem;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+.page-home .map-node-fr {
+  top: 28%;
+  left: 21%;
+}
+
+.page-home .map-node-au {
+  top: 62%;
+  left: 63%;
+}
+
+.page-home .map-node-world {
+  top: 16%;
+  right: 11%;
+  min-width: 132px;
+}
+
+.page-home .map-grid-label {
+  position: absolute;
+}
+
+.page-home .map-grid-label-north {
+  top: 18px;
+  left: 18px;
+}
+
+.page-home .map-grid-label-focus {
+  right: 18px;
+  bottom: 18px;
+}
+
+.page-home .country-card.is-current {
+  border-color: rgba(44, 211, 154, 0.34);
+  box-shadow: inset 0 0 0 1px rgba(44, 211, 154, 0.16);
+}
+
+.page-home .country-card.is-beta {
+  border-color: rgba(102, 170, 255, 0.32);
+  box-shadow: inset 0 0 0 1px rgba(102, 170, 255, 0.14);
+}
+
+.page-home .country-card.is-roadmap {
+  border-color: rgba(243, 199, 74, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(243, 199, 74, 0.12);
+}
+
+.page-home .section-aside {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.page-home .focus-list.compact {
+  gap: 10px;
+}
+
+.page-home .focus-item {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.page-home .focus-index {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 125, 48, 0.12);
+  border: 1px solid rgba(255, 125, 48, 0.22);
+  color: var(--orange);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+}
+
+.page-home .aside-pill-grid {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.page-home .landing-goals .card,
+.page-home .sector-cards .card,
+.page-home .featured-routes-grid .result-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  display: grid;
+  gap: 12px;
+}
+
+.page-home .landing-goals .card::before,
+.page-home .sector-cards .card::before,
+.page-home .featured-routes-grid .result-card::before {
+  content: "";
+  position: absolute;
+  inset: auto -30px 70% auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 72%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.page-home .landing-goals .card {
+  background:
+    linear-gradient(155deg, rgba(255, 125, 48, 0.08), transparent 48%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.012));
+}
+
+.page-home .sector-cards .card {
+  background:
+    linear-gradient(155deg, rgba(102, 170, 255, 0.08), transparent 48%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.012));
+}
+
+.page-home .featured-routes-grid .result-card {
+  background:
+    linear-gradient(155deg, rgba(243, 199, 74, 0.08), transparent 48%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.012));
+}
+
 .landing-goals .card h3,
 .sector-cards .card h3,
 .detail-column h3,
@@ -84,6 +633,28 @@
 }
 
 @media (min-width: 900px) {
+  .page-home .hero-sequence {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .page-home .control-grid {
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  }
+
+  .page-home .feature-layout {
+    grid-template-columns: 300px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .page-home .onboarding-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .page-home .atlas-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(240px, 0.85fr);
+    align-items: start;
+  }
+
   .routes-layout {
     grid-template-columns: minmax(0, 1fr) 320px;
     align-items: start;
@@ -115,5 +686,40 @@
 
   .detail-layout.compact {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-home .routefinder-grid {
+    grid-template-columns: minmax(0, 1.18fr) minmax(360px, 0.82fr);
+  }
+}
+
+@media (max-width: 719px) {
+  .page-home .hero-actions {
+    display: grid;
+  }
+
+  .page-home .hero-actions .button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .page-home .routefinder-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-home .world-map-frame {
+    min-height: 300px;
+  }
+
+  .page-home .map-node {
+    min-width: 76px;
+    padding: 8px 10px;
+  }
+
+  .page-home .map-node-world {
+    min-width: 112px;
+    right: 8%;
   }
 }

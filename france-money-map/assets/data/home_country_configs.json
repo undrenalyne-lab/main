@@ -1,0 +1,355 @@
+{
+  "version": "2026-04-25",
+  "countries": [
+    {
+      "id": "france",
+      "label": "France",
+      "badge": "cash réel · tickets · employeurs",
+      "summary": "Moteur principal: routes scorées, tickets d'entrée, employeurs visibles et cash comparatif.",
+      "stats": [
+        { "label": "Routes FR", "source": "lanes" },
+        { "label": "Tickets FR", "source": "tickets" },
+        { "label": "Employeurs FR", "source": "employers" },
+        { "label": "Secteurs FR", "source": "sectors" }
+      ],
+      "hero": {
+        "primaryLink": {
+          "type": "dynamic-france-route",
+          "label": "Ouvrir le tri France"
+        },
+        "secondaryLink": {
+          "type": "page",
+          "href": "./sources.html",
+          "label": "Voir la méthode"
+        }
+      },
+      "sectionText": {
+        "countriesTitle": "Marchés couverts",
+        "countriesCopy": "France live pour l'exécution immédiate. Australia sert de couche beta/research structurée avant extension monde.",
+        "linksTitle": "Liens utiles pour ton profil",
+        "linksCopy": "Le profil compact sert à pré-régler le moteur France puis à t'envoyer vers les tickets, boîtes et sources les plus utiles.",
+        "resultsTitle": "Ce qui remonte pour toi en France",
+        "resultsCopy": "Pré-tri construit à partir du marché cible, de la mobilité, de l'anglais et des signaux d'expérience."
+      },
+      "marketCard": {
+        "title": "France live",
+        "summary": "Ici l'atlas sait déjà scorer des routes concrètes, pas seulement raconter des métiers.",
+        "bullets": [
+          "Routes reliées à des tickets, des employeurs et des scénarios de cash.",
+          "Profil compact converti en préréglage du moteur parcours.",
+          "Bon terrain pour arbitrer vitesse, stabilité et mobilité."
+        ]
+      },
+      "selectionModel": {
+        "baseSelection": {
+          "goal": "argent-vite",
+          "sort": "score",
+          "stabilityNeed": 62,
+          "speedNeed": 60,
+          "physicalTolerance": 58,
+          "mobilityTolerance": 60
+        },
+        "defaultProfiles": ["terrain", "elec"],
+        "goalPriority": [
+          "cash-upside",
+          "fast-entry",
+          "stability",
+          "reuse-experience",
+          "low-competition",
+          "long-term"
+        ],
+        "goalMap": {
+          "fast-entry": "argent-vite",
+          "cash-upside": "cash-max",
+          "stability": "stabilite",
+          "reuse-experience": "recycler-passe",
+          "low-competition": "anti-concurrence",
+          "long-term": "long-terme"
+        },
+        "goalAdjustments": {
+          "fast-entry": { "speedNeed": 18, "stabilityNeed": -8 },
+          "cash-upside": {
+            "speedNeed": 8,
+            "stabilityNeed": -4,
+            "physicalTolerance": 6
+          },
+          "stability": {
+            "stabilityNeed": 22,
+            "speedNeed": -10,
+            "mobilityTolerance": -8
+          },
+          "reuse-experience": { "stabilityNeed": 10 },
+          "low-competition": { "stabilityNeed": 6, "speedNeed": -2 },
+          "long-term": { "stabilityNeed": 14, "speedNeed": -6 }
+        },
+        "ageAdjustments": {
+          "18-24": { "speedNeed": 8, "physicalTolerance": 8, "stabilityNeed": -6 },
+          "25-34": { "speedNeed": 4, "physicalTolerance": 4 },
+          "35-44": { "stabilityNeed": 6 },
+          "45+": { "stabilityNeed": 12, "physicalTolerance": -8, "mobilityTolerance": -6 }
+        },
+        "mobilityToleranceMap": {
+          "local": 20,
+          "regional": 45,
+          "national": 70,
+          "remote-roster": 88
+        },
+        "experienceProfileMap": {
+          "terrain": ["terrain"],
+          "elec": ["elec"],
+          "meca": ["meca"],
+          "automation": ["automation", "industrie"],
+          "securite": ["securite"],
+          "rail": ["rail", "terrain"],
+          "nuclear": ["nuclear", "industrie"],
+          "hauteur": ["hauteur", "terrain"],
+          "logistique": ["logistique"],
+          "gestion": ["gestion", "admin"]
+        },
+        "englishProfileMap": {
+          "functional": ["anglais"],
+          "strong": ["anglais"]
+        }
+      },
+      "quickLinks": [
+        {
+          "id": "fr-route",
+          "title": "Ouvrir le tri France",
+          "summary": "Passe directement sur le parcours pré-réglé selon ton profil compact.",
+          "action": {
+            "type": "dynamic-france-route",
+            "label": "Ouvrir le parcours"
+          }
+        },
+        {
+          "id": "fr-tickets",
+          "title": "Contrôler les tickets d'entrée",
+          "summary": "Vérifie les tickets qui bloquent vraiment l'accès avant d'acheter une formation.",
+          "action": {
+            "type": "page",
+            "href": "./tickets.html",
+            "label": "Voir les tickets"
+          }
+        },
+        {
+          "id": "fr-employers",
+          "title": "Scanner les employeurs",
+          "summary": "Repère les boîtes visibles par branche avant de postuler ou de payer un pack.",
+          "action": {
+            "type": "page",
+            "href": "./employeurs.html",
+            "label": "Voir les employeurs"
+          }
+        }
+      ],
+      "insightRules": [
+        {
+          "id": "fr-sponsor",
+          "tone": "red",
+          "title": "Admin d'abord",
+          "body": "Si tu dois encore sécuriser sponsor ou visa, n'empile pas des tickets France avant d'avoir clarifié le droit au travail.",
+          "when": { "nationality": ["sponsor"] }
+        },
+        {
+          "id": "fr-eu",
+          "tone": "green",
+          "title": "Friction admin plus basse",
+          "body": "Le tri France peut se concentrer sur tickets, mobilité et expérience plutôt que sur un verrou visa.",
+          "when": { "nationality": ["local", "eu", "rights"] }
+        },
+        {
+          "id": "fr-local-mobility",
+          "tone": "gold",
+          "title": "Mobilité faible = shortlist plus serrée",
+          "body": "Avec une mobilité locale ou régionale, le moteur remonte davantage les voies moins dépendantes des grands déplacements.",
+          "when": { "mobility": ["local", "regional"] }
+        },
+        {
+          "id": "fr-english",
+          "tone": "blue",
+          "title": "L'anglais reste un bonus",
+          "body": "En France il peut ouvrir quelques niches, mais il ne remplace pas les tickets ni l'expérience vendable.",
+          "when": { "english": ["functional", "strong"] }
+        },
+        {
+          "id": "fr-experience",
+          "tone": "green",
+          "title": "Le passé se recycle mieux",
+          "body": "Avec au moins deux tags d'expérience, le pré-tri pousse plus fort les voies où tu peux capitaliser rapidement.",
+          "when": { "experienceCountMin": 2 }
+        },
+        {
+          "id": "fr-45",
+          "tone": "gold",
+          "title": "Stabilité priorisée",
+          "body": "Sur la tranche 45+, le préréglage remonte un peu la stabilité et baisse légèrement la tolérance physique.",
+          "when": { "ageBand": ["45+"] }
+        }
+      ]
+    },
+    {
+      "id": "australia",
+      "label": "Australie",
+      "badge": "work rights · licences · playbooks",
+      "summary": "Expansion vérifiée: playbooks Australie, panneaux de lecture et sources publiques sur FIFO, shutdowns et charbon QLD.",
+      "stats": [
+        { "label": "Playbooks AU", "source": "australiaPlaybooks" },
+        { "label": "Panels AU", "source": "australiaPanels" },
+        { "label": "Sources AU", "source": "australiaSources" },
+        { "label": "Marchés couverts", "value": 2 }
+      ],
+      "hero": {
+        "primaryLink": {
+          "type": "page",
+          "href": "./sources.html",
+          "label": "Voir les playbooks AU"
+        },
+        "secondaryLink": {
+          "type": "source",
+          "sourceId": "au-home-affairs-work-restrictions",
+          "label": "Vérifier work rights"
+        }
+      },
+      "sectionText": {
+        "countriesTitle": "Marchés couverts",
+        "countriesCopy": "France tourne en live. L'Australie reste une couche beta/research exploitable avant extension vers d'autres marchés.",
+        "linksTitle": "Liens utiles pour ton profil",
+        "linksCopy": "Côté Australie, l'atlas sert surtout à tuer les faux raccourcis: visa, work rights, licences et vraie mobilité site.",
+        "resultsTitle": "Playbooks qui collent à ton profil Australie",
+        "resultsCopy": "Le tri Australie classe des playbooks de départ et t'ajoute les sources publiques à vérifier avant chaque ticket."
+      },
+      "marketCard": {
+        "title": "Australia beta",
+        "summary": "Ici l'atlas n'essaie pas encore de scorer le pays entier. Il balise des portes d'entrée crédibles.",
+        "bullets": [
+          "Playbooks sur FIFO généraliste, shutdowns HRW et charbon QLD.",
+          "Work rights, anglais et mobilité traités comme filtres durs.",
+          "Sources publiques officielles visibles avant toute dépense formation."
+        ]
+      },
+      "quickLinks": [
+        {
+          "id": "au-rights",
+          "title": "Vérifier le droit au travail",
+          "summary": "Avant White Card, FIFO ou shutdown, valide d'abord visa et work rights.",
+          "action": {
+            "type": "source",
+            "sourceId": "au-home-affairs-work-restrictions",
+            "label": "Ouvrir Home Affairs"
+          }
+        },
+        {
+          "id": "au-licences",
+          "title": "Lire les licences qui comptent",
+          "summary": "Les portes niche passent par HRW, régulateur local et expérience site, pas par un simple RTO isolé.",
+          "action": {
+            "type": "source",
+            "sourceId": "au-swa-high-risk-work-licences",
+            "label": "Voir les licences HRW"
+          }
+        },
+        {
+          "id": "au-playbooks",
+          "title": "Ouvrir les playbooks Australie",
+          "summary": "Lis les mémos FIFO, shutdowns et charbon avant de choisir une route d'entrée.",
+          "action": {
+            "type": "page",
+            "href": "./sources.html",
+            "label": "Voir les playbooks"
+          }
+        }
+      ],
+      "playbookWeights": [
+        {
+          "title": "FIFO / remote construction entry",
+          "weights": {
+            "nationality": { "local": 14, "rights": 12, "eu": -8, "sponsor": -16 },
+            "ageBand": { "18-24": 8, "25-34": 10, "35-44": 2, "45+": -2 },
+            "mobility": { "local": -6, "regional": 2, "national": 14, "remote-roster": 20 },
+            "english": { "none": -18, "basic": 5, "functional": 10, "strong": 12 },
+            "experienceTags": { "terrain": 10, "logistique": 8, "securite": 6, "hauteur": 6 },
+            "goals": { "fast-entry": 14, "cash-upside": 12, "reuse-experience": 6 }
+          },
+          "recommendedSourceIds": [
+            "au-home-affairs-work-restrictions",
+            "au-worksafe-wa-construction-induction"
+          ]
+        },
+        {
+          "title": "Rigging / scaffolding shutdown path",
+          "weights": {
+            "nationality": { "local": 12, "rights": 10, "eu": -8, "sponsor": -16 },
+            "ageBand": { "18-24": 2, "25-34": 8, "35-44": 8, "45+": 2 },
+            "mobility": { "local": -8, "regional": 0, "national": 10, "remote-roster": 16 },
+            "english": { "none": -16, "basic": 4, "functional": 10, "strong": 12 },
+            "experienceTags": { "elec": 10, "meca": 12, "hauteur": 14, "terrain": 8 },
+            "goals": { "cash-upside": 14, "reuse-experience": 14, "long-term": 6 }
+          },
+          "recommendedSourceIds": [
+            "au-swa-high-risk-work-licences",
+            "au-worksafe-wa-construction-induction"
+          ]
+        },
+        {
+          "title": "Queensland coal route",
+          "weights": {
+            "nationality": { "local": 12, "rights": 10, "eu": -8, "sponsor": -18 },
+            "ageBand": { "18-24": 0, "25-34": 6, "35-44": 8, "45+": 4 },
+            "mobility": { "local": -10, "regional": -2, "national": 10, "remote-roster": 18 },
+            "english": { "none": -20, "basic": 2, "functional": 10, "strong": 14 },
+            "experienceTags": { "terrain": 8, "securite": 6, "automation": 10, "meca": 10, "elec": 8 },
+            "goals": { "stability": 10, "cash-upside": 8, "long-term": 12 }
+          },
+          "recommendedSourceIds": [
+            "au-rshq-standard-11",
+            "au-rshq-coal-health-scheme"
+          ]
+        }
+      ],
+      "insightRules": [
+        {
+          "id": "au-rights",
+          "tone": "red",
+          "title": "Work rights non négociables",
+          "body": "En Australie, nationalité UE seule ne donne pas le droit de travailler. Vérifie visa ou sponsorship avant White Card ou HRW.",
+          "when": { "nationality": ["eu", "sponsor"] }
+        },
+        {
+          "id": "au-rights-ok",
+          "tone": "green",
+          "title": "Tu peux raisonner portes réelles",
+          "body": "Avec work rights déjà sécurisés, les vrais filtres deviennent mobilité, anglais, tickets et expérience site.",
+          "when": { "nationality": ["local", "rights"] }
+        },
+        {
+          "id": "au-english-low",
+          "tone": "red",
+          "title": "Anglais opérationnel requis",
+          "body": "Sans anglais au moins basique, la sécurité site, les consignes et le recrutement deviennent rapidement bloquants.",
+          "when": { "english": ["none"] }
+        },
+        {
+          "id": "au-whv",
+          "tone": "gold",
+          "title": "Âge et visa comptent",
+          "body": "Selon ton âge, certaines portes temporaires deviennent moins réalistes. Ne base pas ton plan sur une hypothèse visa implicite.",
+          "when": { "ageBand": ["35-44", "45+"] }
+        },
+        {
+          "id": "au-mobility",
+          "tone": "gold",
+          "title": "Mobilité = variable centrale",
+          "body": "FIFO, shutdowns et charbon demandent souvent WA, QLD ou NT, roster, camp ou déplacements longs.",
+          "when": { "mobility": ["local", "regional"] }
+        },
+        {
+          "id": "au-trades",
+          "tone": "green",
+          "title": "Les tags trade renforcent les shutdowns",
+          "body": "Des signaux élec, méca, hauteur ou terrain rendent les routes HRW et maintenance plus crédibles.",
+          "when": { "experienceTagsAny": ["elec", "meca", "hauteur", "terrain"] }
+        }
+      ]
+    }
+  ]
+}
