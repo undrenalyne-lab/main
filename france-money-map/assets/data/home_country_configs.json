@@ -201,7 +201,7 @@
       "hero": {
         "primaryLink": {
           "type": "page",
-          "href": "./sources.html",
+          "href": "./australia.html",
           "label": "Voir les playbooks AU"
         },
         "secondaryLink": {
@@ -254,7 +254,7 @@
           "summary": "Lis les mémos FIFO, shutdowns et charbon avant de choisir une route d'entrée.",
           "action": {
             "type": "page",
-            "href": "./sources.html",
+            "href": "./australia.html",
             "label": "Voir les playbooks"
           }
         }

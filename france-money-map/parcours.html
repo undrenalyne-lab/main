@@ -22,6 +22,7 @@
         <nav class="site-nav" aria-label="Navigation principale">
           <a class="nav-link" href="./index.html">Hub</a>
           <a class="nav-link is-current" href="./parcours.html">France</a>
+          <a class="nav-link" href="./australia.html">Australie</a>
           <a class="nav-link" href="./tickets.html">Tickets</a>
           <a class="nav-link" href="./employeurs.html">Employeurs</a>
           <a class="nav-link" href="./sources.html">Intel</a>
@@ -31,18 +32,44 @@
 
     <main class="shell page-stack">
       <section class="page-hero">
-        <div class="content-grid">
-          <span class="eyebrow">Backchannel Atlas · Module France</span>
-          <h1 class="display-title">
-            Trie les voies selon ton
-            <span class="accent">objectif, ton passé et ta tolérance</span>.
-          </h1>
-          <p class="hero-copy">
-            Ici tu es dans le moteur France live. Le tri combine cinq agents
-            internes: cash, tickets, saturation, rebonds et stabilité. Tu
-            règles ensuite vitesse d'entrée, besoin de stabilité, tolérance
-            physique et mobilité.
-          </p>
+        <div class="hero-grid">
+          <div class="content-grid">
+            <span class="eyebrow">Backchannel Atlas · Module France</span>
+            <h1 class="display-title">
+              Coupe le bruit et sors
+              <span class="accent">une route actionnable</span>.
+            </h1>
+            <p class="hero-copy">
+              Ce moteur ne cherche pas “le meilleur métier du monde”. Il
+              arbitre des routes France selon ton objectif, tes signaux déjà
+              vendables, ta mobilité et le niveau de friction que tu acceptes.
+            </p>
+            <div class="button-row">
+              <a class="button secondary" href="./sources.html">
+                Lire la doctrine cash
+              </a>
+              <a class="button secondary" href="./tickets.html">
+                Contrôler les tickets
+              </a>
+            </div>
+          </div>
+          <aside class="decision-hero-panel">
+            <span class="mini-label">Comment lire ce moteur</span>
+            <div class="list">
+              <div class="list-item">
+                <span class="list-index">1</span>
+                <div>Pose un brief clair: cash, stabilité, vitesse, mobilité.</div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">2</span>
+                <div>Lis le Top 3 comme un arbitrage, pas comme un verdict absolu.</div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">3</span>
+                <div>Ouvre ensuite tickets, employeurs et fiche détail pour valider la route.</div>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -51,10 +78,10 @@
           <article class="filter-panel">
             <div class="section-head">
               <div>
-                <h2 class="section-title">1. Ton objectif</h2>
+                <h2 class="section-title">1. L’intention dominante</h2>
                 <p class="section-copy">
-                  Choisis une seule intention principale. Elle change les poids
-                  de scoring.
+                  Choisis ce que tu optimises vraiment. Le moteur change les
+                  poids et les compromis à partir de ce point.
                 </p>
               </div>
             </div>
@@ -64,10 +91,10 @@
           <article class="filter-panel">
             <div class="section-head">
               <div>
-                <h2 class="section-title">2. Ton profil</h2>
+                <h2 class="section-title">2. Le passé exploitable</h2>
                 <p class="section-copy">
-                  Coche ce qui décrit déjà ton terrain de jeu ou ce que tu peux
-                  recycler tout de suite.
+                  Coche seulement ce que tu peux vraiment vendre ou recycler
+                  vite. Le but est de réduire les tickets inutiles.
                 </p>
               </div>
             </div>
@@ -77,10 +104,10 @@
           <article class="filter-panel">
             <div class="section-head">
               <div>
-                <h2 class="section-title">3. Tes contraintes</h2>
+                <h2 class="section-title">3. Le niveau de friction</h2>
                 <p class="section-copy">
-                  Ici tu dis si tu veux du cash rapide, du régulier, ou si tu
-                  peux encaisser du physique et de la mobilité.
+                  Ici tu règles les vraies contraintes: mobilité, vitesse
+                  d’accès, pénibilité acceptable, besoin de régularité.
                 </p>
               </div>
             </div>
@@ -96,6 +123,12 @@
             <div class="chip-set" id="sortFilters"></div>
             <div class="range-grid" id="rangeControls"></div>
           </article>
+
+          <section class="decision-grid">
+            <article class="panel" id="briefPanel"></article>
+            <article class="panel" id="tradeoffPanel"></article>
+            <article class="panel comparison-panel" id="decisionTablePanel"></article>
+          </section>
 
           <section class="section">
             <div class="section-head">
@@ -116,12 +149,12 @@
                 <p class="section-copy" id="resultsSummary"></p>
               </div>
             </div>
-            <div class="all-results" id="allResults"></div>
+            <div class="all-results" id="allResults" aria-live="polite"></div>
           </section>
         </div>
 
         <aside class="sticky-column">
-          <article class="filter-panel">
+          <article class="filter-panel" id="readingGuidePanel">
             <h3>Comment le score sort</h3>
             <p class="muted">
               Les badges d'agent montrent ce qui pousse une route vers le haut.
@@ -169,6 +202,24 @@
           <article class="filter-panel" id="selectionSnapshot">
             <h3>Snapshot actuel</h3>
             <div class="pill-row" id="snapshotPills"></div>
+          </article>
+
+          <article class="filter-panel" id="cashReadingPanel">
+            <h3>Comment lire le cash</h3>
+            <div class="list">
+              <div class="list-item">
+                <span class="list-index">A</span>
+                <div>Le stable vaut plus qu’un mois max raconté sans contexte.</div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">B</span>
+                <div>Les indemnités ne remplacent pas le net sur fiche.</div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">C</span>
+                <div>Une route rapide peut coûter plus cher qu’elle ne rapporte si tu achètes les mauvais tickets.</div>
+              </div>
+            </div>
           </article>
         </aside>
       </section>

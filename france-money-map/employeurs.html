@@ -22,6 +22,7 @@
         <nav class="site-nav" aria-label="Navigation principale">
           <a class="nav-link" href="./index.html">Hub</a>
           <a class="nav-link" href="./parcours.html">France</a>
+          <a class="nav-link" href="./australia.html">Australie</a>
           <a class="nav-link" href="./tickets.html">Tickets</a>
           <a class="nav-link is-current" href="./employeurs.html">Employeurs</a>
           <a class="nav-link" href="./sources.html">Intel</a>
@@ -31,17 +32,44 @@
 
     <main class="shell page-stack">
       <section class="page-hero">
-        <div class="content-grid">
-          <span class="eyebrow">Backchannel Atlas · Employeurs France</span>
-          <h1 class="display-title">
-            Où postuler, avec quel angle et sur
-            <span class="accent">quelles branches</span>.
-          </h1>
-          <p class="hero-copy">
-            Les cartes employeur ne remplacent pas ta candidature, mais elles
-            réduisent le flou sur le module France: type de boîte, secteurs,
-            branches et canal d'entrée principal.
-          </p>
+        <div class="hero-grid">
+          <div class="content-grid">
+            <span class="eyebrow">Backchannel Atlas · Employeurs France</span>
+            <h1 class="display-title">
+              Viser la bonne boîte, avec
+              <span class="accent">le bon angle d'entrée</span>.
+            </h1>
+            <p class="hero-copy">
+              Cette page sert à convertir une route en prospection: qui viser
+              d'abord, qui scanner large, par quel canal entrer, et quelle boîte
+              est utile selon ton niveau de socle.
+            </p>
+          </div>
+          <aside class="decision-hero-panel">
+            <span class="mini-label">Lecture rapide</span>
+            <div class="list">
+              <div class="list-item">
+                <span class="list-index">1</span>
+                <div>Commence par la route si tu en as déjà une, sinon par la branche.</div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">2</span>
+                <div>Distingue cible directe, boîte à scanner large et simple organisme-support.</div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">3</span>
+                <div>Le bon canal d'entrée vaut souvent autant qu'un ticket mal acheté.</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="guide-grid">
+          <article class="panel" id="employerGuidePanel"></article>
+          <article class="panel" id="employerContextPanel"></article>
+          <article class="panel" id="employerTacticsPanel"></article>
         </div>
       </section>
 
@@ -59,7 +87,8 @@
             />
           </div>
         </article>
-        <div class="employer-grid" id="employerGrid"></div>
+        <div class="section-copy page-inline-summary" id="employerResultsSummary"></div>
+        <div class="employer-grid" id="employerGrid" aria-live="polite"></div>
       </section>
     </main>
 

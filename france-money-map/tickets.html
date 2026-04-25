@@ -22,6 +22,7 @@
         <nav class="site-nav" aria-label="Navigation principale">
           <a class="nav-link" href="./index.html">Hub</a>
           <a class="nav-link" href="./parcours.html">France</a>
+          <a class="nav-link" href="./australia.html">Australie</a>
           <a class="nav-link is-current" href="./tickets.html">Tickets</a>
           <a class="nav-link" href="./employeurs.html">Employeurs</a>
           <a class="nav-link" href="./sources.html">Intel</a>
@@ -31,17 +32,45 @@
 
     <main class="shell page-stack">
       <section class="page-hero">
-        <div class="content-grid">
-          <span class="eyebrow">Backchannel Atlas · Tickets France</span>
-          <h1 class="display-title">
-            Les tickets ne valent que par
-            <span class="accent">les portes qu'ils ouvrent vraiment</span>.
-          </h1>
-          <p class="hero-copy">
-            Cette bibliothèque reste branchée sur les routes France live. Chaque
-            ticket indique son type, sa durée, son coût indicatif, ses
-            prérequis, ses organismes types et les portes qu'il débloque.
-          </p>
+        <div class="hero-grid">
+          <div class="content-grid">
+            <span class="eyebrow">Backchannel Atlas · Tickets France</span>
+            <h1 class="display-title">
+              Acheter moins de tickets,
+              <span class="accent">ouvrir plus de vraies portes</span>.
+            </h1>
+            <p class="hero-copy">
+              Cette page ne classe pas des formations au kilomètre. Elle te dit
+              où un ticket intervient dans la séquence, ce qu'il ouvre
+              réellement, ce qu'il n'ouvre pas, et quand l'acheter toi-même est
+              une erreur.
+            </p>
+          </div>
+          <aside class="decision-hero-panel">
+            <span class="mini-label">Lecture rapide</span>
+            <div class="list">
+              <div class="list-item">
+                <span class="list-index">1</span>
+                <div>Repère d'abord le premier verrou, pas la spécialisation finale.</div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">2</span>
+                <div>Contrôle ensuite le mode d'accès: achat perso, employeur, France Travail ou pack sponsorisé.</div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">3</span>
+                <div>Valide toujours la porte cible avant de payer quoi que ce soit.</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="guide-grid">
+          <article class="panel" id="ticketGuidePanel"></article>
+          <article class="panel" id="ticketSequencePanel"></article>
+          <article class="panel" id="ticketRiskPanel"></article>
         </div>
       </section>
 
@@ -58,8 +87,9 @@
             />
           </div>
         </article>
+        <div class="section-copy page-inline-summary" id="ticketResultsSummary"></div>
         <article class="panel ticket-detail-panel" id="ticketDetailPanel"></article>
-        <div class="ticket-grid" id="ticketGrid"></div>
+        <div class="ticket-grid" id="ticketGrid" aria-live="polite"></div>
       </section>
     </main>
 

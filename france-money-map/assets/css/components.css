@@ -70,6 +70,20 @@
   border-color: var(--line-strong);
 }
 
+.button:focus-visible,
+.nav-link:focus-visible,
+.chip:focus-visible,
+.scenario-button:focus-visible,
+.toggle-button:focus-visible,
+.link-chip:focus-visible,
+.search-input:focus-visible,
+.input:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(255, 125, 48, 0.8);
+  outline-offset: 2px;
+  border-color: rgba(255, 125, 48, 0.55);
+}
+
 .button.primary,
 .chip.is-active,
 .scenario-button.is-active,

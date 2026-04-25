@@ -22,6 +22,7 @@
         <nav class="site-nav" aria-label="Navigation principale">
           <a class="nav-link" href="./index.html">Hub</a>
           <a class="nav-link" href="./parcours.html">France</a>
+          <a class="nav-link" href="./australia.html">Australie</a>
           <a class="nav-link" href="./tickets.html">Tickets</a>
           <a class="nav-link" href="./employeurs.html">Employeurs</a>
           <a class="nav-link is-current" href="./sources.html">Intel</a>
@@ -31,68 +32,56 @@
 
     <main class="shell page-stack">
       <section class="page-hero">
-        <div class="content-grid">
-          <span class="eyebrow">Backchannel Atlas · Intel</span>
-          <h1 class="display-title">
-            Montrer le cash tôt, oui.
-            <span class="accent">Prétendre à l'exactitude absolue, non.</span>
-          </h1>
-          <p class="hero-copy">
-            Cette V1 sépare désormais le net sur fiche, les indemnités de
-            terrain et le reste après dépenses perso. Les chiffres restent des
-            estimations comparatives, pas une promesse contractuelle ni un
-            bulletin opposable.
-          </p>
-          <p class="hero-copy">
-            Backchannel Atlas utilise cette page comme couche de preuve. Le module
-            France y expose ses hypothèses live, et la couche Australie y reste
-            traitée comme une expansion vérifiée, pas comme un copier-coller
-            brouillon dans le moteur France.
-          </p>
+        <div class="hero-grid">
+          <div class="content-grid">
+            <span class="eyebrow">Backchannel Atlas · Intel</span>
+            <h1 class="display-title">
+              Montrer le cash tôt, oui.
+              <span class="accent">Le cadrer proprement, surtout.</span>
+            </h1>
+            <p class="hero-copy">
+              Intel n'est pas une annexe documentaire. C'est la couche qui
+              explique les hypothèses, montre les limites, tue les pièges de
+              lecture et distribue la preuve derrière les routes, tickets et
+              employeurs.
+            </p>
+          </div>
+          <aside class="decision-hero-panel">
+            <span class="mini-label">Comment utiliser Intel</span>
+            <div class="list">
+              <div class="list-item">
+                <span class="list-index">1</span>
+                <div>Valide la mécanique cash avant de croire un montant.</div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">2</span>
+                <div>Contrôle les limites d'un ticket ou d'une route avant d'engager du temps ou de l'argent.</div>
+              </div>
+              <div class="list-item">
+                <span class="list-index">3</span>
+                <div>Utilise les sources comme garde-fou, pas comme décor de crédibilité.</div>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
 
       <section class="section">
-        <div class="method-grid" id="methodGrid">
-          <article class="card">
-            <h3>Base / stable / max plausible</h3>
-            <p class="muted">
-              Chaque lane garde trois sorties: scénario bas, scénario stable et
-              scénario max plausible. Le stable est la lecture par défaut.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Fiche vs indemnités</h3>
-            <p class="muted">
-              Le net sur fiche n'est pas mélangé avec le grand déplacement ou
-              les paniers. Le coût de vie ne sert plus de faux salaire dans la
-              grille principale.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Tickets avant storytelling</h3>
-            <p class="muted">
-              On part du ticket ou du socle réel qui ouvre une porte, pas du
-              récit marketing d'une filière entière.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Niveau de confiance</h3>
-            <p class="muted">
-              Les lanes gardent une confiance qualitative et des sources
-              publiques visibles. Quand une URL manque, la confiance baisse.
-            </p>
-          </article>
+        <div class="guide-grid">
+          <article class="panel" id="intelGuidePanel"></article>
+          <article class="panel" id="intelConfidencePanel"></article>
+          <article class="panel" id="intelPitfallPanel"></article>
         </div>
       </section>
 
       <section class="section">
         <div class="section-head">
           <div>
-            <h2 class="section-title">Lecture du cash</h2>
+            <h2 class="section-title">Hypothèses et lecture du cash</h2>
             <p class="section-copy">
-              Les deux mémos ajoutés au projet insistent sur la vraie mécanique:
-              le salaire de base n'est qu'une couche.
+              Les panneaux ci-dessous servent à comprendre ce qui est comparé,
+              ce qui ne l'est pas, et comment lire les chiffres sans se raconter
+              d'histoires.
             </p>
           </div>
         </div>
@@ -102,11 +91,11 @@
       <section class="section">
         <div class="section-head">
           <div>
-            <h2 class="section-title">Australia: portes réelles</h2>
+            <h2 class="section-title">Australia beta: portes réelles</h2>
             <p class="section-copy">
-              Ici, l'objectif n'est pas de vendre du rêve FIFO avec une simple
-              White Card. On sépare les accès site, les licences métier, les
-              filtres d'immigration et la vraie stack du cash.
+              La couche Australie est maintenant séparée du module France. Ici,
+              on garde les règles d'accès et la preuve, pas un faux scoring
+              cross-country.
             </p>
           </div>
         </div>
@@ -143,14 +132,19 @@
       <section class="section">
         <div class="section-head">
           <div>
-            <h2 class="section-title">Sources publiques utilisées</h2>
+            <h2 class="section-title">Sources publiques groupées</h2>
             <p class="section-copy">
-              Cette V1 garde les liens publics présents dans la base Red Team.
-              Elle pourra ensuite être enrichie par branche.
+              Les sources sont regroupées pour qu'on comprenne ce qu'elles
+              soutiennent: doctrine cash, France live, Australie beta, ou garde-fous produit.
             </p>
           </div>
         </div>
-        <div class="source-grid" id="sourceGrid"></div>
+        <div class="guide-grid">
+          <article class="panel" id="sourceFrancePanel"></article>
+          <article class="panel" id="sourceAustraliaPanel"></article>
+          <article class="panel" id="sourceProductPanel"></article>
+        </div>
+        <div class="source-grid" id="sourceGrid" aria-live="polite"></div>
       </section>
     </main>
 
