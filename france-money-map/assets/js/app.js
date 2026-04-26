@@ -15,31 +15,31 @@ import {
 
 const HOME_STORAGE_KEY = "backchannel-atlas-home-onboarding-v1";
 const LEGACY_HOME_STORAGE_KEYS = ["france-money-map-home-onboarding-v1"];
-
-const statsRoot = document.getElementById("heroStats");
-const pageHero = document.querySelector(".page-hero");
-const heroPrimaryButton = document.querySelector(".hero-actions .button.primary");
-const heroSecondaryButtons = [
-  ...document.querySelectorAll(".hero-actions .button.secondary"),
+const DEFAULT_HEAT_LAYER = "fit-now";
+const HEAT_LAYERS = [
+  { id: "fit-now", label: "Fit now" },
+  { id: "cash-ceiling", label: "Cash ceiling" },
+  { id: "entry-speed", label: "Entry speed" },
 ];
-const heroOnboardingButton =
-  document.querySelector('.hero-actions a[href="#profileOnboarding"]') ||
-  document.querySelector('.hero-actions a[href="#homeOnboardingSection"]');
-const heroSupportButton =
-  heroSecondaryButtons.find((button) => button !== heroOnboardingButton) ||
-  (!heroOnboardingButton ? heroSecondaryButtons[0] : null);
-const goalCards = document.getElementById("goalCards");
-const sectorCards = document.getElementById("sectorCards");
+
+const heroStats = document.getElementById("heroStats");
+const missionRail = document.getElementById("missionRail");
+const profileLab = document.getElementById("profileLab");
+const heatLayerSet = document.getElementById("heatLayerSet");
+const worldMap = document.getElementById("worldMap");
+const marketDrawer = document.getElementById("marketDrawer");
+const marketHeatGrid = document.getElementById("marketHeatGrid");
+const missionBoard = document.getElementById("missionBoard");
+const launchpadPanel = document.getElementById("launchpadPanel");
+const featuredTitle = document.getElementById("featuredTitle");
+const featuredCopy = document.getElementById("featuredCopy");
 const featuredRoutes = document.getElementById("featuredRoutes");
-const goalSection = goalCards?.closest(".section");
-const sectorSection = sectorCards?.closest(".section");
-const featuredSection = featuredRoutes?.closest(".section");
-const featuredSectionButton = featuredSection?.querySelector(".section-head .button");
 
 let siteData;
 let homeModel;
 let homeState;
-let onboardingSection;
+let watchMarkets = [];
+let heatLayer = DEFAULT_HEAT_LAYER;
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -53,126 +53,16 @@ function normalizeArrayValue(value) {
   if (!value) {
     return [];
   }
-
   if (Array.isArray(value)) {
     return value;
   }
-
   return String(value)
     .split(",")
     .map((item) => item.trim())
     .filter(Boolean);
 }
 
-function injectHomeStyles() {
-  if (document.getElementById("homeOnboardingStyles")) {
-    return;
-  }
-
-  const style = document.createElement("style");
-  style.id = "homeOnboardingStyles";
-  style.textContent = `
-    .home-onboarding-grid,
-    .home-fields,
-    .home-field,
-    .home-country-grid,
-    .home-summary-panel,
-    .home-country-card,
-    .home-link-card {
-      display: grid;
-      gap: 14px;
-    }
-
-    .home-onboarding-grid,
-    .home-country-grid {
-      align-items: start;
-    }
-
-    .home-field-head {
-      display: grid;
-      gap: 4px;
-    }
-
-    .home-field .muted {
-      margin: 0;
-    }
-
-    .home-summary-panel h3,
-    .home-country-card h3,
-    .home-link-card h3 {
-      margin: 0;
-      font-family: var(--display);
-      font-size: 1.7rem;
-      line-height: 0.96;
-    }
-
-    .home-select {
-      width: 100%;
-    }
-
-    .home-country-card.is-active {
-      border-color: rgba(255, 125, 48, 0.32);
-      background:
-        linear-gradient(135deg, rgba(255, 125, 48, 0.08), transparent 55%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-    }
-
-    .home-country-card .list,
-    .home-summary-panel .list,
-    .home-link-card .list {
-      gap: 8px;
-    }
-
-    .home-field-count {
-      color: var(--muted);
-      font-size: 0.82rem;
-    }
-
-    .home-source-label {
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    @media (min-width: 900px) {
-      .home-onboarding-grid {
-        grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
-      }
-
-      .home-country-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-  `;
-  document.head.append(style);
-}
-
-function ensureOnboardingSection() {
-  if (onboardingSection) {
-    return onboardingSection;
-  }
-
-  onboardingSection = document.getElementById("profileOnboarding");
-  if (onboardingSection) {
-    return onboardingSection;
-  }
-
-  onboardingSection = document.getElementById("homeOnboardingSection");
-  if (onboardingSection) {
-    return onboardingSection;
-  }
-
-  onboardingSection = document.createElement("section");
-  onboardingSection.className = "section";
-  onboardingSection.id = "homeOnboardingSection";
-
-  if (pageHero?.parentNode) {
-    pageHero.insertAdjacentElement("afterend", onboardingSection);
-  }
-
-  return onboardingSection;
-}
-
-function loadSavedHomeState() {
+function loadSavedHomePackage() {
   try {
     const rawValue =
       window.localStorage.getItem(HOME_STORAGE_KEY) ||
@@ -185,9 +75,16 @@ function loadSavedHomeState() {
   }
 }
 
-function saveHomeState(state) {
+function saveHomePackage() {
   try {
-    window.localStorage.setItem(HOME_STORAGE_KEY, JSON.stringify(state));
+    window.localStorage.setItem(
+      HOME_STORAGE_KEY,
+      JSON.stringify({
+        ...homeState,
+        _watchMarkets: watchMarkets,
+        _heatLayer: heatLayer,
+      }),
+    );
   } catch (error) {
     // Ignore storage failures.
   }
@@ -198,6 +95,12 @@ function getField(fieldId) {
 }
 
 function getFieldOption(fieldId, optionId) {
+  if (fieldId === "country" && homeModel?.worldMarketMap?.has(optionId)) {
+    return {
+      id: optionId,
+      label: homeModel.worldMarketMap.get(optionId).label,
+    };
+  }
   return getField(fieldId)?.options.find((option) => option.id === optionId);
 }
 
@@ -206,6 +109,13 @@ function getOptionLabel(fieldId, optionId) {
 }
 
 function normalizeFieldValue(field, rawValue, fallbackValue) {
+  if (field.id === "country" && homeModel?.worldMarketMap) {
+    const candidate = rawValue ?? fallbackValue ?? field.options[0]?.id;
+    if (homeModel.worldMarketMap.has(candidate)) {
+      return candidate;
+    }
+  }
+
   const allowedIds = new Set(field.options.map((option) => option.id));
 
   if (field.type === "multi") {
@@ -222,7 +132,6 @@ function normalizeFieldValue(field, rawValue, fallbackValue) {
 
 function normalizeHomeState(schema, candidate = {}) {
   const defaults = schema.defaults || {};
-
   return (schema.fields || []).reduce((state, field) => {
     state[field.id] = normalizeFieldValue(
       field,
@@ -238,7 +147,18 @@ function commitHomeState(partial) {
     ...homeState,
     ...partial,
   });
-  saveHomeState(homeState);
+  saveHomePackage();
+  render();
+}
+
+function commitUiState(partial) {
+  if (partial.watchMarkets) {
+    watchMarkets = partial.watchMarkets;
+  }
+  if (partial.heatLayer) {
+    heatLayer = partial.heatLayer;
+  }
+  saveHomePackage();
   render();
 }
 
@@ -255,7 +175,6 @@ function toggleHomeMultiValue(field, optionId) {
 
   const maxSelected = field.maxSelected || field.options.length;
   const nextValues = [...currentValues, optionId];
-
   commitHomeState({
     [field.id]: nextValues.slice(-maxSelected),
   });
@@ -267,7 +186,6 @@ function choosePrimaryGoal(goalIds, goalPriority = []) {
       return goalId;
     }
   }
-
   return goalIds[0] || null;
 }
 
@@ -281,10 +199,7 @@ function applyNumericAdjustments(target, adjustment = {}) {
 
 function buildFranceSelection(countryConfig) {
   const model = countryConfig.selectionModel || {};
-  const baseSelection = mergeSelection(
-    DEFAULT_SELECTION,
-    model.baseSelection || {},
-  );
+  const baseSelection = mergeSelection(DEFAULT_SELECTION, model.baseSelection || {});
   const primaryCompactGoal = choosePrimaryGoal(
     homeState.goals,
     model.goalPriority || [],
@@ -323,15 +238,6 @@ function buildFranceSelection(countryConfig) {
     nextSelection.physicalTolerance += 10;
   }
 
-  if (
-    homeState.experienceTags.includes("gestion") &&
-    !homeState.experienceTags.some((tag) =>
-      ["terrain", "meca", "hauteur"].includes(tag),
-    )
-  ) {
-    nextSelection.physicalTolerance -= 8;
-  }
-
   if (homeState.nationality === "sponsor") {
     nextSelection.stabilityNeed += 6;
     nextSelection.speedNeed -= 6;
@@ -348,7 +254,6 @@ function buildFranceSelection(countryConfig) {
 
 function buildFranceRouteHref(selection) {
   const params = new URLSearchParams();
-
   params.set("goal", selection.goal);
   if (selection.profiles.length) {
     params.set("profiles", selection.profiles.join(","));
@@ -368,70 +273,45 @@ function buildFranceRouteHref(selection) {
   if (selection.mobilityTolerance !== DEFAULT_SELECTION.mobilityTolerance) {
     params.set("mobility", selection.mobilityTolerance);
   }
-
   return `./parcours.html?${params.toString()}`;
 }
 
-function compactSourceLabel(title = "") {
-  return title.split("—")[0].trim();
-}
-
-function matchesInsightRule(rule) {
-  const when = rule.when || {};
-
-  if (when.nationality && !when.nationality.includes(homeState.nationality)) {
-    return false;
-  }
-  if (when.ageBand && !when.ageBand.includes(homeState.ageBand)) {
-    return false;
-  }
-  if (when.mobility && !when.mobility.includes(homeState.mobility)) {
-    return false;
-  }
-  if (when.english && !when.english.includes(homeState.english)) {
-    return false;
-  }
-  if (
-    when.experienceCountMin &&
-    homeState.experienceTags.length < when.experienceCountMin
-  ) {
-    return false;
-  }
-  if (
-    when.experienceTagsAny &&
-    !homeState.experienceTags.some((tag) => when.experienceTagsAny.includes(tag))
-  ) {
-    return false;
-  }
-  if (when.goalsAny && !homeState.goals.some((goal) => when.goalsAny.includes(goal))) {
-    return false;
-  }
-
-  return true;
-}
-
 function buildInsights(countryConfig) {
-  const insights = (countryConfig.insightRules || []).filter(matchesInsightRule);
+  const insights = (countryConfig.insightRules || []).filter((rule) => {
+    const when = rule.when || {};
+    if (when.nationality && !when.nationality.includes(homeState.nationality)) {
+      return false;
+    }
+    if (when.ageBand && !when.ageBand.includes(homeState.ageBand)) {
+      return false;
+    }
+    if (when.mobility && !when.mobility.includes(homeState.mobility)) {
+      return false;
+    }
+    if (when.english && !when.english.includes(homeState.english)) {
+      return false;
+    }
+    if (
+      when.experienceCountMin &&
+      homeState.experienceTags.length < when.experienceCountMin
+    ) {
+      return false;
+    }
+    if (
+      when.experienceTagsAny &&
+      !homeState.experienceTags.some((tag) => when.experienceTagsAny.includes(tag))
+    ) {
+      return false;
+    }
+    if (when.goalsAny && !homeState.goals.some((goal) => when.goalsAny.includes(goal))) {
+      return false;
+    }
+    return true;
+  });
 
-  if (insights.length > 0) {
-    return insights.slice(0, 3);
-  }
-
-  return [
-    {
-      tone: "blue",
-      title: "Lecture rapide",
-      body: countryConfig.summary,
-    },
-  ];
-}
-
-function scoreWeightMap(weightMap = {}, selectedValue) {
-  return weightMap[selectedValue] || 0;
-}
-
-function scoreMultiWeightMap(weightMap = {}, selectedValues = []) {
-  return selectedValues.reduce((total, value) => total + (weightMap[value] || 0), 0);
+  return insights.length
+    ? insights.slice(0, 3)
+    : [{ tone: "blue", title: "Lecture rapide", body: countryConfig.summary }];
 }
 
 function buildAustraliaRecommendations(countryConfig) {
@@ -444,12 +324,18 @@ function buildAustraliaRecommendations(countryConfig) {
 
       const weights = rule.weights || {};
       const rawScore =
-        scoreWeightMap(weights.nationality, homeState.nationality) +
-        scoreWeightMap(weights.ageBand, homeState.ageBand) +
-        scoreWeightMap(weights.mobility, homeState.mobility) +
-        scoreWeightMap(weights.english, homeState.english) +
-        scoreMultiWeightMap(weights.experienceTags, homeState.experienceTags) +
-        scoreMultiWeightMap(weights.goals, homeState.goals);
+        (weights.nationality?.[homeState.nationality] || 0) +
+        (weights.ageBand?.[homeState.ageBand] || 0) +
+        (weights.mobility?.[homeState.mobility] || 0) +
+        (weights.english?.[homeState.english] || 0) +
+        homeState.experienceTags.reduce(
+          (total, tag) => total + (weights.experienceTags?.[tag] || 0),
+          0,
+        ) +
+        homeState.goals.reduce(
+          (total, goal) => total + (weights.goals?.[goal] || 0),
+          0,
+        );
 
       return {
         playbook,
@@ -463,421 +349,912 @@ function buildAustraliaRecommendations(countryConfig) {
     .sort((left, right) => right.matchScore - left.matchScore);
 }
 
-function resolveStatValue(entry) {
-  if (typeof entry.value === "number") {
-    return entry.value;
-  }
-
-  switch (entry.source) {
-    case "lanes":
-      return siteData.lanes.length;
-    case "tickets":
-      return siteData.tickets.length;
-    case "employers":
-      return siteData.employers.length;
-    case "sectors":
-      return siteData.sectors.length;
-    case "australiaPanels":
-      return homeModel.australiaPanels.length;
-    case "australiaPlaybooks":
-      return homeModel.australiaPlaybooks.length;
-    case "australiaSources":
-      return siteData.sources.filter((source) => source.id.startsWith("au-")).length;
-    default:
-      return 0;
-  }
-}
-
-function resolveAction(action, context) {
-  if (!action) {
-    return null;
-  }
-
-  if (action.type === "page") {
-    return {
-      href: action.href,
-      label: action.label,
-      isExternal: false,
-    };
-  }
-
-  if (action.type === "dynamic-france-route" && context.franceSelection) {
-    return {
-      href: buildFranceRouteHref(context.franceSelection),
-      label: action.label,
-      isExternal: false,
-    };
-  }
-
-  if (action.type === "source") {
-    const source = siteData.sourceMap.get(action.sourceId);
-    if (!source) {
-      return null;
-    }
-
-    return {
-      href: source.url,
-      label: action.label || source.title,
-      isExternal: true,
-      sourceTitle: source.title,
-    };
-  }
-
-  return null;
-}
-
-function actionButtonHtml(action, className = "button primary") {
-  if (!action) {
-    return "";
-  }
-
-  return `
-    <a
-      class="${className}"
-      href="${escapeHtml(action.href)}"
-      ${action.isExternal ? 'target="_blank" rel="noreferrer"' : ""}
-    >
-      ${escapeHtml(action.label)}
-    </a>
-  `;
-}
-
-function applyAnchorAction(anchor, action) {
-  if (!anchor || !action) {
-    return;
-  }
-
-  anchor.textContent = action.label;
-  anchor.href = action.href;
-
-  if (action.isExternal) {
-    anchor.target = "_blank";
-    anchor.rel = "noreferrer";
-  } else {
-    anchor.removeAttribute("target");
-    anchor.removeAttribute("rel");
-  }
-}
-
-function setSectionCopy(section, title, copy) {
-  if (!section) {
-    return;
-  }
-
-  const titleNode = section.querySelector(".section-title");
-  const copyNode = section.querySelector(".section-copy");
-
-  if (titleNode) {
-    titleNode.textContent = title;
-  }
-  if (copyNode) {
-    copyNode.textContent = copy;
-  }
-}
-
 function buildCountryContext() {
-  const country =
-    homeModel.countryMap.get(homeState.country) || homeModel.countries[0];
-  const insights = buildInsights(country);
+  const market =
+    homeModel.worldMarketMap.get(homeState.country) || homeModel.worldMarkets[0];
+  const countryConfig = homeModel.countryMap.get(market.id);
+  const insights = countryConfig ? buildInsights(countryConfig) : buildLockedMarketInsights(market);
 
-  if (country.id === "france") {
-    const franceSelection = buildFranceSelection(country);
+  if (market.id === "france" && countryConfig) {
+    const franceSelection = buildFranceSelection(countryConfig);
     const rankedLanes = scoreLanes(siteData.lanes, franceSelection);
-    const context = {
-      country,
+    return {
+      country: market,
+      countryConfig,
       insights,
       franceSelection,
-      primaryRecommendation: rankedLanes[0] || null,
       rankedLanes,
+      topRoute: rankedLanes[0]?.lane || null,
     };
-
-    context.primaryAction = resolveAction(country.hero?.primaryLink, context);
-    context.secondaryAction = resolveAction(country.hero?.secondaryLink, context);
-    return context;
   }
 
-  const australiaRecommendations = buildAustraliaRecommendations(country);
-  const context = {
-    country,
+  if (market.id === "australia" && countryConfig) {
+    const australiaRecommendations = buildAustraliaRecommendations(countryConfig);
+    return {
+      country: market,
+      countryConfig,
+      insights,
+      australiaRecommendations,
+      topPlaybook: australiaRecommendations[0]?.playbook || null,
+      topRecommendation: australiaRecommendations[0] || null,
+    };
+  }
+
+  return {
+    country: market,
+    countryConfig: null,
     insights,
-    australiaRecommendations,
-    primaryRecommendation: australiaRecommendations[0] || null,
+    roadmapActions: buildRoadmapActions(market),
+    roadmapCards: buildRoadmapCards(market),
+  };
+}
+
+function buildLockedMarketInsights(market) {
+  const insights = [
+    {
+      tone: "gold",
+      title: "Marché verrouillé",
+      body: `${market.label} est visible pour t'aider à arbitrer l'avenir, pas encore comme moteur live.`,
+    },
+    {
+      tone: "blue",
+      title: "Premier verrou",
+      body: market.firstGate || market.unlockNote,
+    },
+  ];
+
+  if (["functional", "strong"].includes(homeState.english)) {
+    insights.push({
+      tone: "green",
+      title: "Langue exploitable",
+      body: "Ton niveau d'anglais garde ouvertes plus de portes internationales quand le pays sera branché.",
+    });
+  } else {
+    insights.push({
+      tone: "red",
+      title: "Langue encore fragile",
+      body: "Sur la plupart des marchés verrouillés, l'anglais opérationnel reste un filtre précoce avant tickets et candidatures.",
+    });
+  }
+
+  if (["national", "remote-roster"].includes(homeState.mobility)) {
+    insights.push({
+      tone: "green",
+      title: "Mobilité utile",
+      body: "Ton niveau de mobilité est cohérent avec des futurs marchés remote, roster ou itinérants.",
+    });
+  } else {
+    insights.push({
+      tone: "gold",
+      title: "Mobilité à élargir",
+      body: "Une mobilité trop locale coupera beaucoup de routes monde, même avec bon cash théorique.",
+    });
+  }
+
+  return insights.slice(0, 4);
+}
+
+function buildRoadmapActions(market) {
+  return [
+    `Documenter ${market.label} comme marché cible secondaire, pas comme sortie immédiate.`,
+    `Renforcer les signaux transférables: ${homeState.experienceTags.length ? homeState.experienceTags.join(", ") : "terrain, élec, méca ou hauteur"}.`,
+    `Préparer le premier verrou: ${market.firstGate || market.unlockNote}.`,
+    "Utiliser France ou Australie pour générer du cash et de l'expérience pendant que le pays reste verrouillé.",
+  ];
+}
+
+function buildRoadmapCards(market) {
+  return [
+    {
+      title: "Pourquoi c'est verrouillé",
+      body: market.unlockNote || "Le pays n'est pas encore modélisé proprement.",
+      tone: "red",
+    },
+    {
+      title: "Signal déjà utile",
+      body:
+        homeState.experienceTags.length >= 2
+          ? `Ton profil transporte déjà ${homeState.experienceTags.slice(0, 2).join(" + ")}.`
+          : "Commence par construire 1 ou 2 signaux terrain solides et revendables.",
+      tone: "blue",
+    },
+    {
+      title: "Usage intelligent",
+      body: `Garde ${market.label} en veille, mais exécute d'abord sur un marché live ou beta déjà documenté.`,
+      tone: "gold",
+    },
+  ];
+}
+
+function scoreModelContribution(weightMap = {}, values = []) {
+  if (!values.length) {
+    return 0;
+  }
+  return values.reduce((total, value) => total + (weightMap[value] || 0), 0);
+}
+
+function genericLockedScore(market) {
+  let score = 38;
+  score += ["functional", "strong"].includes(homeState.english) ? 8 : -2;
+  score += ["national", "remote-roster"].includes(homeState.mobility) ? 8 : 0;
+  score += homeState.goals.includes("cash-upside") ? 8 : 0;
+  score += homeState.goals.includes("reuse-experience") ? 4 : 0;
+
+  if (["germany", "netherlands", "norway"].includes(market.id)) {
+    score += ["eu", "local"].includes(homeState.nationality) ? 10 : -6;
+  }
+  if (["uae", "qatar", "singapore"].includes(market.id)) {
+    score += homeState.nationality === "sponsor" ? -4 : 2;
+  }
+  if (["terrain", "elec", "meca", "automation", "hauteur"].some((tag) =>
+    homeState.experienceTags.includes(tag),
+  )) {
+    score += 8;
+  }
+  return clamp(score, 0, 100);
+}
+
+function scoreMarketByLayer(market, layer) {
+  if (!market.heatModel) {
+    return genericLockedScore(market);
+  }
+
+  const model = market.heatModel;
+  const expContribution = scoreModelContribution(
+    model.experienceTags,
+    homeState.experienceTags,
+  );
+  const goalContribution = scoreModelContribution(model.goals, homeState.goals);
+  const nationality = model.nationality?.[homeState.nationality] || 0;
+  const english = model.english?.[homeState.english] || 0;
+  const mobility = model.mobility?.[homeState.mobility] || 0;
+  const age = model.ageBand?.[homeState.ageBand] || 0;
+
+  if (layer === "fit-now") {
+    return clamp(
+      model.base + nationality + english + mobility + age + expContribution * 0.6 + goalContribution * 0.35,
+      0,
+      100,
+    );
+  }
+
+  if (layer === "cash-ceiling") {
+    return clamp(
+      42 +
+        (model.base - 40) * 0.4 +
+        mobility * 0.8 +
+        english * 0.4 +
+        expContribution * 0.8 +
+        goalContribution * 0.9 +
+        (homeState.goals.includes("cash-upside") ? 10 : 0),
+      0,
+      100,
+    );
+  }
+
+  return clamp(
+    50 +
+      nationality * 1.1 +
+      mobility * 0.7 +
+      english * 0.35 +
+      expContribution * 0.35 +
+      goalContribution * 0.75 +
+      (homeState.goals.includes("fast-entry") ? 12 : 0),
+    0,
+    100,
+  );
+}
+
+function bandFromScore(score) {
+  if (score >= 80) {
+    return "peak";
+  }
+  if (score >= 60) {
+    return "hot";
+  }
+  if (score >= 38) {
+    return "warm";
+  }
+  return "cold";
+}
+
+function marketStatusTone(status) {
+  if (status === "live") {
+    return "green";
+  }
+  if (status === "beta") {
+    return "gold";
+  }
+  return "red";
+}
+
+function marketBandTone(band) {
+  if (band === "peak") {
+    return "green";
+  }
+  if (band === "hot") {
+    return "gold";
+  }
+  if (band === "warm") {
+    return "blue";
+  }
+  return "red";
+}
+
+function buildMarketScores() {
+  return homeModel.worldMarkets
+    .map((market) => {
+      const layerScore = scoreMarketByLayer(market, heatLayer);
+      const fitScore = scoreMarketByLayer(market, "fit-now");
+      const cashScore = scoreMarketByLayer(market, "cash-ceiling");
+      const speedScore = scoreMarketByLayer(market, "entry-speed");
+      return {
+        market,
+        layerScore,
+        fitScore,
+        cashScore,
+        speedScore,
+        band: bandFromScore(layerScore),
+      };
+    })
+    .sort((left, right) => {
+      if (left.market.status === right.market.status) {
+        return right.layerScore - left.layerScore;
+      }
+      const order = { live: 0, beta: 1, locked: 2 };
+      return order[left.market.status] - order[right.market.status];
+    });
+}
+
+function activeMarketScores() {
+  return buildMarketScores().find((item) => item.market.id === homeState.country);
+}
+
+function completionScore() {
+  const checks = [
+    Boolean(homeState.country),
+    Boolean(homeState.nationality),
+    Boolean(homeState.ageBand),
+    Boolean(homeState.mobility),
+    Boolean(homeState.english),
+    homeState.experienceTags.length > 0,
+    homeState.goals.length > 0,
+  ];
+  return Math.round((checks.filter(Boolean).length / checks.length) * 100);
+}
+
+function watchMarketList() {
+  return uniqueValues(
+    watchMarkets.filter((marketId) => homeModel.worldMarketMap.has(marketId)),
+  );
+}
+
+function toggleWatchMarket(marketId) {
+  const next = watchMarketList().includes(marketId)
+    ? watchMarkets.filter((id) => id !== marketId)
+    : [...watchMarketList(), marketId].slice(-3);
+  commitUiState({ watchMarkets: next });
+}
+
+function updateMissionRail() {
+  const steps = [...missionRail.querySelectorAll(".mission-step")];
+  const score = completionScore();
+  steps.forEach((step, index) => {
+    step.classList.toggle("is-active", index === 0);
+    step.classList.toggle("is-complete", false);
+  });
+
+  if (score >= 55) {
+    steps[0]?.classList.add("is-complete");
+    steps[1]?.classList.add("is-active");
+  }
+  if (homeState.country) {
+    steps[1]?.classList.add("is-complete");
+    steps[2]?.classList.add("is-active");
+  }
+  if (homeState.country && (homeState.country === "france" || homeState.country === "australia")) {
+    steps[2]?.classList.add("is-complete");
+    steps[3]?.classList.add("is-active");
+  }
+}
+
+function renderHeroStats(marketScores) {
+  const cards = [...heroStats.querySelectorAll(".metric-card")];
+  const values = {
+    lanes: siteData.lanes.length,
+    tickets: siteData.tickets.length,
+    employers: siteData.employers.length,
+    markets: homeModel.worldMarkets.length,
   };
 
-  context.primaryAction = resolveAction(country.hero?.primaryLink, context);
-  context.secondaryAction = resolveAction(country.hero?.secondaryLink, context);
-  return context;
-}
-
-function renderStats(countryConfig) {
-  const cards = statsRoot ? [...statsRoot.querySelectorAll(".metric-card")] : [];
-
-  cards.forEach((card, index) => {
-    const statConfig = countryConfig.stats?.[index];
-    if (!statConfig) {
+  cards.forEach((card) => {
+    const stat = card.querySelector("[data-stat]");
+    if (!stat) {
       return;
     }
-
-    const labelNode = card.querySelector(".metric-label");
-    const valueNode = card.querySelector(".metric-value");
-
-    if (labelNode) {
-      labelNode.textContent = statConfig.label;
-    }
-    if (valueNode) {
-      valueNode.textContent = integer(resolveStatValue(statConfig));
-    }
+    stat.textContent = integer(values[stat.dataset.stat] || 0);
   });
-}
 
-function renderHeroLinks(context) {
-  if (heroPrimaryButton && context.primaryAction) {
-    applyAnchorAction(heroPrimaryButton, context.primaryAction);
-  }
-  if (heroSupportButton && context.secondaryAction) {
-    applyAnchorAction(heroSupportButton, context.secondaryAction);
-  }
-  if (featuredSectionButton && context.primaryAction) {
-    applyAnchorAction(featuredSectionButton, context.primaryAction);
+  const active = activeMarketScores() || marketScores[0];
+  const badge = document.querySelector(".mission-console .pill");
+  if (badge && active) {
+    badge.textContent = `${active.market.label} ${active.market.status}`;
+    badge.className = `pill is-${marketStatusTone(active.market.status)}`;
   }
 }
 
-function renderOnboarding(context) {
-  const section = ensureOnboardingSection();
-  const selectedExperience = homeState.experienceTags
-    .map((tag) => pill(getOptionLabel("experienceTags", tag), "blue"))
-    .join("");
-  const selectedGoals = homeState.goals
-    .map((goal) => pill(getOptionLabel("goals", goal), "orange"))
+function fieldGroup(fieldId) {
+  if (["country", "nationality", "ageBand"].includes(fieldId)) {
+    return "Profil de base";
+  }
+  if (["mobility", "english"].includes(fieldId)) {
+    return "Mobilité et langue";
+  }
+  if (fieldId === "experienceTags") {
+    return "Signaux vendables";
+  }
+  return "Objectif";
+}
+
+function renderProfileLab(context) {
+  const grouped = homeModel.fields.reduce((groups, field) => {
+    const group = fieldGroup(field.id);
+    groups[group] = groups[group] || [];
+    groups[group].push(field);
+    return groups;
+  }, {});
+
+  const completion = completionScore();
+  const watchPills = watchMarketList()
+    .map((marketId) => homeModel.worldMarketMap.get(marketId))
+    .filter(Boolean)
+    .map((market) => pill(market.label, marketStatusTone(market.status)))
     .join("");
 
-  section.innerHTML = `
-    <div class="section-head">
+  profileLab.innerHTML = `
+    <div class="panel-head">
       <div>
-        <h2 class="section-title">Choisir un pays et un profil compact</h2>
-        <p class="section-copy">
-          Nationalité, âge, mobilité, anglais, expérience et objectifs servent
-          maintenant à pré-régler les recommandations dès l'entrée du site.
-        </p>
+        <span class="mini-label">01 · Profil</span>
+        <h3>Construis ta carte d'opérateur</h3>
       </div>
-      <button class="button secondary" type="button" data-home-reset>
-        Réinitialiser
-      </button>
+      <div class="button-row">
+        <span class="pill is-blue">Sauvegarde locale</span>
+        <button class="button secondary is-disabled" type="button" disabled>
+          Google bientôt
+        </button>
+      </div>
     </div>
-    <div class="home-onboarding-grid">
-      <div class="filter-panel home-fields">
-        ${homeModel.fields
-          .map((field) => {
-            if (field.control === "select") {
-              return `
-                <label class="home-field">
-                  <div class="home-field-head">
-                    <span class="mini-label">${escapeHtml(field.label)}</span>
-                    <p class="muted">${escapeHtml(field.description)}</p>
-                  </div>
-                  <select class="input home-select" data-home-select="${field.id}">
-                    ${field.options
-                      .map(
-                        (option) => `
-                          <option
-                            value="${escapeHtml(option.id)}"
-                            ${homeState[field.id] === option.id ? "selected" : ""}
-                          >
-                            ${escapeHtml(option.label)}
-                          </option>
-                        `,
-                      )
-                      .join("")}
-                  </select>
-                </label>
-              `;
-            }
-
-            return `
-              <div class="home-field">
-                <div class="home-field-head">
-                  <span class="mini-label">${escapeHtml(field.label)}</span>
-                  <p class="muted">${escapeHtml(field.description)}</p>
-                </div>
-                <div class="chip-set">
-                  ${field.options
-                    .map((option) => {
-                      const isActive =
-                        field.type === "multi"
-                          ? homeState[field.id].includes(option.id)
-                          : homeState[field.id] === option.id;
-
-                      return `
-                        <button
-                          class="chip ${isActive ? "is-active" : ""}"
-                          type="button"
-                          data-home-toggle="${field.id}"
-                          data-home-value="${option.id}"
-                        >
-                          ${escapeHtml(option.label)}
-                        </button>
-                      `;
-                    })
-                    .join("")}
-                </div>
-                ${
-                  field.type === "multi"
-                    ? `
-                      <div class="home-field-count">
-                        ${homeState[field.id].length}/${field.maxSelected} sélectionnés
-                      </div>
-                    `
-                    : ""
-                }
+    <div class="profile-progress">
+      <div class="profile-progress-bar">
+        <span style="width:${completion}%"></span>
+      </div>
+      <div class="profile-progress-meta">
+        <strong>${completion}%</strong>
+        <span class="muted">profil exploitable</span>
+      </div>
+    </div>
+    <div class="warning-card">
+      <strong>Pays actif:</strong> ${escapeHtml(context.country.label)}
+      <br />
+      <strong>Watchlist:</strong> ${watchPills || "aucun pays épinglé"}
+    </div>
+    <div class="home-profile-groups">
+      ${Object.entries(grouped)
+        .map(
+          ([groupLabel, fields]) => `
+            <section class="profile-group">
+              <div class="profile-group-head">
+                <span class="mini-label">${escapeHtml(groupLabel)}</span>
               </div>
-            `;
-          })
-          .join("")}
-      </div>
-      <div class="panel home-summary-panel">
-        <div class="pill-row">
-          ${pill(context.country.label, "orange")}
-          ${pill(context.country.badge, "blue")}
-          ${pill(`Mobilité ${getOptionLabel("mobility", homeState.mobility)}`, "green")}
-          ${pill(`Anglais ${getOptionLabel("english", homeState.english)}`, "gold")}
-        </div>
-        <h3>Lecture rapide</h3>
-        <p class="muted">${escapeHtml(context.country.summary)}</p>
-        <div>
-          <span class="mini-label">Signaux envoyés</span>
-          <div class="pill-row">
-            ${selectedExperience || pill("Aucun signal", "red")}
-            ${selectedGoals || pill("Aucun objectif", "red")}
-          </div>
-        </div>
-        <div class="list">
-          ${context.insights
-            .map(
-              (insight, index) => `
-                <div class="list-item">
-                  <span class="list-index">${index + 1}</span>
-                  <div>
-                    <div class="pill-row">${pill(insight.title, insight.tone || "blue")}</div>
-                    <div>${escapeHtml(insight.body)}</div>
-                  </div>
-                </div>
-              `,
-            )
-            .join("")}
-        </div>
-        <div class="button-row">
-          ${actionButtonHtml(context.primaryAction, "button primary")}
-          ${actionButtonHtml(context.secondaryAction, "button secondary")}
-        </div>
-      </div>
+              <div class="profile-group-fields">
+                ${fields
+                  .map((field) => {
+                    if (field.id === "country") {
+                      return `
+                        <label class="home-field">
+                          <div class="home-field-head">
+                            <span class="mini-label">${escapeHtml(field.label)}</span>
+                            <p class="muted">${escapeHtml(field.description)}</p>
+                          </div>
+                          <select class="input home-select" data-home-select="${field.id}">
+                            ${homeModel.worldMarkets
+                              .map(
+                                (market) => `
+                                  <option
+                                    value="${escapeHtml(market.id)}"
+                                    ${homeState[field.id] === market.id ? "selected" : ""}
+                                  >
+                                    ${escapeHtml(`${market.label} · ${market.status}`)}
+                                  </option>
+                                `,
+                              )
+                              .join("")}
+                          </select>
+                        </label>
+                      `;
+                    }
+
+                    if (field.control === "select") {
+                      return `
+                        <label class="home-field">
+                          <div class="home-field-head">
+                            <span class="mini-label">${escapeHtml(field.label)}</span>
+                            <p class="muted">${escapeHtml(field.description)}</p>
+                          </div>
+                          <select class="input home-select" data-home-select="${field.id}">
+                            ${field.options
+                              .map(
+                                (option) => `
+                                  <option
+                                    value="${escapeHtml(option.id)}"
+                                    ${homeState[field.id] === option.id ? "selected" : ""}
+                                  >
+                                    ${escapeHtml(option.label)}
+                                  </option>
+                                `,
+                              )
+                              .join("")}
+                          </select>
+                        </label>
+                      `;
+                    }
+
+                    return `
+                      <div class="home-field">
+                        <div class="home-field-head">
+                          <span class="mini-label">${escapeHtml(field.label)}</span>
+                          <p class="muted">${escapeHtml(field.description)}</p>
+                        </div>
+                        <div class="chip-set">
+                          ${field.options
+                            .map((option) => {
+                              const isActive =
+                                field.type === "multi"
+                                  ? homeState[field.id].includes(option.id)
+                                  : homeState[field.id] === option.id;
+
+                              return `
+                                <button
+                                  class="chip ${isActive ? "is-active" : ""}"
+                                  type="button"
+                                  data-home-toggle="${field.id}"
+                                  data-home-value="${option.id}"
+                                >
+                                  ${escapeHtml(option.label)}
+                                </button>
+                              `;
+                            })
+                            .join("")}
+                        </div>
+                        ${
+                          field.type === "multi"
+                            ? `<div class="home-field-count">${homeState[field.id].length}/${field.maxSelected} sélectionnés</div>`
+                            : ""
+                        }
+                      </div>
+                    `;
+                  })
+                  .join("")}
+              </div>
+            </section>
+          `,
+        )
+        .join("")}
+    </div>
+    <div class="button-row">
+      <button class="button secondary" type="button" data-home-reset>Reset</button>
+      <a class="button primary" href="#worldMap">Aller à la carte</a>
     </div>
   `;
 }
 
-function renderCountries(context) {
-  const sectionText = context.country.sectionText || {};
-  sectorCards.classList.add("home-country-grid");
-  setSectionCopy(
-    sectorSection,
-    sectionText.countriesTitle || "Pays couverts",
-    sectionText.countriesCopy || "",
-  );
+function renderHeatLayerSet() {
+  heatLayerSet.innerHTML = HEAT_LAYERS.map(
+    (layer) => `
+      <button
+        class="chip ${heatLayer === layer.id ? "is-active" : ""}"
+        type="button"
+        data-heat-layer="${layer.id}"
+      >
+        ${escapeHtml(layer.label)}
+      </button>
+    `,
+  ).join("");
+}
 
-  sectorCards.innerHTML = homeModel.countries
-    .map((country) => {
-      const stats = (country.stats || [])
-        .map((entry) => pill(`${integer(resolveStatValue(entry))} ${entry.label}`, "blue"))
-        .join("");
+function marketNodeLabel(scoreItem) {
+  if (scoreItem.market.status === "locked") {
+    return "locked";
+  }
+  return String(Math.round(scoreItem.layerScore));
+}
 
-      return `
-        <article class="card home-country-card ${country.id === context.country.id ? "is-active" : ""}">
+function worldMapSvg() {
+  return `
+    <svg class="world-svg" viewBox="0 0 1200 700" aria-hidden="true">
+      <g class="world-land">
+        <path d="M82 170 180 108 330 124 418 182 372 258 284 270 220 334 132 326 92 256Z" />
+        <path d="M328 350 384 394 410 468 378 566 322 610 286 564 300 456Z" />
+        <path d="M528 150 594 122 676 136 690 186 650 224 588 220 548 196Z" />
+        <path d="M566 246 628 284 648 358 628 468 590 560 538 494 526 396 538 306Z" />
+        <path d="M688 160 790 124 940 144 1082 196 1124 270 1048 318 952 302 898 332 796 302 738 250Z" />
+        <path d="M894 434 966 454 1038 510 1054 572 980 610 892 586 852 520Z" />
+      </g>
+    </svg>
+  `;
+}
+
+function renderWorldMap(marketScores) {
+  const selected = activeMarketScores() || marketScores[0];
+  worldMap.innerHTML = `
+    <div class="world-map-stage">
+      ${worldMapSvg()}
+      <div class="world-map-legend">
+        <span class="pill is-green">Live</span>
+        <span class="pill is-gold">Beta</span>
+        <span class="pill is-red">Locked</span>
+      </div>
+      ${marketScores
+        .map(
+          (item) => `
+            <button
+              class="atlas-node atlas-node-${item.market.status} atlas-band-${item.band} ${item.market.id === selected.market.id ? "is-focused" : ""} ${watchMarketList().includes(item.market.id) ? "is-watched" : ""}"
+              type="button"
+              style="left:${item.market.coords.x}%; top:${item.market.coords.y}%"
+              data-market-focus="${item.market.id}"
+              aria-label="${escapeHtml(item.market.label)} ${escapeHtml(item.market.status)}"
+            >
+              <span class="atlas-node-code">${escapeHtml(item.market.label.slice(0, 2).toUpperCase())}</span>
+              <span class="atlas-node-score">${escapeHtml(marketNodeLabel(item))}</span>
+            </button>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function marketReasons(scoreItem, context) {
+  const reasons = [];
+  if (scoreItem.market.id === "france") {
+    if (["eu", "local", "rights"].includes(homeState.nationality)) {
+      reasons.push("droits au travail plus simples à convertir en action");
+    } else {
+      reasons.push("verrou admin plus lourd que sur un marché déjà ouvert");
+    }
+    if (homeState.experienceTags.length >= 2) {
+      reasons.push("plusieurs signaux recyclables sur routes France live");
+    }
+    if (homeState.mobility === "local") {
+      reasons.push("mobilité basse limite certaines routes grands déplacements");
+    }
+  } else if (scoreItem.market.id === "australia") {
+    if (["local", "rights"].includes(homeState.nationality)) {
+      reasons.push("work rights déjà plus crédibles");
+    } else {
+      reasons.push("work rights restent le premier filtre dur");
+    }
+    if (["functional", "strong"].includes(homeState.english)) {
+      reasons.push("anglais assez haut pour screening, safety et onboarding");
+    } else {
+      reasons.push("anglais faible coupe vite les portes site");
+    }
+    if (homeState.mobility === "remote-roster") {
+      reasons.push("roster / remote accepté, donc fit meilleur sur FIFO et shutdowns");
+    }
+  } else {
+    reasons.push(scoreItem.market.teaser);
+  }
+  return reasons.slice(0, 3);
+}
+
+function renderMarketDrawer(scoreItem, context) {
+  const reasons = marketReasons(scoreItem, context);
+  const isWatched = watchMarketList().includes(scoreItem.market.id);
+
+  let body = `
+    <div class="pill-row">
+      ${pill(scoreItem.market.label, "orange")}
+      ${pill(scoreItem.market.status, marketStatusTone(scoreItem.market.status))}
+      ${pill(`${HEAT_LAYERS.find((layer) => layer.id === heatLayer)?.label} ${Math.round(scoreItem.layerScore)}`, marketBandTone(scoreItem.band))}
+    </div>
+    <h3>${escapeHtml(scoreItem.market.label)}</h3>
+    <p class="muted">${escapeHtml(scoreItem.market.summary)}</p>
+    <div class="warning-card">
+      <strong>Premier gate:</strong> ${escapeHtml(scoreItem.market.firstGate || scoreItem.market.unlockNote)}
+    </div>
+    <div class="list">
+      ${reasons
+        .map(
+          (reason, index) => `
+            <div class="list-item">
+              <span class="list-index">${index + 1}</span>
+              <div>${escapeHtml(reason)}</div>
+            </div>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+
+  if (scoreItem.market.id === "france" && context.topRoute) {
+    body += `
+      <div class="detail-facts">
+        <div class="detail-fact">
+          <span class="mini-label">Mission top 1</span>
+          <div>${escapeHtml(context.topRoute.title)}</div>
+        </div>
+        <div class="detail-fact">
+          <span class="mini-label">Premier verrou</span>
+          <div>${escapeHtml(siteData.ticketMap.get(context.topRoute.ticketsRequired[0])?.name || "ticket à confirmer")}</div>
+        </div>
+        <div class="detail-fact">
+          <span class="mini-label">Cash stable</span>
+          <div>${escapeHtml(context.topRoute.salaryStableScenario ? new Intl.NumberFormat("fr-FR", {style:"currency", currency:"EUR", maximumFractionDigits:0}).format(context.topRoute.salaryStableScenario.estimatedCashAvailable) : "—")}</div>
+        </div>
+      </div>
+      <div class="button-row">
+        <a class="button primary" href="${buildFranceRouteHref(context.franceSelection)}">Entrer en France</a>
+        <a class="button secondary" href="${laneHref(context.topRoute.id)}">Voir la route top 1</a>
+      </div>
+    `;
+  } else if (scoreItem.market.id === "australia" && context.topRecommendation) {
+    const playbook = context.topRecommendation.playbook;
+    body += `
+      <div class="detail-facts">
+        <div class="detail-fact">
+          <span class="mini-label">Playbook top 1</span>
+          <div>${escapeHtml(playbook.title)}</div>
+        </div>
+        <div class="detail-fact">
+          <span class="mini-label">Temps pour être prêt</span>
+          <div>${escapeHtml(playbook.timeToReady)}</div>
+        </div>
+        <div class="detail-fact">
+          <span class="mini-label">Cash stable</span>
+          <div>${escapeHtml(playbook.salarySignals?.stable || "à vérifier")}</div>
+        </div>
+      </div>
+      <div class="button-row">
+        <a class="button primary" href="./australia.html">Entrer en Australie</a>
+        <a class="button secondary" href="./sources.html">Contrôler les sources</a>
+      </div>
+    `;
+  } else {
+    body += `
+      <div class="warning-card">
+        <strong>État du marché:</strong> ${escapeHtml(scoreItem.market.unlockNote || "roadmap")}
+      </div>
+      <div class="button-row">
+        <button class="button secondary" type="button" data-watch-market="${scoreItem.market.id}">
+          ${isWatched ? "Retirer de la watchlist" : "Épingler pour plus tard"}
+        </button>
+      </div>
+    `;
+  }
+
+  marketDrawer.innerHTML = body;
+}
+
+function renderHeatGrid(marketScores) {
+  marketHeatGrid.innerHTML = marketScores
+    .map(
+      (item) => `
+        <article class="card heat-card ${item.market.id === homeState.country ? "is-active" : ""} ${item.market.status === "locked" ? "is-locked" : ""}">
           <div class="pill-row">
-            ${pill(country.label, "orange")}
-            ${pill(country.badge, "gold")}
+            ${pill(item.market.label, "orange")}
+            ${pill(item.market.badge, marketStatusTone(item.market.status))}
+            ${pill(Math.round(item.layerScore).toString(), marketBandTone(item.band))}
           </div>
-          <h3>${escapeHtml(country.marketCard?.title || country.label)}</h3>
-          <p class="muted">${escapeHtml(country.marketCard?.summary || country.summary)}</p>
-          <div class="pill-row">${stats}</div>
-          <div class="list">
-            ${(country.marketCard?.bullets || [])
-              .map(
-                (bullet, index) => `
-                  <div class="list-item">
-                    <span class="list-index">${index + 1}</span>
-                    <div>${escapeHtml(bullet)}</div>
-                  </div>
-                `,
-              )
-              .join("")}
+          <h3>${escapeHtml(item.market.label)}</h3>
+          <p class="muted">${escapeHtml(item.market.teaser)}</p>
+          <div class="heat-metrics">
+            <div><span class="mini-label">Fit</span><strong>${Math.round(item.fitScore)}</strong></div>
+            <div><span class="mini-label">Cash</span><strong>${Math.round(item.cashScore)}</strong></div>
+            <div><span class="mini-label">Speed</span><strong>${Math.round(item.speedScore)}</strong></div>
           </div>
           <div class="button-row">
-            <button
-              class="button ${country.id === context.country.id ? "primary" : "secondary"}"
-              type="button"
-              data-country-select="${country.id}"
-            >
-              ${country.id === context.country.id ? "Pays actif" : `Choisir ${country.label}`}
+            <button class="button ${item.market.id === homeState.country ? "primary" : "secondary"}" type="button" data-market-focus="${item.market.id}">
+              ${item.market.id === homeState.country ? "Pays actif" : "Ouvrir le pays"}
+            </button>
+            <button class="button secondary" type="button" data-watch-market="${item.market.id}">
+              ${watchMarketList().includes(item.market.id) ? "Épinglé" : "Épingler"}
             </button>
           </div>
         </article>
-      `;
-    })
+      `,
+    )
     .join("");
 }
 
-function renderQuickLinks(context) {
-  const sectionText = context.country.sectionText || {};
-  setSectionCopy(
-    goalSection,
-    sectionText.linksTitle || "Liens utiles pour ton profil",
-    sectionText.linksCopy || "",
-  );
-
-  const cards = (context.country.quickLinks || [])
-    .map((link) => {
-      const resolvedAction = resolveAction(link.action, context);
-      if (!resolvedAction) {
-        return null;
-      }
-
-      let summary = link.summary;
-      if (context.country.id === "france" && link.id === "fr-route" && context.primaryRecommendation) {
-        summary = `${summary} Top lane actuelle: ${context.primaryRecommendation.lane.title}.`;
-      }
-      if (
-        context.country.id === "australia" &&
-        link.id === "au-playbooks" &&
-        context.primaryRecommendation
-      ) {
-        summary = `${summary} Meilleur match actuel: ${context.primaryRecommendation.playbook.title}.`;
-      }
-
-      return `
-        <article class="card home-link-card">
-          <div class="pill-row">
-            ${pill(context.country.label, "orange")}
-            ${
-              resolvedAction.sourceTitle
-                ? pill(compactSourceLabel(resolvedAction.sourceTitle), "blue")
-                : ""
-            }
+function renderMissionBoard(context) {
+  if (context.country.id === "france") {
+    const topRoute = context.topRoute;
+    missionBoard.innerHTML = `
+      <span class="mini-label">Mission France</span>
+      <h3>De ton profil vers une première candidature crédible.</h3>
+      <div class="list">
+        <div class="list-item">
+          <span class="list-index">1</span>
+          <div>
+            <strong>Choisis ta porte d'entrée</strong>
+            <div>${escapeHtml(topRoute ? topRoute.title : "ouvre le moteur France pour voir les routes.")}</div>
           </div>
-          <h3>${escapeHtml(link.title)}</h3>
-          <p class="muted">${escapeHtml(summary)}</p>
-          ${
-            resolvedAction.sourceTitle
-              ? `<div class="home-source-label">${escapeHtml(resolvedAction.sourceTitle)}</div>`
-              : ""
-          }
-          <div class="button-row">
-            ${actionButtonHtml(resolvedAction, "button primary")}
+        </div>
+        <div class="list-item">
+          <span class="list-index">2</span>
+          <div>
+            <strong>Verrouille le premier ticket utile</strong>
+            <div>${escapeHtml(topRoute ? siteData.ticketMap.get(topRoute.ticketsRequired[0])?.name || "ticket à confirmer" : "pas encore de ticket conseillé")}</div>
           </div>
-        </article>
-      `;
-    })
-    .filter(Boolean);
+        </div>
+        <div class="list-item">
+          <span class="list-index">3</span>
+          <div>
+            <strong>Vise les boîtes liées</strong>
+            <div>${escapeHtml(topRoute ? `${topRoute.employerIds.length} employeur(s) déjà reliés à la route.` : "les employeurs apparaissent après tri.")}</div>
+          </div>
+        </div>
+      </div>
+      <div class="button-row">
+        <a class="button primary" href="${buildFranceRouteHref(context.franceSelection)}">Ouvrir la mission France</a>
+        <a class="button secondary" href="./tickets.html">Voir les tickets</a>
+      </div>
+    `;
+    return;
+  }
 
-  goalCards.innerHTML = cards.join("");
+  if (context.country.id === "australia") {
+    const top = context.topRecommendation?.playbook;
+    missionBoard.innerHTML = `
+      <span class="mini-label">Mission Australie</span>
+      <h3>Construis une porte d'entrée réaliste avant de bouger.</h3>
+      <div class="list">
+        <div class="list-item">
+          <span class="list-index">1</span>
+          <div>
+            <strong>Valide les work rights</strong>
+            <div>Sans work rights, White Card et FIFO restent théoriques.</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <span class="list-index">2</span>
+          <div>
+            <strong>Choisis un playbook d'entrée</strong>
+            <div>${escapeHtml(top ? top.title : "choisis FIFO, shutdowns ou charbon selon ton profil.")}</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <span class="list-index">3</span>
+          <div>
+            <strong>Monte les gates dans l'ordre</strong>
+            <div>${escapeHtml(top ? `${top.requiredTickets?.[0]?.name || "work rights"} puis ${top.requiredTickets?.[1]?.name || "ticket site"}` : "gates à clarifier")}</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <span class="list-index">4</span>
+          <div>
+            <strong>Vends-toi sur la bonne porte</strong>
+            <div>${escapeHtml(top ? top.firstRoles?.join(" · ") : "vise un premier rôle réel, pas un rêve FIFO générique.")}</div>
+          </div>
+        </div>
+      </div>
+      <div class="button-row">
+        <a class="button primary" href="./australia.html">Ouvrir la mission Australie</a>
+        <a class="button secondary" href="./sources.html">Contrôler les work rights</a>
+      </div>
+    `;
+    return;
+  }
+
+  missionBoard.innerHTML = `
+    <span class="mini-label">Mission roadmap</span>
+    <h3>${escapeHtml(context.country.label)} n'est pas encore live. Utilise-le comme radar, pas comme promesse.</h3>
+    <div class="list">
+      ${(context.roadmapActions || [])
+        .map(
+          (action, index) => `
+            <div class="list-item">
+              <span class="list-index">${index + 1}</span>
+              <div>${escapeHtml(action)}</div>
+            </div>
+          `,
+        )
+        .join("")}
+    </div>
+    <div class="button-row">
+      <button class="button secondary" type="button" data-watch-market="${escapeHtml(context.country.id)}">
+        ${watchMarketList().includes(context.country.id) ? "Retirer de la watchlist" : "Épingler ce pays"}
+      </button>
+      <a class="button primary" href="./parcours.html">Exécuter sur France live</a>
+    </div>
+  `;
+}
+
+function renderLaunchpad(context) {
+  if (context.country.id === "france") {
+    launchpadPanel.innerHTML = `
+      <span class="mini-label">Launchpad</span>
+      <h3>Ce que la France te donne maintenant</h3>
+      <div class="warning-card">
+        <strong>Lecture:</strong> France live = routes, tickets, employeurs et cash comparatif déjà branchés.
+      </div>
+      <div class="list">
+        ${context.insights
+          .map(
+            (insight, index) => `
+              <div class="list-item">
+                <span class="list-index">${index + 1}</span>
+                <div><strong>${escapeHtml(insight.title)}</strong><div>${escapeHtml(insight.body)}</div></div>
+              </div>
+            `,
+          )
+          .join("")}
+      </div>
+      <div class="button-row">
+        <a class="button primary" href="${buildFranceRouteHref(context.franceSelection)}">Tri France</a>
+        <a class="button secondary" href="./employeurs.html">Employeurs</a>
+        <a class="button secondary" href="./sources.html">Intel</a>
+      </div>
+    `;
+    return;
+  }
+
+  if (context.country.id === "australia") {
+    const top = context.topRecommendation?.playbook;
+    launchpadPanel.innerHTML = `
+      <span class="mini-label">Launchpad</span>
+      <h3>Ce que l'Australie te donne maintenant</h3>
+      <div class="warning-card">
+        <strong>Cash plausible:</strong> ${escapeHtml(top?.salarySignals?.stable || "pas de bande stable fiable sans playbook actif")}
+        <br />
+        <strong>Temps:</strong> ${escapeHtml(top?.timeToReady || "à estimer selon work rights et gates")}
+      </div>
+      <div class="list">
+        ${context.insights
+          .map(
+            (insight, index) => `
+              <div class="list-item">
+                <span class="list-index">${index + 1}</span>
+                <div><strong>${escapeHtml(insight.title)}</strong><div>${escapeHtml(insight.body)}</div></div>
+              </div>
+            `,
+          )
+          .join("")}
+      </div>
+      <div class="button-row">
+        <a class="button primary" href="./australia.html">Playbooks AU</a>
+        <a class="button secondary" href="./sources.html">Sources AU</a>
+      </div>
+    `;
+    return;
+  }
+
+  launchpadPanel.innerHTML = `
+    <span class="mini-label">Launchpad</span>
+    <h3>Ce que ce pays verrouillé te donne quand même</h3>
+    <div class="warning-card">
+      <strong>État:</strong> ${escapeHtml(context.country.unlockNote || "roadmap")}
+      <br />
+      <strong>Premier verrou:</strong> ${escapeHtml(context.country.firstGate || "à documenter")}
+    </div>
+    <div class="list">
+      ${context.insights
+        .map(
+          (insight, index) => `
+            <div class="list-item">
+              <span class="list-index">${index + 1}</span>
+              <div><strong>${escapeHtml(insight.title)}</strong><div>${escapeHtml(insight.body)}</div></div>
+            </div>
+          `,
+        )
+        .join("")}
+    </div>
+    <div class="button-row">
+      <a class="button primary" href="./index.html#worldMap">Revenir à la carte</a>
+      <a class="button secondary" href="./australia.html">Voir un pays déjà beta</a>
+    </div>
+  `;
 }
 
 function franceRouteCardHtml(result) {
@@ -885,7 +1262,7 @@ function franceRouteCardHtml(result) {
   const ticketLabels = lane.ticketsRequired
     .map((ticketId) => siteData.ticketMap.get(ticketId)?.name)
     .filter(Boolean)
-    .slice(0, 3);
+    .slice(0, 2);
 
   return `
     <article class="result-card">
@@ -897,35 +1274,16 @@ function franceRouteCardHtml(result) {
       <h3 class="result-title">${escapeHtml(lane.title)}</h3>
       <p class="result-subtitle">${escapeHtml(lane.branch)} · ${escapeHtml(lane.subBranch)}</p>
       <div class="money-row">
-        ${scenarioBoxHtml("Bas", lane.salaryLowScenario, "blue")}
         ${scenarioBoxHtml("Stable", lane.salaryStableScenario, "gold")}
         ${scenarioBoxHtml("Max", lane.salaryMaxScenario, "green")}
       </div>
-      <div class="list">
-        ${result.reasons
-          .slice(0, 2)
-          .map(
-            (reason, index) => `
-              <div class="list-item">
-                <span class="list-index">${index + 1}</span>
-                <div>${escapeHtml(reason)}</div>
-              </div>
-            `,
-          )
-          .join("")}
-      </div>
-      <div>
-        <span class="mini-label">Tickets d'entrée</span>
-        <div class="inline-links">
-          ${ticketLabels.length
-            ? ticketLabels.map((ticket) => pill(ticket, "orange")).join("")
-            : pill("À confirmer", "red")}
-        </div>
+      <div class="inline-links">
+        ${ticketLabels.length
+          ? ticketLabels.map((ticket) => pill(ticket, "orange")).join("")
+          : pill("tickets à confirmer", "red")}
       </div>
       <div class="button-row">
-        <a class="button primary" href="${escapeHtml(laneHref(lane.id))}">
-          Voir la porte
-        </a>
+        <a class="button primary" href="${escapeHtml(laneHref(lane.id))}">Voir la porte</a>
       </div>
     </article>
   `;
@@ -943,61 +1301,52 @@ function playbookMatchTone(score) {
 
 function australiaPlaybookCardHtml(result) {
   const { playbook } = result;
-  const sourceLinks = result.recommendedSources
-    .map((source) => linkChip(compactSourceLabel(source.title), source.url))
-    .join("");
-
   return `
     <article class="result-card">
       <div class="pill-row">
         ${pill(playbook.track, "blue")}
         ${pill(`Match ${result.matchScore}`, playbookMatchTone(result.matchScore))}
+        ${pill(playbook.confidenceLevel || "beta", "gold")}
       </div>
       <h3 class="result-title">${escapeHtml(playbook.title)}</h3>
       <p class="result-subtitle">${escapeHtml(playbook.summary)}</p>
-      <div>
-        <span class="mini-label">Temps pour être prêt</span>
-        <strong>${escapeHtml(playbook.timeToReady)}</strong>
-      </div>
-      <div class="list">
-        ${playbook.gates
-          .slice(0, 3)
-          .map(
-            (gate, index) => `
-              <div class="list-item">
-                <span class="list-index">${index + 1}</span>
-                <div>${escapeHtml(gate)}</div>
-              </div>
-            `,
-          )
-          .join("")}
-      </div>
-      <div>
-        <span class="mini-label">Next moves</span>
-        <div class="inline-links">
-          ${playbook.nextMoves.map((move) => pill(move, "gold")).join("")}
+      <div class="detail-facts">
+        <div class="detail-fact">
+          <span class="mini-label">Temps</span>
+          <div>${escapeHtml(playbook.timeToReady)}</div>
+        </div>
+        <div class="detail-fact">
+          <span class="mini-label">Stable</span>
+          <div>${escapeHtml(playbook.salarySignals?.stable || "à confirmer")}</div>
         </div>
       </div>
       <div>
-        <span class="mini-label">Sources à vérifier</span>
-        <div class="inline-links">${sourceLinks}</div>
+        <span class="mini-label">Premiers tickets</span>
+        <div class="pill-row">
+          ${(playbook.requiredTickets || [])
+            .slice(0, 3)
+            .map((ticket) => pill(ticket.name, "orange"))
+            .join("")}
+        </div>
+      </div>
+      <div>
+        <span class="mini-label">Premiers rôles</span>
+        <div class="inline-links">
+          ${(playbook.firstRoles || []).map((role) => pill(role, "blue")).join("")}
+        </div>
       </div>
       <div class="button-row">
-        <a class="button primary" href="./sources.html">Voir le playbook</a>
+        <a class="button primary" href="./australia.html">Voir le playbook</a>
       </div>
     </article>
   `;
 }
 
 function renderFeatured(context) {
-  const sectionText = context.country.sectionText || {};
-  setSectionCopy(
-    featuredSection,
-    sectionText.resultsTitle || "Ce qui remonte pour toi",
-    sectionText.resultsCopy || "",
-  );
-
   if (context.country.id === "france") {
+    featuredTitle.textContent = "Missions France débloquées";
+    featuredCopy.textContent =
+      "Tu n'as pas besoin de lire 30 branches. Pars avec les 3-4 portes les plus actionnables pour ton profil actuel.";
     featuredRoutes.innerHTML = context.rankedLanes
       .slice(0, 4)
       .map((result) => franceRouteCardHtml(result))
@@ -1005,86 +1354,123 @@ function renderFeatured(context) {
     return;
   }
 
-  featuredRoutes.innerHTML = context.australiaRecommendations
-    .slice(0, 3)
-    .map((result) => australiaPlaybookCardHtml(result))
+  if (context.country.id === "australia") {
+    featuredTitle.textContent = "Playbooks Australie débloqués";
+    featuredCopy.textContent =
+      "Chaque playbook donne un ordre d'entrée, un signal de cash et une lecture des vrais gates avant de bouger.";
+    featuredRoutes.innerHTML = context.australiaRecommendations
+      .slice(0, 3)
+      .map((result) => australiaPlaybookCardHtml(result))
+      .join("");
+    return;
+  }
+
+  featuredTitle.textContent = `${context.country.label} est encore verrouillé`;
+  featuredCopy.textContent =
+    "Le site ne prétend pas encore te vendre une route parfaite. Il te montre le verrou, le signal utile et l'usage intelligent du pays.";
+  featuredRoutes.innerHTML = (context.roadmapCards || [])
+    .map(
+      (card) => `
+        <article class="result-card">
+          <div class="pill-row">${pill(context.country.label, "orange")}${pill(card.title, card.tone)}</div>
+          <h3 class="result-title">${escapeHtml(card.title)}</h3>
+          <p class="result-subtitle">${escapeHtml(card.body)}</p>
+        </article>
+      `,
+    )
     .join("");
 }
 
 function render() {
   const context = buildCountryContext();
+  const marketScores = buildMarketScores();
 
   if (context.franceSelection) {
     saveSelection(context.franceSelection);
   }
 
-  renderStats(context.country);
-  renderHeroLinks(context);
-  renderOnboarding(context);
-  renderCountries(context);
-  renderQuickLinks(context);
+  updateMissionRail();
+  renderHeroStats(marketScores);
+  renderProfileLab(context);
+  renderHeatLayerSet();
+  renderWorldMap(marketScores);
+  renderMarketDrawer(
+    marketScores.find((item) => item.market.id === homeState.country) || marketScores[0],
+    context,
+  );
+  renderHeatGrid(marketScores);
+  renderMissionBoard(context);
+  renderLaunchpad(context);
   renderFeatured(context);
 }
 
 function bindEvents() {
-  ensureOnboardingSection().addEventListener("click", (event) => {
+  document.addEventListener("click", (event) => {
     const resetButton = event.target.closest("[data-home-reset]");
     if (resetButton) {
-      commitHomeState(homeModel.defaults);
+      homeState = normalizeHomeState(homeModel.schema, homeModel.defaults || {});
+      watchMarkets = [];
+      heatLayer = DEFAULT_HEAT_LAYER;
+      saveHomePackage();
+      render();
       return;
     }
 
     const toggleButton = event.target.closest("[data-home-toggle]");
-    if (!toggleButton) {
+    if (toggleButton) {
+      const field = getField(toggleButton.dataset.homeToggle);
+      const optionId = toggleButton.dataset.homeValue;
+      if (!field || !optionId) {
+        return;
+      }
+      if (field.type === "multi") {
+        toggleHomeMultiValue(field, optionId);
+        return;
+      }
+      commitHomeState({ [field.id]: optionId });
       return;
     }
 
-    const field = getField(toggleButton.dataset.homeToggle);
-    const optionId = toggleButton.dataset.homeValue;
-
-    if (!field || !optionId) {
+    const heatButton = event.target.closest("[data-heat-layer]");
+    if (heatButton) {
+      commitUiState({ heatLayer: heatButton.dataset.heatLayer });
       return;
     }
 
-    if (field.type === "multi") {
-      toggleHomeMultiValue(field, optionId);
+    const marketButton = event.target.closest("[data-market-focus]");
+    if (marketButton) {
+      const marketId = marketButton.dataset.marketFocus;
+      if (homeModel.worldMarketMap.has(marketId)) {
+        commitHomeState({ country: marketId });
+      }
       return;
     }
 
-    commitHomeState({
-      [field.id]: optionId,
-    });
+    const watchButton = event.target.closest("[data-watch-market]");
+    if (watchButton) {
+      toggleWatchMarket(watchButton.dataset.watchMarket);
+    }
   });
 
-  ensureOnboardingSection().addEventListener("change", (event) => {
+  document.addEventListener("change", (event) => {
     const select = event.target.closest("[data-home-select]");
     if (!select) {
       return;
     }
-
-    commitHomeState({
-      [select.dataset.homeSelect]: select.value,
-    });
-  });
-
-  sectorCards.addEventListener("click", (event) => {
-    const button = event.target.closest("[data-country-select]");
-    if (!button) {
-      return;
-    }
-
-    commitHomeState({
-      country: button.dataset.countrySelect,
-    });
+    commitHomeState({ [select.dataset.homeSelect]: select.value });
   });
 }
 
 async function init() {
-  injectHomeStyles();
-  ensureOnboardingSection();
-
   [siteData, homeModel] = await Promise.all([loadAllData(), loadHomeModel()]);
-  homeState = normalizeHomeState(homeModel.schema, loadSavedHomeState() || {});
+  const saved = loadSavedHomePackage() || {};
+  homeState = normalizeHomeState(homeModel.schema, saved);
+  watchMarkets = normalizeArrayValue(saved._watchMarkets).filter((marketId) =>
+    homeModel.worldMarketMap.has(marketId),
+  );
+  heatLayer = HEAT_LAYERS.some((layer) => layer.id === saved._heatLayer)
+    ? saved._heatLayer
+    : DEFAULT_HEAT_LAYER;
 
   bindEvents();
   render();

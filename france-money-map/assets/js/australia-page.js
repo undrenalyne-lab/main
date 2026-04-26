@@ -164,6 +164,22 @@ function renderGuidePanels(fieldMap, homeState, insights, recommendations) {
       <strong>Meilleur match actuel:</strong>
       ${topMatch ? `${escapeHtml(topMatch.playbook.title)} · match ${topMatch.matchScore}` : "règle d'abord ton profil compact sur le hub"}
     </div>
+    ${
+      topMatch
+        ? `
+          <div class="detail-facts">
+            <div class="detail-fact">
+              <span class="mini-label">Temps pour être prêt</span>
+              <div>${escapeHtml(topMatch.playbook.timeToReady)}</div>
+            </div>
+            <div class="detail-fact">
+              <span class="mini-label">Cash stable</span>
+              <div>${escapeHtml(topMatch.playbook.salarySignals?.stable || "à confirmer")}</div>
+            </div>
+          </div>
+        `
+        : ""
+    }
   `;
 
   auGatesPanel.innerHTML = `
@@ -216,10 +232,11 @@ function renderPlaybooks(recommendations) {
   auPlaybookGrid.innerHTML = recommendations
     .map(
       (result) => `
-        <article class="card source-card">
+        <article class="card source-card au-playbook-card">
           <div class="pill-row">
             ${pill(result.playbook.track, "blue")}
             ${pill(`Match ${result.matchScore}`, playbookTone(result.matchScore))}
+            ${pill(result.playbook.confidenceLevel || "beta", "gold")}
           </div>
           <h3>${escapeHtml(result.playbook.title)}</h3>
           <p class="muted">${escapeHtml(result.playbook.summary)}</p>
@@ -233,38 +250,175 @@ function renderPlaybooks(recommendations) {
               <div>${escapeHtml(result.playbook.cashStack)}</div>
             </div>
           </div>
-          <div>
-            <span class="mini-label">Gates</span>
-            <div class="list">
-              ${result.playbook.gates
+          <div class="playbook-sections">
+            <section class="playbook-section">
+              <span class="mini-label">Pour qui cette route colle</span>
+              <div class="pill-row">
+                ${(result.playbook.fitFor || []).map((item) => pill(item, "green")).join("")}
+              </div>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">À éviter si</span>
+              <div class="list">
+                ${(result.playbook.avoidIf || [])
+                  .map(
+                    (item, index) => `
+                      <div class="list-item">
+                        <span class="list-index">${index + 1}</span>
+                        <div>${escapeHtml(item)}</div>
+                      </div>
+                    `,
+                  )
+                  .join("")}
+              </div>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">Ordre réel</span>
+              <div class="route-timeline">
+                ${(result.playbook.pathStages || [])
+                  .map(
+                    (stage) => `
+                      <article class="timeline-step">
+                        <span class="pill is-orange">${escapeHtml(stage.label)}</span>
+                        <p>${escapeHtml(stage.body)}</p>
+                      </article>
+                    `,
+                  )
+                  .join("")}
+              </div>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">Gates</span>
+              <div class="list">
+                ${result.playbook.gates
+                  .map(
+                    (gate, index) => `
+                      <div class="list-item">
+                        <span class="list-index">${index + 1}</span>
+                        <div>${escapeHtml(gate)}</div>
+                      </div>
+                    `,
+                  )
+                  .join("")}
+              </div>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">Tickets dans l'ordre</span>
+              <div class="ticket-stack">
+                ${(result.playbook.requiredTickets || [])
                 .map(
-                  (gate, index) => `
-                    <div class="list-item">
-                      <span class="list-index">${index + 1}</span>
-                      <div>${escapeHtml(gate)}</div>
-                    </div>
+                  (ticket, index) => `
+                    <article class="detail-fact">
+                      <span class="mini-label">${index + 1}. ${escapeHtml(ticket.type)}</span>
+                      <strong>${escapeHtml(ticket.name)}</strong>
+                      <div class="muted">${escapeHtml(ticket.why)}</div>
+                    </article>
                   `,
                 )
                 .join("")}
-            </div>
-          </div>
-          <div>
-            <span class="mini-label">Étapes suivantes</span>
-            <div class="inline-links">
-              ${result.playbook.nextMoves.map((move) => pill(move, "gold")).join("")}
-            </div>
-          </div>
-          <div class="warning-card">
-            <strong>Pièges:</strong>
-            ${escapeHtml(result.playbook.redFlags.join(" · "))}
-          </div>
-          <div>
-            <span class="mini-label">Sources à contrôler</span>
-            <div class="inline-links">
-              ${result.recommendedSources
-                .map((source) => linkChip(source.title.split("—")[0].trim(), source.url))
-                .join("")}
-            </div>
+              </div>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">Tickets à ajouter seulement si la mission les demande</span>
+              <div class="inline-links">
+                ${(result.playbook.optionalTickets || []).map((ticket) => pill(ticket, "blue")).join("")}
+              </div>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">Premiers rôles crédibles</span>
+              <div class="inline-links">
+                ${(result.playbook.firstRoles || []).map((role) => pill(role, "gold")).join("")}
+              </div>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">Signal salaire</span>
+              <div class="salary-ladder">
+                <div class="salary-ladder-row">
+                  <span>Bas</span>
+                  <strong>${escapeHtml(result.playbook.salarySignals?.low || "—")}</strong>
+                </div>
+                <div class="salary-ladder-row">
+                  <span>Stable</span>
+                  <strong>${escapeHtml(result.playbook.salarySignals?.stable || "—")}</strong>
+                </div>
+                <div class="salary-ladder-row">
+                  <span>Upside</span>
+                  <strong>${escapeHtml(result.playbook.salarySignals?.upside || "—")}</strong>
+                </div>
+                <div class="salary-ladder-row">
+                  <span>Repère annuel</span>
+                  <strong>${escapeHtml(result.playbook.salarySignals?.annualSignal || "—")}</strong>
+                </div>
+              </div>
+              <div class="list">
+                ${(result.playbook.salaryNotes || [])
+                  .map(
+                    (note, index) => `
+                      <div class="list-item">
+                        <span class="list-index">${index + 1}</span>
+                        <div>${escapeHtml(note)}</div>
+                      </div>
+                    `,
+                  )
+                  .join("")}
+              </div>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">Ce que tu fais cette semaine</span>
+              <div class="list">
+                ${(result.playbook.firstWeekActions || [])
+                  .map(
+                    (action, index) => `
+                      <div class="list-item">
+                        <span class="list-index">${index + 1}</span>
+                        <div>${escapeHtml(action)}</div>
+                      </div>
+                    `,
+                  )
+                  .join("")}
+              </div>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">Angle recruteur</span>
+              <div class="inline-links">
+                ${(result.playbook.recruiterAngles || []).map((item) => pill(item, "orange")).join("")}
+              </div>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">Ce que ça n'ouvre pas</span>
+              <div class="list">
+                ${(result.playbook.whatItDoesNotOpen || [])
+                  .map(
+                    (item, index) => `
+                      <div class="list-item">
+                        <span class="list-index">${index + 1}</span>
+                        <div>${escapeHtml(item)}</div>
+                      </div>
+                    `,
+                  )
+                  .join("")}
+              </div>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">Étapes suivantes</span>
+              <div class="inline-links">
+                ${result.playbook.nextMoves.map((move) => pill(move, "gold")).join("")}
+              </div>
+            </section>
+            <section class="playbook-section">
+              <div class="warning-card">
+                <strong>Pièges:</strong>
+                ${escapeHtml(result.playbook.redFlags.join(" · "))}
+              </div>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">Sources à contrôler</span>
+              <div class="inline-links">
+                ${result.recommendedSources
+                  .map((source) => linkChip(source.title.split("—")[0].trim(), source.url))
+                  .join("")}
+              </div>
+            </section>
           </div>
         </article>
       `,

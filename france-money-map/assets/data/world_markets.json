@@ -1,0 +1,167 @@
+{
+  "version": "2026-04-25",
+  "markets": [
+    {
+      "id": "france",
+      "label": "France",
+      "status": "live",
+      "badge": "Live",
+      "continent": "Europe",
+      "coords": { "x": 49, "y": 30 },
+      "summary": "Marché déjà branché sur routes, tickets, employeurs et cash comparatif.",
+      "teaser": "Le meilleur terrain aujourd'hui pour trier vite une route rentable en Europe francophone.",
+      "unlockNote": "Live maintenant",
+      "firstGate": "Choisir une route, puis verrouiller le premier ticket utile.",
+      "heatModel": {
+        "base": 74,
+        "nationality": { "local": 12, "eu": 14, "rights": 8, "sponsor": -18 },
+        "english": { "none": 0, "basic": 2, "functional": 4, "strong": 6 },
+        "mobility": { "local": -6, "regional": 2, "national": 12, "remote-roster": 16 },
+        "ageBand": { "18-24": 6, "25-34": 8, "35-44": 4, "45+": 0 },
+        "experienceTags": {
+          "terrain": 8,
+          "elec": 8,
+          "meca": 8,
+          "automation": 6,
+          "securite": 7,
+          "rail": 10,
+          "nuclear": 8,
+          "hauteur": 7,
+          "logistique": 5,
+          "gestion": 3
+        },
+        "goals": {
+          "fast-entry": 10,
+          "cash-upside": 9,
+          "stability": 8,
+          "reuse-experience": 8,
+          "low-competition": 7,
+          "long-term": 7
+        }
+      }
+    },
+    {
+      "id": "australia",
+      "label": "Australie",
+      "status": "beta",
+      "badge": "Beta",
+      "continent": "Oceania",
+      "coords": { "x": 84, "y": 72 },
+      "summary": "Marché beta orienté work rights, licences, rosters et routes d'entrée à gros différentiel de cash.",
+      "teaser": "Très fort upside si work rights, anglais et mobilité tiennent. Très mauvais terrain pour les raccourcis.",
+      "unlockNote": "Beta maintenant",
+      "firstGate": "Vérifier work rights, puis choisir une porte d'entrée réaliste.",
+      "heatModel": {
+        "base": 58,
+        "nationality": { "local": 14, "eu": -10, "rights": 12, "sponsor": -20 },
+        "english": { "none": -18, "basic": 2, "functional": 10, "strong": 14 },
+        "mobility": { "local": -10, "regional": -2, "national": 10, "remote-roster": 18 },
+        "ageBand": { "18-24": 8, "25-34": 10, "35-44": 4, "45+": -3 },
+        "experienceTags": {
+          "terrain": 8,
+          "elec": 9,
+          "meca": 10,
+          "automation": 6,
+          "securite": 5,
+          "rail": 2,
+          "nuclear": 1,
+          "hauteur": 10,
+          "logistique": 7,
+          "gestion": 0
+        },
+        "goals": {
+          "fast-entry": 10,
+          "cash-upside": 14,
+          "stability": 5,
+          "reuse-experience": 8,
+          "low-competition": 3,
+          "long-term": 7
+        }
+      }
+    },
+    {
+      "id": "canada",
+      "label": "Canada",
+      "status": "locked",
+      "badge": "Locked",
+      "continent": "North America",
+      "coords": { "x": 18, "y": 22 },
+      "summary": "Fort potentiel trades / remote / industrial, mais encore non branché.",
+      "teaser": "Marché à forte valeur pour métiers terrain, froid, énergie et maintenance lourde.",
+      "unlockNote": "Roadmap mondiale",
+      "firstGate": "Permis de travail, province, certification locale."
+    },
+    {
+      "id": "uae",
+      "label": "EAU",
+      "status": "locked",
+      "badge": "Locked",
+      "continent": "Middle East",
+      "coords": { "x": 61, "y": 42 },
+      "summary": "Cash souvent tiré par package, logement, rotation et sponsor employeur.",
+      "teaser": "Potentiel fort sur infra, énergie, maintenance et sécurité, mais très sponsor-driven.",
+      "unlockNote": "Roadmap mondiale",
+      "firstGate": "Sponsorship et angle employeur."
+    },
+    {
+      "id": "qatar",
+      "label": "Qatar",
+      "status": "locked",
+      "badge": "Locked",
+      "continent": "Middle East",
+      "coords": { "x": 63, "y": 43 },
+      "summary": "Marché package/sponsor, fort pour certains profils chantier et facilities.",
+      "teaser": "À brancher plus tard avec vraie lecture sponsor, logement et cycle projet.",
+      "unlockNote": "Roadmap mondiale",
+      "firstGate": "Sponsor et employeur-projet."
+    },
+    {
+      "id": "norway",
+      "label": "Norvège",
+      "status": "locked",
+      "badge": "Locked",
+      "continent": "Europe",
+      "coords": { "x": 52, "y": 16 },
+      "summary": "Marché premium, mais exigeant sur langue, certifs et accès réel offshore/indus.",
+      "teaser": "Très gros différentiel potentiel, très mauvais terrain pour les fantasmes TikTok.",
+      "unlockNote": "Roadmap mondiale",
+      "firstGate": "Langue, certifs, employeurs niche."
+    },
+    {
+      "id": "netherlands",
+      "label": "Pays-Bas",
+      "status": "locked",
+      "badge": "Locked",
+      "continent": "Europe",
+      "coords": { "x": 48, "y": 28 },
+      "summary": "Logistique, offshore, maintenance, data centers: très bon terrain futur pour EU mobile.",
+      "teaser": "Marché européen fort à brancher avec lecture certifs, langue et niches.",
+      "unlockNote": "Roadmap mondiale",
+      "firstGate": "Droit UE, langue, angle métier."
+    },
+    {
+      "id": "germany",
+      "label": "Allemagne",
+      "status": "locked",
+      "badge": "Locked",
+      "continent": "Europe",
+      "coords": { "x": 52, "y": 30 },
+      "summary": "Potentiel très fort industrie, automatisme, énergie et maintenance.",
+      "teaser": "Marché rationnel pour profils techniques solides, moins simple qu'il n'en a l'air.",
+      "unlockNote": "Roadmap mondiale",
+      "firstGate": "Langue et cadre métier local."
+    },
+    {
+      "id": "singapore",
+      "label": "Singapour",
+      "status": "locked",
+      "badge": "Locked",
+      "continent": "Asia",
+      "coords": { "x": 77, "y": 60 },
+      "summary": "Fort potentiel niches critiques, mais barrière de marché et de permis élevée.",
+      "teaser": "Marché petit, dur, premium. À traiter plus tard comme niche haute intensité.",
+      "unlockNote": "Roadmap mondiale",
+      "firstGate": "Work pass et niche claire."
+    }
+  ]
+}

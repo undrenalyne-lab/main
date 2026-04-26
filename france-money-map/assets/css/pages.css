@@ -887,3 +887,479 @@
     min-width: 560px;
   }
 }
+
+/* Home rebuild v2 */
+
+.page-home #profileLab,
+.page-home #worldMap,
+.page-home #marketHeatGrid,
+.page-home #missionBoard {
+  scroll-margin-top: 108px;
+}
+
+.page-home .mission-hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(22px, 3vw, 34px);
+  background:
+    radial-gradient(circle at 8% 18%, rgba(255, 125, 48, 0.12), transparent 28%),
+    radial-gradient(circle at 84% 12%, rgba(102, 170, 255, 0.12), transparent 26%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    #101725;
+}
+
+.page-home .mission-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent 92%);
+  pointer-events: none;
+}
+
+.page-home .mission-hero-grid,
+.page-home .mission-layout,
+.page-home .world-panel-grid,
+.page-home .mission-launch-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.page-home .mission-copy {
+  position: relative;
+  z-index: 1;
+  gap: 18px;
+}
+
+.page-home .mission-console {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: 18px;
+  border-radius: calc(var(--radius) + 6px);
+  background: linear-gradient(170deg, rgba(7, 11, 20, 0.96), rgba(19, 25, 40, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-home .mission-step {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 12px 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  opacity: 0.56;
+}
+
+.page-home .mission-step:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.page-home .mission-step.is-active,
+.page-home .mission-step.is-complete {
+  opacity: 1;
+}
+
+.page-home .mission-step.is-active strong,
+.page-home .mission-step.is-complete strong {
+  color: var(--text);
+}
+
+.page-home .mission-step-index {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+}
+
+.page-home .mission-step.is-active .mission-step-index {
+  background: rgba(255, 125, 48, 0.12);
+  border-color: rgba(255, 125, 48, 0.28);
+  color: var(--orange);
+}
+
+.page-home .mission-step.is-complete .mission-step-index {
+  background: rgba(44, 211, 154, 0.12);
+  border-color: rgba(44, 211, 154, 0.22);
+  color: var(--green);
+}
+
+.page-home .profile-lab-panel,
+.page-home .world-panel,
+.page-home .market-drawer,
+.page-home .mission-board,
+.page-home .launchpad-panel {
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012)),
+    rgba(7, 11, 18, 0.54);
+}
+
+.page-home .profile-progress {
+  display: grid;
+  gap: 10px;
+}
+
+.page-home .profile-progress-bar {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.page-home .profile-progress-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--orange), var(--gold));
+}
+
+.page-home .profile-progress-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.page-home .home-profile-groups,
+.page-home .profile-group-fields,
+.page-home .playbook-sections,
+.page-australia .playbook-sections {
+  display: grid;
+  gap: 14px;
+}
+
+.page-home .profile-group {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.page-home .home-field {
+  display: grid;
+  gap: 10px;
+}
+
+.page-home .home-field-head {
+  display: grid;
+  gap: 6px;
+}
+
+.page-home .home-field-head p,
+.page-home .profile-group-head p {
+  margin: 0;
+}
+
+.page-home .home-field-count {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.page-home .world-map-shell {
+  position: relative;
+  min-height: 380px;
+  padding: 16px;
+  border-radius: calc(var(--radius) + 4px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(255, 125, 48, 0.12), transparent 22%),
+    radial-gradient(circle at 80% 76%, rgba(102, 170, 255, 0.16), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+    #0b121f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.page-home .world-map-stage {
+  position: relative;
+  min-height: 100%;
+}
+
+.page-home .world-svg {
+  width: 100%;
+  height: auto;
+  opacity: 0.85;
+}
+
+.page-home .world-land path {
+  fill: rgba(255, 255, 255, 0.06);
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 4;
+  vector-effect: non-scaling-stroke;
+}
+
+.page-home .world-map-legend {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.page-home .atlas-node {
+  position: absolute;
+  display: grid;
+  gap: 4px;
+  min-width: 78px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 14, 24, 0.88);
+  color: var(--text);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
+  transform: translate(-50%, -50%);
+}
+
+.page-home .atlas-node.is-focused {
+  transform: translate(-50%, -52%);
+  border-color: rgba(255, 125, 48, 0.42);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(255, 125, 48, 0.18);
+}
+
+.page-home .atlas-node.is-watched::after {
+  content: "";
+  position: absolute;
+  inset: auto 10px 8px auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--gold);
+}
+
+.page-home .atlas-node-live {
+  background: linear-gradient(135deg, rgba(44, 211, 154, 0.12), rgba(255, 255, 255, 0.02));
+}
+
+.page-home .atlas-node-beta {
+  background: linear-gradient(135deg, rgba(102, 170, 255, 0.14), rgba(255, 255, 255, 0.02));
+}
+
+.page-home .atlas-node-locked {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border-style: dashed;
+}
+
+.page-home .atlas-band-peak {
+  border-color: rgba(44, 211, 154, 0.36);
+}
+
+.page-home .atlas-band-hot {
+  border-color: rgba(243, 199, 74, 0.32);
+}
+
+.page-home .atlas-band-cold {
+  border-color: rgba(255, 98, 98, 0.32);
+}
+
+.page-home .atlas-node-code,
+.page-home .atlas-node-score {
+  font-family: var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.page-home .atlas-node-code {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.page-home .atlas-node-score {
+  font-size: 1.1rem;
+}
+
+.page-home .market-heat-grid,
+.page-home .heat-metrics {
+  display: grid;
+  gap: 12px;
+}
+
+.page-home .heat-card {
+  display: grid;
+  gap: 14px;
+}
+
+.page-home .heat-card.is-active {
+  border-color: rgba(255, 125, 48, 0.35);
+  box-shadow: 0 0 0 1px rgba(255, 125, 48, 0.18);
+}
+
+.page-home .heat-card.is-locked {
+  border-style: dashed;
+}
+
+.page-home .heat-metrics {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.page-home .heat-metrics div {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.page-home .heat-metrics strong {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  line-height: 0.94;
+}
+
+.page-home .featured-routes-grid,
+.page-australia .source-grid {
+  align-items: start;
+}
+
+.page-australia .au-playbook-card {
+  gap: 16px;
+}
+
+.page-australia .playbook-section {
+  display: grid;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.page-australia .playbook-section:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.page-australia .route-timeline {
+  display: grid;
+  gap: 10px;
+}
+
+.page-australia .timeline-step {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.page-australia .timeline-step p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.page-australia .ticket-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.page-australia .salary-ladder {
+  display: grid;
+  gap: 8px;
+}
+
+.page-australia .salary-ladder-row {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 10px 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.page-australia .salary-ladder-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.page-australia .salary-ladder-row span {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.page-australia .salary-ladder-row strong {
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 900px) {
+  .page-home .mission-hero-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
+  }
+
+  .page-home .mission-layout {
+    grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
+    align-items: start;
+  }
+
+  .page-home .world-panel-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+    align-items: start;
+  }
+
+  .page-home .market-heat-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .page-home .mission-launch-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-home .featured-routes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 719px) {
+  .page-home .mission-console,
+  .page-home .profile-lab-panel,
+  .page-home .world-panel {
+    padding: 16px;
+  }
+
+  .page-home .hero-actions {
+    display: grid;
+  }
+
+  .page-home .hero-actions .button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .page-home .world-map-shell {
+    min-height: 300px;
+    padding: 10px;
+  }
+
+  .page-home .atlas-node {
+    min-width: 64px;
+    padding: 8px 9px;
+  }
+
+  .page-home .atlas-node-score {
+    font-size: 0.96rem;
+  }
+
+  .page-home .heat-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .page-australia .salary-ladder-row {
+    grid-template-columns: 1fr;
+  }
+}

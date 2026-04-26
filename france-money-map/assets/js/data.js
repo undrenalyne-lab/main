@@ -76,10 +76,12 @@ export async function loadHomeModel() {
     homeModelCache = Promise.all([
       loadJson("home_onboarding_schema.json"),
       loadJson("home_country_configs.json"),
+      loadJson("world_markets.json"),
       loadSourceExtras(),
-    ]).then(([schema, countryConfigData, extras]) => {
+    ]).then(([schema, countryConfigData, worldMarketData, extras]) => {
       const countries = countryConfigData.countries || [];
       const fields = schema.fields || [];
+      const worldMarkets = worldMarketData.markets || [];
 
       return {
         schema,
@@ -88,6 +90,8 @@ export async function loadHomeModel() {
         fieldMap: new Map(fields.map((field) => [field.id, field])),
         countries,
         countryMap: new Map(countries.map((country) => [country.id, country])),
+        worldMarkets,
+        worldMarketMap: new Map(worldMarkets.map((market) => [market.id, market])),
         australiaPanels: extras.australiaPanels,
         australiaPlaybooks: extras.australiaPlaybooks,
         australiaPlaybookMap: new Map(

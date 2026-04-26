@@ -6,7 +6,7 @@
     <title>Backchannel Atlas</title>
     <meta
       name="description"
-      content="Backchannel Atlas cartographie des routes à cash réel par marché: France live, Australia beta/research, tickets, employeurs et tri de trajectoires."
+      content="Backchannel Atlas: moteur mondial de routes à cash réel. Profil, carte monde, pays, tickets, employeurs et missions d'entrée."
     />
     <link rel="stylesheet" href="./assets/css/base.css" />
     <link rel="stylesheet" href="./assets/css/layout.css" />
@@ -20,11 +20,11 @@
           <span class="brand-mark brand-mark-atlas">BA</span>
           <span class="brand-copy">
             Backchannel Atlas
-            <small>France live · Australia beta · routes réelles</small>
+            <small>World map · France live · Australia beta</small>
           </span>
         </a>
         <nav class="site-nav" aria-label="Navigation principale">
-          <a class="nav-link is-current" href="./index.html">Hub</a>
+          <a class="nav-link is-current" href="./index.html">Start</a>
           <a class="nav-link" href="./parcours.html">France</a>
           <a class="nav-link" href="./australia.html">Australie</a>
           <a class="nav-link" href="./tickets.html">Tickets</a>
@@ -35,408 +35,155 @@
     </header>
 
     <main class="shell page-stack home-shell">
-      <section class="page-hero routefinder-hero">
-        <div class="hero-grid routefinder-grid">
-          <div class="content-grid routefinder-copy">
-            <span class="eyebrow">Backchannel Atlas · France live · Australia beta</span>
-            <div class="hero-copy-stack">
-              <p class="hero-kicker">Atlas des routes à cash réel</p>
-              <h1 class="hero-title">
-                Repère les routes cachées qui
-                <span class="accent">pèsent vraiment</span> sur le revenu.
-              </h1>
-              <p class="hero-copy">
-                Backchannel Atlas trie des trajectoires concrètes par marché,
-                par profil et par niveau de friction. La France tourne en live
-                pour agir maintenant; l'Australie sert de couche beta/research
-                pour comparer les logiques d'accès, les tickets et les pistes
-                employeurs avant d'étendre l'atlas.
-              </p>
-            </div>
+      <section class="page-hero mission-hero">
+        <div class="hero-grid mission-hero-grid">
+          <div class="content-grid mission-copy">
+            <span class="eyebrow">Backchannel Atlas · Mission control</span>
+            <p class="hero-kicker">World-first cash routing</p>
+            <h1 class="hero-title">
+              Entre ton profil.
+              <span class="accent">La carte te montre où ton cash potentiel est réellement accessible.</span>
+            </h1>
+            <p class="hero-copy">
+              Ce produit ne vend pas des métiers. Il route des trajectoires
+              concrètes par pays, friction, tickets et cash plausible. Commence
+              par ton profil, laisse la carte réagir, puis ouvre une mission
+              réelle.
+            </p>
             <div class="hero-actions">
-              <a class="button primary" href="./parcours.html">
-                Ouvrir l'atlas
-              </a>
-              <a class="button secondary" href="./australia.html">
-                Australia beta
-              </a>
-              <a class="button secondary" href="#profileOnboarding">
-                Régler mon profil
-              </a>
-            </div>
-            <div class="hero-sequence" aria-label="Lecture rapide">
-              <article class="sequence-card">
-                <span class="sequence-index">01</span>
-                <h2>Choisir le marché</h2>
-                <p>
-                  France live pour l'exécution, Australia beta pour la
-                  recherche comparative, roadmap monde pour la suite.
-                </p>
-              </article>
-              <article class="sequence-card">
-                <span class="sequence-index">02</span>
-                <h2>Poser les contraintes</h2>
-                <p>
-                  Profil, mobilité, vitesse d'accès, tolérance au ticket et
-                  niveau d'intensité acceptable.
-                </p>
-              </article>
-              <article class="sequence-card">
-                <span class="sequence-index">03</span>
-                <h2>Sortir une shortlist</h2>
-                <p>
-                  Objectif, cash réel, seuil d'accès, employeurs visibles et
-                  rebonds crédibles en une lecture.
-                </p>
-              </article>
+              <a class="button primary" href="#profileLab">Commencer</a>
+              <a class="button secondary" href="#profileLab">Reprendre mon profil</a>
+              <button class="button secondary is-disabled" type="button" disabled>
+                Connexion Google bientôt
+              </button>
             </div>
           </div>
-          <aside class="routefinder-console" aria-label="Console de départ">
+          <aside class="mission-console">
             <div class="console-head">
               <div>
-                <span class="mini-label">Console Backchannel Atlas</span>
-                <h2 class="console-title">Vue opératoire avant le tri</h2>
+                <span class="mini-label">Statut système</span>
+                <h2 class="console-title">Boucle produit</h2>
               </div>
-              <span class="pill is-orange">France live</span>
+              <span class="pill is-orange">V1 active</span>
             </div>
-            <div class="console-screen">
-              <div class="console-lines">
-                <div class="console-row">
-                  <span class="console-key">mode</span>
-                  <strong class="console-value">atlas opérationnel</strong>
+            <div class="mission-rail" id="missionRail" aria-label="Étapes produit">
+              <article class="mission-step is-active">
+                <span class="mission-step-index">01</span>
+                <div>
+                  <strong>Profil</strong>
+                  <div class="muted">droits, âge, anglais, mobilité</div>
                 </div>
-                <div class="console-row">
-                  <span class="console-key">marchés</span>
-                  <strong class="console-value">France live / Australia beta</strong>
+              </article>
+              <article class="mission-step">
+                <span class="mission-step-index">02</span>
+                <div>
+                  <strong>Carte</strong>
+                  <div class="muted">fit now, cash ceiling, entry speed</div>
                 </div>
-                <div class="console-row">
-                  <span class="console-key">sortie</span>
-                  <strong class="console-value">routes + tickets + employeurs</strong>
+              </article>
+              <article class="mission-step">
+                <span class="mission-step-index">03</span>
+                <div>
+                  <strong>Pays</strong>
+                  <div class="muted">live, beta, locked</div>
                 </div>
-              </div>
-              <div class="metric-strip routefinder-metrics" id="heroStats">
-                <article class="metric-card">
-                  <span class="metric-label">Portes indexées</span>
-                  <strong class="metric-value" data-stat="lanes">--</strong>
-                </article>
-                <article class="metric-card">
-                  <span class="metric-label">Tickets structurés</span>
-                  <strong class="metric-value" data-stat="tickets">--</strong>
-                </article>
-                <article class="metric-card">
-                  <span class="metric-label">Employeurs visibles</span>
-                  <strong class="metric-value" data-stat="employers">--</strong>
-                </article>
-                <article class="metric-card">
-                  <span class="metric-label">Secteurs live</span>
-                  <strong class="metric-value" data-stat="sectors">--</strong>
-                </article>
-              </div>
+              </article>
+              <article class="mission-step">
+                <span class="mission-step-index">04</span>
+                <div>
+                  <strong>Mission</strong>
+                  <div class="muted">gates, tickets, salaires, actions</div>
+                </div>
+              </article>
             </div>
-            <div class="console-note">
-              <span class="mini-label">Raccourci de lecture</span>
-              <p class="muted">
-                Commence par le marché, verrouille le profil, puis laisse le
-                tri rétrécir la carte. Le détail vient après la direction.
-              </p>
+            <div class="metric-strip routefinder-metrics" id="heroStats">
+              <article class="metric-card">
+                <span class="metric-label">Routes live</span>
+                <strong class="metric-value" data-stat="lanes">--</strong>
+              </article>
+              <article class="metric-card">
+                <span class="metric-label">Tickets live</span>
+                <strong class="metric-value" data-stat="tickets">--</strong>
+              </article>
+              <article class="metric-card">
+                <span class="metric-label">Employeurs</span>
+                <strong class="metric-value" data-stat="employers">--</strong>
+              </article>
+              <article class="metric-card">
+                <span class="metric-label">Marchés visibles</span>
+                <strong class="metric-value" data-stat="markets">--</strong>
+              </article>
             </div>
           </aside>
         </div>
       </section>
 
-      <section class="section trust-strip-section">
-        <div class="card-grid card-grid-3 trust-strip">
-          <article class="card">
-            <span class="mini-label">Ce que Backchannel Atlas fait</span>
-            <h3>Arbitrer des routes, pas afficher un annuaire.</h3>
-            <p class="muted">
-              Le produit relie signaux vendables, tickets, employeurs,
-              friction, cash plausible et vitesse d'accès pour sortir une
-              direction exploitable.
-            </p>
-          </article>
-          <article class="card">
-            <span class="mini-label">Ce qu'il évite</span>
-            <h3>Tuer les mauvais achats et les faux raccourcis.</h3>
-            <p class="muted">
-              Un ticket isolé n'est pas une carrière, une indemnité n'est pas
-              un salaire, et une filière lente n'est pas une entrée rapide.
-            </p>
-          </article>
-          <article class="card">
-            <span class="mini-label">Comment l'utiliser</span>
-            <h3>Direction d'abord, détail ensuite.</h3>
-            <p class="muted">
-              Commence par le marché et le profil, ouvre la shortlist, puis
-              contrôle tickets, boîtes et méthode avant de bouger.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section control-section" id="profileOnboarding">
-        <div class="section-head">
-          <div>
-            <span class="eyebrow">Point d'entrée</span>
-            <h2 class="section-title">Règle ton point de départ</h2>
-            <p class="section-copy">
-              Backchannel Atlas réduit l'entrée à trois décisions rapides:
-              marché, profil, niveau de friction. Pas de tunnel de formulaire,
-              juste assez de signal pour lancer un tri crédible.
-            </p>
-          </div>
-        </div>
-        <div class="control-grid">
-          <article class="panel onboarding-panel">
+      <section class="section home-mission-section">
+        <div class="mission-layout">
+          <article class="panel profile-lab-panel" id="profileLab" aria-live="polite"></article>
+          <article class="panel world-panel">
             <div class="panel-head">
               <div>
-                <span class="mini-label">Signal utilisateur</span>
-                <h3>Ce que l'atlas doit savoir avant de scorer</h3>
+                <span class="mini-label">Carte monde</span>
+                <h3>Choisis un pays. Le produit te répond avec un vrai niveau d'accès.</h3>
               </div>
-              <span class="pill is-blue">Entrée rapide</span>
+              <div class="chip-set heat-layer-set" id="heatLayerSet" aria-label="Couches de heat map"></div>
             </div>
-            <div class="onboarding-grid">
-              <article class="hook-card" id="countrySelectorHook">
-                <span class="mini-label">1. Marché</span>
-                <h4>Quel terrain tu ouvres maintenant ?</h4>
-                <div class="selector-row" aria-label="Marchés suggérés">
-                  <button class="selector-chip is-current" type="button">
-                    France live
-                  </button>
-                  <button class="selector-chip is-beta" type="button">
-                    Australia beta
-                  </button>
-                  <button class="selector-chip is-roadmap" type="button">
-                    World roadmap
-                  </button>
-                </div>
-                <p class="muted">
-                  France sert l'action immédiate. Australia ouvre la couche
-                  beta/research. Le reste du monde suit dans la roadmap de
-                  couverture.
-                </p>
-              </article>
-              <article class="hook-card" id="profileArchetypeHook">
-                <span class="mini-label">2. Profil</span>
-                <h4>D'où pars-tu ?</h4>
-                <div class="selector-row" aria-label="Profils suggérés">
-                  <button class="selector-chip is-current" type="button">
-                    Terrain
-                  </button>
-                  <button class="selector-chip" type="button">Technique</button>
-                  <button class="selector-chip" type="button">
-                    Reconversion
-                  </button>
-                  <button class="selector-chip" type="button">
-                    Jeune entrant
-                  </button>
-                </div>
-                <p class="muted">
-                  Le tri prend appui sur le point de départ réel, pas sur un
-                  personnage idéal de brochure carrière.
-                </p>
-              </article>
-              <article class="hook-card" id="intentHook">
-                <span class="mini-label">3. Friction</span>
-                <h4>Combien de ticket tu acceptes ce trimestre ?</h4>
-                <div class="selector-row" aria-label="Contraintes suggérées">
-                  <button class="selector-chip is-current" type="button">
-                    Entrée rapide
-                  </button>
-                  <button class="selector-chip" type="button">
-                    Ticket moyen
-                  </button>
-                  <button class="selector-chip" type="button">Long jeu</button>
-                </div>
-                <p class="muted">
-                  L'atlas reste lisible parce qu'il te fait choisir le niveau
-                  d'effort avant de te montrer les routes.
-                </p>
-              </article>
-            </div>
-          </article>
-
-          <article class="panel atlas-panel" id="worldMapZone">
-            <div class="panel-head">
-              <div>
-                <span class="mini-label">Atlas marchés</span>
-                <h3>France live, Australia beta, monde en roadmap</h3>
-              </div>
-              <span class="pill is-green">Coverage map</span>
-            </div>
-            <div class="atlas-grid">
-              <div class="world-map-frame">
-                <div class="map-rings"></div>
-                <button class="map-node map-node-fr is-live" type="button">
-                  <span class="map-node-code">FR</span>
-                  <span class="map-node-name">France</span>
-                </button>
-                <button class="map-node map-node-au is-beta" type="button">
-                  <span class="map-node-code">AU</span>
-                  <span class="map-node-name">Australia</span>
-                </button>
-                <button class="map-node map-node-world is-roadmap" type="button">
-                  <span class="map-node-code">NEXT</span>
-                  <span class="map-node-name">World roadmap</span>
-                </button>
-                <div class="map-orbit map-orbit-a"></div>
-                <div class="map-orbit map-orbit-b"></div>
-                <div class="map-grid-label map-grid-label-north">
-                  France live
-                </div>
-                <div class="map-grid-label map-grid-label-focus">
-                  Australia beta / world roadmap
-                </div>
-              </div>
-              <div class="country-stack">
-                <article class="country-card is-current">
-                  <span class="mini-label">Live</span>
-                  <h4>France</h4>
-                  <p class="muted">
-                    Marché principal: scoring, tickets, employeurs et
-                    simulateur déjà reliés à l'atlas.
-                  </p>
-                </article>
-                <article class="country-card is-beta">
-                  <span class="mini-label">Beta / research</span>
-                  <h4>Australia</h4>
-                  <p class="muted">
-                    Couche comparative pour les playbooks de recherche, les
-                    contraintes de marché et les patterns de passage.
-                  </p>
-                </article>
-                <article class="country-card is-roadmap">
-                  <span class="mini-label">Roadmap</span>
-                  <h4>World expansion</h4>
-                  <p class="muted">
-                    File d'attente des prochains marchés à brancher quand un
-                    périmètre devient assez utile pour passer en live.
-                  </p>
-                </article>
-              </div>
+            <div class="world-panel-grid">
+              <div class="world-map-shell" id="worldMap" aria-live="polite"></div>
+              <div class="market-drawer" id="marketDrawer" aria-live="polite"></div>
             </div>
           </article>
         </div>
       </section>
 
-      <section class="section goals-section">
+      <section class="section">
         <div class="section-head">
           <div>
-            <h2 class="section-title">
-              Choisis l'angle, puis ouvre la bonne couche du produit
-            </h2>
+            <h2 class="section-title">Heat map de tes options</h2>
             <p class="section-copy">
-              La homepage ne doit pas tout expliquer. Elle sert à poser ton
-              marché, ton niveau de friction et le prochain clic utile.
+              Tous les pays ne sont pas disponibles. Mais la carte te montre
+              déjà où ton profil a du signal et où il n'en a pas.
             </p>
           </div>
         </div>
-        <div class="feature-layout">
-          <article class="panel section-aside">
-            <span class="mini-label">Mode d'emploi</span>
-            <h3>Prends un cap, puis descends d'un étage.</h3>
-            <div class="focus-list">
-              <div class="focus-item">
-                <span class="focus-index">A</span>
-                <p>
-                  Commence par le pays et l'objectif qui gouvernent vraiment ta
-                  décision: cash, stabilité, vitesse ou réemploi du passé.
-                </p>
-              </div>
-              <div class="focus-item">
-                <span class="focus-index">B</span>
-                <p>
-                  Laisse le moteur réduire le champ avant d'ouvrir les fiches;
-                  n'essaie pas de comparer tous les marchés d'un coup.
-                </p>
-              </div>
-              <div class="focus-item">
-                <span class="focus-index">C</span>
-                <p>
-                  Utilise ensuite Tickets, Employeurs et Intel pour vérifier
-                  que la route tient en vrai.
-                </p>
-              </div>
-            </div>
-          </article>
-          <div class="card-grid card-grid-2 landing-goals" id="goalCards"></div>
+        <div class="market-heat-grid" id="marketHeatGrid" aria-live="polite"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Mission débloquée</h2>
+            <p class="section-copy">
+              Une fois le pays choisi, le site doit te donner une route
+              d'entrée, pas un mur d'informations.
+            </p>
+          </div>
+        </div>
+        <div class="mission-launch-grid">
+          <article class="panel mission-board" id="missionBoard" aria-live="polite"></article>
+          <article class="panel launchpad-panel" id="launchpadPanel" aria-live="polite"></article>
         </div>
       </section>
 
-      <section class="section sectors-section">
+      <section class="section">
         <div class="section-head">
           <div>
-            <h2 class="section-title">Radar des branches qui comptent</h2>
-            <p class="section-copy">
-              Le coeur des données reste la France live, avec une couche
-              Australia beta/research pour enrichir la lecture multi-marchés.
+            <h2 class="section-title" id="featuredTitle">Ce que le moteur te débloque maintenant</h2>
+            <p class="section-copy" id="featuredCopy">
+              La sortie dépend du pays actif et de ton profil compact.
             </p>
           </div>
         </div>
-        <div class="feature-layout">
-          <article class="panel section-aside sector-aside">
-            <span class="mini-label">Couverture</span>
-            <h3>Le noyau France pilote, le labo Australia élargit le cadre.</h3>
-            <p class="muted">
-              Ferro, nucléaire, TP, énergie, sécurité spécialisée, agro,
-              transport et autres poches où le cash réel ne ressemble pas au
-              discours carrière standard.
-            </p>
-            <div class="aside-pill-grid">
-              <span class="pill is-blue">France live</span>
-              <span class="pill is-orange">Australia beta</span>
-              <span class="pill is-gold">World roadmap</span>
-            </div>
-          </article>
-          <div class="card-grid card-grid-3 sector-cards" id="sectorCards"></div>
-        </div>
-      </section>
-
-      <section class="section featured-section">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">Aperçu des routes déjà scorées</h2>
-            <p class="section-copy">
-              Pré-tri France live sur un profil terrain / technique par défaut.
-              Le parcours complet te laisse ensuite recaler le signal.
-            </p>
-          </div>
-          <a class="button secondary" href="./parcours.html">Voir tout le tri</a>
-        </div>
-        <div class="feature-layout">
-          <article class="panel section-aside featured-aside">
-            <span class="mini-label">Shortlist de départ</span>
-            <h3>Ce que tu vois ici doit ouvrir des pistes, pas fermer le jeu.</h3>
-            <div class="focus-list compact">
-              <div class="focus-item">
-                <span class="focus-index">1</span>
-                <p>
-                  Le scoring de départ favorise les profils terrain /
-                  techniques avec potentiel de rebond et de progression.
-                </p>
-              </div>
-              <div class="focus-item">
-                <span class="focus-index">2</span>
-                <p>
-                  Chaque route doit tenir ensemble rémunération, ticket
-                  d'entrée, visibilité employeur et lisibilité de passage.
-                </p>
-              </div>
-            </div>
-          </article>
-          <div
-            class="card-grid card-grid-2 featured-routes-grid"
-            id="featuredRoutes"
-          ></div>
-        </div>
+        <div class="card-grid card-grid-2 featured-routes-grid" id="featuredRoutes" aria-live="polite"></div>
       </section>
     </main>
 
     <footer class="shell site-footer">
       <p>
-        Backchannel Atlas tourne sur GitHub Pages: HTML statique, JSON séparés,
-        JS modulaire simple et une homepage pensée pour France live, Australia
-        beta et l'extension mondiale.
+        V1 statique sur GitHub Pages. Profil sauvegardé localement. Compte
+        multi-device et Google login demandent un vrai backend, pas un faux
+        bouton.
       </p>
     </footer>
 

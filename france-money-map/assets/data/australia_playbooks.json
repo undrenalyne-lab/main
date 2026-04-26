@@ -1,10 +1,22 @@
 [
   {
+    "id": "au-fifo-entry",
     "title": "FIFO / remote construction entry",
     "track": "Entrée rapide",
     "tone": "green",
     "summary": "La version crédible n'est pas White Card puis cash. C'est White Card + work rights + permis + mobilité + médical/D&A + première porte labour / TA / shutdown.",
     "timeToReady": "1 jour pour la White Card ; plusieurs jours à quelques semaines pour réunir les autres filtres et décrocher une première mission.",
+    "confidenceLevel": "medium",
+    "fitFor": [
+      "Profil jeune ou mobile qui veut entrer vite sur site",
+      "Terrain, logistique, support crew, rail, camp life acceptable",
+      "Objectif cash rapide sans exiger encore un trade premium"
+    ],
+    "avoidIf": [
+      "Tu n'as pas les work rights",
+      "Tu refuses les rosters, le camp et l'isolement",
+      "Tu imagines qu'une White Card suffit à ouvrir le mining premium"
+    ],
     "gates": [
       "Droit de travailler en Australie",
       "White Card valide",
@@ -12,7 +24,80 @@
       "Tolérance roster, camp et isolement",
       "Médical / drug & alcohol selon le site"
     ],
+    "requiredTickets": [
+      {
+        "name": "Work rights valides",
+        "type": "admin",
+        "why": "Sans work rights, aucun recrutement sérieux ne démarre."
+      },
+      {
+        "name": "White Card / CPCCWHS1001",
+        "type": "site-induction",
+        "why": "Base construction obligatoire, mais insuffisante seule."
+      },
+      {
+        "name": "Médical + Drug & Alcohol",
+        "type": "site-gate",
+        "why": "Souvent requis avant la première mission remote."
+      }
+    ],
+    "optionalTickets": [
+      "Forklift / LF",
+      "EWP si le marché local le demande",
+      "HR licence si tu vas vers transport / support"
+    ],
+    "firstRoles": [
+      "Track labourer",
+      "Drill support / blast crew support",
+      "Site services / TA d'entrée",
+      "Labour hire FIFO généraliste"
+    ],
+    "salarySignals": {
+      "low": "$36-$45/h sur les entrées les plus simples ou locales.",
+      "stable": "$50-$55/h sur roster remote/FIFO avec vraie mission terrain.",
+      "upside": "$60-$65/h si tu passes sur de meilleurs rosters, nuits ou support plus technique.",
+      "annualSignal": "En annonces terrain remote, on voit des bandes à partir de $50-$55/h sur Pilbara pour labour / track / drill support."
+    },
+    "salaryNotes": [
+      "Le bas correspond souvent à des missions locales, courtes ou peu pénalisées.",
+      "Le stable suppose un vrai roster remote, des heures tenues et une boîte qui tourne.",
+      "Le haut ne devient crédible qu'avec meilleure mission, nuits, overtime ou rôle support plus technique."
+    ],
     "cashStack": "Le cash vient du roster, des heures et du remote package. Pas de la White Card seule.",
+    "pathStages": [
+      {
+        "label": "Gate 0",
+        "body": "Work rights, permis, White Card et disponibilité remote."
+      },
+      {
+        "label": "Premier rôle payé",
+        "body": "Labour hire, TA d'entrée, track labourer ou support crew."
+      },
+      {
+        "label": "Upgrade",
+        "body": "Ajouter le ticket demandé par le marché réel: LF, EWP ou HR, puis capitaliser sur l'expérience site."
+      }
+    ],
+    "applicationChannels": [
+      "labour hire WA / QLD",
+      "shutdown contractors",
+      "site services et support crews"
+    ],
+    "firstWeekActions": [
+      "Vérifier work rights et date de disponibilité réelle.",
+      "Passer White Card et préparer le dossier permis / mobilité / médical.",
+      "Cibler labour hire WA ou QLD avec un angle support terrain et roster-ready."
+    ],
+    "recruiterAngles": [
+      "Mobile immediately for WA / QLD roster work",
+      "Can pass medical and D&A quickly",
+      "Ready for labour, TA, track or support crew entry roles"
+    ],
+    "whatItDoesNotOpen": [
+      "Mining premium direct",
+      "Trades reconnus sans expérience locale",
+      "Shutdown cash haut sans licences dédiées"
+    ],
     "nextMoves": [
       "Forklift / EWP / HR licence si le marché local le demande",
       "Passer par labour hire ou shutdown contractors",
@@ -25,18 +110,103 @@
     ]
   },
   {
+    "id": "au-shutdown-scaffold",
     "title": "Rigging / scaffolding shutdown path",
     "track": "Niche cash",
     "tone": "gold",
     "summary": "Route plus lente mais plus monétisable que l'entrée généraliste. Le vrai levier est la licence HRW reconnue puis l'expérience sur shutdowns et maintenance lourde.",
     "timeToReady": "Quelques semaines à quelques mois selon disponibilité formation, évaluation HRW et première mission encadrée.",
+    "confidenceLevel": "medium",
+    "fitFor": [
+      "Hauteur, méca, levage, grosse tolérance horaires pénibles",
+      "Recherche de cash plus haut avec vraie spécialisation",
+      "Profil qui accepte une montée plus lente mais plus rentable"
+    ],
+    "avoidIf": [
+      "Tu veux une entrée immédiate sans licence",
+      "Tu n'acceptes ni nuits, ni shutdowns, ni déplacements durs",
+      "Tu crois qu'un simple RTO vaut licence utilisable partout"
+    ],
     "gates": [
       "White Card pour les environnements construction",
       "Statement of attainment puis demande de licence HRW",
       "Âge minimum et dépôt dans les délais du régulateur",
       "Disponibilité pour shutdowns et horaires pénibles"
     ],
+    "requiredTickets": [
+      {
+        "name": "White Card / CPCCWHS1001",
+        "type": "site-induction",
+        "why": "Base chantier pour entrer proprement sur les environnements construction."
+      },
+      {
+        "name": "HRW licence: Dogging / Rigging / Scaffolding",
+        "type": "hrw",
+        "why": "Le RTO seul ne suffit pas; il faut la licence reconnue par le régulateur."
+      },
+      {
+        "name": "Tickets site demandés par mission",
+        "type": "shutdown-gates",
+        "why": "Inductions, médicaux et règles client se rajoutent mission par mission."
+      }
+    ],
+    "optionalTickets": [
+      "Forklift si le crew le demande",
+      "EWP > 11m selon l'environnement",
+      "First Aid seulement si le contrat l'exige"
+    ],
+    "firstRoles": [
+      "Scaffolder intermediate",
+      "Advanced scaffolder",
+      "Rigger/scaffolder shutdown",
+      "Trade assistant si tu construis encore l'accès"
+    ],
+    "salarySignals": {
+      "low": "$41-$45/h sur les niveaux accord/award plus bas ou sans shutdown premium.",
+      "stable": "$57-$62/h sur FIFO shutdown scaffolder day shift confirmé.",
+      "upside": "$62-$70+/h avec advanced level, nuits, back-to-back shutdowns et meilleurs accords.",
+      "annualSignal": "Les annonces shutdown affichent du $57/h basic et $62/h advanced en FIFO; certains accords historiques plaçaient rigger/scaffolder autour de $41-$44/h hors premiums."
+    },
+    "salaryNotes": [
+      "Le bas correspond à des grilles plus simples ou à des rôles moins premium.",
+      "Le stable suppose licence validée, mission shutdown réelle et intensité tenue.",
+      "Le haut dépend de la rareté, du level, des nuits et de la capacité à enchaîner."
+    ],
     "cashStack": "Base + casual loading éventuel + overtime + week-end + shutdown intensity. Le cumul exact dépend de l'award ou de l'accord.",
+    "pathStages": [
+      {
+        "label": "Gate 0",
+        "body": "White Card, dossier RTO, puis dépôt licence dans les règles du régulateur."
+      },
+      {
+        "label": "Premier rôle payé",
+        "body": "Trade assistant orienté shutdown ou scaffold/rigging junior selon accès."
+      },
+      {
+        "label": "Upgrade",
+        "body": "Cumuler licence reconnue, expérience shutdown et niveau advanced pour monter les taux."
+      }
+    ],
+    "applicationChannels": [
+      "shutdown contractors",
+      "maintenance lourde / civils shutdown",
+      "WA / QLD labour hire spécialisé"
+    ],
+    "firstWeekActions": [
+      "Vérifier le régulateur de l'État ciblé et le chemin licence complet.",
+      "Choisir dogman / rigging / scaffold selon passé réel, pas selon fantasme cash.",
+      "Lister les contractors shutdown qui recrutent des profils licence-ready."
+    ],
+    "recruiterAngles": [
+      "HRW licensing path understood and documented",
+      "Ready for shutdown roster and hard hours",
+      "Previous height, mechanical or lifting exposure already saleable"
+    ],
+    "whatItDoesNotOpen": [
+      "Toutes les niches mining sans expérience site",
+      "Un cash haut immédiat sans level ni shutdowns",
+      "Les trades offshore juste via une licence HRW"
+    ],
     "nextMoves": [
       "Dogging puis rigging si tu vas vers levage",
       "Scaffolding si tu vas vers maintenance lourde",
@@ -49,18 +219,103 @@
     ]
   },
   {
+    "id": "au-qld-coal",
     "title": "Queensland coal route",
     "track": "Charbon QLD",
     "tone": "blue",
     "summary": "Le charbon QLD a ses propres portes. Il ne suffit pas d'être 'bon chantier'. Il faut passer par l'induction coal, les exigences santé et les filtres site.",
     "timeToReady": "Rapide si l'employeur sponsorise l'entrée ; sinon plusieurs semaines entre médical, induction et onboarding.",
+    "confidenceLevel": "medium",
+    "fitFor": [
+      "Profil qui vise un roster plus régulier et plus durable",
+      "Terrain, maintenance, support crew ou services site capables de tenir les règles charbon",
+      "Objectif cash stable long terme plus que simple rush FIFO"
+    ],
+    "avoidIf": [
+      "Tu refuses la discipline site, la santé périodique et le roster charbon",
+      "Tu confonds mine générale et charbon QLD",
+      "Tu veux acheter un ticket sans employeur ni porte réelle"
+    ],
     "gates": [
       "Induction Queensland coal sous le cadre Recognised Standard 11",
       "Health assessment à l'entrée hors low risk tasks",
       "Employer / AMA / dossier site complet",
       "Compréhension du travail roster et sécurité charbon"
     ],
+    "requiredTickets": [
+      {
+        "name": "Work rights + dossier employeur",
+        "type": "admin",
+        "why": "Le marché charbon ne s'ouvre pas sans dossier site et employeur réel."
+      },
+      {
+        "name": "Recognised Standard 11",
+        "type": "coal-induction",
+        "why": "Induction structurante pour mines de charbon QLD."
+      },
+      {
+        "name": "Coal Mine Workers’ Health assessment",
+        "type": "medical",
+        "why": "Filtre sérieux et périodique sur charbon QLD."
+      }
+    ],
+    "optionalTickets": [
+      "Tickets métier seulement après porte employeur",
+      "Standard site-specific inductions",
+      "Rôles safety-critical selon poste"
+    ],
+    "firstRoles": [
+      "Services site",
+      "Opérateur junior",
+      "TA / support crew",
+      "Maintenance entry role sponsorisée"
+    ],
+    "salarySignals": {
+      "low": "$45-$55/h sur les portes d'entrée roster les plus simples, selon site et classification.",
+      "stable": "$120k-$160k/an sur des rosters charbon réguliers une fois les gates passés.",
+      "upside": "Au-dessus de $160k/an sur rosters forts et spécialisations mieux monétisées.",
+      "annualSignal": "Le Queensland coal sector report indiquait un salaire moyen d'environ AUD 159,688 pour les travailleurs du secteur en 2023/24, mais ce n'est pas un salaire d'entrée."
+    },
+    "salaryNotes": [
+      "Le bas n'est pas 'mauvais'; il correspond à l'entrée ou aux rôles support plus simples.",
+      "Le stable devient crédible quand tu tiens un roster charbon régulier, pas juste un onboarding.",
+      "Le haut ne doit pas être lu comme salaire d'entrée mais comme projection après gates et continuité."
+    ],
     "cashStack": "Les vrais plus viennent du roster charbon, des shifts, de la remote life et de la continuité du site.",
+    "pathStages": [
+      {
+        "label": "Gate 0",
+        "body": "Dossier employeur réel, Standard 11, health scheme et disponibilité roster."
+      },
+      {
+        "label": "Premier rôle payé",
+        "body": "Services site, TA, support crew ou opérateur junior sponsorisé par une vraie porte employeur."
+      },
+      {
+        "label": "Upgrade",
+        "body": "Une fois site et roster tenus, spécialiser vers opérateur, maintenance ou rôle safety-critical."
+      }
+    ],
+    "applicationChannels": [
+      "contractors charbon QLD",
+      "mine services",
+      "labour hire / service crews avec gates coal"
+    ],
+    "firstWeekActions": [
+      "Vérifier si tu as une vraie porte employeur avant d'acheter les modules charbon.",
+      "Contrôler Standard 11 et le health scheme avec les sources officielles QLD.",
+      "Cibler services site, support crew ou TA si tu n'as pas encore de crédibilité mine."
+    ],
+    "recruiterAngles": [
+      "Roster-ready and comfortable with coal compliance",
+      "Open to services, TA or junior operator entry",
+      "Building site dossier first, not buying random extra tickets"
+    ],
+    "whatItDoesNotOpen": [
+      "Toutes les mines australiennes indistinctement",
+      "Les rôles spécialisés sans employeur ni expérience charbon",
+      "Un cash premium immédiat juste avec Standard 11"
+    ],
     "nextMoves": [
       "Entrée via services site, opérateur junior ou TA",
       "Puis spécialisation opérateur, maintenance ou rôle safety-critical",
