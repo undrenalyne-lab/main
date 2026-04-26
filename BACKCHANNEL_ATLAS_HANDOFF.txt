@@ -1,0 +1,309 @@
+BACKCHANNEL ATLAS - HANDOFF PRODUIT / DESIGN / UX
+
+1. CONTEXTE
+
+Nom actuel du projet:
+Backchannel Atlas
+
+URL actuelle:
+https://undrenalynelab.io/france-money-map/
+
+Nature du produit:
+Ce n'est PAS un job board.
+Ce n'est PAS un annuaire de metiers.
+Ce n'est PAS un comparateur de formations.
+Ce n'est PAS un simple site inspiration carriere.
+
+Le produit est cense etre un moteur d'arbitrage de trajectoires professionnelles a cash reel.
+Il doit aider un utilisateur a comprendre:
+- quelle route vaut vraiment le coup
+- quels tickets comptent vraiment
+- quelles routes sont des faux raccourcis
+- quelles boites viser
+- combien ca peut vraiment payer
+- combien de temps cela prend
+- quelle friction reelle il y a
+- quel pays est realiste selon son profil
+
+Il doit eviter a l'utilisateur:
+- d'acheter des tickets inutiles
+- de confondre salaire et indemnites
+- de croire aux mythes de filiere
+- de perdre du temps dans des trajectoires lentes vendues comme rapides
+- de mal lire le rapport cash / effort / temps / mobilite
+
+
+2. VISION PRODUIT CIBLE
+
+La vision cible est beaucoup plus ambitieuse que le site actuel.
+
+Le produit doit devenir une sorte de:
+- GPS de carriere terrain / technique / cash
+- moteur de decision
+- atlas tactique mondial
+- systeme presque "jeu video" avec progression, unlocks, gates et missions
+
+Le site doit etre:
+- ADHD friendly
+- tres lisible
+- tres organise
+- nerveux
+- pedagogique
+- utile immediatement
+- atypique
+- accessible
+- mobile-first
+- scalable au monde entier
+
+Le ton doit etre:
+- compact
+- tranchant
+- anti-blabla
+- anti-fausse promesse
+- credible
+- terrain
+
+
+3. CE QUE L'UTILISATEUR FINAL DOIT VIVRE
+
+Quand un utilisateur arrive, il ne doit pas voir un site fouilli.
+Il doit comprendre tres vite:
+- ce que fait le site
+- si le site est pour lui
+- quel pays il peut viser
+- quelle premiere action faire
+- quelle route semble adaptee
+- quels tickets comptent
+- quels pieges il doit eviter
+
+Experience cible souhaitee:
+1. L'utilisateur arrive sur une homepage claire et forte
+2. Il entre rapidement son profil
+3. Il voit une vraie carte du monde interactive
+4. Les pays disponibles sont visibles:
+   - France = live
+   - Australie = beta ou semi-live
+   - autres pays = grises / locked / roadmap
+5. La carte doit reagir a son profil
+6. Une heat map doit montrer ou le potentiel est fort ou faible selon son profil
+7. En cliquant un pays, il doit ouvrir une mission claire
+8. Cette mission doit lui dire:
+   - portes d'entree
+   - tickets
+   - salaires plausibles
+   - temps de preparation
+   - difficultes
+   - employeurs / canaux
+   - ordre des etapes
+
+
+4. ETAT ACTUEL DU SITE
+
+Pages actuelles:
+- index.html = hub / page d'entree
+- parcours.html = module France
+- porte.html = fiche route detaillee
+- tickets.html = tickets
+- employeurs.html = employeurs
+- sources.html = intel / methode / sources
+- australia.html = page Australie
+
+Etat actuel percu par le proprietaire du projet:
+- le site reste trop fouilli
+- l'UX n'est pas assez ADHD friendly
+- le design ne ressemble pas assez a un vrai produit haut niveau
+- la logique map monde / mission / pays n'est pas encore convaincante
+- la partie Australie reste insuffisamment exploitable
+- la separation des pays est encore imparfaite conceptuellement
+- le site n'a pas encore un vrai sentiment de "jeu", de progression, d'unlock
+- les informations ne sont pas encore ordonnees de facon intuitive
+- il manque des fiches de postes
+- il manque de nombreuses branches
+- il manque de nombreux tickets
+- il manque encore de la rigueur metier
+
+
+5. CE QUE LE PROPRIETAIRE DU PROJET RECLAME
+
+Demandes prioritaires:
+
+A. REFAIRE LA HOMEPAGE
+- vraie refonte, pas cosmestique
+- vraie carte du monde interactive
+- France et Australie actives
+- tous les autres pays grises / verrouilles / roadmap
+- heat map selon profil utilisateur
+- onboarding profil court mais intelligent
+- impression de systeme secret / atlas / console tactique
+- pas de template startup
+- pas de dashboard corporate banal
+- pas d'UI generique SaaS
+
+B. RENDRE LE SITE VRAIMENT ADHD FRIENDLY
+- moins de confusion
+- meilleure hierarchie visuelle
+- moins de dispersion
+- plus de progression pas a pas
+- moins de murs de texte
+- plus de cartes claires
+- plus de blocs courts
+- plus de decisions guidees
+- plus de feedback
+- plus de sentiment de controle
+
+C. DONNER UNE STRUCTURE TYPE "JEU VIDEO"
+- profil = loadout
+- pays = map / zones
+- routes = missions / pathways
+- tickets = unlocks / gates
+- employeurs = factions / targets / channels
+- progression = etapes claires
+- recommandations = next moves
+- notion de locked / live / beta / roadmap
+
+D. AMELIORER FORTEMENT L'AUSTRALIE
+- le user doit comprendre les salaires plausibles
+- les tickets dans le bon ordre
+- les work rights
+- les premiers vrais roles accessibles
+- le temps pour etre pret
+- ce qu'il faut faire en premier
+- ce qu'il ne faut surtout pas acheter trop tot
+- la difference entre White Card, HRW, RII, Standard 11, etc.
+- la difference entre fantasme FIFO et vraie porte d'entree
+
+E. PREPARER LE PRODUIT POUR LE MONDE ENTIER
+- architecture pensee des maintenant pour plusieurs pays
+- monde entier vise a terme
+- pays futurs visibles sur map en mode locked
+- le systeme doit pouvoir scaler sans refaire toute l'architecture
+
+F. RENDRE LE SITE VRAIMENT UTILE
+- aider les travailleurs reellement
+- aider a choisir
+- aider a se motiver
+- aider a comprendre l'avenir probable d'une route
+- aider a se vendre
+- aider a prioriser les actions
+
+
+6. CONTRAINTES ET STYLE SOUHAITES
+
+Contraintes techniques:
+- site statique GitHub Pages friendly
+- HTML / CSS / JS simples
+- pas de framework lourd si possible
+- code modulaire et maintenable
+- architecture claire pour extension monde
+
+Direction visuelle souhaitee:
+- atlas tactique
+- renseignement operationnel
+- console premium
+- systeme de decision terrain
+- densite maitrisee
+- sobriete
+- precision
+- quelque chose d'un peu underground / secret / trouve
+
+A eviter absolument:
+- design startup banal
+- dashboard fintech banal
+- site corporate lisse
+- gradients violets generiques
+- cartes repetitives sans hierarchie
+- hero centree vague sans vraie promesse
+- UI "AI slop"
+
+
+7. PROBLEMES METIER / CONTENU A CORRIGER
+
+Le proprietaire du projet signale aussi:
+- beaucoup d'erreurs dans les termes de jobs
+- beaucoup de routes / fiches de postes manquantes
+- beaucoup de tickets encore incomplets
+- manque de profondeur sur certaines filieres
+- manque de sequences reelles de progression
+- manque d'exhaustivite sur l'Australie et la France
+
+Donc le travail demande n'est pas seulement du design.
+C'est une combinaison de:
+- product design
+- information architecture
+- UX writing
+- systeme interactif
+- organisation des donnees
+- mise en scene decisionnelle
+
+
+8. STRUCTURE CIBLE SUGGEREE
+
+Une structure possible a viser:
+- Hub / World Map
+- France
+- Australia
+- Route detaillee
+- Tickets
+- Employeurs
+- Intel / Methode
+- Glossaire
+- FAQ / pieges
+- Roadmap monde
+
+Mais l'architecture exacte peut etre repensee si une meilleure structure existe.
+
+
+9. CE QUI COMPTE LE PLUS POUR LE PROPRIETAIRE
+
+Le proprietaire ne veut pas "un joli site".
+Il veut:
+- un site genial
+- un site utile
+- un site different
+- un site ADHD friendly
+- un site qui ressemble a un moteur intelligent
+- un site qui aide vraiment les gens a arbitrer leur avenir pro
+
+Le niveau attendu est:
+- ultra pro
+- innovant
+- tres organise
+- vraiment pense
+- capable de detruire puis reconstruire ce qui ne marche pas
+
+
+10. DEMANDE A CLAUDE CODE
+
+Merci de reprendre le projet comme si tu etais:
+- lead product designer
+- lead UX strategist
+- lead information architect
+- senior frontend engineer
+
+Et d'intervenir prioritairement sur:
+- l'architecture de la homepage
+- la map monde interactive
+- la logique d'onboarding profil
+- la hierarchie UX globale
+- la separation France / Australie / monde
+- la clartes des missions et des routes
+- l'organisation des blocs
+- le sentiment de progression
+- la qualite de la navigation
+- la lisibilite mobile
+
+Le but n'est pas de rafraichir la peinture.
+Le but est de reconstruire un produit bien pense.
+
+
+11. LIVRABLE IDEAL
+
+Le livrable ideal serait:
+- une homepage completement refondue autour de la map monde
+- une experience plus game-like et plus claire
+- une meilleure structure pays -> mission -> route -> tickets -> employeurs
+- un design beaucoup plus fort
+- un systeme plus coherent et plus memorable
+- un produit beaucoup plus agreable a utiliser
+- une base solide pour ajouter tous les pays du monde plus tard
+

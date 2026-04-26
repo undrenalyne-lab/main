@@ -5,10 +5,14 @@ const HOME_STORAGE_KEY = "backchannel-atlas-home-onboarding-v1";
 const LEGACY_HOME_STORAGE_KEYS = ["france-money-map-home-onboarding-v1"];
 
 const auSnapshotPanel = document.getElementById("auSnapshotPanel");
-const auGatesPanel = document.getElementById("auGatesPanel");
+const auRightsPanel = document.getElementById("auRightsPanel");
 const auWarningsPanel = document.getElementById("auWarningsPanel");
-const auPlaybookGrid = document.getElementById("auPlaybookGrid");
+const auMissionGrid = document.getElementById("auMissionGrid");
+const auTicketGrid = document.getElementById("auTicketGrid");
+const auSequenceGrid = document.getElementById("auSequenceGrid");
+const auChannelGrid = document.getElementById("auChannelGrid");
 const auPanelGrid = document.getElementById("auPanelGrid");
+const auTrapGrid = document.getElementById("auTrapGrid");
 const auSourceGrid = document.getElementById("auSourceGrid");
 
 function normalizeArrayValue(value) {
@@ -39,6 +43,10 @@ function loadSavedHomeState() {
 
 function normalizeFieldValue(field, rawValue, fallbackValue) {
   const allowedIds = new Set(field.options.map((option) => option.id));
+
+  if (field.id === "country") {
+    return rawValue ?? fallbackValue ?? "australia";
+  }
 
   if (field.type === "multi") {
     const values = normalizeArrayValue(rawValue ?? fallbackValue).filter((value) =>
@@ -109,17 +117,7 @@ function scoreMultiWeightMap(weightMap = {}, selectedValues = []) {
   return selectedValues.reduce((total, value) => total + (weightMap[value] || 0), 0);
 }
 
-function playbookTone(score) {
-  if (score >= 72) {
-    return "green";
-  }
-  if (score >= 58) {
-    return "gold";
-  }
-  return "red";
-}
-
-function buildRecommendations(countryConfig, homeState, playbooks, sourceMap) {
+function buildPlaybookRecommendations(countryConfig, homeState, playbooks, sourceMap) {
   return (countryConfig.playbookWeights || [])
     .map((rule) => {
       const playbook = playbooks.find((item) => item.title === rule.title);
@@ -148,50 +146,131 @@ function buildRecommendations(countryConfig, homeState, playbooks, sourceMap) {
     .sort((left, right) => right.matchScore - left.matchScore);
 }
 
-function renderGuidePanels(fieldMap, homeState, insights, recommendations) {
-  const topMatch = recommendations[0];
+function scoreMission(homeState, mission) {
+  let score = 46;
 
+  if (mission.id === "track-protection-officer") {
+    score += homeState.experienceTags.includes("rail") ? 18 : 0;
+    score += homeState.experienceTags.includes("securite") ? 10 : 0;
+    score += homeState.experienceTags.includes("elec") ? 8 : 0;
+    score += ["functional", "strong"].includes(homeState.english) ? 10 : -10;
+    score += ["national", "remote-roster"].includes(homeState.mobility) ? 8 : -4;
+    score += homeState.goals.includes("cash-upside") ? 10 : 0;
+  } else if (mission.id === "track-maintainer") {
+    score += homeState.experienceTags.includes("terrain") ? 14 : 0;
+    score += homeState.experienceTags.includes("rail") ? 12 : 0;
+    score += homeState.goals.includes("fast-entry") ? 10 : 0;
+    score += ["regional", "national", "remote-roster"].includes(homeState.mobility)
+      ? 8
+      : -4;
+  } else if (mission.id === "fifo-process-operator") {
+    score += homeState.mobility === "remote-roster" ? 18 : -8;
+    score += ["functional", "strong"].includes(homeState.english) ? 10 : -12;
+    score += homeState.goals.includes("cash-upside") ? 14 : 0;
+    score += homeState.experienceTags.includes("meca") ? 10 : 0;
+    score += homeState.experienceTags.includes("logistique") ? 8 : 0;
+  } else if (mission.id === "civil-labourer-traffic") {
+    score += homeState.goals.includes("fast-entry") ? 16 : 0;
+    score += homeState.experienceTags.includes("terrain") ? 10 : 0;
+    score += ["local", "regional", "national"].includes(homeState.mobility) ? 8 : 0;
+  }
+
+  if (["eu", "sponsor"].includes(homeState.nationality)) {
+    score -= mission.id === "fifo-process-operator" ? 10 : 0;
+    score -= mission.id === "track-protection-officer" ? 6 : 0;
+  }
+
+  return Math.max(0, Math.min(99, score));
+}
+
+function rankMissions(homeState, guide) {
+  return (guide.missions || [])
+    .map((mission) => ({
+      mission,
+      matchScore: scoreMission(homeState, mission),
+    }))
+    .sort((left, right) => right.matchScore - left.matchScore);
+}
+
+function missionDifficultyTone(level) {
+  if (level === "high") {
+    return "red";
+  }
+  if (level === "medium") {
+    return "gold";
+  }
+  return "green";
+}
+
+function playbookTone(score) {
+  if (score >= 72) {
+    return "green";
+  }
+  if (score >= 58) {
+    return "gold";
+  }
+  return "red";
+}
+
+function renderGuidePanels(fieldMap, homeState, insights, topMission, topPlaybook, guide) {
   auSnapshotPanel.innerHTML = `
     <span class="mini-label">Snapshot compact</span>
-    <h3>Le marché Australie dépend d'abord du droit d'entrée.</h3>
+    <h3>Le marche Australie se lit d'abord par droits, age reel, anglais et mobilite.</h3>
     <div class="pill-row">
       ${pill(getOptionLabel(fieldMap, "nationality", homeState.nationality), "orange")}
       ${pill(getOptionLabel(fieldMap, "ageBand", homeState.ageBand), "blue")}
       ${pill(getOptionLabel(fieldMap, "mobility", homeState.mobility), "green")}
       ${pill(getOptionLabel(fieldMap, "english", homeState.english), "gold")}
     </div>
-    <div class="warning-card">
-      <strong>Meilleur match actuel:</strong>
-      ${topMatch ? `${escapeHtml(topMatch.playbook.title)} · match ${topMatch.matchScore}` : "règle d'abord ton profil compact sur le hub"}
+    <div class="data-row">
+      <span class="data-value">${escapeHtml(topMission?.label || "profil a regler")}</span>
+      <span class="data-label">${
+        topMission
+          ? escapeHtml(`Mission la plus propre maintenant · ${topMission.salaryYear1}`)
+          : "Regle le profil sur le hub pour lire une mission propre."
+      }</span>
     </div>
     ${
-      topMatch
+      topPlaybook
         ? `
-          <div class="detail-facts">
-            <div class="detail-fact">
-              <span class="mini-label">Temps pour être prêt</span>
-              <div>${escapeHtml(topMatch.playbook.timeToReady)}</div>
-            </div>
-            <div class="detail-fact">
-              <span class="mini-label">Cash stable</span>
-              <div>${escapeHtml(topMatch.playbook.salarySignals?.stable || "à confirmer")}</div>
-            </div>
+          <div class="warning-card">
+            <strong>Lecture du moment:</strong> ${escapeHtml(topPlaybook.playbook.title)} · match ${topPlaybook.matchScore}
           </div>
         `
         : ""
     }
   `;
 
-  auGatesPanel.innerHTML = `
-    <span class="mini-label">Gates</span>
-    <h3>Les filtres qui bloquent vraiment le marché.</h3>
+  auRightsPanel.innerHTML = `
+    <span class="mini-label">Work rights block</span>
+    <h3>La voie la plus propre reste: droit au travail, puis porte Perth-based, puis roster plus dur.</h3>
+    <div class="route-timeline">
+      ${(guide.workRightsFlow || [])
+        .map(
+          (item) => `
+            <article class="timeline-step">
+              <span class="badge badge--beta">${escapeHtml(item.label)}</span>
+              <p>${escapeHtml(item.body)}</p>
+            </article>
+          `,
+        )
+        .join("")}
+    </div>
+    <div class="warning-card">
+      <strong>Point de controle:</strong> ${escapeHtml(
+        homeState.ageBand === "35-44" || homeState.ageBand === "45+"
+          ? "verifie la realite de la voie visa avant tout achat terrain"
+          : "la voie working holiday ou sponsorship doit etre verifiee avant tickets chers",
+      )}
+    </div>
+  `;
+
+  auWarningsPanel.innerHTML = `
+    <span class="mini-label">Reality check</span>
+    <h3>${escapeHtml(guide.warning.title)}</h3>
+    <p class="muted">${escapeHtml(guide.warning.body)}</p>
     <div class="list">
-      ${(insights.length ? insights : [
-        {
-          title: "Profil non réglé",
-          body: "Passe par le hub pour régler nationalité, âge, mobilité et anglais avant d'interpréter les playbooks.",
-        },
-      ])
+      ${(insights.length ? insights : [])
         .slice(0, 3)
         .map(
           (insight, index) => `
@@ -207,218 +286,101 @@ function renderGuidePanels(fieldMap, homeState, insights, recommendations) {
         .join("")}
     </div>
   `;
-
-  auWarningsPanel.innerHTML = `
-    <span class="mini-label">Red flags</span>
-    <h3>Les raccourcis à tuer avant départ.</h3>
-    <div class="list">
-      <div class="list-item">
-        <span class="list-index">A</span>
-        <div>UE ≠ droit automatique de travailler en Australie.</div>
-      </div>
-      <div class="list-item">
-        <span class="list-index">B</span>
-        <div>White Card seule ≠ FIFO ni cash élevé.</div>
-      </div>
-      <div class="list-item">
-        <span class="list-index">C</span>
-        <div>Sans mobilité roster, anglais opérationnel et vraie expérience site, le marché se ferme vite.</div>
-      </div>
-    </div>
-  `;
 }
 
-function renderPlaybooks(recommendations) {
-  auPlaybookGrid.innerHTML = recommendations
+function renderMissions(rankedMissions) {
+  auMissionGrid.innerHTML = rankedMissions
     .map(
-      (result) => `
-        <article class="card source-card au-playbook-card">
+      (entry) => `
+        <article class="card source-card card--mission au-playbook-card">
           <div class="pill-row">
-            ${pill(result.playbook.track, "blue")}
-            ${pill(`Match ${result.matchScore}`, playbookTone(result.matchScore))}
-            ${pill(result.playbook.confidenceLevel || "beta", "gold")}
+            <span class="badge ${entry.mission.status === "live" ? "badge--live" : entry.mission.status === "beta" ? "badge--beta" : "badge--data"}">${escapeHtml(entry.mission.status)}</span>
+            ${pill(`Match ${entry.matchScore}`, playbookTone(entry.matchScore))}
+            ${pill(entry.mission.difficulty, missionDifficultyTone(entry.mission.difficulty))}
           </div>
-          <h3>${escapeHtml(result.playbook.title)}</h3>
-          <p class="muted">${escapeHtml(result.playbook.summary)}</p>
+          <h3>${escapeHtml(entry.mission.label)}</h3>
           <div class="detail-facts">
             <div class="detail-fact">
-              <span class="mini-label">Temps pour être prêt</span>
-              <div>${escapeHtml(result.playbook.timeToReady)}</div>
+              <span class="mini-label">Preparation</span>
+              <div>${escapeHtml(`${entry.mission.prepWeeks} semaines`)}</div>
             </div>
             <div class="detail-fact">
-              <span class="mini-label">D'où vient le cash</span>
-              <div>${escapeHtml(result.playbook.cashStack)}</div>
+              <span class="mini-label">Cash annee 1</span>
+              <div>${escapeHtml(entry.mission.salaryYear1)}</div>
             </div>
+          </div>
+          <div class="warning-card">
+            <strong>Ticket bloquant:</strong> ${escapeHtml(entry.mission.blockingTicket)}
+          </div>
+          <div class="data-row">
+            <span class="data-value">${escapeHtml(entry.mission.whyGood)}</span>
+            <span class="data-label">Pourquoi cette porte peut etre rentable et plus propre que le fantasme FIFO direct</span>
           </div>
           <div class="playbook-sections">
             <section class="playbook-section">
-              <span class="mini-label">Pour qui cette route colle</span>
-              <div class="pill-row">
-                ${(result.playbook.fitFor || []).map((item) => pill(item, "green")).join("")}
-              </div>
+              <span class="mini-label">Entree via</span>
+              <p class="muted">${escapeHtml(entry.mission.entryVia)}</p>
             </section>
             <section class="playbook-section">
-              <span class="mini-label">À éviter si</span>
-              <div class="list">
-                ${(result.playbook.avoidIf || [])
-                  .map(
-                    (item, index) => `
-                      <div class="list-item">
-                        <span class="list-index">${index + 1}</span>
-                        <div>${escapeHtml(item)}</div>
-                      </div>
-                    `,
-                  )
-                  .join("")}
-              </div>
+              <span class="mini-label">Next step</span>
+              <p class="muted">${escapeHtml(entry.mission.nextStep)}</p>
             </section>
-            <section class="playbook-section">
-              <span class="mini-label">Ordre réel</span>
-              <div class="route-timeline">
-                ${(result.playbook.pathStages || [])
-                  .map(
-                    (stage) => `
-                      <article class="timeline-step">
-                        <span class="pill is-orange">${escapeHtml(stage.label)}</span>
-                        <p>${escapeHtml(stage.body)}</p>
-                      </article>
-                    `,
-                  )
-                  .join("")}
-              </div>
-            </section>
-            <section class="playbook-section">
-              <span class="mini-label">Gates</span>
-              <div class="list">
-                ${result.playbook.gates
-                  .map(
-                    (gate, index) => `
-                      <div class="list-item">
-                        <span class="list-index">${index + 1}</span>
-                        <div>${escapeHtml(gate)}</div>
-                      </div>
-                    `,
-                  )
-                  .join("")}
-              </div>
-            </section>
-            <section class="playbook-section">
-              <span class="mini-label">Tickets dans l'ordre</span>
-              <div class="ticket-stack">
-                ${(result.playbook.requiredTickets || [])
-                .map(
-                  (ticket, index) => `
-                    <article class="detail-fact">
-                      <span class="mini-label">${index + 1}. ${escapeHtml(ticket.type)}</span>
-                      <strong>${escapeHtml(ticket.name)}</strong>
-                      <div class="muted">${escapeHtml(ticket.why)}</div>
-                    </article>
-                  `,
-                )
-                .join("")}
-              </div>
-            </section>
-            <section class="playbook-section">
-              <span class="mini-label">Tickets à ajouter seulement si la mission les demande</span>
-              <div class="inline-links">
-                ${(result.playbook.optionalTickets || []).map((ticket) => pill(ticket, "blue")).join("")}
-              </div>
-            </section>
-            <section class="playbook-section">
-              <span class="mini-label">Premiers rôles crédibles</span>
-              <div class="inline-links">
-                ${(result.playbook.firstRoles || []).map((role) => pill(role, "gold")).join("")}
-              </div>
-            </section>
-            <section class="playbook-section">
-              <span class="mini-label">Signal salaire</span>
-              <div class="salary-ladder">
-                <div class="salary-ladder-row">
-                  <span>Bas</span>
-                  <strong>${escapeHtml(result.playbook.salarySignals?.low || "—")}</strong>
-                </div>
-                <div class="salary-ladder-row">
-                  <span>Stable</span>
-                  <strong>${escapeHtml(result.playbook.salarySignals?.stable || "—")}</strong>
-                </div>
-                <div class="salary-ladder-row">
-                  <span>Upside</span>
-                  <strong>${escapeHtml(result.playbook.salarySignals?.upside || "—")}</strong>
-                </div>
-                <div class="salary-ladder-row">
-                  <span>Repère annuel</span>
-                  <strong>${escapeHtml(result.playbook.salarySignals?.annualSignal || "—")}</strong>
-                </div>
-              </div>
-              <div class="list">
-                ${(result.playbook.salaryNotes || [])
-                  .map(
-                    (note, index) => `
-                      <div class="list-item">
-                        <span class="list-index">${index + 1}</span>
-                        <div>${escapeHtml(note)}</div>
-                      </div>
-                    `,
-                  )
-                  .join("")}
-              </div>
-            </section>
-            <section class="playbook-section">
-              <span class="mini-label">Ce que tu fais cette semaine</span>
-              <div class="list">
-                ${(result.playbook.firstWeekActions || [])
-                  .map(
-                    (action, index) => `
-                      <div class="list-item">
-                        <span class="list-index">${index + 1}</span>
-                        <div>${escapeHtml(action)}</div>
-                      </div>
-                    `,
-                  )
-                  .join("")}
-              </div>
-            </section>
-            <section class="playbook-section">
-              <span class="mini-label">Angle recruteur</span>
-              <div class="inline-links">
-                ${(result.playbook.recruiterAngles || []).map((item) => pill(item, "orange")).join("")}
-              </div>
-            </section>
-            <section class="playbook-section">
-              <span class="mini-label">Ce que ça n'ouvre pas</span>
-              <div class="list">
-                ${(result.playbook.whatItDoesNotOpen || [])
-                  .map(
-                    (item, index) => `
-                      <div class="list-item">
-                        <span class="list-index">${index + 1}</span>
-                        <div>${escapeHtml(item)}</div>
-                      </div>
-                    `,
-                  )
-                  .join("")}
-              </div>
-            </section>
-            <section class="playbook-section">
-              <span class="mini-label">Étapes suivantes</span>
-              <div class="inline-links">
-                ${result.playbook.nextMoves.map((move) => pill(move, "gold")).join("")}
-              </div>
-            </section>
-            <section class="playbook-section">
-              <div class="warning-card">
-                <strong>Pièges:</strong>
-                ${escapeHtml(result.playbook.redFlags.join(" · "))}
-              </div>
-            </section>
-            <section class="playbook-section">
-              <span class="mini-label">Sources à contrôler</span>
-              <div class="inline-links">
-                ${result.recommendedSources
-                  .map((source) => linkChip(source.title.split("—")[0].trim(), source.url))
-                  .join("")}
-              </div>
-            </section>
+          </div>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderTicketStages(stages) {
+  auTicketGrid.innerHTML = stages
+    .map(
+      (stage) => `
+        <article class="card source-card card--ticket">
+          <div class="pill-row">${pill(stage.stage, "blue")}</div>
+          <div class="list">
+            ${stage.items
+              .map(
+                (item, index) => `
+                  <div class="list-item">
+                    <span class="list-index">${index + 1}</span>
+                    <div>
+                      <strong>${escapeHtml(item.name)}</strong>
+                      <div>${escapeHtml(`${item.cost} · ${item.duration}`)}</div>
+                      <div class="muted">${escapeHtml(item.note)}</div>
+                    </div>
+                  </div>
+                `,
+              )
+              .join("")}
+          </div>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderSequence(timeline) {
+  auSequenceGrid.innerHTML = timeline
+    .map(
+      (step) => `
+        <article class="card source-card">
+          <div class="pill-row"><span class="badge badge--data">${escapeHtml(step.label)}</span></div>
+          <p class="muted">${escapeHtml(step.body)}</p>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderChannels(channels) {
+  auChannelGrid.innerHTML = channels
+    .map(
+      (channel) => `
+        <article class="panel">
+          <span class="mini-label">${escapeHtml(channel.label)}</span>
+          <div class="inline-links">
+            ${channel.items.map((item) => pill(item, "blue")).join("")}
           </div>
         </article>
       `,
@@ -444,6 +406,22 @@ function renderPanels(panels) {
               )
               .join("")}
           </div>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderTraps(traps) {
+  auTrapGrid.innerHTML = traps
+    .map(
+      (trap) => `
+        <article class="card source-card card--trap">
+          <div class="pill-row">
+            <span class="badge badge--warning">${escapeHtml(trap.label)}</span>
+          </div>
+          <h3>${escapeHtml(trap.claim)}</h3>
+          <p class="muted">${escapeHtml(trap.reality)}</p>
         </article>
       `,
     )
@@ -478,23 +456,36 @@ async function init() {
     loadHomeModel(),
     loadSourceExtras(),
   ]);
+
   const homeState = normalizeHomeState(homeModel.schema, loadSavedHomeState() || {});
   const fieldMap = new Map(homeModel.fields.map((field) => [field.id, field]));
   const countryConfig = homeModel.countryMap.get("australia");
   const insights = (countryConfig.insightRules || []).filter((rule) =>
     matchesInsightRule(rule, homeState),
   );
-  const recommendations = buildRecommendations(
+  const playbookRecommendations = buildPlaybookRecommendations(
     countryConfig,
     homeState,
     extras.australiaPlaybooks,
     data.sourceMap,
   );
+  const rankedMissions = rankMissions(homeState, extras.australiaGuide);
   const australiaSources = data.sources.filter((source) => source.id.startsWith("au-"));
 
-  renderGuidePanels(fieldMap, homeState, insights, recommendations);
-  renderPlaybooks(recommendations);
-  renderPanels(extras.australiaPanels);
+  renderGuidePanels(
+    fieldMap,
+    homeState,
+    insights,
+    rankedMissions[0]?.mission || null,
+    playbookRecommendations[0] || null,
+    extras.australiaGuide,
+  );
+  renderMissions(rankedMissions);
+  renderTicketStages(extras.australiaGuide.ticketStages || []);
+  renderSequence(extras.australiaGuide.timeline || []);
+  renderChannels(extras.australiaGuide.channels || []);
+  renderPanels(extras.australiaPanels || []);
+  renderTraps(extras.australiaGuide.traps || []);
   renderSources(australiaSources);
 }
 

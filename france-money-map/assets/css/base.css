@@ -1,32 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap");
 
 :root {
-  --bg: #090b11;
-  --bg-alt: #0f141d;
-  --surface: #121926;
-  --surface-2: #171f2d;
-  --surface-3: #1e293b;
-  --line: #2a3549;
-  --line-strong: #41516c;
-  --text: #edf4ff;
-  --muted: #92a0b8;
+  --bg: #080a0c;
+  --bg-alt: #0f1215;
+  --surface: #10141b;
+  --surface-2: #141820;
+  --surface-3: #1a2028;
+  --line: #1e2530;
+  --line-strong: #374151;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
   --white: #ffffff;
-  --orange: #ff7d30;
-  --orange-soft: rgba(255, 125, 48, 0.14);
-  --green: #2cd39a;
-  --green-soft: rgba(44, 211, 154, 0.14);
-  --gold: #f3c74a;
-  --gold-soft: rgba(243, 199, 74, 0.14);
-  --blue: #66aaff;
-  --blue-soft: rgba(102, 170, 255, 0.14);
-  --red: #ff6b6b;
-  --red-soft: rgba(255, 107, 107, 0.14);
+  --orange: #f59e0b;
+  --orange-soft: rgba(245, 158, 11, 0.14);
+  --green: #22c55e;
+  --green-soft: rgba(34, 197, 94, 0.14);
+  --gold: #f59e0b;
+  --gold-soft: rgba(245, 158, 11, 0.12);
+  --blue: #3b82f6;
+  --blue-soft: rgba(59, 130, 246, 0.14);
+  --red: #ef4444;
+  --red-soft: rgba(239, 68, 68, 0.14);
   --shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
-  --radius: 18px;
-  --radius-sm: 12px;
-  --mono: "Space Mono", monospace;
-  --body: "Barlow", sans-serif;
-  --display: "Barlow Condensed", sans-serif;
+  --radius: 8px;
+  --radius-sm: 6px;
+  --mono: "JetBrains Mono", monospace;
+  --body: "Inter", sans-serif;
+  --display: "Inter", sans-serif;
 }
 
 * {
@@ -41,9 +41,8 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at top right, rgba(255, 125, 48, 0.12), transparent 28%),
-    radial-gradient(circle at left 15%, rgba(102, 170, 255, 0.08), transparent 22%),
-    linear-gradient(180deg, #090b11 0%, #0d1219 48%, #090b11 100%);
+    radial-gradient(circle at top right, rgba(245, 158, 11, 0.08), transparent 22%),
+    linear-gradient(180deg, #080a0c 0%, #0b0f14 48%, #080a0c 100%);
   color: var(--text);
   font-family: var(--body);
   line-height: 1.5;

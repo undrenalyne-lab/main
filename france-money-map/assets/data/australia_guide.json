@@ -1,0 +1,217 @@
+{
+  "version": "2026-04-26",
+  "warning": {
+    "title": "FIFO n'est pas la vraie semaine 1",
+    "body": "Pour un profil migrant sans réseau local, la vraie porte d'entrée reste souvent Perth-based, chantier, labour, rail entry ou shutdown support. Le fantasme Pilbara direct fait brûler du temps et de l'argent."
+  },
+  "workRightsFlow": [
+    {
+      "label": "WHV 417",
+      "body": "Route la plus simple si tu es éligible. Work rights immédiats, mais limites d'employeur et stratégie régionale à respecter."
+    },
+    {
+      "label": "88 jours",
+      "body": "Le travail régional/mining peut servir à ouvrir l'extension. Ça doit être planifié dès l'entrée, pas improvisé après."
+    },
+    {
+      "label": "Second year / pivot",
+      "body": "Si la trajectoire prend, la suite passe par extension WHV ou bascule sponsorisée vers 482 selon employeur et niche."
+    }
+  ],
+  "missions": [
+    {
+      "id": "track-protection-officer",
+      "label": "Track Protection Officer (TPO)",
+      "status": "beta",
+      "difficulty": "medium",
+      "prepWeeks": "8-12",
+      "salaryYear1": "75-95k AUD",
+      "blockingTicket": "White Card + rail medical + sponsor RIW/safeworking",
+      "whyGood": "Filière rail WA moins saturée que le FIFO fantasme, et le background ferro / sécurité se recycle mieux ici.",
+      "entryVia": "Cat5 Rail, Programmed Rail, labour hire rail WA, candidatures directes grands contractors rail",
+      "fitTags": [
+        "rail",
+        "securite",
+        "terrain",
+        "cash-upside"
+      ],
+      "nextStep": "Entrer par track maintainer, labour rail ou support gang si le TPO direct est trop haut."
+    },
+    {
+      "id": "track-maintainer",
+      "label": "Track Maintainer / Ganger",
+      "status": "live",
+      "difficulty": "low",
+      "prepWeeks": "4-6",
+      "salaryYear1": "65-80k AUD",
+      "blockingTicket": "White Card + permis C + aptitude terrain",
+      "whyGood": "Porte d'entrée rail plus basse, meilleure pour créer de la référence locale avant TPO ou rail protection.",
+      "entryVia": "John Holland, UGL, Downer, labour hire infrastructure, agences rail WA",
+      "fitTags": [
+        "terrain",
+        "rail",
+        "fast-entry"
+      ],
+      "nextStep": "Monter ensuite vers safeworking, protection, coordination ou maintenance plus technique."
+    },
+    {
+      "id": "fifo-process-operator",
+      "label": "Process Operator - FIFO Mining",
+      "status": "hard",
+      "difficulty": "high",
+      "prepWeeks": "16-24",
+      "salaryYear1": "90-120k AUD",
+      "blockingTicket": "Work rights + medical clean + roster mobility + site gate",
+      "whyGood": "Cash potentiellement fort, mais concurrence, filtres médicaux et crédibilité locale nettement plus durs.",
+      "entryVia": "WorkPac, Programmed, Chandler Macleod, contractors site services, jobs directs majors",
+      "fitTags": [
+        "remote-roster",
+        "cash-upside",
+        "meca",
+        "logistique"
+      ],
+      "nextStep": "Passer d'abord par support crew, TA ou services site si l'entrée process direct ne répond pas."
+    },
+    {
+      "id": "civil-labourer-traffic",
+      "label": "Civil Labourer / Traffic Controller",
+      "status": "entry",
+      "difficulty": "very-low",
+      "prepWeeks": "1-2",
+      "salaryYear1": "55-68k AUD",
+      "blockingTicket": "White Card + traffic control ticket WA",
+      "whyGood": "La route la plus rapide pour travailler, créer du réseau Perth et préparer une montée vers rail ou shutdown.",
+      "entryVia": "Agences construction Perth, Hays, Indeed Perth, boîtes traffic control et civils urbains",
+      "fitTags": [
+        "fast-entry",
+        "terrain",
+        "local"
+      ],
+      "nextStep": "Réinvestir ce cash et cette référence locale pour pivoter vers rail, rosters ou tickets spécifiques mieux payés."
+    }
+  ],
+  "ticketStages": [
+    {
+      "stage": "Étape 1 - obligatoire dès l'arrivée",
+      "items": [
+        {
+          "name": "White Card / CPCCWHS1001",
+          "cost": "~100 AUD",
+          "duration": "1 jour",
+          "note": "Sans ça, zéro chantier sérieux. C'est le vrai ticket semaine 1."
+        },
+        {
+          "name": "First Aid / CPR",
+          "cost": "~120-180 AUD",
+          "duration": "0.5 à 1 jour",
+          "note": "Pas toujours bloquant, mais utile pour beaucoup de rôles support ou terrain."
+        }
+      ]
+    },
+    {
+      "stage": "Étape 2 - selon la route choisie",
+      "items": [
+        {
+          "name": "Traffic Control WA",
+          "cost": "~250 AUD",
+          "duration": "1 jour",
+          "note": "Alternative rapide si tu vises le civil / voirie avant rail ou FIFO."
+        },
+        {
+          "name": "Standard 11",
+          "cost": "~300-600 AUD",
+          "duration": "2-3 jours",
+          "note": "Utile surtout pour QLD coal ou portes minières précises. Pas à acheter si tu n'as pas encore la porte."
+        },
+        {
+          "name": "Working at Heights / Confined Space / Gas Test",
+          "cost": "~250-700 AUD selon bundle",
+          "duration": "1-2 jours",
+          "note": "Tickets support souvent demandés sur shutdowns ou maintenance, mais seulement si la route le justifie."
+        }
+      ]
+    },
+    {
+      "stage": "Étape 3 - quand tu as déjà une vraie porte employeur",
+      "items": [
+        {
+          "name": "RIW / rail safeworking employer-side",
+          "cost": "souvent employer-triggered",
+          "duration": "onboarding variable",
+          "note": "Ne pas l'imaginer comme achat solo magique. Ça se débloque souvent via employeur rail."
+        },
+        {
+          "name": "HRW / RII / high-risk extras",
+          "cost": "~600-3000 AUD selon licence",
+          "duration": "plusieurs jours à semaines",
+          "note": "Coûteux. À retarder tant que le marché réel ou l'employeur ne le demande pas."
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "label": "Jours 0-7",
+      "body": "TFN, banque, SIM, White Card, CV Australie, liste d'agences Perth et premiers appels."
+    },
+    {
+      "label": "Jours 8-21",
+      "body": "First Aid, tickets de base utiles, candidature massive labour/civil/rail support, disponibilité totale."
+    },
+    {
+      "label": "Jours 22-45",
+      "body": "Premier job Perth ou support entry, collecte de références locales, lecture des vrais besoins marché."
+    },
+    {
+      "label": "Jours 46-90",
+      "body": "Pivoter proprement: rail WA, shutdowns ou FIFO support selon preuves terrain, cash, mobilité et work rights."
+    }
+  ],
+  "channels": [
+    {
+      "label": "Agences rail / shutdown",
+      "items": [
+        "Cat5 Rail",
+        "Programmed",
+        "WorkPac",
+        "Chandler Macleod",
+        "Macro Recruitment"
+      ]
+    },
+    {
+      "label": "Canaux à surveiller",
+      "items": [
+        "Seek",
+        "Jora",
+        "Indeed Perth",
+        "LinkedIn Jobs WA",
+        "Pages carrières contractors rail / civils"
+      ]
+    },
+    {
+      "label": "Angle de message",
+      "items": [
+        "Mobile immediately for Perth / regional work",
+        "White Card done and site-ready",
+        "Open to entry labour, rail support or shutdown assistant roles first"
+      ]
+    }
+  ],
+  "traps": [
+    {
+      "label": "Mythe",
+      "claim": "J'arrive en Australie et je trouve FIFO Pilbara en 2 semaines",
+      "reality": "Sans réseau, sans expérience locale et sans porte Perth-based, la vraie semaine 1 est souvent chantier, labour, support crew ou rail entry."
+    },
+    {
+      "label": "Erreur courante",
+      "claim": "Acheter Standard 11, HRW, RII et bundles chers avant même d'avoir une boîte",
+      "reality": "Beaucoup de tickets coûtent trop cher pour une utilité trop floue. White Card d'abord, employer pull ensuite."
+    },
+    {
+      "label": "Confusion cash",
+      "claim": "Lire le super comme du cash mensuel ou croire que le brut annualisé est ce qui tombe en poche",
+      "reality": "Le vrai cash se lit après impôts, rythme site, périodes creuses et dépenses d'entrée. Le super est un autre compartiment."
+    }
+  ]
+}

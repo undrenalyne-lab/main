@@ -349,6 +349,52 @@ function buildAustraliaRecommendations(countryConfig) {
     .sort((left, right) => right.matchScore - left.matchScore);
 }
 
+function buildAustraliaMissionRecommendations() {
+  const missions = homeModel.australiaGuide?.missions || [];
+  return missions
+    .map((mission) => {
+      let score = 48;
+
+      if (mission.id === "track-protection-officer") {
+        score += homeState.experienceTags.includes("rail") ? 18 : 0;
+        score += homeState.experienceTags.includes("securite") ? 10 : 0;
+        score += homeState.experienceTags.includes("elec") ? 8 : 0;
+        score += ["functional", "strong"].includes(homeState.english) ? 10 : -10;
+        score += ["national", "remote-roster"].includes(homeState.mobility) ? 8 : -4;
+        score += homeState.goals.includes("cash-upside") ? 8 : 0;
+      } else if (mission.id === "track-maintainer") {
+        score += homeState.experienceTags.includes("terrain") ? 14 : 0;
+        score += homeState.experienceTags.includes("rail") ? 12 : 0;
+        score += homeState.goals.includes("fast-entry") ? 10 : 0;
+        score += ["regional", "national", "remote-roster"].includes(homeState.mobility)
+          ? 8
+          : -3;
+      } else if (mission.id === "fifo-process-operator") {
+        score += homeState.mobility === "remote-roster" ? 18 : -8;
+        score += ["functional", "strong"].includes(homeState.english) ? 10 : -12;
+        score += homeState.goals.includes("cash-upside") ? 14 : 0;
+        score += homeState.experienceTags.includes("meca") ? 10 : 0;
+        score += homeState.experienceTags.includes("logistique") ? 8 : 0;
+      } else if (mission.id === "civil-labourer-traffic") {
+        score += homeState.goals.includes("fast-entry") ? 16 : 0;
+        score += homeState.experienceTags.includes("terrain") ? 10 : 0;
+        score += homeState.mobility === "local" ? 8 : 0;
+        score += homeState.mobility === "national" ? 4 : 0;
+      }
+
+      if (["eu", "sponsor"].includes(homeState.nationality)) {
+        score -= mission.id === "track-protection-officer" ? 6 : 0;
+        score -= mission.id === "fifo-process-operator" ? 8 : 0;
+      }
+
+      return {
+        mission,
+        matchScore: clamp(score, 0, 99),
+      };
+    })
+    .sort((left, right) => right.matchScore - left.matchScore);
+}
+
 function buildCountryContext() {
   const market =
     homeModel.worldMarketMap.get(homeState.country) || homeModel.worldMarkets[0];
@@ -370,11 +416,15 @@ function buildCountryContext() {
 
   if (market.id === "australia" && countryConfig) {
     const australiaRecommendations = buildAustraliaRecommendations(countryConfig);
+    const australiaMissionRecommendations = buildAustraliaMissionRecommendations();
     return {
       country: market,
       countryConfig,
       insights,
       australiaRecommendations,
+      australiaMissionRecommendations,
+      topMission: australiaMissionRecommendations[0]?.mission || null,
+      topMissionRecommendation: australiaMissionRecommendations[0] || null,
       topPlaybook: australiaRecommendations[0]?.playbook || null,
       topRecommendation: australiaRecommendations[0] || null,
     };
@@ -676,24 +726,24 @@ function renderHeroStats(marketScores) {
   });
 
   const active = activeMarketScores() || marketScores[0];
-  const badge = document.querySelector(".mission-console .pill");
+  const badge = document.querySelector(".mission-console .badge");
   if (badge && active) {
     badge.textContent = `${active.market.label} ${active.market.status}`;
-    badge.className = `pill is-${marketStatusTone(active.market.status)}`;
+    badge.className = `badge badge--${active.market.status === "live" ? "live" : active.market.status === "beta" ? "beta" : "locked"}`;
   }
 }
 
 function fieldGroup(fieldId) {
   if (["country", "nationality", "ageBand"].includes(fieldId)) {
-    return "Profil de base";
+    return "1. Acces et droits";
   }
   if (["mobility", "english"].includes(fieldId)) {
-    return "Mobilité et langue";
+    return "2. Mobilite reelle";
   }
   if (fieldId === "experienceTags") {
-    return "Signaux vendables";
+    return "3. Capital vendable";
   }
-  return "Objectif";
+  return "4. Arbitrage cash";
 }
 
 function renderProfileLab(context) {
@@ -714,14 +764,11 @@ function renderProfileLab(context) {
   profileLab.innerHTML = `
     <div class="panel-head">
       <div>
-        <span class="mini-label">01 · Profil</span>
-        <h3>Construis ta carte d'opérateur</h3>
+        <span class="mini-label">01 · Profiler</span>
+        <h3>Quatre blocs. Pas plus. Juste assez pour que la carte dise vrai.</h3>
       </div>
       <div class="button-row">
-        <span class="pill is-blue">Sauvegarde locale</span>
-        <button class="button secondary is-disabled" type="button" disabled>
-          Google bientôt
-        </button>
+        <span class="badge badge--data">localStorage</span>
       </div>
     </div>
     <div class="profile-progress">
@@ -736,7 +783,7 @@ function renderProfileLab(context) {
     <div class="warning-card">
       <strong>Pays actif:</strong> ${escapeHtml(context.country.label)}
       <br />
-      <strong>Watchlist:</strong> ${watchPills || "aucun pays épinglé"}
+      <strong>Watchlist:</strong> ${watchPills || "aucun pays epingle"}
     </div>
     <div class="home-profile-groups">
       ${Object.entries(grouped)
@@ -959,10 +1006,23 @@ function renderMarketDrawer(scoreItem, context) {
       ${pill(`${HEAT_LAYERS.find((layer) => layer.id === heatLayer)?.label} ${Math.round(scoreItem.layerScore)}`, marketBandTone(scoreItem.band))}
     </div>
     <h3>${escapeHtml(scoreItem.market.label)}</h3>
+    ${scoreItem.market.tagline ? `<div class="data-row"><span class="data-value">${escapeHtml(scoreItem.market.tagline)}</span><span class="data-label">Lecture courte du marche</span></div>` : ""}
     <p class="muted">${escapeHtml(scoreItem.market.summary)}</p>
     <div class="warning-card">
       <strong>Premier gate:</strong> ${escapeHtml(scoreItem.market.firstGate || scoreItem.market.unlockNote)}
     </div>
+    ${
+      scoreItem.market.missions?.length
+        ? `
+          <div>
+            <span class="mini-label">Missions visibles</span>
+            <div class="inline-links">
+              ${scoreItem.market.missions.map((mission) => pill(mission, "blue")).join("")}
+            </div>
+          </div>
+        `
+        : ""
+    }
     <div class="list">
       ${reasons
         .map(
@@ -1000,6 +1060,7 @@ function renderMarketDrawer(scoreItem, context) {
     `;
   } else if (scoreItem.market.id === "australia" && context.topRecommendation) {
     const playbook = context.topRecommendation.playbook;
+    const mission = context.topMission;
     body += `
       <div class="detail-facts">
         <div class="detail-fact">
@@ -1007,16 +1068,20 @@ function renderMarketDrawer(scoreItem, context) {
           <div>${escapeHtml(playbook.title)}</div>
         </div>
         <div class="detail-fact">
-          <span class="mini-label">Temps pour être prêt</span>
-          <div>${escapeHtml(playbook.timeToReady)}</div>
+          <span class="mini-label">Mission la plus propre</span>
+          <div>${escapeHtml(mission?.label || "a definir")}</div>
         </div>
         <div class="detail-fact">
-          <span class="mini-label">Cash stable</span>
-          <div>${escapeHtml(playbook.salarySignals?.stable || "à vérifier")}</div>
+          <span class="mini-label">Temps pour être prêt</span>
+          <div>${escapeHtml(mission?.prepWeeks ? `${mission.prepWeeks} semaines` : playbook.timeToReady)}</div>
+        </div>
+        <div class="detail-fact">
+          <span class="mini-label">Cash année 1</span>
+          <div>${escapeHtml(mission?.salaryYear1 || playbook.salarySignals?.stable || "a verifier")}</div>
         </div>
       </div>
       <div class="button-row">
-        <a class="button primary" href="./australia.html">Entrer en Australie</a>
+        <a class="button primary" href="./australia.html">Ouvrir la mission AU</a>
         <a class="button secondary" href="./sources.html">Contrôler les sources</a>
       </div>
     `;
@@ -1106,42 +1171,43 @@ function renderMissionBoard(context) {
 
   if (context.country.id === "australia") {
     const top = context.topRecommendation?.playbook;
+    const mission = context.topMission;
     missionBoard.innerHTML = `
       <span class="mini-label">Mission Australie</span>
-      <h3>Construis une porte d'entrée réaliste avant de bouger.</h3>
+      <h3>Commence par une porte Perth-based credible. Le FIFO premium vient apres.</h3>
       <div class="list">
         <div class="list-item">
           <span class="list-index">1</span>
           <div>
             <strong>Valide les work rights</strong>
-            <div>Sans work rights, White Card et FIFO restent théoriques.</div>
+            <div>Sans droits reels, White Card et FIFO restent theoriques.</div>
           </div>
         </div>
         <div class="list-item">
           <span class="list-index">2</span>
           <div>
-            <strong>Choisis un playbook d'entrée</strong>
-            <div>${escapeHtml(top ? top.title : "choisis FIFO, shutdowns ou charbon selon ton profil.")}</div>
+            <strong>Choisis une mission propre</strong>
+            <div>${escapeHtml(mission ? mission.label : "track maintainer, TPO, civil entry ou FIFO support selon ton profil.")}</div>
           </div>
         </div>
         <div class="list-item">
           <span class="list-index">3</span>
           <div>
             <strong>Monte les gates dans l'ordre</strong>
-            <div>${escapeHtml(top ? `${top.requiredTickets?.[0]?.name || "work rights"} puis ${top.requiredTickets?.[1]?.name || "ticket site"}` : "gates à clarifier")}</div>
+            <div>${escapeHtml(mission ? mission.blockingTicket : top ? `${top.requiredTickets?.[0]?.name || "work rights"} puis ${top.requiredTickets?.[1]?.name || "ticket site"}` : "gates a clarifier")}</div>
           </div>
         </div>
         <div class="list-item">
           <span class="list-index">4</span>
           <div>
             <strong>Vends-toi sur la bonne porte</strong>
-            <div>${escapeHtml(top ? top.firstRoles?.join(" · ") : "vise un premier rôle réel, pas un rêve FIFO générique.")}</div>
+            <div>${escapeHtml(mission ? mission.entryVia : top ? top.firstRoles?.join(" · ") : "vise un premier role reel, pas un reve FIFO generique.")}</div>
           </div>
         </div>
       </div>
       <div class="button-row">
         <a class="button primary" href="./australia.html">Ouvrir la mission Australie</a>
-        <a class="button secondary" href="./sources.html">Contrôler les work rights</a>
+        <a class="button secondary" href="./sources.html">Controler les work rights</a>
       </div>
     `;
     return;
@@ -1202,14 +1268,25 @@ function renderLaunchpad(context) {
 
   if (context.country.id === "australia") {
     const top = context.topRecommendation?.playbook;
+    const mission = context.topMission;
     launchpadPanel.innerHTML = `
       <span class="mini-label">Launchpad</span>
       <h3>Ce que l'Australie te donne maintenant</h3>
       <div class="warning-card">
-        <strong>Cash plausible:</strong> ${escapeHtml(top?.salarySignals?.stable || "pas de bande stable fiable sans playbook actif")}
+        <strong>Cash année 1:</strong> ${escapeHtml(mission?.salaryYear1 || top?.salarySignals?.stable || "pas de bande stable fiable sans mission active")}
         <br />
-        <strong>Temps:</strong> ${escapeHtml(top?.timeToReady || "à estimer selon work rights et gates")}
+        <strong>Prep:</strong> ${escapeHtml(mission?.prepWeeks ? `${mission.prepWeeks} semaines` : top?.timeToReady || "a estimer selon work rights et gates")}
       </div>
+      ${
+        mission
+          ? `
+            <div class="data-row">
+              <span class="data-value">${escapeHtml(mission.label)}</span>
+              <span class="data-label">${escapeHtml(mission.whyGood)}</span>
+            </div>
+          `
+          : ""
+      }
       <div class="list">
         ${context.insights
           .map(
@@ -1342,25 +1419,56 @@ function australiaPlaybookCardHtml(result) {
   `;
 }
 
+function australiaMissionCardHtml(result, isPrimary = false) {
+  const { mission } = result;
+  return `
+    <article class="result-card ${isPrimary ? "card--mission" : ""}">
+      <div class="pill-row">
+        ${pill("Australie", "orange")}
+        ${pill(mission.difficulty, mission.difficulty === "high" ? "red" : mission.difficulty === "medium" ? "gold" : "green")}
+        ${pill(`Match ${result.matchScore}`, playbookMatchTone(result.matchScore))}
+      </div>
+      <h3 class="result-title">${escapeHtml(mission.label)}</h3>
+      <p class="result-subtitle">${escapeHtml(mission.whyGood)}</p>
+      <div class="detail-facts">
+        <div class="detail-fact">
+          <span class="mini-label">Temps de prep</span>
+          <div>${escapeHtml(`${mission.prepWeeks} semaines`)}</div>
+        </div>
+        <div class="detail-fact">
+          <span class="mini-label">Cash annee 1</span>
+          <div>${escapeHtml(mission.salaryYear1)}</div>
+        </div>
+      </div>
+      <div class="warning-card">
+        <strong>Ticket bloquant:</strong> ${escapeHtml(mission.blockingTicket)}
+      </div>
+      <div class="button-row">
+        <a class="button primary" href="./australia.html">Ouvrir la mission</a>
+      </div>
+    </article>
+  `;
+}
+
 function renderFeatured(context) {
   if (context.country.id === "france") {
-    featuredTitle.textContent = "Missions France débloquées";
+    featuredTitle.textContent = "Next move recommandé";
     featuredCopy.textContent =
-      "Tu n'as pas besoin de lire 30 branches. Pars avec les 3-4 portes les plus actionnables pour ton profil actuel.";
+      "Le moteur te sort d'abord la porte la plus actionnable, puis deux alternatives proches.";
     featuredRoutes.innerHTML = context.rankedLanes
-      .slice(0, 4)
-      .map((result) => franceRouteCardHtml(result))
+      .slice(0, 3)
+      .map((result, index) => franceRouteCardHtml(result).replace('class="result-card"', `class="result-card ${index === 0 ? "card--mission" : ""}"`))
       .join("");
     return;
   }
 
   if (context.country.id === "australia") {
-    featuredTitle.textContent = "Playbooks Australie débloqués";
+    featuredTitle.textContent = "Next move recommandé";
     featuredCopy.textContent =
-      "Chaque playbook donne un ordre d'entrée, un signal de cash et une lecture des vrais gates avant de bouger.";
-    featuredRoutes.innerHTML = context.australiaRecommendations
+      "La première mission doit être lisible en une lecture: temps, cash année 1, ticket bloquant, porte d'entrée.";
+    featuredRoutes.innerHTML = context.australiaMissionRecommendations
       .slice(0, 3)
-      .map((result) => australiaPlaybookCardHtml(result))
+      .map((result, index) => australiaMissionCardHtml(result, index === 0))
       .join("");
     return;
   }

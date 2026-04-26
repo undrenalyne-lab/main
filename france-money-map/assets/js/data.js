@@ -62,9 +62,11 @@ export async function loadSourceExtras() {
     sourceExtrasCache = Promise.all([
       loadJson("australia_panels.json"),
       loadJson("australia_playbooks.json"),
-    ]).then(([australiaPanels, australiaPlaybooks]) => ({
+      loadJson("australia_guide.json"),
+    ]).then(([australiaPanels, australiaPlaybooks, australiaGuide]) => ({
       australiaPanels,
       australiaPlaybooks,
+      australiaGuide,
     }));
   }
 
@@ -94,6 +96,7 @@ export async function loadHomeModel() {
         worldMarketMap: new Map(worldMarkets.map((market) => [market.id, market])),
         australiaPanels: extras.australiaPanels,
         australiaPlaybooks: extras.australiaPlaybooks,
+        australiaGuide: extras.australiaGuide,
         australiaPlaybookMap: new Map(
           extras.australiaPlaybooks.map((playbook) => [playbook.title, playbook]),
         ),
