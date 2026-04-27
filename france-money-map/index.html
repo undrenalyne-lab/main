@@ -49,8 +49,8 @@
               pièges nommés. Pas d'inspiration. De la décision.
             </p>
             <div class="hero-actions">
-              <a class="button primary" href="#profileLab">Commencer</a>
-              <a class="button secondary" href="#worldMap">Ouvrir la carte</a>
+              <a class="button primary" href="#worldMap">Ouvrir la carte</a>
+              <a class="button secondary" href="#profileLab">Régler le profil</a>
               <a class="button secondary" href="./australia.html">Module Australie</a>
             </div>
           </div>
@@ -114,23 +114,66 @@
         </div>
       </section>
 
-      <section class="section home-mission-section">
-        <div class="mission-layout">
-          <article class="panel profile-lab-panel" id="profileLab" aria-live="polite"></article>
-          <article class="panel world-panel">
-            <div class="panel-head">
-              <div>
-                <span class="mini-label">Carte monde</span>
-                <h3>Choisis un pays. Le site doit te répondre avec un niveau d'accès, pas avec un fantasme.</h3>
-              </div>
-              <div class="chip-set heat-layer-set" id="heatLayerSet" aria-label="Couches de heat map"></div>
+      <section class="section home-map-section" aria-labelledby="worldMapTitle">
+        <article class="world-panel world-panel-prime">
+          <div class="panel-head world-panel-head">
+            <div>
+              <span class="mini-label">Carte monde interactive</span>
+              <h2 class="section-title" id="worldMapTitle">Choisis ton pays.</h2>
+              <p class="section-copy">
+                Mission, cash, gate. France live. Australie beta.
+              </p>
             </div>
-            <div class="world-panel-grid">
-              <div class="world-map-shell" id="worldMap" aria-live="polite"></div>
-              <div class="market-drawer" id="marketDrawer" aria-live="polite"></div>
-            </div>
-          </article>
+            <div class="chip-set heat-layer-set" id="heatLayerSet" aria-label="Couches de heat map"></div>
+          </div>
+          <div class="world-panel-grid">
+            <div class="world-map-shell" id="worldMap" aria-live="polite"></div>
+            <div class="market-drawer" id="marketDrawer" aria-live="polite"></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="section home-profile-section">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Profil rapide</h2>
+            <p class="section-copy">
+              Ajuste âge, droits, anglais, mobilité et signaux. La carte et les
+              missions se recalculent immédiatement.
+            </p>
+          </div>
         </div>
+        <div class="mission-layout mission-layout-profile">
+          <article class="panel profile-lab-panel" id="profileLab" aria-live="polite"></article>
+          <article class="panel launchpad-panel" id="launchpadPanel" aria-live="polite"></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Mission pays</h2>
+            <p class="section-copy">
+              Une fois le pays choisi, le moteur doit sortir une porte
+              d'entrée, un verrou et une action.
+            </p>
+          </div>
+        </div>
+        <div class="mission-launch-grid mission-launch-grid-single">
+          <article class="panel mission-board" id="missionBoard" aria-live="polite"></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="featuredTitle">Next move recommandé</h2>
+            <p class="section-copy" id="featuredCopy">
+              Le prochain move doit être compréhensible en une lecture.
+            </p>
+          </div>
+        </div>
+        <div class="card-grid card-grid-2 featured-routes-grid" id="featuredRoutes" aria-live="polite"></div>
       </section>
 
       <section class="section">
@@ -145,34 +188,6 @@
           </div>
         </div>
         <div class="market-heat-grid" id="marketHeatGrid" aria-live="polite"></div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">Mission pays</h2>
-            <p class="section-copy">
-              Une fois le pays choisi, le moteur doit sortir une porte
-              d'entrée, un verrou et une action.
-            </p>
-          </div>
-        </div>
-        <div class="mission-launch-grid">
-          <article class="panel mission-board" id="missionBoard" aria-live="polite"></article>
-          <article class="panel launchpad-panel" id="launchpadPanel" aria-live="polite"></article>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title" id="featuredTitle">Next move recommandé</h2>
-            <p class="section-copy" id="featuredCopy">
-              Le prochain move doit être compréhensible en une lecture.
-            </p>
-          </div>
-        </div>
-        <div class="card-grid card-grid-2 featured-routes-grid" id="featuredRoutes" aria-live="polite"></div>
       </section>
     </main>
 

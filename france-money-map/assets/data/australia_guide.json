@@ -26,16 +26,29 @@
       "difficulty": "medium",
       "prepWeeks": "8-12",
       "salaryYear1": "75-95k AUD",
+      "salarySignals": {
+        "low": "75-82k AUD",
+        "stable": "82-95k AUD",
+        "upside": "100-115k AUD"
+      },
+      "firstPayWindow": "4-8 semaines",
       "blockingTicket": "White Card + rail medical + sponsor RIW/safeworking",
       "whyGood": "Filière rail WA moins saturée que le FIFO fantasme, et le background ferro / sécurité se recycle mieux ici.",
       "entryVia": "Cat5 Rail, Programmed Rail, labour hire rail WA, candidatures directes grands contractors rail",
+      "firstRole": "Rail labour / track maintainer / protection support",
       "fitTags": [
         "rail",
         "securite",
         "terrain",
         "cash-upside"
       ],
-      "nextStep": "Entrer par track maintainer, labour rail ou support gang si le TPO direct est trop haut."
+      "nextStep": "Entrer par track maintainer, labour rail ou support gang si le TPO direct est trop haut.",
+      "actionsThisWeek": [
+        "Faire White Card, CV Australie et message court orienté mobilité totale.",
+        "Cibler Cat5 Rail, Programmed Rail et labour hire rail WA sans attendre la mission parfaite.",
+        "Accepter un rôle rail support si c'est la porte qui déclenche le safeworking employeur."
+      ],
+      "doesNotOpen": "N'ouvre pas automatiquement les rosters FIFO premium ni les postes rail de coordination haute responsabilité."
     },
     {
       "id": "track-maintainer",
@@ -44,15 +57,28 @@
       "difficulty": "low",
       "prepWeeks": "4-6",
       "salaryYear1": "65-80k AUD",
+      "salarySignals": {
+        "low": "65-70k AUD",
+        "stable": "70-80k AUD",
+        "upside": "82-88k AUD"
+      },
+      "firstPayWindow": "2-4 semaines",
       "blockingTicket": "White Card + permis C + aptitude terrain",
       "whyGood": "Porte d'entrée rail plus basse, meilleure pour créer de la référence locale avant TPO ou rail protection.",
       "entryVia": "John Holland, UGL, Downer, labour hire infrastructure, agences rail WA",
+      "firstRole": "Track maintainer / ganger / rail labour",
       "fitTags": [
         "terrain",
         "rail",
         "fast-entry"
       ],
-      "nextStep": "Monter ensuite vers safeworking, protection, coordination ou maintenance plus technique."
+      "nextStep": "Monter ensuite vers safeworking, protection, coordination ou maintenance plus technique.",
+      "actionsThisWeek": [
+        "Prioriser Perth et les contractors infra qui prennent des profils terrain rapidement.",
+        "Mettre en avant disponibilité régionale et discipline HSE plutôt que fantasme FIFO.",
+        "Chercher une première référence locale, même en support gang, avant de complexifier le plan."
+      ],
+      "doesNotOpen": "Ne donne pas à lui seul le safeworking haut niveau, le TPO direct ou le process mining."
     },
     {
       "id": "fifo-process-operator",
@@ -61,16 +87,29 @@
       "difficulty": "high",
       "prepWeeks": "16-24",
       "salaryYear1": "90-120k AUD",
+      "salarySignals": {
+        "low": "90-100k AUD",
+        "stable": "100-120k AUD",
+        "upside": "125-145k AUD"
+      },
+      "firstPayWindow": "6-12 semaines ou plus",
       "blockingTicket": "Work rights + medical clean + roster mobility + site gate",
       "whyGood": "Cash potentiellement fort, mais concurrence, filtres médicaux et crédibilité locale nettement plus durs.",
       "entryVia": "WorkPac, Programmed, Chandler Macleod, contractors site services, jobs directs majors",
+      "firstRole": "Support crew / services site / TA / utility side",
       "fitTags": [
         "remote-roster",
         "cash-upside",
         "meca",
         "logistique"
       ],
-      "nextStep": "Passer d'abord par support crew, TA ou services site si l'entrée process direct ne répond pas."
+      "nextStep": "Passer d'abord par support crew, TA ou services site si l'entrée process direct ne répond pas.",
+      "actionsThisWeek": [
+        "Vérifier froidement work rights, médical, anglais sécurité et capacité à tenir les rosters.",
+        "Ne pas acheter de bundles chers tant qu'une boîte ou un gate précis ne les demande pas.",
+        "Utiliser Perth support ou shutdown assistant comme marchepied si le direct ne prend pas."
+      ],
+      "doesNotOpen": "Ne s'ouvre presque jamais proprement sans preuve locale, bonne mobilité et vrai screening employeur."
     },
     {
       "id": "civil-labourer-traffic",
@@ -79,15 +118,28 @@
       "difficulty": "very-low",
       "prepWeeks": "1-2",
       "salaryYear1": "55-68k AUD",
+      "salarySignals": {
+        "low": "55-60k AUD",
+        "stable": "60-68k AUD",
+        "upside": "70-78k AUD"
+      },
+      "firstPayWindow": "1-3 semaines",
       "blockingTicket": "White Card + traffic control ticket WA",
       "whyGood": "La route la plus rapide pour travailler, créer du réseau Perth et préparer une montée vers rail ou shutdown.",
       "entryVia": "Agences construction Perth, Hays, Indeed Perth, boîtes traffic control et civils urbains",
+      "firstRole": "Traffic control / labourer / civil support",
       "fitTags": [
         "fast-entry",
         "terrain",
         "local"
       ],
-      "nextStep": "Réinvestir ce cash et cette référence locale pour pivoter vers rail, rosters ou tickets spécifiques mieux payés."
+      "nextStep": "Réinvestir ce cash et cette référence locale pour pivoter vers rail, rosters ou tickets spécifiques mieux payés.",
+      "actionsThisWeek": [
+        "White Card d'abord, puis traffic control WA seulement si la route local-entry est assumée.",
+        "Candidature massive agences Perth avec disponibilité immédiate et mobilité journalière.",
+        "Transformer la première fiche de paie en preuve locale avant de viser plus premium."
+      ],
+      "doesNotOpen": "N'ouvre pas magiquement le rail premium, le TPO ou le FIFO mining sans nouvelle preuve terrain."
     }
   ],
   "ticketStages": [

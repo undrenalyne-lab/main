@@ -911,21 +911,36 @@ function renderHeatLayerSet() {
 
 function marketNodeLabel(scoreItem) {
   if (scoreItem.market.status === "locked") {
-    return "locked";
+    return "LOCK";
   }
   return String(Math.round(scoreItem.layerScore));
 }
 
 function worldMapSvg() {
   return `
-    <svg class="world-svg" viewBox="0 0 1200 700" aria-hidden="true">
+    <svg class="world-svg" viewBox="0 0 1200 680" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="atlasLand" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="rgba(255,255,255,0.16)" />
+          <stop offset="1" stop-color="rgba(255,255,255,0.045)" />
+        </linearGradient>
+      </defs>
+      <g class="world-grid">
+        <path d="M120 80H1080M120 180H1080M120 280H1080M120 380H1080M120 480H1080M120 580H1080" />
+        <path d="M180 70V610M340 70V610M500 70V610M660 70V610M820 70V610M980 70V610" />
+      </g>
       <g class="world-land">
-        <path d="M82 170 180 108 330 124 418 182 372 258 284 270 220 334 132 326 92 256Z" />
-        <path d="M328 350 384 394 410 468 378 566 322 610 286 564 300 456Z" />
-        <path d="M528 150 594 122 676 136 690 186 650 224 588 220 548 196Z" />
-        <path d="M566 246 628 284 648 358 628 468 590 560 538 494 526 396 538 306Z" />
-        <path d="M688 160 790 124 940 144 1082 196 1124 270 1048 318 952 302 898 332 796 302 738 250Z" />
-        <path d="M894 434 966 454 1038 510 1054 572 980 610 892 586 852 520Z" />
+        <path d="M96 166 164 108 258 92 356 120 430 176 406 252 326 288 278 344 188 338 118 282Z" />
+        <path d="M318 346 382 392 424 474 388 590 322 626 282 562 300 456Z" />
+        <path d="M500 134 570 96 676 112 724 162 678 226 590 226 528 190Z" />
+        <path d="M548 244 632 278 674 354 640 486 584 578 528 494 516 388Z" />
+        <path d="M704 140 806 102 954 120 1098 184 1140 262 1074 326 956 304 902 352 792 310 734 244Z" />
+        <path d="M876 430 970 452 1060 512 1072 586 990 626 884 588 830 516Z" />
+      </g>
+      <g class="world-routes">
+        <path d="M570 220 C650 260 736 334 1004 496" />
+        <path d="M210 174 C340 154 456 176 578 214" />
+        <path d="M628 292 C694 320 756 366 786 420" />
       </g>
     </svg>
   `;
@@ -933,30 +948,82 @@ function worldMapSvg() {
 
 function renderWorldMap(marketScores) {
   const selected = activeMarketScores() || marketScores[0];
+  const sortedMarkets = [...marketScores].sort((left, right) => {
+    if (left.market.status === right.market.status) {
+      return right.layerScore - left.layerScore;
+    }
+    return { live: 0, beta: 1, locked: 2 }[left.market.status] - { live: 0, beta: 1, locked: 2 }[right.market.status];
+  });
+
   worldMap.innerHTML = `
     <div class="world-map-stage">
-      ${worldMapSvg()}
-      <div class="world-map-legend">
-        <span class="pill is-green">Live</span>
-        <span class="pill is-gold">Beta</span>
-        <span class="pill is-red">Locked</span>
+      <div class="world-map-canvas" role="img" aria-label="Carte mondiale des marchés Backchannel Atlas">
+        ${worldMapSvg()}
+        <div class="world-map-legend">
+          <span class="pill is-green">Live</span>
+          <span class="pill is-gold">Beta</span>
+          <span class="pill is-red">Locked</span>
+        </div>
+        ${marketScores
+          .map(
+            (item) => `
+              <button
+                class="atlas-pin atlas-pin-${item.market.status} atlas-band-${item.band} ${item.market.id === selected.market.id ? "is-focused" : ""} ${watchMarketList().includes(item.market.id) ? "is-watched" : ""}"
+                type="button"
+                style="left:${item.market.coords.x}%; top:${item.market.coords.y}%"
+                data-market-focus="${item.market.id}"
+                aria-label="${escapeHtml(item.market.label)} ${escapeHtml(item.market.status)} score ${escapeHtml(marketNodeLabel(item))}"
+                title="${escapeHtml(`${item.market.label} · ${item.market.status} · ${marketNodeLabel(item)}`)}"
+              >
+                <span class="atlas-pin-dot" aria-hidden="true"></span>
+                <span class="atlas-pin-meta">
+                  <span class="atlas-pin-code">${escapeHtml(item.market.label.slice(0, 3).toUpperCase())}</span>
+                  <span class="atlas-pin-score">${escapeHtml(marketNodeLabel(item))}</span>
+                </span>
+              </button>
+            `,
+          )
+          .join("")}
       </div>
-      ${marketScores
-        .map(
-          (item) => `
-            <button
-              class="atlas-node atlas-node-${item.market.status} atlas-band-${item.band} ${item.market.id === selected.market.id ? "is-focused" : ""} ${watchMarketList().includes(item.market.id) ? "is-watched" : ""}"
-              type="button"
-              style="left:${item.market.coords.x}%; top:${item.market.coords.y}%"
-              data-market-focus="${item.market.id}"
-              aria-label="${escapeHtml(item.market.label)} ${escapeHtml(item.market.status)}"
-            >
-              <span class="atlas-node-code">${escapeHtml(item.market.label.slice(0, 2).toUpperCase())}</span>
-              <span class="atlas-node-score">${escapeHtml(marketNodeLabel(item))}</span>
-            </button>
-          `,
-        )
-        .join("")}
+      <div class="world-map-dock" aria-label="Marchés visibles">
+        ${sortedMarkets
+          .slice(0, 6)
+          .map(
+            (item) => `
+              <button
+                class="world-dock-item ${item.market.id === selected.market.id ? "is-active" : ""}"
+                type="button"
+                data-market-focus="${item.market.id}"
+              >
+                <span>${escapeHtml(item.market.label)}</span>
+                <strong>${escapeHtml(marketNodeLabel(item))}</strong>
+              </button>
+            `,
+          )
+          .join("")}
+      </div>
+    </div>
+  `;
+}
+
+function australiaSalaryBoxHtml(label, value, tone = "") {
+  const className = tone ? `money-value is-${tone}` : "money-value";
+  return `
+    <div class="money-box money-box-au">
+      <span class="mini-label">${escapeHtml(label)}</span>
+      <strong class="${className}">${escapeHtml(value || "à vérifier")}</strong>
+      <div class="muted">brut annuel plausible · beta</div>
+    </div>
+  `;
+}
+
+function australiaMissionMoneyRow(mission) {
+  const signals = mission.salarySignals || {};
+  return `
+    <div class="money-row">
+      ${australiaSalaryBoxHtml("Bas", signals.low || mission.salaryYear1, "blue")}
+      ${australiaSalaryBoxHtml("Stable", signals.stable || mission.salaryYear1, "gold")}
+      ${australiaSalaryBoxHtml("Upside", signals.upside || mission.salaryYear1, "green")}
     </div>
   `;
 }
@@ -1062,24 +1129,34 @@ function renderMarketDrawer(scoreItem, context) {
     const playbook = context.topRecommendation.playbook;
     const mission = context.topMission;
     body += `
+      ${mission ? australiaMissionMoneyRow(mission) : ""}
       <div class="detail-facts">
         <div class="detail-fact">
-          <span class="mini-label">Playbook top 1</span>
-          <div>${escapeHtml(playbook.title)}</div>
+          <span class="mini-label">Mission top 1</span>
+          <div>${escapeHtml(mission?.label || playbook.title)}</div>
         </div>
         <div class="detail-fact">
-          <span class="mini-label">Mission la plus propre</span>
-          <div>${escapeHtml(mission?.label || "a definir")}</div>
+          <span class="mini-label">Premier job plausible</span>
+          <div>${escapeHtml(mission?.firstRole || playbook.firstRoles?.[0] || "à confirmer")}</div>
         </div>
         <div class="detail-fact">
           <span class="mini-label">Temps pour être prêt</span>
           <div>${escapeHtml(mission?.prepWeeks ? `${mission.prepWeeks} semaines` : playbook.timeToReady)}</div>
         </div>
         <div class="detail-fact">
-          <span class="mini-label">Cash année 1</span>
-          <div>${escapeHtml(mission?.salaryYear1 || playbook.salarySignals?.stable || "a verifier")}</div>
+          <span class="mini-label">Première paie</span>
+          <div>${escapeHtml(mission?.firstPayWindow || "dépend du gate employeur")}</div>
         </div>
       </div>
+      ${
+        mission
+          ? `
+            <div class="warning-card">
+              <strong>Ticket bloquant:</strong> ${escapeHtml(mission.blockingTicket)}
+            </div>
+          `
+          : ""
+      }
       <div class="button-row">
         <a class="button primary" href="./australia.html">Ouvrir la mission AU</a>
         <a class="button secondary" href="./sources.html">Contrôler les sources</a>
@@ -1430,14 +1507,19 @@ function australiaMissionCardHtml(result, isPrimary = false) {
       </div>
       <h3 class="result-title">${escapeHtml(mission.label)}</h3>
       <p class="result-subtitle">${escapeHtml(mission.whyGood)}</p>
+      ${australiaMissionMoneyRow(mission)}
       <div class="detail-facts">
         <div class="detail-fact">
           <span class="mini-label">Temps de prep</span>
           <div>${escapeHtml(`${mission.prepWeeks} semaines`)}</div>
         </div>
         <div class="detail-fact">
-          <span class="mini-label">Cash annee 1</span>
-          <div>${escapeHtml(mission.salaryYear1)}</div>
+          <span class="mini-label">Premier job</span>
+          <div>${escapeHtml(mission.firstRole || "à confirmer")}</div>
+        </div>
+        <div class="detail-fact">
+          <span class="mini-label">Première paie</span>
+          <div>${escapeHtml(mission.firstPayWindow || "variable")}</div>
         </div>
       </div>
       <div class="warning-card">

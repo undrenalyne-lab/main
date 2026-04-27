@@ -212,6 +212,28 @@ function playbookTone(score) {
   return "red";
 }
 
+function salaryBoxHtml(label, value, tone = "") {
+  const className = tone ? `money-value is-${tone}` : "money-value";
+  return `
+    <div class="money-box money-box-au">
+      <span class="mini-label">${escapeHtml(label)}</span>
+      <strong class="${className}">${escapeHtml(value || "à vérifier")}</strong>
+      <div class="muted">brut annuel plausible · beta</div>
+    </div>
+  `;
+}
+
+function salaryRowHtml(mission) {
+  const signals = mission.salarySignals || {};
+  return `
+    <div class="money-row">
+      ${salaryBoxHtml("Bas", signals.low || mission.salaryYear1, "blue")}
+      ${salaryBoxHtml("Stable", signals.stable || mission.salaryYear1, "gold")}
+      ${salaryBoxHtml("Upside", signals.upside || mission.salaryYear1, "green")}
+    </div>
+  `;
+}
+
 function renderGuidePanels(fieldMap, homeState, insights, topMission, topPlaybook, guide) {
   auSnapshotPanel.innerHTML = `
     <span class="mini-label">Snapshot compact</span>
@@ -226,10 +248,11 @@ function renderGuidePanels(fieldMap, homeState, insights, topMission, topPlayboo
       <span class="data-value">${escapeHtml(topMission?.label || "profil a regler")}</span>
       <span class="data-label">${
         topMission
-          ? escapeHtml(`Mission la plus propre maintenant · ${topMission.salaryYear1}`)
+          ? escapeHtml(`Mission la plus propre maintenant · stable ${topMission.salarySignals?.stable || topMission.salaryYear1}`)
           : "Regle le profil sur le hub pour lire une mission propre."
       }</span>
     </div>
+    ${topMission ? salaryRowHtml(topMission) : ""}
     ${
       topPlaybook
         ? `
@@ -291,22 +314,27 @@ function renderGuidePanels(fieldMap, homeState, insights, topMission, topPlayboo
 function renderMissions(rankedMissions) {
   auMissionGrid.innerHTML = rankedMissions
     .map(
-      (entry) => `
-        <article class="card source-card card--mission au-playbook-card">
+      (entry, index) => `
+        <article class="card source-card card--mission au-mission-card ${index === 0 ? "is-primary" : ""}">
           <div class="pill-row">
             <span class="badge ${entry.mission.status === "live" ? "badge--live" : entry.mission.status === "beta" ? "badge--beta" : "badge--data"}">${escapeHtml(entry.mission.status)}</span>
             ${pill(`Match ${entry.matchScore}`, playbookTone(entry.matchScore))}
             ${pill(entry.mission.difficulty, missionDifficultyTone(entry.mission.difficulty))}
           </div>
           <h3>${escapeHtml(entry.mission.label)}</h3>
+          ${salaryRowHtml(entry.mission)}
           <div class="detail-facts">
             <div class="detail-fact">
               <span class="mini-label">Preparation</span>
               <div>${escapeHtml(`${entry.mission.prepWeeks} semaines`)}</div>
             </div>
             <div class="detail-fact">
-              <span class="mini-label">Cash annee 1</span>
-              <div>${escapeHtml(entry.mission.salaryYear1)}</div>
+              <span class="mini-label">Premiere paie</span>
+              <div>${escapeHtml(entry.mission.firstPayWindow || "variable")}</div>
+            </div>
+            <div class="detail-fact">
+              <span class="mini-label">Premier role</span>
+              <div>${escapeHtml(entry.mission.firstRole || "a confirmer")}</div>
             </div>
           </div>
           <div class="warning-card">
@@ -322,8 +350,27 @@ function renderMissions(rankedMissions) {
               <p class="muted">${escapeHtml(entry.mission.entryVia)}</p>
             </section>
             <section class="playbook-section">
+              <span class="mini-label">Actions cette semaine</span>
+              <div class="list">
+                ${(entry.mission.actionsThisWeek || [])
+                  .map(
+                    (action, actionIndex) => `
+                      <div class="list-item">
+                        <span class="list-index">${actionIndex + 1}</span>
+                        <div>${escapeHtml(action)}</div>
+                      </div>
+                    `,
+                  )
+                  .join("")}
+              </div>
+            </section>
+            <section class="playbook-section">
               <span class="mini-label">Next step</span>
               <p class="muted">${escapeHtml(entry.mission.nextStep)}</p>
+            </section>
+            <section class="playbook-section">
+              <span class="mini-label">Ce que ca n'ouvre pas</span>
+              <p class="muted">${escapeHtml(entry.mission.doesNotOpen || "Pas de raccourci automatique vers les postes premium sans preuve locale.")}</p>
             </section>
           </div>
         </article>

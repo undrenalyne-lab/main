@@ -48,10 +48,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  min-width: 0;
   padding: 14px 0;
 }
 
 .brand {
+  min-width: 0;
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -96,6 +98,7 @@
   gap: 8px;
   flex-wrap: wrap;
   justify-content: flex-end;
+  min-width: 0;
 }
 
 .page-hero {
@@ -138,6 +141,20 @@
   .grid-2,
   .split-layout {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 719px) {
+  .nav-row {
+    flex-wrap: wrap;
+  }
+
+  .site-nav {
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 2px;
   }
 }
 
