@@ -79,8 +79,9 @@ export async function loadHomeModel() {
       loadJson("home_onboarding_schema.json"),
       loadJson("home_country_configs.json"),
       loadJson("world_markets.json"),
+      loadJson("world_countries_110m.geojson"),
       loadSourceExtras(),
-    ]).then(([schema, countryConfigData, worldMarketData, extras]) => {
+    ]).then(([schema, countryConfigData, worldMarketData, worldCountryData, extras]) => {
       const countries = countryConfigData.countries || [];
       const fields = schema.fields || [];
       const worldMarkets = worldMarketData.markets || [];
@@ -93,6 +94,7 @@ export async function loadHomeModel() {
         countries,
         countryMap: new Map(countries.map((country) => [country.id, country])),
         worldMarkets,
+        worldCountries: worldCountryData.features || [],
         worldMarketMap: new Map(worldMarkets.map((market) => [market.id, market])),
         australiaPanels: extras.australiaPanels,
         australiaPlaybooks: extras.australiaPlaybooks,

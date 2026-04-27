@@ -173,6 +173,30 @@ function scoreMission(homeState, mission) {
     score += homeState.goals.includes("fast-entry") ? 16 : 0;
     score += homeState.experienceTags.includes("terrain") ? 10 : 0;
     score += ["local", "regional", "national"].includes(homeState.mobility) ? 8 : 0;
+  } else if (mission.id === "shutdown-trade-assistant") {
+    score += homeState.experienceTags.includes("terrain") ? 10 : 0;
+    score += homeState.experienceTags.includes("meca") ? 12 : 0;
+    score += homeState.experienceTags.includes("hauteur") ? 12 : 0;
+    score += ["national", "remote-roster"].includes(homeState.mobility) ? 12 : -4;
+    score += homeState.goals.includes("cash-upside") ? 12 : 0;
+  } else if (mission.id === "fifo-utility-site-services") {
+    score += homeState.mobility === "remote-roster" ? 14 : -4;
+    score += homeState.goals.includes("fast-entry") ? 12 : 0;
+    score += homeState.goals.includes("cash-upside") ? 8 : 0;
+    score += homeState.experienceTags.includes("logistique") ? 8 : 0;
+    score += ["functional", "strong"].includes(homeState.english) ? 8 : -6;
+  } else if (mission.id === "scaffold-rigger-hrw") {
+    score += homeState.experienceTags.includes("hauteur") ? 18 : -6;
+    score += homeState.experienceTags.includes("terrain") ? 8 : 0;
+    score += homeState.goals.includes("cash-upside") ? 14 : 0;
+    score += homeState.goals.includes("low-competition") ? 8 : 0;
+    score += ["national", "remote-roster"].includes(homeState.mobility) ? 8 : -4;
+  } else if (mission.id === "yard-logistics-hr-hc") {
+    score += homeState.experienceTags.includes("logistique") ? 16 : 0;
+    score += homeState.experienceTags.includes("terrain") ? 8 : 0;
+    score += homeState.goals.includes("reuse-experience") ? 10 : 0;
+    score += homeState.goals.includes("fast-entry") ? 8 : 0;
+    score += ["regional", "national"].includes(homeState.mobility) ? 8 : 0;
   }
 
   if (["eu", "sponsor"].includes(homeState.nationality)) {
@@ -234,6 +258,26 @@ function salaryRowHtml(mission) {
   `;
 }
 
+function cadenceFactsHtml(mission) {
+  const cadence = mission.payCadence || {};
+  return `
+    <div class="detail-facts detail-facts-cadence">
+      <div class="detail-fact">
+        <span class="mini-label">Mois brut</span>
+        <div>${escapeHtml(cadence.monthlyGross || "à confirmer")}</div>
+      </div>
+      <div class="detail-fact">
+        <span class="mini-label">Semaine brute</span>
+        <div>${escapeHtml(cadence.weeklyGross || "à confirmer")}</div>
+      </div>
+      <div class="detail-fact">
+        <span class="mini-label">Première paie</span>
+        <div>${escapeHtml(mission.firstPayWindow || "variable")}</div>
+      </div>
+    </div>
+  `;
+}
+
 function renderGuidePanels(fieldMap, homeState, insights, topMission, topPlaybook, guide) {
   auSnapshotPanel.innerHTML = `
     <span class="mini-label">Snapshot compact</span>
@@ -253,6 +297,7 @@ function renderGuidePanels(fieldMap, homeState, insights, topMission, topPlayboo
       }</span>
     </div>
     ${topMission ? salaryRowHtml(topMission) : ""}
+    ${topMission ? cadenceFactsHtml(topMission) : ""}
     ${
       topPlaybook
         ? `
@@ -323,14 +368,11 @@ function renderMissions(rankedMissions) {
           </div>
           <h3>${escapeHtml(entry.mission.label)}</h3>
           ${salaryRowHtml(entry.mission)}
+          ${cadenceFactsHtml(entry.mission)}
           <div class="detail-facts">
             <div class="detail-fact">
               <span class="mini-label">Preparation</span>
               <div>${escapeHtml(`${entry.mission.prepWeeks} semaines`)}</div>
-            </div>
-            <div class="detail-fact">
-              <span class="mini-label">Premiere paie</span>
-              <div>${escapeHtml(entry.mission.firstPayWindow || "variable")}</div>
             </div>
             <div class="detail-fact">
               <span class="mini-label">Premier role</span>

@@ -1020,6 +1020,7 @@
 .page-home .world-panel-prime {
   display: grid;
   gap: 16px;
+  align-content: start;
   padding: clamp(14px, 2vw, 22px);
   min-height: calc(100svh - 126px);
   border-radius: var(--radius);
@@ -1032,11 +1033,15 @@
 }
 
 .page-home .world-panel-head > div {
+  display: grid;
+  gap: 10px;
   min-width: 0;
 }
 
+.page-home .world-panel-head .mini-label,
 .page-home .world-panel-head .section-title,
 .page-home .world-panel-head .section-copy {
+  margin: 0;
   max-width: 100%;
   overflow-wrap: anywhere;
 }
@@ -1157,6 +1162,34 @@
   stroke: rgba(255, 255, 255, 0.16);
   stroke-width: 2;
   vector-effect: non-scaling-stroke;
+}
+
+.page-home .world-country {
+  fill: rgba(241, 245, 249, 0.055);
+  stroke: rgba(241, 245, 249, 0.18);
+  stroke-width: 0.7;
+  vector-effect: non-scaling-stroke;
+}
+
+.page-home .world-country.is-market {
+  fill: rgba(255, 125, 48, 0.11);
+  stroke: rgba(255, 125, 48, 0.38);
+  stroke-width: 1.2;
+}
+
+.page-home .world-country.is-live {
+  fill: rgba(44, 211, 154, 0.13);
+  stroke: rgba(44, 211, 154, 0.42);
+}
+
+.page-home .world-country.is-beta {
+  fill: rgba(102, 170, 255, 0.13);
+  stroke: rgba(102, 170, 255, 0.42);
+}
+
+.page-home .world-country.is-locked {
+  fill: rgba(255, 255, 255, 0.05);
+  stroke: rgba(255, 255, 255, 0.18);
 }
 
 .page-home .world-routes path {
@@ -1458,7 +1491,7 @@
 }
 
 .page-australia .au-mission-grid {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
 .page-australia .au-mission-card {
@@ -1477,7 +1510,7 @@
 .page-australia .au-mission-card h3 {
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(1.75rem, 4vw, 2.55rem);
+  font-size: clamp(1.45rem, 2.8vw, 2.05rem);
   line-height: 0.96;
   overflow-wrap: anywhere;
 }
@@ -1485,6 +1518,22 @@
 .money-box-au .money-value {
   font-size: clamp(1.28rem, 3vw, 1.82rem);
   letter-spacing: 0;
+}
+
+.detail-facts-cadence {
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+}
+
+.detail-facts-cadence .detail-fact {
+  border-color: rgba(255, 125, 48, 0.12);
+  background: rgba(255, 125, 48, 0.045);
+}
+
+.detail-facts-cadence .detail-fact div {
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  line-height: 1.2;
 }
 
 @media (min-width: 900px) {
@@ -1628,6 +1677,65 @@
   }
 
   .page-australia .salary-ladder-row {
+    grid-template-columns: 1fr;
+  }
+
+  .page-australia {
+    overflow-x: hidden;
+  }
+
+  .page-australia .shell {
+    width: calc(100vw - 28px);
+    max-width: calc(100vw - 28px);
+  }
+
+  .page-australia .page-hero,
+  .page-australia .hero-grid,
+  .page-australia .content-grid,
+  .page-australia .panel,
+  .page-australia .card,
+  .page-australia .source-card,
+  .page-australia .decision-hero-panel {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .page-australia p,
+  .page-australia h1,
+  .page-australia h2,
+  .page-australia h3,
+  .page-australia .hero-copy,
+  .page-australia .list-item div {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .page-australia .display-title {
+    max-width: 100%;
+    font-size: clamp(2.35rem, 11vw, 3.05rem);
+    overflow-wrap: anywhere;
+  }
+
+  .page-australia .display-title .accent {
+    display: block;
+  }
+
+  .page-australia .button-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .page-australia .button-row .button {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .page-australia .money-row,
+  .page-australia .detail-facts {
     grid-template-columns: 1fr;
   }
 }

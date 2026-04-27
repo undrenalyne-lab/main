@@ -31,6 +31,10 @@
         "stable": "82-95k AUD",
         "upside": "100-115k AUD"
       },
+      "payCadence": {
+        "monthlyGross": "6.8-7.9k AUD/mois brut",
+        "weeklyGross": "1.6-1.8k AUD/semaine brut"
+      },
       "firstPayWindow": "4-8 semaines",
       "blockingTicket": "White Card + rail medical + sponsor RIW/safeworking",
       "whyGood": "Filière rail WA moins saturée que le FIFO fantasme, et le background ferro / sécurité se recycle mieux ici.",
@@ -62,6 +66,10 @@
         "stable": "70-80k AUD",
         "upside": "82-88k AUD"
       },
+      "payCadence": {
+        "monthlyGross": "5.8-6.7k AUD/mois brut",
+        "weeklyGross": "1.35-1.55k AUD/semaine brut"
+      },
       "firstPayWindow": "2-4 semaines",
       "blockingTicket": "White Card + permis C + aptitude terrain",
       "whyGood": "Porte d'entrée rail plus basse, meilleure pour créer de la référence locale avant TPO ou rail protection.",
@@ -91,6 +99,10 @@
         "low": "90-100k AUD",
         "stable": "100-120k AUD",
         "upside": "125-145k AUD"
+      },
+      "payCadence": {
+        "monthlyGross": "8.3-10k AUD/mois brut",
+        "weeklyGross": "1.9-2.3k AUD/semaine brut"
       },
       "firstPayWindow": "6-12 semaines ou plus",
       "blockingTicket": "Work rights + medical clean + roster mobility + site gate",
@@ -123,6 +135,10 @@
         "stable": "60-68k AUD",
         "upside": "70-78k AUD"
       },
+      "payCadence": {
+        "monthlyGross": "5.0-5.7k AUD/mois brut",
+        "weeklyGross": "1.15-1.3k AUD/semaine brut"
+      },
       "firstPayWindow": "1-3 semaines",
       "blockingTicket": "White Card + traffic control ticket WA",
       "whyGood": "La route la plus rapide pour travailler, créer du réseau Perth et préparer une montée vers rail ou shutdown.",
@@ -140,6 +156,126 @@
         "Transformer la première fiche de paie en preuve locale avant de viser plus premium."
       ],
       "doesNotOpen": "N'ouvre pas magiquement le rail premium, le TPO ou le FIFO mining sans nouvelle preuve terrain."
+    },
+    {
+      "id": "shutdown-trade-assistant",
+      "label": "Shutdown Trade Assistant",
+      "status": "beta",
+      "difficulty": "medium",
+      "prepWeeks": "3-8",
+      "salaryYear1": "70-100k AUD",
+      "salarySignals": {
+        "low": "70-80k AUD",
+        "stable": "80-100k AUD",
+        "upside": "105-125k AUD"
+      },
+      "payCadence": {
+        "monthlyGross": "6.7-8.3k AUD/mois brut",
+        "weeklyGross": "1.55-1.9k AUD/semaine brut"
+      },
+      "firstPayWindow": "3-6 semaines",
+      "blockingTicket": "White Card + Working at Heights + Confined Space / Gas Test selon site",
+      "whyGood": "Bonne porte pour profils terrain/meca/hauteur qui veulent capter des périodes intenses sans viser direct process operator.",
+      "entryVia": "Programmed, WorkPac, shutdown contractors, maintenance contractors WA",
+      "firstRole": "Trade assistant / shutdown labour / maintenance support",
+      "fitTags": ["terrain", "meca", "hauteur", "cash-upside"],
+      "nextStep": "Transformer les références shutdown en TA récurrent puis spécialiser vers rigging, scaffolding, mechanical fitting ou operator.",
+      "actionsThisWeek": [
+        "Préparer CV site-ready orienté disponibilité roster et sécurité.",
+        "Ne prendre Heights/Confined/Gas Test que si tu vises shutdown ou maintenance support.",
+        "Scanner les agences shutdown WA chaque jour avec disponibilité immédiate."
+      ],
+      "doesNotOpen": "Ne remplace pas un trade licence australien et ne garantit pas un roster minier long."
+    },
+    {
+      "id": "fifo-utility-site-services",
+      "label": "FIFO Utility / Site Services",
+      "status": "entry",
+      "difficulty": "low",
+      "prepWeeks": "2-6",
+      "salaryYear1": "65-85k AUD",
+      "salarySignals": {
+        "low": "65-72k AUD",
+        "stable": "72-85k AUD",
+        "upside": "88-95k AUD"
+      },
+      "payCadence": {
+        "monthlyGross": "6.0-7.1k AUD/mois brut",
+        "weeklyGross": "1.38-1.63k AUD/semaine brut"
+      },
+      "firstPayWindow": "3-8 semaines",
+      "blockingTicket": "Work rights + police check + medical + capacité roster",
+      "whyGood": "Une des portes FIFO les plus réalistes sans trade australien: moins glamour, mais vrai accès site et références locales.",
+      "entryVia": "Sodexo, Compass, ISS, Ventia, Hays, agences hospitality mining",
+      "firstRole": "Utility worker / cleaner / kitchen hand / housekeeper site",
+      "fitTags": ["remote-roster", "fast-entry", "logistique", "cash-upside"],
+      "nextStep": "Utiliser l'accès site pour pivoter vers stores, TA, shutdown support ou operator si preuves et réseau suivent.",
+      "actionsThisWeek": [
+        "Vérifier casier, médical, anglais consignes et capacité à vivre en camp.",
+        "Candidater sur site services en assumant utility plutôt que process direct.",
+        "Préparer disponibilité roster et références hospitality/logistique si possible."
+      ],
+      "doesNotOpen": "Ne donne pas automatiquement un poste technique minier ou process; c'est une porte d'accès site."
+    },
+    {
+      "id": "scaffold-rigger-hrw",
+      "label": "Scaffold / Rigger HRW Path",
+      "status": "hard",
+      "difficulty": "high",
+      "prepWeeks": "8-20",
+      "salaryYear1": "80-120k AUD",
+      "salarySignals": {
+        "low": "80-95k AUD",
+        "stable": "95-120k AUD",
+        "upside": "125-150k AUD"
+      },
+      "payCadence": {
+        "monthlyGross": "7.9-10k AUD/mois brut",
+        "weeklyGross": "1.82-2.3k AUD/semaine brut"
+      },
+      "firstPayWindow": "6-12 semaines ou plus",
+      "blockingTicket": "White Card + Working at Heights + HRW licence adaptée + expérience site",
+      "whyGood": "Très bon plafond cash pour profils hauteur/chantier, mais l'achat de licence sans porte employeur peut coûter cher.",
+      "entryVia": "Scaffolding contractors, shutdown contractors, industrial maintenance, labour hire spécialisée",
+      "firstRole": "Scaffold labourer / yard hand / trade assistant before HRW",
+      "fitTags": ["hauteur", "terrain", "cash-upside", "low-competition"],
+      "nextStep": "Commencer support/yard/labour, puis passer HRW quand une boîte ou une demande claire justifie l'investissement.",
+      "actionsThisWeek": [
+        "Tester d'abord l'appétence hauteur/chantier et la réalité médicale.",
+        "Lister les contractors scaffolding/rigging WA avant d'acheter HRW.",
+        "Chercher une porte labour qui finance ou valide la licence."
+      ],
+      "doesNotOpen": "La licence HRW seule ne crée pas l'expérience site ni l'accès shutdown premium."
+    },
+    {
+      "id": "yard-logistics-hr-hc",
+      "label": "Yard / Logistics / HR-HC Truck Path",
+      "status": "beta",
+      "difficulty": "medium",
+      "prepWeeks": "4-16",
+      "salaryYear1": "65-95k AUD",
+      "salarySignals": {
+        "low": "65-75k AUD",
+        "stable": "75-95k AUD",
+        "upside": "100-115k AUD"
+      },
+      "payCadence": {
+        "monthlyGross": "6.25-7.9k AUD/mois brut",
+        "weeklyGross": "1.44-1.82k AUD/semaine brut"
+      },
+      "firstPayWindow": "3-10 semaines",
+      "blockingTicket": "Work rights + licence de conduite locale adaptée + expérience logistique",
+      "whyGood": "Route plus lisible pour profils logistique/terrain qui veulent une entrée moins technique que maintenance ou rail.",
+      "entryVia": "Transport yards, hire companies, mining supply, civil logistics, labour hire Perth",
+      "firstRole": "Yard hand / stores / delivery support / HR-HC pathway",
+      "fitTags": ["logistique", "terrain", "fast-entry", "reuse-experience"],
+      "nextStep": "Monter vers HR/HC/MC, stores site, mobilisation shutdown ou supply chain mining.",
+      "actionsThisWeek": [
+        "Vérifier conversion/permis, TFN, disponibilité et zones industrielles autour de Perth.",
+        "Cibler yards et boîtes supply plutôt que majors mining au début.",
+        "Construire une référence locale avant licence lourde coûteuse."
+      ],
+      "doesNotOpen": "Ne remplace pas MC/road train expérimenté; c'est une route d'entrée logistique progressive."
     }
   ],
   "ticketStages": [

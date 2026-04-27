@@ -21,6 +21,8 @@ const HEAT_LAYERS = [
   { id: "cash-ceiling", label: "Cash ceiling" },
   { id: "entry-speed", label: "Entry speed" },
 ];
+const WORLD_WIDTH = 1200;
+const WORLD_HEIGHT = 620;
 
 const heroStats = document.getElementById("heroStats");
 const missionRail = document.getElementById("missionRail");
@@ -40,6 +42,7 @@ let homeModel;
 let homeState;
 let watchMarkets = [];
 let heatLayer = DEFAULT_HEAT_LAYER;
+let worldMapSvgMarkup;
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -380,6 +383,30 @@ function buildAustraliaMissionRecommendations() {
         score += homeState.experienceTags.includes("terrain") ? 10 : 0;
         score += homeState.mobility === "local" ? 8 : 0;
         score += homeState.mobility === "national" ? 4 : 0;
+      } else if (mission.id === "shutdown-trade-assistant") {
+        score += homeState.experienceTags.includes("terrain") ? 10 : 0;
+        score += homeState.experienceTags.includes("meca") ? 12 : 0;
+        score += homeState.experienceTags.includes("hauteur") ? 12 : 0;
+        score += ["national", "remote-roster"].includes(homeState.mobility) ? 12 : -4;
+        score += homeState.goals.includes("cash-upside") ? 12 : 0;
+      } else if (mission.id === "fifo-utility-site-services") {
+        score += homeState.mobility === "remote-roster" ? 14 : -4;
+        score += homeState.goals.includes("fast-entry") ? 12 : 0;
+        score += homeState.goals.includes("cash-upside") ? 8 : 0;
+        score += homeState.experienceTags.includes("logistique") ? 8 : 0;
+        score += ["functional", "strong"].includes(homeState.english) ? 8 : -6;
+      } else if (mission.id === "scaffold-rigger-hrw") {
+        score += homeState.experienceTags.includes("hauteur") ? 18 : -6;
+        score += homeState.experienceTags.includes("terrain") ? 8 : 0;
+        score += homeState.goals.includes("cash-upside") ? 14 : 0;
+        score += homeState.goals.includes("low-competition") ? 8 : 0;
+        score += ["national", "remote-roster"].includes(homeState.mobility) ? 8 : -4;
+      } else if (mission.id === "yard-logistics-hr-hc") {
+        score += homeState.experienceTags.includes("logistique") ? 16 : 0;
+        score += homeState.experienceTags.includes("terrain") ? 8 : 0;
+        score += homeState.goals.includes("reuse-experience") ? 10 : 0;
+        score += homeState.goals.includes("fast-entry") ? 8 : 0;
+        score += ["regional", "national"].includes(homeState.mobility) ? 8 : 0;
       }
 
       if (["eu", "sponsor"].includes(homeState.nationality)) {
@@ -916,34 +943,85 @@ function marketNodeLabel(scoreItem) {
   return String(Math.round(scoreItem.layerScore));
 }
 
+function projectLonLat(lon, lat) {
+  return {
+    x: ((Number(lon) + 180) / 360) * WORLD_WIDTH,
+    y: ((90 - Number(lat)) / 180) * WORLD_HEIGHT,
+  };
+}
+
+function projectPoint(point) {
+  const [lon, lat] = point;
+  return projectLonLat(lon, lat);
+}
+
+function ringPath(points = []) {
+  return points
+    .map((point, index) => {
+      const projected = projectPoint(point);
+      const command = index === 0 ? "M" : "L";
+      return `${command}${projected.x.toFixed(1)} ${projected.y.toFixed(1)}`;
+    })
+    .join(" ");
+}
+
+function geometryPath(geometry) {
+  if (!geometry) {
+    return "";
+  }
+  if (geometry.type === "Polygon") {
+    return geometry.coordinates.map((ring) => `${ringPath(ring)} Z`).join(" ");
+  }
+  if (geometry.type === "MultiPolygon") {
+    return geometry.coordinates
+      .flatMap((polygon) => polygon.map((ring) => `${ringPath(ring)} Z`))
+      .join(" ");
+  }
+  return "";
+}
+
+function marketPinPosition(market) {
+  if (market.geo) {
+    const projected = projectLonLat(market.geo.lon, market.geo.lat);
+    return {
+      x: (projected.x / WORLD_WIDTH) * 100,
+      y: (projected.y / WORLD_HEIGHT) * 100,
+    };
+  }
+  return market.coords || { x: 50, y: 50 };
+}
+
 function worldMapSvg() {
-  return `
-    <svg class="world-svg" viewBox="0 0 1200 680" aria-hidden="true" focusable="false">
-      <defs>
-        <linearGradient id="atlasLand" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stop-color="rgba(255,255,255,0.16)" />
-          <stop offset="1" stop-color="rgba(255,255,255,0.045)" />
-        </linearGradient>
-      </defs>
+  if (worldMapSvgMarkup) {
+    return worldMapSvgMarkup;
+  }
+
+  const marketByIso = new Map(
+    homeModel.worldMarkets.map((market) => [market.iso3, market]),
+  );
+  const paths = homeModel.worldCountries
+    .map((feature) => {
+      const market = marketByIso.get(feature.properties?.iso3);
+      const classes = [
+        "world-country",
+        market ? `is-market is-${market.status}` : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+      return `<path class="${classes}" d="${geometryPath(feature.geometry)}" />`;
+    })
+    .join("");
+
+  worldMapSvgMarkup = `
+    <svg class="world-svg" viewBox="0 0 ${WORLD_WIDTH} ${WORLD_HEIGHT}" aria-hidden="true" focusable="false">
       <g class="world-grid">
-        <path d="M120 80H1080M120 180H1080M120 280H1080M120 380H1080M120 480H1080M120 580H1080" />
-        <path d="M180 70V610M340 70V610M500 70V610M660 70V610M820 70V610M980 70V610" />
+        <path d="M0 ${WORLD_HEIGHT * 0.25}H${WORLD_WIDTH}M0 ${WORLD_HEIGHT * 0.5}H${WORLD_WIDTH}M0 ${WORLD_HEIGHT * 0.75}H${WORLD_WIDTH}" />
+        <path d="M${WORLD_WIDTH * 0.25} 0V${WORLD_HEIGHT}M${WORLD_WIDTH * 0.5} 0V${WORLD_HEIGHT}M${WORLD_WIDTH * 0.75} 0V${WORLD_HEIGHT}" />
       </g>
-      <g class="world-land">
-        <path d="M96 166 164 108 258 92 356 120 430 176 406 252 326 288 278 344 188 338 118 282Z" />
-        <path d="M318 346 382 392 424 474 388 590 322 626 282 562 300 456Z" />
-        <path d="M500 134 570 96 676 112 724 162 678 226 590 226 528 190Z" />
-        <path d="M548 244 632 278 674 354 640 486 584 578 528 494 516 388Z" />
-        <path d="M704 140 806 102 954 120 1098 184 1140 262 1074 326 956 304 902 352 792 310 734 244Z" />
-        <path d="M876 430 970 452 1060 512 1072 586 990 626 884 588 830 516Z" />
-      </g>
-      <g class="world-routes">
-        <path d="M570 220 C650 260 736 334 1004 496" />
-        <path d="M210 174 C340 154 456 176 578 214" />
-        <path d="M628 292 C694 320 756 366 786 420" />
-      </g>
+      <g class="world-countries">${paths}</g>
     </svg>
   `;
+  return worldMapSvgMarkup;
 }
 
 function renderWorldMap(marketScores) {
@@ -965,12 +1043,13 @@ function renderWorldMap(marketScores) {
           <span class="pill is-red">Locked</span>
         </div>
         ${marketScores
-          .map(
-            (item) => `
+          .map((item) => {
+            const position = marketPinPosition(item.market);
+            return `
               <button
                 class="atlas-pin atlas-pin-${item.market.status} atlas-band-${item.band} ${item.market.id === selected.market.id ? "is-focused" : ""} ${watchMarketList().includes(item.market.id) ? "is-watched" : ""}"
                 type="button"
-                style="left:${item.market.coords.x}%; top:${item.market.coords.y}%"
+                style="left:${position.x}%; top:${position.y}%"
                 data-market-focus="${item.market.id}"
                 aria-label="${escapeHtml(item.market.label)} ${escapeHtml(item.market.status)} score ${escapeHtml(marketNodeLabel(item))}"
                 title="${escapeHtml(`${item.market.label} · ${item.market.status} · ${marketNodeLabel(item)}`)}"
@@ -981,8 +1060,8 @@ function renderWorldMap(marketScores) {
                   <span class="atlas-pin-score">${escapeHtml(marketNodeLabel(item))}</span>
                 </span>
               </button>
-            `,
-          )
+            `;
+          })
           .join("")}
       </div>
       <div class="world-map-dock" aria-label="Marchés visibles">
@@ -1024,6 +1103,30 @@ function australiaMissionMoneyRow(mission) {
       ${australiaSalaryBoxHtml("Bas", signals.low || mission.salaryYear1, "blue")}
       ${australiaSalaryBoxHtml("Stable", signals.stable || mission.salaryYear1, "gold")}
       ${australiaSalaryBoxHtml("Upside", signals.upside || mission.salaryYear1, "green")}
+    </div>
+  `;
+}
+
+function australiaMissionCadenceFacts(mission) {
+  const cadence = mission.payCadence || {};
+  if (!cadence.monthlyGross && !cadence.weeklyGross && !mission.firstPayWindow) {
+    return "";
+  }
+
+  return `
+    <div class="detail-facts detail-facts-cadence">
+      <div class="detail-fact">
+        <span class="mini-label">Mois brut</span>
+        <div>${escapeHtml(cadence.monthlyGross || "à confirmer")}</div>
+      </div>
+      <div class="detail-fact">
+        <span class="mini-label">Semaine brute</span>
+        <div>${escapeHtml(cadence.weeklyGross || "à confirmer")}</div>
+      </div>
+      <div class="detail-fact">
+        <span class="mini-label">Première paie</span>
+        <div>${escapeHtml(mission.firstPayWindow || "variable")}</div>
+      </div>
     </div>
   `;
 }
@@ -1508,6 +1611,7 @@ function australiaMissionCardHtml(result, isPrimary = false) {
       <h3 class="result-title">${escapeHtml(mission.label)}</h3>
       <p class="result-subtitle">${escapeHtml(mission.whyGood)}</p>
       ${australiaMissionMoneyRow(mission)}
+      ${australiaMissionCadenceFacts(mission)}
       <div class="detail-facts">
         <div class="detail-fact">
           <span class="mini-label">Temps de prep</span>
@@ -1516,10 +1620,6 @@ function australiaMissionCardHtml(result, isPrimary = false) {
         <div class="detail-fact">
           <span class="mini-label">Premier job</span>
           <div>${escapeHtml(mission.firstRole || "à confirmer")}</div>
-        </div>
-        <div class="detail-fact">
-          <span class="mini-label">Première paie</span>
-          <div>${escapeHtml(mission.firstPayWindow || "variable")}</div>
         </div>
       </div>
       <div class="warning-card">

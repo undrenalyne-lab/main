@@ -359,6 +359,17 @@ select:focus-visible {
   overflow-wrap: anywhere;
 }
 
+.money-box strong,
+.metric-value,
+.data-value,
+.detail-fact div,
+.list-item div,
+.pill,
+.badge {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .list {
   display: grid;
   gap: 10px;
