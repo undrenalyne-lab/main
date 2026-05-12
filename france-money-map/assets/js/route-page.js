@@ -29,6 +29,7 @@ import {
 } from "./ui.js";
 
 const goalFilters = document.getElementById("goalFilters");
+const quickPresetGrid = document.getElementById("quickPresetGrid");
 const profileFilters = document.getElementById("profileFilters");
 const sortFilters = document.getElementById("sortFilters");
 const rangeControls = document.getElementById("rangeControls");
@@ -44,6 +45,61 @@ const decisionTablePanel = document.getElementById("decisionTablePanel");
 
 let data;
 let selection;
+
+const QUICK_PRESETS = [
+  {
+    id: "cash-now",
+    label: "Cash vite",
+    copy: "Favorise l'entrée rapide, mobilité forte et routes où les variables déclenchent vite.",
+    selection: {
+      goal: "argent-vite",
+      sort: "speed",
+      stabilityNeed: 45,
+      speedNeed: 85,
+      physicalTolerance: 75,
+      mobilityTolerance: 85,
+    },
+  },
+  {
+    id: "cash-max",
+    label: "Max plausible",
+    copy: "Favorise les plafonds hauts, nuits, GD, chantiers lourds et rebonds mieux payés.",
+    selection: {
+      goal: "cash-max",
+      sort: "cash-max",
+      stabilityNeed: 45,
+      speedNeed: 60,
+      physicalTolerance: 80,
+      mobilityTolerance: 90,
+    },
+  },
+  {
+    id: "stable-build",
+    label: "Stable build",
+    copy: "Favorise les voies plus régulières, moins jackpot, avec progression propre.",
+    selection: {
+      goal: "stabilite",
+      sort: "cash-stable",
+      stabilityNeed: 85,
+      speedNeed: 45,
+      physicalTolerance: 55,
+      mobilityTolerance: 55,
+    },
+  },
+  {
+    id: "anti-foule",
+    label: "Anti-foule",
+    copy: "Favorise les niches moins racontées, plus techniques, où le ticket seul ne suffit pas.",
+    selection: {
+      goal: "anti-concurrence",
+      sort: "anti-foule",
+      stabilityNeed: 65,
+      speedNeed: 50,
+      physicalTolerance: 70,
+      mobilityTolerance: 70,
+    },
+  },
+];
 
 function commitSelection(partial) {
   selection = mergeSelection(selection, partial);
@@ -63,6 +119,23 @@ function renderGoalFilters() {
         ${escapeHtml(goal.label)}
       </button>
     `,
+  ).join("");
+}
+
+function renderQuickPresets() {
+  quickPresetGrid.innerHTML = QUICK_PRESETS.map(
+    (preset) => {
+      const isActive = Object.entries(preset.selection).every(
+        ([key, value]) => selection[key] === value,
+      );
+      return `
+      <button class="quick-preset-card ${isActive ? "is-active" : ""}" type="button" data-quick-preset="${preset.id}">
+        <span class="mini-label">${escapeHtml(preset.label)}</span>
+        <strong>${escapeHtml(preset.label)}</strong>
+        <span>${escapeHtml(preset.copy)}</span>
+      </button>
+    `;
+    },
   ).join("");
 }
 
@@ -417,6 +490,7 @@ function renderSnapshot() {
 }
 
 function render() {
+  renderQuickPresets();
   renderGoalFilters();
   renderProfileFilters();
   renderSortFilters();
@@ -487,6 +561,18 @@ rangeControls.addEventListener("input", (event) => {
 
 routeSearch.addEventListener("input", (event) => {
   commitSelection({ search: event.target.value });
+});
+
+quickPresetGrid.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-quick-preset]");
+  if (!button) {
+    return;
+  }
+  const preset = QUICK_PRESETS.find((item) => item.id === button.dataset.quickPreset);
+  if (!preset) {
+    return;
+  }
+  commitSelection(preset.selection);
 });
 
 async function init() {

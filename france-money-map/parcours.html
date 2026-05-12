@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Backchannel Atlas · France Routes</title>
+    <meta
+      name="description"
+      content="Module France de Backchannel Atlas: compare les routes terrain rentables, salaires plausibles, premiers tickets, délais avant job et employeurs à viser."
+    />
+    <link rel="canonical" href="https://undrenalynelab.io/france-money-map/parcours.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Backchannel Atlas" />
+    <meta property="og:title" content="Backchannel Atlas · Routes France" />
+    <meta property="og:description" content="Trie les voies France par cash, stabilité, vitesse, tickets et rebonds." />
+    <meta property="og:url" content="https://undrenalynelab.io/france-money-map/parcours.html" />
+    <meta property="og:image" content="https://undrenalynelab.io/assets/images/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="./assets/css/base.css" />
     <link rel="stylesheet" href="./assets/css/layout.css" />
     <link rel="stylesheet" href="./assets/css/components.css" />
@@ -75,6 +87,18 @@
 
       <section class="routes-layout">
         <div class="content-grid">
+          <article class="filter-panel quick-preset-panel">
+            <div>
+              <span class="mini-label">Réponse rapide</span>
+              <h2 class="section-title">Choisis un mode, ajuste ensuite.</h2>
+              <p class="section-copy">
+                Ces presets règlent objectif, tri, mobilité et tolérance physique
+                en un clic. L'URL se met à jour pour pouvoir partager le brief.
+              </p>
+            </div>
+            <div class="quick-preset-grid" id="quickPresetGrid"></div>
+          </article>
+
           <article class="filter-panel">
             <div class="section-head">
               <div>
@@ -226,5 +250,15 @@
     </main>
 
     <script type="module" src="./assets/js/route-page.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Backchannel Atlas", "item": "https://undrenalynelab.io/france-money-map/" },
+          { "@type": "ListItem", "position": 2, "name": "France", "item": "https://undrenalynelab.io/france-money-map/parcours.html" }
+        ]
+      }
+    </script>
   </body>
 </html>

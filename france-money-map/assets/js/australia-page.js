@@ -243,6 +243,7 @@ function salaryBoxHtml(label, value, tone = "") {
       <span class="mini-label">${escapeHtml(label)}</span>
       <strong class="${className}">${escapeHtml(value || "à vérifier")}</strong>
       <div class="muted">brut annuel plausible · beta</div>
+      <div class="money-context">hors impôts, super, creux de mission et dépenses d'entrée</div>
     </div>
   `;
 }

@@ -18,6 +18,7 @@ let state = {
   branch: "all",
   search: "",
   route: "",
+  view: "focus",
 };
 
 function commitState(partial) {
@@ -27,6 +28,7 @@ function commitState(partial) {
     branch: state.branch === "all" ? "" : state.branch,
     search: state.search,
     route: state.route,
+    view: state.view === "all" ? "all" : "",
   });
   render();
 }
@@ -219,11 +221,143 @@ function renderGuidePanels(employers) {
   `;
 }
 
+function employerBucket(employer) {
+  if (["major", "specialist"].includes(employer.category)) {
+    return "direct";
+  }
+  if (employer.category === "interim") {
+    return "scanner";
+  }
+  return "support";
+}
+
+function bucketMeta(bucket) {
+  return {
+    direct: {
+      title: "Cibles directes",
+      copy: "Majors et spécialistes à viser d'abord quand la route est claire.",
+      limit: 20,
+      tone: "green",
+    },
+    scanner: {
+      title: "À scanner large",
+      copy: "Agences, intérim et boîtes de volume. Utile pour déclencher un premier contact.",
+      limit: 18,
+      tone: "gold",
+    },
+    support: {
+      title: "Support / formation",
+      copy: "Organismes ou acteurs utiles pour comprendre, financer ou monter un ticket.",
+      limit: 8,
+      tone: "blue",
+    },
+  }[bucket];
+}
+
+function groupedEmployers(employers) {
+  return employers.reduce(
+    (groups, employer) => {
+      groups[employerBucket(employer)].push(employer);
+      return groups;
+    },
+    { direct: [], scanner: [], support: [] },
+  );
+}
+
+function isFocusedEmployerView() {
+  return (
+    state.view !== "all" &&
+    state.sector === "all" &&
+    state.branch === "all" &&
+    !state.search &&
+    !state.route
+  );
+}
+
+function employerViewControls(total, displayed) {
+  return `
+    <div class="button-row employer-view-controls">
+      <button class="button ${state.view === "all" ? "secondary" : "primary"}" type="button" data-employer-view="focus">
+        Vue priorisée
+      </button>
+      <button class="button ${state.view === "all" ? "primary" : "secondary"}" type="button" data-employer-view="all">
+        Voir les ${total} boîtes
+      </button>
+      <span class="pill is-blue">${displayed}/${total} affichées</span>
+    </div>
+  `;
+}
+
+function employerCardHtml(employer) {
+  const lanes = employer.laneIds
+    .map((laneId) => data.laneMap.get(laneId))
+    .filter(Boolean)
+    .slice(0, 4);
+  const signals = employerSignals(employer);
+  return `
+    <article class="card employer-card">
+      <div class="pill-row">
+        ${signals.statusPills}
+        ${employer.sectors
+          .map((sectorId) => data.sectorMap.get(sectorId))
+          .filter(Boolean)
+          .map((sector) => pill(`${sector.icon} ${sector.name}`, "blue"))
+          .join("")}
+      </div>
+      <h3>${escapeHtml(employer.name)}</h3>
+      <p class="muted">${escapeHtml(employer.applyChannel)}</p>
+      <div class="warning-card">
+        <strong>Angle d'entrée:</strong>
+        ${escapeHtml(signals.entryMode)}
+        <br />
+        ${escapeHtml(signals.tacticalAngle)}
+      </div>
+      <div>
+        <span class="mini-label">Branches liées</span>
+        <div class="pill-row">
+          ${employer.branches.slice(0, 4).map((branch) => pill(branch, "gold")).join("")}
+        </div>
+      </div>
+      <div>
+        <span class="mini-label">Portes liées</span>
+        <div class="inline-links">
+          ${lanes.map((lane) => `<a class="link-chip" href="${laneHref(lane.id)}">${escapeHtml(lane.title)}</a>`).join("")}
+        </div>
+      </div>
+      <div class="button-row">
+        ${
+          employer.url
+            ? `<a class="button primary" href="${employer.url}" target="_blank" rel="noopener">Site carrière</a>`
+            : ""
+        }
+        ${
+          lanes[0]
+            ? `<a class="button secondary" href="${laneHref(lanes[0].id)}">Voir une route liée</a>`
+            : ""
+        }
+        <a class="button secondary" href="./parcours.html?q=${encodeURIComponent(employer.name)}">
+          Rechercher cette boîte
+        </a>
+      </div>
+    </article>
+  `;
+}
+
 function render() {
   renderFilters();
   const employers = filteredEmployers();
   renderGuidePanels(employers);
-  employerResultsSummary.textContent = `${employers.length} employeur(s) après filtres${state.route ? " dans le contexte route actif" : ""}. Lis la priorité de ciblage avant d'envoyer une candidature large.`;
+  const buckets = groupedEmployers(employers);
+  const focused = isFocusedEmployerView();
+  const displayedCount = Object.entries(buckets).reduce((total, [bucket, items]) => {
+    const meta = bucketMeta(bucket);
+    return total + (focused ? items.slice(0, meta.limit).length : items.length);
+  }, 0);
+
+  employerResultsSummary.innerHTML = `
+    <span>${employers.length} employeur(s) après filtres${state.route ? " dans le contexte route actif" : ""}. Lis la priorité de ciblage avant d'envoyer une candidature large.</span>
+    ${employerViewControls(employers.length, displayedCount)}
+  `;
 
   if (employers.length === 0) {
     renderEmptyState(
@@ -234,59 +368,28 @@ function render() {
     return;
   }
 
-  employerGrid.innerHTML = employers
-    .map((employer) => {
-      const lanes = employer.laneIds
-        .map((laneId) => data.laneMap.get(laneId))
-        .filter(Boolean)
-        .slice(0, 4);
-      const signals = employerSignals(employer);
+  employerGrid.innerHTML = Object.entries(buckets)
+    .filter(([, items]) => items.length)
+    .map(([bucket, items]) => {
+      const meta = bucketMeta(bucket);
+      const shown = focused ? items.slice(0, meta.limit) : items;
       return `
-        <article class="card employer-card">
-          <div class="pill-row">
-            ${signals.statusPills}
-            ${employer.sectors
-              .map((sectorId) => data.sectorMap.get(sectorId))
-              .filter(Boolean)
-              .map((sector) => pill(`${sector.icon} ${sector.name}`, "blue"))
-              .join("")}
-          </div>
-          <h3>${escapeHtml(employer.name)}</h3>
-          <p class="muted">${escapeHtml(employer.applyChannel)}</p>
-          <div class="warning-card">
-            <strong>Angle d'entrée:</strong>
-            ${escapeHtml(signals.entryMode)}
-            <br />
-            ${escapeHtml(signals.tacticalAngle)}
-          </div>
-          <div>
-            <span class="mini-label">Branches liées</span>
+        <section class="employer-bucket">
+          <div class="bucket-head">
+            <div>
+              <span class="mini-label">${escapeHtml(meta.title)}</span>
+              <h3>${escapeHtml(meta.title)}</h3>
+              <p class="muted">${escapeHtml(meta.copy)}</p>
+            </div>
             <div class="pill-row">
-              ${employer.branches.slice(0, 4).map((branch) => pill(branch, "gold")).join("")}
+              ${pill(`${items.length} total`, meta.tone)}
+              ${focused && shown.length < items.length ? pill(`${shown.length} montrées`, "blue") : ""}
             </div>
           </div>
-          <div>
-            <span class="mini-label">Portes liées</span>
-            <div class="inline-links">
-              ${lanes.map((lane) => `<a class="link-chip" href="${laneHref(lane.id)}">${escapeHtml(lane.title)}</a>`).join("")}
-            </div>
+          <div class="employer-bucket-grid">
+            ${shown.map((employer) => employerCardHtml(employer)).join("")}
           </div>
-          <div class="button-row">
-            ${
-              employer.url
-                ? `<a class="button primary" href="${employer.url}" target="_blank" rel="noopener">Site carrière</a>`
-                : ""
-            }
-            ${
-              lanes[0]
-                ? `<a class="button secondary" href="${laneHref(lanes[0].id)}">Voir une route liée</a>`
-                : ""
-            }
-            <a class="button secondary" href="./parcours.html?q=${encodeURIComponent(employer.name)}">
-              Rechercher cette boîte
-            </a>
-          </div>
-        </article>
+        </section>
       `;
     })
     .join("");
@@ -309,13 +412,21 @@ employerBranchFilters.addEventListener("click", (event) => {
 });
 
 employerSearch.addEventListener("input", (event) => {
-  commitState({ search: event.target.value });
+  commitState({ search: event.target.value, view: event.target.value ? "all" : state.view });
 });
 
 employerContextPanel.addEventListener("click", (event) => {
   if (event.target.closest("[data-clear-route]")) {
     commitState({ route: "" });
   }
+});
+
+employerResultsSummary.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-employer-view]");
+  if (!button) {
+    return;
+  }
+  commitState({ view: button.dataset.employerView });
 });
 
 async function init() {
@@ -327,6 +438,7 @@ async function init() {
     branch: params.get("branch") || "all",
     search: params.get("search") || "",
     route: data.laneMap.has(requestedRoute) ? requestedRoute : "",
+    view: params.get("view") === "all" ? "all" : "focus",
   };
   render();
 }

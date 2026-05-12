@@ -43,6 +43,7 @@ let homeState;
 let watchMarkets = [];
 let heatLayer = DEFAULT_HEAT_LAYER;
 let worldMapSvgMarkup;
+let hasSavedHomeProfile = false;
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -150,6 +151,7 @@ function commitHomeState(partial) {
     ...homeState,
     ...partial,
   });
+  hasSavedHomeProfile = true;
   saveHomePackage();
   render();
 }
@@ -811,6 +813,9 @@ function renderProfileLab(context) {
       <strong>Pays actif:</strong> ${escapeHtml(context.country.label)}
       <br />
       <strong>Watchlist:</strong> ${watchPills || "aucun pays epingle"}
+      <br />
+      <strong>${hasSavedHomeProfile ? "Profil sauvegardé" : "Preset de départ"}:</strong>
+      ${hasSavedHomeProfile ? "tes réglages locaux sont chargés." : "modifie les blocs avant de lire le match comme personnel."}
     </div>
     <div class="home-profile-groups">
       ${Object.entries(grouped)
@@ -1092,6 +1097,7 @@ function australiaSalaryBoxHtml(label, value, tone = "") {
       <span class="mini-label">${escapeHtml(label)}</span>
       <strong class="${className}">${escapeHtml(value || "à vérifier")}</strong>
       <div class="muted">brut annuel plausible · beta</div>
+      <div class="money-context">hors impôts, super, creux de mission et dépenses d'entrée</div>
     </div>
   `;
 }
@@ -1282,7 +1288,15 @@ function renderMarketDrawer(scoreItem, context) {
 }
 
 function renderHeatGrid(marketScores) {
-  marketHeatGrid.innerHTML = marketScores
+  const primaryScores = marketScores.filter(
+    (item) =>
+      item.market.status !== "locked" ||
+      item.market.id === homeState.country ||
+      watchMarketList().includes(item.market.id),
+  );
+  const lockedCount = marketScores.filter((item) => item.market.status === "locked").length;
+
+  marketHeatGrid.innerHTML = primaryScores
     .map(
       (item) => `
         <article class="card heat-card ${item.market.id === homeState.country ? "is-active" : ""} ${item.market.status === "locked" ? "is-locked" : ""}">
@@ -1310,6 +1324,26 @@ function renderHeatGrid(marketScores) {
       `,
     )
     .join("");
+
+  if (lockedCount) {
+    marketHeatGrid.innerHTML += `
+      <article class="card heat-card is-locked heat-card-roadmap">
+        <div class="pill-row">
+          ${pill("Roadmap monde", "blue")}
+          ${pill(`${lockedCount} pays verrouillés`, "red")}
+        </div>
+        <h3>Pays grisés volontairement</h3>
+        <p class="muted">
+          Ils restent sur la carte pour montrer l'ambition monde, mais ils ne
+          prennent plus toute la place tant que les données tickets, salaires et
+          employeurs ne sont pas propres.
+        </p>
+        <div class="button-row">
+          <a class="button secondary" href="./sources.html">Voir la méthode</a>
+        </div>
+      </article>
+    `;
+  }
 }
 
 function renderMissionBoard(context) {
@@ -1701,6 +1735,7 @@ function bindEvents() {
       homeState = normalizeHomeState(homeModel.schema, homeModel.defaults || {});
       watchMarkets = [];
       heatLayer = DEFAULT_HEAT_LAYER;
+      hasSavedHomeProfile = false;
       saveHomePackage();
       render();
       return;
@@ -1754,6 +1789,7 @@ function bindEvents() {
 async function init() {
   [siteData, homeModel] = await Promise.all([loadAllData(), loadHomeModel()]);
   const saved = loadSavedHomePackage() || {};
+  hasSavedHomeProfile = Object.keys(saved).some((key) => !key.startsWith("_"));
   homeState = normalizeHomeState(homeModel.schema, saved);
   watchMarkets = normalizeArrayValue(saved._watchMarkets).filter((marketId) =>
     homeModel.worldMarketMap.has(marketId),

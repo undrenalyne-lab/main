@@ -22,6 +22,7 @@ let state = {
   sector: "all",
   search: "",
   ticketId: "",
+  view: "focus",
 };
 
 function commitState(partial) {
@@ -30,6 +31,7 @@ function commitState(partial) {
     sector: state.sector === "all" ? "" : state.sector,
     search: state.search,
     id: state.ticketId,
+    view: state.view === "all" ? "all" : "",
   });
   render();
 }
@@ -163,6 +165,63 @@ function ticketSignals(ticket) {
       .filter(Boolean)
       .join(""),
   };
+}
+
+function ticketPriority(ticket) {
+  const signals = ticketSignals(ticket);
+  if (signals.role.label === "Premier verrou") {
+    return 0;
+  }
+  if (signals.quickOpen) {
+    return 1;
+  }
+  if (signals.employerFunded) {
+    return 2;
+  }
+  if (signals.role.label === "Socle long terme") {
+    return 3;
+  }
+  if (signals.role.label === "Spécialisation") {
+    return 4;
+  }
+  return 5;
+}
+
+function orderedTickets(tickets) {
+  return [...tickets].sort((left, right) => {
+    const priorityDelta = ticketPriority(left) - ticketPriority(right);
+    if (priorityDelta !== 0) {
+      return priorityDelta;
+    }
+    return left.name.localeCompare(right.name, "fr");
+  });
+}
+
+function shouldFocusTickets() {
+  return (
+    state.view !== "all" &&
+    state.sector === "all" &&
+    !state.search &&
+    !state.ticketId
+  );
+}
+
+function ticketViewControls(total, displayed) {
+  if (!shouldFocusTickets() && state.view !== "all") {
+    return "";
+  }
+
+  return `
+    <div class="button-row">
+      <button class="button ${state.view === "all" ? "secondary" : "primary"}" type="button" data-ticket-view="focus">
+        Premiers verrous
+      </button>
+      <button class="button ${state.view === "all" ? "primary" : "secondary"}" type="button" data-ticket-view="all">
+        Voir les ${total} tickets
+      </button>
+      <span class="pill is-blue">${displayed}/${total} affichés</span>
+    </div>
+  `;
 }
 
 function renderGuidePanels(visibleTickets) {
@@ -414,7 +473,15 @@ function render() {
     return sectorMatch && matchesTicketSearch(ticket, state.search);
   });
 
-  ticketResultsSummary.textContent = `${visibleTickets.length} ticket(s) après filtres. Cherche d'abord le premier verrou, puis seulement les spécialisations et tickets adjacents.`;
+  const sortedTickets = orderedTickets(visibleTickets);
+  const displayTickets = shouldFocusTickets()
+    ? sortedTickets.slice(0, 7)
+    : sortedTickets;
+
+  ticketResultsSummary.innerHTML = `
+    <span>${displayTickets.length} ticket(s) affichés sur ${visibleTickets.length}. Cherche d'abord le premier verrou, puis seulement les spécialisations et tickets adjacents.</span>
+    ${ticketViewControls(visibleTickets.length, displayTickets.length)}
+  `;
   renderGuidePanels(visibleTickets);
   renderTicketDetail();
 
@@ -427,7 +494,7 @@ function render() {
     return;
   }
 
-  ticketGrid.innerHTML = visibleTickets
+  ticketGrid.innerHTML = displayTickets
     .map((ticket) => {
       const lanes = linkedLanes(ticket).slice(0, 4);
       const isActive = state.ticketId === ticket.id;
@@ -509,7 +576,15 @@ ticketDetailPanel.addEventListener("click", (event) => {
 });
 
 ticketSearch.addEventListener("input", (event) => {
-  commitState({ search: event.target.value });
+  commitState({ search: event.target.value, view: event.target.value ? "all" : state.view });
+});
+
+ticketResultsSummary.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-ticket-view]");
+  if (!button) {
+    return;
+  }
+  commitState({ view: button.dataset.ticketView });
 });
 
 async function init() {
@@ -520,6 +595,7 @@ async function init() {
     sector: params.get("sector") || "all",
     search: params.get("search") || "",
     ticketId: data.ticketMap.has(requestedTicket) ? requestedTicket : "",
+    view: params.get("view") === "all" ? "all" : "focus",
   };
 
   if (!state.ticketId && state.search) {

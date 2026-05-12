@@ -353,10 +353,17 @@ select:focus-visible {
 }
 
 .money-box .muted,
+.money-context,
 .metric-card .muted,
 .result-subtitle {
   line-height: 1.35;
   overflow-wrap: anywhere;
+}
+
+.money-context {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.76rem;
 }
 
 .money-box strong,
@@ -398,6 +405,51 @@ select:focus-visible {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+}
+
+.quick-preset-grid,
+.quick-answer-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.quick-preset-card,
+.quick-answer-card {
+  min-width: 0;
+}
+
+.quick-preset-card {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  text-align: left;
+  color: var(--text);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(145deg, rgba(255, 125, 48, 0.06), transparent 56%),
+    rgba(255, 255, 255, 0.025);
+}
+
+.quick-preset-card:hover,
+.quick-preset-card:focus-visible,
+.quick-preset-card.is-active {
+  border-color: rgba(255, 125, 48, 0.38);
+  background:
+    linear-gradient(145deg, rgba(255, 125, 48, 0.12), transparent 56%),
+    rgba(255, 255, 255, 0.035);
+}
+
+.quick-preset-card strong {
+  font-family: var(--display);
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.quick-preset-card span:last-child {
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .link-chip {

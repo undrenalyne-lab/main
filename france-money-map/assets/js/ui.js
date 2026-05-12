@@ -90,6 +90,7 @@ export function scenarioBoxHtml(label, scenario, tone = "", options = {}) {
       <span class="mini-label">${escapeHtml(label)}</span>
       <strong class="${className}">${money(primaryValue)}</strong>
       <div class="muted">${escapeHtml(subline)}</div>
+      <div class="money-context">${escapeHtml(options.context || "cash estimé · salaire + variables modélisées, à contrôler par contrat")}</div>
     </div>
   `;
 }

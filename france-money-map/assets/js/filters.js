@@ -222,7 +222,21 @@ export function loadSavedSelection() {
     if (!rawValue) {
       return null;
     }
-    return mergeSelection(JSON.parse(rawValue));
+    const parsed = JSON.parse(rawValue);
+    const hasStaleZeroRanges =
+      Number(parsed.stabilityNeed) === 0 &&
+      Number(parsed.speedNeed) === 0 &&
+      Number(parsed.physicalTolerance) === 0 &&
+      Number(parsed.mobilityTolerance) === 0;
+
+    if (hasStaleZeroRanges) {
+      delete parsed.stabilityNeed;
+      delete parsed.speedNeed;
+      delete parsed.physicalTolerance;
+      delete parsed.mobilityTolerance;
+    }
+
+    return mergeSelection(parsed);
   } catch (error) {
     return null;
   }

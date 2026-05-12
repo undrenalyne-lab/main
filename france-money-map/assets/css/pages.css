@@ -1046,6 +1046,31 @@
   overflow-wrap: anywhere;
 }
 
+.page-home .first-visit-strip {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  max-width: 720px;
+}
+
+.page-home .first-visit-strip div {
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.page-home .first-visit-strip strong {
+  color: var(--text);
+}
+
+.page-home .first-visit-strip span {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
 .page-home .profile-progress {
   display: grid;
   gap: 10px;
@@ -1122,6 +1147,105 @@
     #0b121f;
   background-size: 28px 28px, 28px 28px, auto, auto;
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.map-skeleton {
+  display: grid;
+  gap: 12px;
+  height: 100%;
+  min-height: 520px;
+}
+
+.map-skeleton-canvas {
+  position: relative;
+  min-height: 440px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    #08101d;
+  background-size: 54px 54px;
+}
+
+.map-skeleton-land,
+.map-skeleton-pin {
+  position: absolute;
+  display: block;
+}
+
+.map-skeleton-land {
+  opacity: 0.46;
+  border: 1px solid rgba(241, 245, 249, 0.16);
+  background: rgba(241, 245, 249, 0.055);
+  animation: pulse-map 1.35s ease-in-out infinite alternate;
+}
+
+.map-skeleton-land.land-a {
+  left: 7%;
+  top: 22%;
+  width: 27%;
+  height: 31%;
+  border-radius: 58% 42% 45% 55%;
+}
+
+.map-skeleton-land.land-b {
+  left: 38%;
+  top: 18%;
+  width: 16%;
+  height: 22%;
+  border-radius: 48% 52% 42% 58%;
+}
+
+.map-skeleton-land.land-c {
+  left: 51%;
+  top: 22%;
+  width: 31%;
+  height: 38%;
+  border-radius: 55% 45% 60% 40%;
+}
+
+.map-skeleton-land.land-d {
+  left: 73%;
+  top: 58%;
+  width: 16%;
+  height: 16%;
+  border-radius: 60% 40% 48% 52%;
+}
+
+.map-skeleton-pin {
+  padding: 6px 8px;
+  border-radius: 999px;
+  color: var(--orange);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.map-skeleton-pin.pin-fr {
+  left: 53%;
+  top: 31%;
+}
+
+.map-skeleton-pin.pin-au {
+  left: 81%;
+  top: 67%;
+}
+
+.map-skeleton-copy {
+  display: grid;
+  gap: 3px;
+  color: var(--muted);
+}
+
+@keyframes pulse-map {
+  from {
+    opacity: 0.28;
+  }
+  to {
+    opacity: 0.58;
+  }
 }
 
 .page-home .world-map-stage {
@@ -1395,6 +1519,10 @@
   border-style: dashed;
 }
 
+.page-home .heat-card-roadmap {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
 .page-home .heat-metrics {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -1421,6 +1549,14 @@
 
 .page-australia .au-playbook-card {
   gap: 16px;
+}
+
+.quick-answer-grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.quick-answer-card h3 {
+  margin: 0;
 }
 
 .page-australia .playbook-section {
@@ -1492,6 +1628,36 @@
 
 .page-australia .au-mission-grid {
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.employer-grid {
+  grid-template-columns: 1fr;
+}
+
+.employer-bucket {
+  display: grid;
+  gap: 14px;
+}
+
+.bucket-head {
+  display: flex;
+  gap: 12px;
+  align-items: end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.bucket-head h3 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  line-height: 0.96;
+}
+
+.employer-bucket-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .page-australia .au-mission-card {
@@ -1737,5 +1903,122 @@
   .page-australia .money-row,
   .page-australia .detail-facts {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 719px) {
+  .quick-preset-grid,
+  .quick-answer-grid,
+  .top-results,
+  .all-results,
+  .ticket-grid,
+  .employer-grid,
+  .employer-bucket-grid,
+  .source-grid,
+  .method-grid,
+  .guide-grid,
+  .decision-grid,
+  .page-australia .au-mission-grid,
+  .page-home .mission-launch-grid,
+  .page-home .featured-routes-grid,
+  .page-home .market-heat-grid,
+  .page-home .first-visit-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .page-tickets,
+  .page-employers,
+  .page-routes,
+  .page-sources,
+  .page-detail {
+    overflow-x: hidden;
+  }
+
+  .page-tickets .shell,
+  .page-employers .shell,
+  .page-routes .shell,
+  .page-sources .shell,
+  .page-detail .shell {
+    width: calc(100vw - 28px);
+    max-width: calc(100vw - 28px);
+  }
+
+  .page-tickets .page-hero,
+  .page-employers .page-hero,
+  .page-routes .page-hero,
+  .page-sources .page-hero,
+  .page-detail .page-hero,
+  .page-tickets .panel,
+  .page-employers .panel,
+  .page-routes .panel,
+  .page-sources .panel,
+  .page-detail .panel,
+  .page-tickets .card,
+  .page-employers .card,
+  .page-routes .card,
+  .page-sources .card,
+  .page-detail .card,
+  .result-card,
+  .filter-panel,
+  .decision-hero-panel {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .page-tickets .button-row,
+  .page-employers .button-row,
+  .page-routes .button-row,
+  .page-detail .button-row,
+  .page-inline-summary .button-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .page-tickets .button,
+  .page-employers .button,
+  .page-routes .button,
+  .page-detail .button,
+  .page-inline-summary .button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .pill-row,
+  .chip-set,
+  .selector-row {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .pill,
+  .chip,
+  .link-chip,
+  .badge {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .list-item,
+  .timeline-item,
+  .page-australia .salary-ladder-row {
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+
+  .page-australia .salary-ladder-row {
+    gap: 10px;
+  }
+
+  .money-value,
+  .metric-value,
+  .money-context,
+  .source-card,
+  .ticket-card,
+  .employer-card {
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
 }

@@ -6,8 +6,19 @@
     <title>Backchannel Atlas</title>
     <meta
       name="description"
-      content="Backchannel Atlas: moteur d'arbitrage de trajectoires à cash réel. Profil compact, carte monde, missions pays, tickets et canaux d'entrée."
+      content="Backchannel Atlas aide à choisir une trajectoire terrain ou technique rentable: profil, carte monde, salaires plausibles, tickets utiles et employeurs à viser."
     />
+    <link rel="canonical" href="https://undrenalynelab.io/france-money-map/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Backchannel Atlas" />
+    <meta property="og:title" content="Backchannel Atlas · Routes pro à cash réel" />
+    <meta
+      property="og:description"
+      content="Quel métier terrain ou technique peut vraiment te rapporter ? Règle ton profil, choisis un pays, lis la route, les tickets et les boîtes à viser."
+    />
+    <meta property="og:url" content="https://undrenalynelab.io/france-money-map/" />
+    <meta property="og:image" content="https://undrenalynelab.io/assets/images/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="stylesheet" href="./assets/css/base.css" />
     <link rel="stylesheet" href="./assets/css/layout.css" />
     <link rel="stylesheet" href="./assets/css/components.css" />
@@ -41,12 +52,12 @@
             <span class="eyebrow">Backchannel Atlas · World HQ</span>
             <p class="hero-kicker">// Moteur d'arbitrage de trajectoires pro</p>
             <h1 class="hero-title">
-              Quelle route vaut
-              <span class="accent">vraiment</span> le coup ?
+              Trouve la route terrain qui peut
+              <span class="accent">vraiment</span> payer.
             </h1>
             <p class="hero-copy">
-              Salaires plausibles, tickets qui comptent, temps honnête,
-              pièges nommés. Pas d'inspiration. De la décision.
+              Tu règles ton profil. La carte trie les pays. Le moteur sort une
+              mission avec cash plausible, premier ticket, délai et boîtes à viser.
             </p>
             <div class="hero-actions">
               <a class="button primary" href="#worldMap">Ouvrir la carte</a>
@@ -121,13 +132,34 @@
               <span class="mini-label">Carte monde interactive</span>
               <h2 class="section-title" id="worldMapTitle">Choisis ton pays.</h2>
               <p class="section-copy">
-                Mission, cash, gate. France live. Australie beta.
+                Profil → pays → mission. France live. Australie beta. Le reste
+                reste grisé tant qu'il n'est pas documenté proprement.
               </p>
+              <div class="first-visit-strip" aria-label="Mode d'emploi rapide">
+                <div><strong>1. Profil</strong><span>âge, droits, anglais, mobilité</span></div>
+                <div><strong>2. Pays</strong><span>fit now, cash ceiling, entry speed</span></div>
+                <div><strong>3. Mission</strong><span>salaire, ticket, délai, employeurs</span></div>
+              </div>
             </div>
             <div class="chip-set heat-layer-set" id="heatLayerSet" aria-label="Couches de heat map"></div>
           </div>
           <div class="world-panel-grid">
-            <div class="world-map-shell" id="worldMap" aria-live="polite"></div>
+            <div class="world-map-shell" id="worldMap" aria-live="polite">
+              <div class="map-skeleton" role="status" aria-label="Chargement de la carte monde">
+                <div class="map-skeleton-canvas">
+                  <span class="map-skeleton-land land-a"></span>
+                  <span class="map-skeleton-land land-b"></span>
+                  <span class="map-skeleton-land land-c"></span>
+                  <span class="map-skeleton-land land-d"></span>
+                  <span class="map-skeleton-pin pin-fr">FR</span>
+                  <span class="map-skeleton-pin pin-au">AU</span>
+                </div>
+                <div class="map-skeleton-copy">
+                  <strong>Chargement des frontières...</strong>
+                  <span>La carte réelle arrive, les pays verrouillés restent volontairement grisés.</span>
+                </div>
+              </div>
+            </div>
             <div class="market-drawer" id="marketDrawer" aria-live="polite"></div>
           </div>
         </article>
@@ -200,5 +232,14 @@
     </footer>
 
     <script type="module" src="./assets/js/app.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Backchannel Atlas",
+        "url": "https://undrenalynelab.io/france-money-map/",
+        "description": "Moteur d'arbitrage de trajectoires professionnelles à cash réel."
+      }
+    </script>
   </body>
 </html>

@@ -147,8 +147,86 @@
 }
 
 @media (max-width: 719px) {
+  .shell {
+    width: min(100% - 28px, 1180px);
+    max-width: calc(100vw - 28px);
+    min-width: 0;
+  }
+
+  .page-stack,
+  .page-hero,
+  .hero-grid,
+  .content-grid,
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .card-grid,
+  .split-layout,
+  .section,
+  .panel,
+  .card,
+  .result-card,
+  .filter-panel,
+  .note-card {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .page-hero {
+    padding: 18px;
+    overflow: hidden;
+  }
+
+  .hero-grid,
+  .content-grid,
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .card-grid,
+  .split-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-title,
+  .display-title,
+  .section-title,
+  h1,
+  h2,
+  h3,
+  p,
+  .hero-copy,
+  .section-copy,
+  .muted {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-title,
+  .display-title {
+    font-size: clamp(2.45rem, 13vw, 3.25rem);
+    line-height: 0.95;
+  }
+
+  .section-head {
+    align-items: start;
+  }
+
+  .button-row,
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .button-row .button,
+  .hero-actions .button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
   .nav-row {
     flex-wrap: wrap;
+    gap: 12px;
   }
 
   .site-nav {

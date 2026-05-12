@@ -36,10 +36,14 @@
 html {
   color-scheme: dark;
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top right, rgba(245, 158, 11, 0.08), transparent 22%),
     linear-gradient(180deg, #080a0c 0%, #0b0f14 48%, #080a0c 100%);
