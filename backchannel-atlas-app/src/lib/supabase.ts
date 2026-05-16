@@ -39,7 +39,7 @@ export async function getSession() {
 export async function signInWithGoogle() {
   const supabase = getSupabase();
   if (!supabase) throw new Error("Supabase n'est pas configuré.");
-  const redirectTo = `${window.location.origin}${appPath("/auth/callback/")}`;
+  const redirectTo = `${window.location.origin}${appPath("/")}`;
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {

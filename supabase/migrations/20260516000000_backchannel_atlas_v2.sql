@@ -1,7 +1,7 @@
 create extension if not exists pgcrypto;
 
 create table if not exists public.profiles (
-  id uuid primary key default gen_random_uuid(),
+  id text primary key default gen_random_uuid()::text,
   user_id uuid not null references auth.users(id) on delete cascade,
   profile_json jsonb not null,
   created_at timestamptz not null default now(),
@@ -10,9 +10,9 @@ create table if not exists public.profiles (
 );
 
 create table if not exists public.saved_plans (
-  id uuid primary key default gen_random_uuid(),
+  id text primary key default gen_random_uuid()::text,
   user_id uuid not null references auth.users(id) on delete cascade,
-  profile_id uuid null,
+  profile_id text null,
   country_id text not null,
   plan_json jsonb not null,
   progress integer not null default 0 check (progress >= 0 and progress <= 100),
@@ -22,9 +22,9 @@ create table if not exists public.saved_plans (
 );
 
 create table if not exists public.plan_tasks (
-  id uuid primary key default gen_random_uuid(),
+  id text primary key default gen_random_uuid()::text,
   user_id uuid not null references auth.users(id) on delete cascade,
-  plan_id uuid not null references public.saved_plans(id) on delete cascade,
+  plan_id text not null references public.saved_plans(id) on delete cascade,
   title text not null,
   description text not null default '',
   category text not null default 'general',
@@ -37,7 +37,7 @@ create table if not exists public.plan_tasks (
 );
 
 create table if not exists public.user_settings (
-  id uuid primary key default gen_random_uuid(),
+  id text primary key default gen_random_uuid()::text,
   user_id uuid not null references auth.users(id) on delete cascade,
   preferred_currency text not null default 'EUR',
   preferred_language text not null default 'fr',
@@ -52,6 +52,12 @@ create index if not exists saved_plans_user_id_idx on public.saved_plans(user_id
 create index if not exists plan_tasks_user_id_idx on public.plan_tasks(user_id);
 create index if not exists plan_tasks_plan_id_idx on public.plan_tasks(plan_id);
 create index if not exists user_settings_user_id_idx on public.user_settings(user_id);
+
+grant usage on schema public to authenticated;
+grant select, insert, update, delete on public.profiles to authenticated;
+grant select, insert, update, delete on public.saved_plans to authenticated;
+grant select, insert, update, delete on public.plan_tasks to authenticated;
+grant select, insert, update, delete on public.user_settings to authenticated;
 
 alter table public.profiles enable row level security;
 alter table public.saved_plans enable row level security;

@@ -35,8 +35,8 @@ jobs:
       - name: Build Backchannel Atlas
         working-directory: backchannel-atlas-app
         env:
-          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SUPABASE_URL: https://zfexqheasqlbpcjuyptj.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: sb_publishable_AeMV-YmPkXPtFpgdfdKeHg_zITWeKXB
         run: npm run build
 
       - name: Compose Pages artifact
