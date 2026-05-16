@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compte · Backchannel Atlas</title>
+    <meta name="description" content="Compte Backchannel Atlas: état stockage local, export JSON, suppression des données et préparation backend auth." />
+    <link rel="canonical" href="https://undrenalynelab.io/france-money-map/account.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Backchannel Atlas" />
+    <meta property="og:title" content="Compte · Backchannel Atlas" />
+    <meta property="og:description" content="Export, suppression locale et prochain branchement auth managée." />
+    <meta property="og:url" content="https://undrenalynelab.io/france-money-map/account.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/layout.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+  </head>
+  <body class="page-v2 page-account">
+    <header class="site-header">
+      <div class="shell nav-row">
+        <a class="brand" href="./index.html"><span class="brand-mark brand-mark-atlas">BA</span><span class="brand-copy">Backchannel Atlas<small>profile · map · plan</small></span></a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a class="nav-link" href="./onboarding.html">Profil</a>
+          <a class="nav-link" href="./dashboard.html">Dashboard</a>
+          <a class="nav-link" href="./map.html">Carte</a>
+          <a class="nav-link" href="./compare.html">Comparer</a>
+          <a class="nav-link" href="./plans.html">Plans</a>
+          <a class="nav-link is-current" href="./account.html">Compte</a>
+        </nav>
+      </div>
+    </header>
+    <main class="shell page-stack">
+      <section class="page-hero">
+        <span class="eyebrow">Data control</span>
+        <h1 class="display-title">Pas de faux login. Données contrôlables.</h1>
+        <p class="hero-copy">Sur GitHub Pages, le profil reste local. Pour Google login réel: backend managé, RLS et tables persistantes.</p>
+      </section>
+      <section id="accountApp" class="content-grid" aria-live="polite"></section>
+    </main>
+    <script type="module" src="./assets/js/v2-pages.js"></script>
+  </body>
+</html>

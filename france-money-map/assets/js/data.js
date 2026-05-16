@@ -3,6 +3,7 @@ const DATA_ROOT = new URL("../data/", import.meta.url);
 let dataCache;
 let sourceExtrasCache;
 let homeModelCache;
+let mobilityProductCache;
 
 async function loadJson(filename) {
   const response = await fetch(new URL(filename, DATA_ROOT));
@@ -107,4 +108,33 @@ export async function loadHomeModel() {
   }
 
   return homeModelCache;
+}
+
+export async function loadMobilityProduct() {
+  if (!mobilityProductCache) {
+    mobilityProductCache = Promise.all([
+      loadJson("country_profiles.json"),
+      loadJson("visa_rules.json"),
+      loadJson("mobility_sources.json"),
+      loadJson("world_countries_110m.geojson"),
+    ]).then(([countryProfiles, visaRules, mobilitySources, worldCountryData]) => {
+      const countries = countryProfiles.countries || [];
+      const rules = visaRules.rules || [];
+      const sources = mobilitySources || [];
+
+      return {
+        countries,
+        rules,
+        sources,
+        countryMap: new Map(countries.map((country) => [country.id, country])),
+        countrySlugMap: new Map(countries.map((country) => [country.slug, country])),
+        ruleMap: new Map(rules.map((rule) => [rule.id, rule])),
+        sourceMap: new Map(sources.map((source) => [source.id, source])),
+        worldCountries: worldCountryData.features || [],
+        version: countryProfiles.version,
+      };
+    });
+  }
+
+  return mobilityProductCache;
 }

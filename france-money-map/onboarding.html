@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Créer mon profil · Backchannel Atlas</title>
+    <meta name="description" content="Crée un profil Backchannel Atlas avec âge exact, passeport, anglais, capital, mobilité et compétences pour obtenir un classement pays personnalisé." />
+    <link rel="canonical" href="https://undrenalynelab.io/france-money-map/onboarding.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Backchannel Atlas" />
+    <meta property="og:title" content="Créer mon profil · Backchannel Atlas" />
+    <meta property="og:description" content="Profil en moins de 90 secondes, puis Top 3 pays, cash, gates et plan." />
+    <meta property="og:url" content="https://undrenalynelab.io/france-money-map/onboarding.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/layout.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+  </head>
+  <body class="page-v2 page-onboarding">
+    <header class="site-header">
+      <div class="shell nav-row">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark brand-mark-atlas">BA</span>
+          <span class="brand-copy">Backchannel Atlas<small>profile · map · plan</small></span>
+        </a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a class="nav-link is-current" href="./onboarding.html">Profil</a>
+          <a class="nav-link" href="./dashboard.html">Dashboard</a>
+          <a class="nav-link" href="./map.html">Carte</a>
+          <a class="nav-link" href="./compare.html">Comparer</a>
+          <a class="nav-link" href="./plans.html">Plans</a>
+          <a class="nav-link" href="./sources.html">Intel</a>
+        </nav>
+      </div>
+    </header>
+    <main class="shell page-stack">
+      <section class="page-hero">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">Step 1 · Profil</span>
+            <h1 class="display-title">Crée ton profil. Le moteur trie.</h1>
+            <p class="hero-copy">Âge exact, passeport, anglais, capital, mobilité, signaux vendables. Sans ça, une carte monde ne sert à rien.</p>
+          </div>
+          <aside class="panel">
+            <span class="mini-label">Sortie attendue</span>
+            <div class="metric-strip" id="v2HeroStats"></div>
+          </aside>
+        </div>
+      </section>
+      <section class="v2-app-grid">
+        <form class="panel v2-wizard" id="profileWizard"></form>
+        <aside class="panel v2-preview" id="profilePreview" aria-live="polite"></aside>
+      </section>
+    </main>
+    <script type="module" src="./assets/js/v2-pages.js"></script>
+  </body>
+</html>

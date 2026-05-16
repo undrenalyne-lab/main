@@ -1,0 +1,283 @@
+{
+  "version": "2026-05-16",
+  "countries": [
+    {
+      "id": "france",
+      "slug": "france",
+      "iso3": "FRA",
+      "name": "France",
+      "status": "live",
+      "geo": {
+        "lon": 2.21,
+        "lat": 46.23
+      },
+      "currency": "EUR",
+      "netOrGross": "net",
+      "summary": "Route la plus executable si tu veux agir vite: droits simples, tickets terrain, nuits, grands deplacements et employeurs deja cartographies.",
+      "bestFor": ["execution rapide", "ferro", "industrie critique", "nuits / GD", "reconversion terrain"],
+      "badFor": ["fantasme expat", "refus de mobilite", "cash sans contraintes"],
+      "fitSignals": ["terrain", "elec", "meca", "rail", "nuclear", "hauteur", "logistique"],
+      "priorityBoosts": { "cash_fast": 12, "cash_max": 8, "stability": 7, "visa_path": 2, "new_life": 0 },
+      "mobilityBoosts": { "local": -4, "regional": 4, "national": 11, "remote": 10, "fifo": 8 },
+      "englishNeed": "none",
+      "cashPaths": [
+        {
+          "id": "fr-ferro-gd-night",
+          "title": "Ferro chantier nuit / grand deplacement",
+          "targetRoles": ["catenaire", "percheur", "voie", "securite chantier", "train travaux"],
+          "monthlyRangeLow": 2300,
+          "monthlyRangeStable": 3600,
+          "monthlyRangeUpside": 5200,
+          "entryCostLow": 0,
+          "entryCostHigh": 1800,
+          "timeToFirstPayWeeks": [3, 12],
+          "requiredTickets": ["socle securite ferro", "habilitation selon tache", "aptitude medicale si demandee"],
+          "optionalTickets": ["CACES nacelle", "travail en hauteur", "habilitation electrique"],
+          "doNotBuyYet": ["pack large non relie a une boite", "certif ferro vague sans branche cible"],
+          "mainRisks": ["indemnites variables", "rythme nuit", "chantiers loin", "ticket non interchangeable"],
+          "sourceIds": ["salary-estimate-public"]
+        },
+        {
+          "id": "fr-industrie-critique",
+          "title": "Maintenance industrie critique / data center",
+          "targetRoles": ["maintenance multitechnique", "CVC critique", "electricite critique", "GTB/BMS"],
+          "monthlyRangeLow": 2100,
+          "monthlyRangeStable": 3300,
+          "monthlyRangeUpside": 4600,
+          "entryCostLow": 0,
+          "entryCostHigh": 2500,
+          "timeToFirstPayWeeks": [4, 16],
+          "requiredTickets": ["habilitation electrique adaptee", "socle maintenance ou CVC"],
+          "optionalTickets": ["SSIAP selon site", "GTB/BMS", "fluides si CVC"],
+          "doNotBuyYet": ["formation longue non reliee a un role cible"],
+          "mainRisks": ["astreintes", "experience exigee", "sites moins accessibles debutant"],
+          "sourceIds": ["salary-estimate-public"]
+        }
+      ],
+      "sourceIds": ["france-labor-local", "salary-estimate-public"],
+      "lastUpdated": "2026-05-16",
+      "confidence": "medium"
+    },
+    {
+      "id": "australia",
+      "slug": "australia",
+      "iso3": "AUS",
+      "name": "Australie",
+      "status": "beta",
+      "geo": {
+        "lon": 133.78,
+        "lat": -25.27
+      },
+      "currency": "AUD",
+      "netOrGross": "gross",
+      "summary": "Upside tres fort si work rights, anglais operationnel, capital et mobilite suivent. Mauvais terrain si tu achetes des tickets avant de verifier le droit au travail.",
+      "bestFor": ["cash upside", "anglais", "mobilite remote", "chantier", "FIFO / roster"],
+      "badFor": ["age trop eleve pour WHV", "anglais faible", "budget faible", "besoin de stabilite immediate"],
+      "fitSignals": ["terrain", "elec", "meca", "hauteur", "logistique", "rail"],
+      "priorityBoosts": { "cash_fast": 7, "cash_max": 15, "stability": -4, "visa_path": 8, "new_life": 12 },
+      "mobilityBoosts": { "local": -14, "regional": -4, "national": 10, "remote": 16, "fifo": 20 },
+      "englishNeed": "functional",
+      "cashPaths": [
+        {
+          "id": "au-entry-utility-traffic",
+          "title": "Entree chantier / utility / traffic control",
+          "targetRoles": ["civil labourer", "traffic controller", "utility", "yard hand", "rail entry support"],
+          "monthlyRangeLow": 5000,
+          "monthlyRangeStable": 6200,
+          "monthlyRangeUpside": 7800,
+          "entryCostLow": 900,
+          "entryCostHigh": 4200,
+          "timeToFirstPayWeeks": [1, 8],
+          "requiredTickets": ["work rights", "White Card", "CV local", "TFN / banking"],
+          "optionalTickets": ["traffic control", "working at heights", "confined spaces"],
+          "doNotBuyYet": ["HRW cher sans piste recruteur", "FIFO course vendue comme garantie"],
+          "mainRisks": ["creux de mission", "logement cher", "voiture", "anglais", "visa"],
+          "sourceIds": ["au-homeaffairs-417", "salary-estimate-public"]
+        },
+        {
+          "id": "au-rail-shutdown-fifo",
+          "title": "Rail WA / shutdown / FIFO support",
+          "targetRoles": ["TPO", "track worker", "shutdown TA", "FIFO utility", "scaffold support"],
+          "monthlyRangeLow": 6500,
+          "monthlyRangeStable": 8500,
+          "monthlyRangeUpside": 12000,
+          "entryCostLow": 2500,
+          "entryCostHigh": 9500,
+          "timeToFirstPayWeeks": [6, 20],
+          "requiredTickets": ["work rights", "medical", "site induction", "licences selon Etat"],
+          "optionalTickets": ["heights", "confined spaces", "HRW", "RIW / safeworking si rail"],
+          "doNotBuyYet": ["tout pack mining sans entretien", "billet Perth sans budget tampon"],
+          "mainRisks": ["visa", "roster non garanti", "fatigue", "isolement", "screening medical"],
+          "sourceIds": ["au-homeaffairs-417", "au-homeaffairs-specified-work", "salary-estimate-public"]
+        }
+      ],
+      "sourceIds": ["au-homeaffairs-417", "au-homeaffairs-specified-work", "salary-estimate-public"],
+      "lastUpdated": "2026-05-16",
+      "confidence": "medium"
+    },
+    {
+      "id": "canada",
+      "slug": "canada",
+      "iso3": "CAN",
+      "name": "Canada",
+      "status": "beta",
+      "geo": {
+        "lon": -106.35,
+        "lat": 56.13
+      },
+      "currency": "CAD",
+      "netOrGross": "gross",
+      "summary": "Bon potentiel trades, remote work, energie et construction, mais l'acces depend de l'invitation, province, permis et saison.",
+      "bestFor": ["PVT si eligible", "trades", "remote cold work", "anglais", "long terme"],
+      "badFor": ["besoin de paie immediate", "quota / invitation incertaine", "froid refuse"],
+      "fitSignals": ["terrain", "meca", "elec", "logistique", "hauteur"],
+      "priorityBoosts": { "cash_fast": 0, "cash_max": 7, "stability": 4, "visa_path": 9, "new_life": 8 },
+      "mobilityBoosts": { "local": -12, "regional": 0, "national": 9, "remote": 15, "fifo": 12 },
+      "englishNeed": "functional",
+      "cashPaths": [
+        {
+          "id": "ca-trades-remote",
+          "title": "Trades / construction / remote industrial",
+          "targetRoles": ["labourer", "heavy equipment helper", "warehouse industrial", "maintenance helper"],
+          "monthlyRangeLow": 3600,
+          "monthlyRangeStable": 5200,
+          "monthlyRangeUpside": 7800,
+          "entryCostLow": 2200,
+          "entryCostHigh": 8000,
+          "timeToFirstPayWeeks": [6, 24],
+          "requiredTickets": ["work permit / IEC", "SIN", "province-specific safety"],
+          "optionalTickets": ["first aid", "fall protection", "forklift", "CSTS selon province"],
+          "doNotBuyYet": ["certif province sans ville cible", "billet sans invitation/permis"],
+          "mainRisks": ["invitation", "saisonnalite", "logement", "distance", "froid"],
+          "sourceIds": ["canada-iec", "salary-estimate-public"]
+        }
+      ],
+      "sourceIds": ["canada-iec", "salary-estimate-public"],
+      "lastUpdated": "2026-05-16",
+      "confidence": "low"
+    },
+    {
+      "id": "switzerland",
+      "slug": "switzerland",
+      "iso3": "CHE",
+      "name": "Suisse",
+      "status": "beta",
+      "geo": {
+        "lon": 8.23,
+        "lat": 46.82
+      },
+      "currency": "CHF",
+      "netOrGross": "gross",
+      "summary": "Cash nominal fort et acces UE/AELE plus simple pour Francais, mais logement, cout de vie, competition et reconnaissance filtrent violemment.",
+      "bestFor": ["passeport UE", "stabilite", "industrie", "maintenance", "frontalier"],
+      "badFor": ["budget tres faible", "aucun signal technique", "attentes nettes mal calculees"],
+      "fitSignals": ["elec", "meca", "automation", "industrie", "cvc", "gestion"],
+      "priorityBoosts": { "cash_fast": 2, "cash_max": 9, "stability": 12, "visa_path": 8, "new_life": 5 },
+      "mobilityBoosts": { "local": -6, "regional": 8, "national": 8, "remote": 4, "fifo": 0 },
+      "englishNeed": "basic",
+      "cashPaths": [
+        {
+          "id": "ch-industry-maintenance",
+          "title": "Maintenance / industrie / frontalier",
+          "targetRoles": ["technicien maintenance", "electricien industriel", "automaticien", "facility technique"],
+          "monthlyRangeLow": 4500,
+          "monthlyRangeStable": 6200,
+          "monthlyRangeUpside": 8500,
+          "entryCostLow": 1500,
+          "entryCostHigh": 9000,
+          "timeToFirstPayWeeks": [6, 24],
+          "requiredTickets": ["contrat", "permis/canton si residence", "assurance", "dossier solide"],
+          "optionalTickets": ["allemand selon canton", "equivalence diplome", "certifs industrie"],
+          "doNotBuyYet": ["deménagement sans promesse solide", "cours cher sans canton cible"],
+          "mainRisks": ["cout de vie", "logement", "competition", "langue"],
+          "sourceIds": ["ch-sem-eu-efta", "salary-estimate-public"]
+        }
+      ],
+      "sourceIds": ["ch-sem-eu-efta", "salary-estimate-public"],
+      "lastUpdated": "2026-05-16",
+      "confidence": "medium"
+    },
+    {
+      "id": "uae",
+      "slug": "uae",
+      "iso3": "ARE",
+      "name": "EAU / Dubai",
+      "status": "beta",
+      "geo": {
+        "lon": 53.85,
+        "lat": 23.42
+      },
+      "currency": "AED",
+      "netOrGross": "mixed",
+      "summary": "Marche package/sponsor: bon si employeur, logement, rotation ou niche technique; mauvais si tu arrives sans angle et sans sponsor.",
+      "bestFor": ["package sponsor", "facilities", "energie", "securite", "anglais fort"],
+      "badFor": ["aucun employeur", "anglais faible", "attente salaire europeen sans niche"],
+      "fitSignals": ["elec", "meca", "automation", "security", "cvc", "gestion"],
+      "priorityBoosts": { "cash_fast": -2, "cash_max": 8, "stability": 1, "visa_path": 4, "new_life": 7 },
+      "mobilityBoosts": { "local": -15, "regional": -4, "national": 3, "remote": 10, "fifo": 8 },
+      "englishNeed": "strong",
+      "cashPaths": [
+        {
+          "id": "uae-facility-energy",
+          "title": "Facilities / energie / package sponsor",
+          "targetRoles": ["technician", "facility supervisor", "commissioning support", "HSE/security ops"],
+          "monthlyRangeLow": 7000,
+          "monthlyRangeStable": 12000,
+          "monthlyRangeUpside": 22000,
+          "entryCostLow": 1200,
+          "entryCostHigh": 6500,
+          "timeToFirstPayWeeks": [8, 32],
+          "requiredTickets": ["offre employeur", "visa sponsor", "anglais solide"],
+          "optionalTickets": ["certifs HSE", "HVAC", "commissioning", "project controls"],
+          "doNotBuyYet": ["visa workaround", "formation Dubai sans offre"],
+          "mainRisks": ["sponsor", "contrat", "cout initial", "package trompeur"],
+          "sourceIds": ["uae-work-visa", "salary-estimate-public"]
+        }
+      ],
+      "sourceIds": ["uae-work-visa", "salary-estimate-public"],
+      "lastUpdated": "2026-05-16",
+      "confidence": "low"
+    },
+    {
+      "id": "germany",
+      "slug": "germany",
+      "iso3": "DEU",
+      "name": "Allemagne",
+      "status": "beta",
+      "geo": {
+        "lon": 10.45,
+        "lat": 51.17
+      },
+      "currency": "EUR",
+      "netOrGross": "gross",
+      "summary": "Tres bon terrain industrie/automation pour citoyen UE, mais la langue et la reconnaissance du niveau technique decident beaucoup.",
+      "bestFor": ["industrie", "automation", "energie", "passeport UE", "long terme"],
+      "badFor": ["allemand zero", "cash rapide", "mobilite faible"],
+      "fitSignals": ["elec", "meca", "automation", "industrie", "cvc"],
+      "priorityBoosts": { "cash_fast": -3, "cash_max": 5, "stability": 10, "visa_path": 8, "new_life": 6 },
+      "mobilityBoosts": { "local": -10, "regional": 3, "national": 9, "remote": 5, "fifo": 0 },
+      "englishNeed": "basic",
+      "cashPaths": [
+        {
+          "id": "de-industrial-automation",
+          "title": "Industrie / automation / maintenance",
+          "targetRoles": ["maintenance technician", "electrician", "automation support", "field service"],
+          "monthlyRangeLow": 2600,
+          "monthlyRangeStable": 3800,
+          "monthlyRangeUpside": 5600,
+          "entryCostLow": 1200,
+          "entryCostHigh": 6500,
+          "timeToFirstPayWeeks": [8, 28],
+          "requiredTickets": ["droit UE", "CV allemand/anglais", "preuve technique"],
+          "optionalTickets": ["allemand B1/B2", "certifs automation", "equivalence"],
+          "doNotBuyYet": ["cours long sans region cible", "deménagement sans entretiens"],
+          "mainRisks": ["langue", "bureaucratie", "qualification locale"],
+          "sourceIds": ["eu-free-movement", "salary-estimate-public"]
+        }
+      ],
+      "sourceIds": ["eu-free-movement", "salary-estimate-public"],
+      "lastUpdated": "2026-05-16",
+      "confidence": "low"
+    }
+  ]
+}

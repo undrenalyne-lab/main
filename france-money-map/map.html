@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carte personnalisée · Backchannel Atlas</title>
+    <meta name="description" content="Carte pays personnalisée selon profil, âge, visa, cash, coût d'entrée et délai première paie." />
+    <link rel="canonical" href="https://undrenalynelab.io/france-money-map/map.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Backchannel Atlas" />
+    <meta property="og:title" content="Carte personnalisée · Backchannel Atlas" />
+    <meta property="og:description" content="La carte devient une visualisation de scoring, pas une décoration." />
+    <meta property="og:url" content="https://undrenalynelab.io/france-money-map/map.html" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/layout.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+  </head>
+  <body class="page-v2 page-map">
+    <header class="site-header">
+      <div class="shell nav-row">
+        <a class="brand" href="./index.html"><span class="brand-mark brand-mark-atlas">BA</span><span class="brand-copy">Backchannel Atlas<small>profile · map · plan</small></span></a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a class="nav-link" href="./onboarding.html">Profil</a>
+          <a class="nav-link" href="./dashboard.html">Dashboard</a>
+          <a class="nav-link is-current" href="./map.html">Carte</a>
+          <a class="nav-link" href="./compare.html">Comparer</a>
+          <a class="nav-link" href="./plans.html">Plans</a>
+          <a class="nav-link" href="./sources.html">Intel</a>
+        </nav>
+      </div>
+    </header>
+    <main class="shell page-stack">
+      <section class="page-hero">
+        <span class="eyebrow">Carte score</span>
+        <h1 class="display-title">Carte score. Clique un pays, ouvre le plan.</h1>
+        <p class="hero-copy">Vert = exécutable. Orange = prérequis. Rouge = mauvais fit. Gris = pas assez documenté.</p>
+      </section>
+      <section id="countryMapApp" class="content-grid" aria-live="polite"></section>
+    </main>
+    <script type="module" src="./assets/js/v2-pages.js"></script>
+  </body>
+</html>
