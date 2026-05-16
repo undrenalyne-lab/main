@@ -1,0 +1,74 @@
+name: Build and deploy GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: backchannel-atlas-app/package-lock.json
+
+      - name: Install app dependencies
+        working-directory: backchannel-atlas-app
+        run: npm ci
+
+      - name: Build Backchannel Atlas
+        working-directory: backchannel-atlas-app
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+        run: npm run build
+
+      - name: Compose Pages artifact
+        run: |
+          mkdir -p dist
+          rsync -a \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'backchannel-atlas-app' \
+            --exclude 'france-money-map' \
+            --exclude 'france-money-map-legacy' \
+            --exclude 'node_modules' \
+            --exclude 'supabase' \
+            ./ dist/
+          mkdir -p dist/france-money-map
+          cp -R backchannel-atlas-app/out/. dist/france-money-map/
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

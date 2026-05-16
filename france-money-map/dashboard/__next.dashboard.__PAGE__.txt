@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[25620,["/france-money-map/_next/static/chunks/13h-0fd.p-1ga.js","/france-money-map/_next/static/chunks/0d3shmwh5_nmn.js","/france-money-map/_next/static/chunks/17.wvdx.urre_.js"],"AtlasApp"]
+3:I[97367,["/france-money-map/_next/static/chunks/13h-0fd.p-1ga.js","/france-money-map/_next/static/chunks/0d3shmwh5_nmn.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"screen":"dashboard"}],[["$","script","script-0",{"src":"/france-money-map/_next/static/chunks/17.wvdx.urre_.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"ZjU02dTssrfj4R_vthQbM"}
+5:null

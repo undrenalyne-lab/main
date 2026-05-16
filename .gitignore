@@ -1,2 +1,8 @@
 
 france-money-map/node_modules/
+backchannel-atlas-app/node_modules/
+backchannel-atlas-app/.next/
+backchannel-atlas-app/out/
+backchannel-atlas-app/tsconfig.tsbuildinfo
+backchannel-atlas-app/.env.local
+backchannel-atlas-app/.env*.local

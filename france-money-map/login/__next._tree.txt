@@ -1,0 +1,2 @@
+:HL["/france-money-map/_next/static/chunks/14r8.hr7igw~6.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"login","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"ZjU02dTssrfj4R_vthQbM"}

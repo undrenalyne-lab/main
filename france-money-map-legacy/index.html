@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backchannel Atlas</title>
+    <meta
+      name="description"
+      content="Backchannel Atlas aide à choisir une trajectoire terrain ou technique rentable: profil, carte monde, salaires plausibles, tickets utiles et employeurs à viser."
+    />
+    <link rel="canonical" href="https://undrenalynelab.io/france-money-map/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Backchannel Atlas" />
+    <meta property="og:title" content="Backchannel Atlas · Routes pro à cash réel" />
+    <meta
+      property="og:description"
+      content="Quel métier terrain ou technique peut vraiment te rapporter ? Règle ton profil, choisis un pays, lis la route, les tickets et les boîtes à viser."
+    />
+    <meta property="og:url" content="https://undrenalynelab.io/france-money-map/" />
+    <meta property="og:image" content="https://undrenalynelab.io/assets/images/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/layout.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/pages.css" />
+  </head>
+  <body class="page-home">
+    <header class="site-header">
+      <div class="shell nav-row">
+        <a class="brand" href="./index.html">
+          <span class="brand-mark brand-mark-atlas">BA</span>
+          <span class="brand-copy">
+            Backchannel Atlas
+            <small>profile · map · plan</small>
+          </span>
+        </a>
+        <nav class="site-nav" aria-label="Navigation principale">
+          <a class="nav-link is-current" href="./index.html">Home</a>
+          <a class="nav-link" href="./onboarding.html">Profil</a>
+          <a class="nav-link" href="./dashboard.html">Dashboard</a>
+          <a class="nav-link" href="./map.html">Carte</a>
+          <a class="nav-link" href="./compare.html">Comparer</a>
+          <a class="nav-link" href="./plans.html">Plans</a>
+          <a class="nav-link" href="./sources.html">Intel</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="shell page-stack home-shell">
+      <section class="page-hero mission-hero">
+        <div class="hero-grid mission-hero-grid">
+          <div class="content-grid mission-copy">
+            <span class="eyebrow">Backchannel Atlas · V2 app</span>
+            <p class="hero-kicker">// Profil → pays → cash → plan</p>
+            <h1 class="hero-title">
+              Trouve le pays où ton profil peut
+              <span class="accent">vraiment</span> faire du cash.
+            </h1>
+            <p class="hero-copy">
+              Âge exact, passeport, anglais, capital, compétences, mobilité.
+              Le moteur trie les pays, bloque les fantasmes et sort un plan 7/30/90.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="./onboarding.html">Créer mon profil</a>
+              <a class="button secondary" href="./dashboard.html">Voir mon dashboard</a>
+              <a class="button secondary" href="./map.html">Ouvrir la carte score</a>
+            </div>
+          </div>
+          <aside class="mission-console">
+            <div class="console-head">
+              <div>
+                <span class="mini-label">Boucle produit</span>
+                <h2 class="console-title">Profil → scoring → plan sauvegardé</h2>
+              </div>
+              <span class="badge badge--data">v2 static</span>
+            </div>
+            <div class="mission-rail" id="missionRail" aria-label="Étapes produit">
+              <article class="mission-step is-active">
+                <span class="mission-step-index">01</span>
+                <div>
+                  <strong>Profil</strong>
+                  <div class="muted">droits, âge, anglais, mobilité</div>
+                </div>
+              </article>
+              <article class="mission-step">
+                <span class="mission-step-index">02</span>
+                <div>
+                  <strong>Carte</strong>
+                  <div class="muted">scores personnalisés par pays</div>
+                </div>
+              </article>
+              <article class="mission-step">
+                <span class="mission-step-index">03</span>
+                <div>
+                  <strong>Pays</strong>
+                  <div class="muted">visa, cash, coût, délai</div>
+                </div>
+              </article>
+              <article class="mission-step">
+                <span class="mission-step-index">04</span>
+                <div>
+                  <strong>Mission</strong>
+                  <div class="muted">plan 7/30/90 sauvegardable</div>
+                </div>
+              </article>
+            </div>
+            <div class="metric-strip routefinder-metrics" id="heroStats">
+              <article class="metric-card">
+                <span class="metric-label">Routes live</span>
+                <strong class="metric-value" data-stat="lanes">--</strong>
+              </article>
+              <article class="metric-card">
+                <span class="metric-label">Tickets live</span>
+                <strong class="metric-value" data-stat="tickets">--</strong>
+              </article>
+              <article class="metric-card">
+                <span class="metric-label">Employeurs</span>
+                <strong class="metric-value" data-stat="employers">--</strong>
+              </article>
+              <article class="metric-card">
+                <span class="metric-label">Marchés visibles</span>
+                <strong class="metric-value" data-stat="markets">--</strong>
+              </article>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section home-map-section" aria-labelledby="worldMapTitle">
+        <article class="world-panel world-panel-prime">
+          <div class="panel-head world-panel-head">
+            <div>
+              <span class="mini-label">Carte monde interactive</span>
+              <h2 class="section-title" id="worldMapTitle">Choisis ton pays.</h2>
+              <p class="section-copy">
+                Profil → pays → mission. France live. Australie beta. Le reste
+                reste grisé tant qu'il n'est pas documenté proprement.
+              </p>
+              <div class="first-visit-strip" aria-label="Mode d'emploi rapide">
+                <div><strong>1. Profil</strong><span>âge, droits, anglais, mobilité</span></div>
+                <div><strong>2. Pays</strong><span>fit now, cash ceiling, entry speed</span></div>
+                <div><strong>3. Mission</strong><span>salaire, ticket, délai, employeurs</span></div>
+              </div>
+            </div>
+            <div class="chip-set heat-layer-set" id="heatLayerSet" aria-label="Couches de heat map"></div>
+          </div>
+          <div class="world-panel-grid">
+            <div class="world-map-shell" id="worldMap" aria-live="polite">
+              <div class="map-skeleton" role="status" aria-label="Chargement de la carte monde">
+                <div class="map-skeleton-canvas">
+                  <span class="map-skeleton-land land-a"></span>
+                  <span class="map-skeleton-land land-b"></span>
+                  <span class="map-skeleton-land land-c"></span>
+                  <span class="map-skeleton-land land-d"></span>
+                  <span class="map-skeleton-pin pin-fr">FR</span>
+                  <span class="map-skeleton-pin pin-au">AU</span>
+                </div>
+                <div class="map-skeleton-copy">
+                  <strong>Chargement des frontières...</strong>
+                  <span>La carte réelle arrive, les pays verrouillés restent volontairement grisés.</span>
+                </div>
+              </div>
+            </div>
+            <div class="market-drawer" id="marketDrawer" aria-live="polite"></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="section home-profile-section">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Profil rapide</h2>
+            <p class="section-copy">
+              Ajuste âge, droits, anglais, mobilité et signaux. La carte et les
+              missions se recalculent immédiatement.
+            </p>
+          </div>
+        </div>
+        <div class="mission-layout mission-layout-profile">
+          <article class="panel profile-lab-panel" id="profileLab" aria-live="polite"></article>
+          <article class="panel launchpad-panel" id="launchpadPanel" aria-live="polite"></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Mission pays</h2>
+            <p class="section-copy">
+              Une fois le pays choisi, le moteur doit sortir une porte
+              d'entrée, un verrou et une action.
+            </p>
+          </div>
+        </div>
+        <div class="mission-launch-grid mission-launch-grid-single">
+          <article class="panel mission-board" id="missionBoard" aria-live="polite"></article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="featuredTitle">Next move recommandé</h2>
+            <p class="section-copy" id="featuredCopy">
+              Le prochain move doit être compréhensible en une lecture.
+            </p>
+          </div>
+        </div>
+        <div class="card-grid card-grid-2 featured-routes-grid" id="featuredRoutes" aria-live="polite"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Heat map de tes options</h2>
+            <p class="section-copy">
+              Deux pays sont actifs pour l'instant. Le reste du monde reste
+              visible pour la roadmap, mais grisé tant que le moteur n'est pas
+              proprement documenté.
+            </p>
+          </div>
+        </div>
+        <div class="market-heat-grid" id="marketHeatGrid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <footer class="shell site-footer">
+      <p>
+        V1 statique sur GitHub Pages. Profil sauvegardé localement. Compte
+        multi-device et Google login demandent un vrai backend, pas un faux
+        bouton.
+      </p>
+    </footer>
+
+    <script type="module" src="./assets/js/app.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Backchannel Atlas",
+        "url": "https://undrenalynelab.io/france-money-map/",
+        "description": "Moteur d'arbitrage de trajectoires professionnelles à cash réel."
+      }
+    </script>
+  </body>
+</html>

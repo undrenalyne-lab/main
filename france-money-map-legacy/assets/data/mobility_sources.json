@@ -1,0 +1,81 @@
+[
+  {
+    "id": "france-labor-local",
+    "title": "France: droit au travail local / UE",
+    "url": "https://www.service-public.fr/particuliers/vosdroits/N19804",
+    "type": "government",
+    "countryId": "france",
+    "lastChecked": "2026-05-16",
+    "confidence": "high",
+    "note": "Point d'entrée public pour verifier droits, contrat, emploi et obligations."
+  },
+  {
+    "id": "au-homeaffairs-417",
+    "title": "Australia Working Holiday visa subclass 417",
+    "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/work-holiday-417",
+    "type": "official",
+    "countryId": "australia",
+    "lastChecked": "2026-05-16",
+    "confidence": "high",
+    "note": "Source officielle visa. Toujours verifier avant billet, ticket ou demission."
+  },
+  {
+    "id": "au-homeaffairs-specified-work",
+    "title": "Specified work for Working Holiday visa subclass 417",
+    "url": "https://immi.homeaffairs.gov.au/what-we-do/whm-program/specified-work-conditions/specified-work-417",
+    "type": "official",
+    "countryId": "australia",
+    "lastChecked": "2026-05-16",
+    "confidence": "high",
+    "note": "Source officielle pour le travail specifie et l'extension potentielle."
+  },
+  {
+    "id": "canada-iec",
+    "title": "International Experience Canada",
+    "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/work-canada/iec.html",
+    "type": "government",
+    "countryId": "canada",
+    "lastChecked": "2026-05-16",
+    "confidence": "high",
+    "note": "Source officielle pour EIC/IEC, bassins, categories et frais."
+  },
+  {
+    "id": "ch-sem-eu-efta",
+    "title": "EU/EFTA citizens: living and working in Switzerland",
+    "url": "https://www.sem.admin.ch/sem/en/home/themen/arbeit/eu_efta-angehoerige.html",
+    "type": "official",
+    "countryId": "switzerland",
+    "lastChecked": "2026-05-16",
+    "confidence": "high",
+    "note": "Source officielle suisse pour citoyens UE/AELE."
+  },
+  {
+    "id": "uae-work-visa",
+    "title": "UAE work permits and residence visa",
+    "url": "https://u.ae/en/information-and-services/jobs/work-permits",
+    "type": "government",
+    "countryId": "uae",
+    "lastChecked": "2026-05-16",
+    "confidence": "medium",
+    "note": "Le sponsor employeur reste le verrou principal."
+  },
+  {
+    "id": "eu-free-movement",
+    "title": "EU right to work and free movement",
+    "url": "https://europa.eu/youreurope/citizens/work/work-abroad/index_en.htm",
+    "type": "official",
+    "countryId": "germany",
+    "lastChecked": "2026-05-16",
+    "confidence": "high",
+    "note": "Base UE pour travailler dans un autre Etat membre."
+  },
+  {
+    "id": "salary-estimate-public",
+    "title": "Fourchettes Backchannel Atlas",
+    "url": "https://undrenalynelab.io/france-money-map/sources.html",
+    "type": "estimate",
+    "lastChecked": "2026-05-16",
+    "confidence": "low",
+    "note": "Estimation produit a remplacer par agregats recruteurs, job boards et retours terrain dates."
+  }
+]

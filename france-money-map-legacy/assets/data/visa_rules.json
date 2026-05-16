@@ -1,0 +1,77 @@
+{
+  "version": "2026-05-16",
+  "rules": [
+    {
+      "id": "fr-to-france-work",
+      "passportCountry": "FR",
+      "countryId": "france",
+      "routeType": "local_work_rights",
+      "label": "Droit au travail France",
+      "minAge": 16,
+      "maxAge": null,
+      "statusWhenEligible": "eligible",
+      "summary": "Passeport francais: pas de verrou visa pour travailler en France.",
+      "sourceIds": ["france-labor-local"]
+    },
+    {
+      "id": "fr-to-australia-whv-417",
+      "passportCountry": "FR",
+      "countryId": "australia",
+      "routeType": "working_holiday",
+      "label": "Working Holiday 417",
+      "minAge": 18,
+      "maxAge": 35,
+      "statusWhenEligible": "conditional",
+      "summary": "Route plausible si age, passeport, fonds, sante, anglais et conditions officielles passent.",
+      "sourceIds": ["au-homeaffairs-417", "au-homeaffairs-specified-work"]
+    },
+    {
+      "id": "fr-to-canada-iec",
+      "passportCountry": "FR",
+      "countryId": "canada",
+      "routeType": "iec_pool",
+      "label": "EIC / PVT Canada",
+      "minAge": 18,
+      "maxAge": 35,
+      "statusWhenEligible": "conditional",
+      "summary": "Possible seulement si bassin, invitation, documents et fonds suivent.",
+      "sourceIds": ["canada-iec"]
+    },
+    {
+      "id": "fr-to-switzerland-eu",
+      "passportCountry": "FR",
+      "countryId": "switzerland",
+      "routeType": "eu_efta",
+      "label": "Acces UE/AELE Suisse",
+      "minAge": 18,
+      "maxAge": null,
+      "statusWhenEligible": "conditional",
+      "summary": "Friction plus basse qu'un pays sponsor, mais contrat, canton, logement et assurances restent bloquants.",
+      "sourceIds": ["ch-sem-eu-efta"]
+    },
+    {
+      "id": "fr-to-uae-sponsored",
+      "passportCountry": "FR",
+      "countryId": "uae",
+      "routeType": "sponsored_work",
+      "label": "Sponsor employeur EAU",
+      "minAge": 18,
+      "maxAge": null,
+      "statusWhenEligible": "conditional",
+      "summary": "Pas une route autonome: le package depend d'une offre et d'un sponsor employeur.",
+      "sourceIds": ["uae-work-visa"]
+    },
+    {
+      "id": "fr-to-germany-eu",
+      "passportCountry": "FR",
+      "countryId": "germany",
+      "routeType": "eu_free_movement",
+      "label": "Droit UE Allemagne",
+      "minAge": 18,
+      "maxAge": null,
+      "statusWhenEligible": "eligible",
+      "summary": "Acces administratif fort pour passeport FR, mais langue, diplome local et branche filtrent beaucoup.",
+      "sourceIds": ["eu-free-movement"]
+    }
+  ]
+}
