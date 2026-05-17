@@ -5,8 +5,10 @@ import { usePathname } from "next/navigation";
 import { appPath } from "@/lib/format";
 
 const navItems = [
-  ["Dashboard", "/dashboard/"],
+  ["Home", "/"],
+  ["Profil", "/onboarding/"],
   ["Carte", "/map/"],
+  ["Cockpit", "/dashboard/"],
   ["Comparer", "/compare/"],
 ];
 
@@ -16,9 +18,10 @@ const actionItems = [
 ];
 
 const mobileItems = [
-  ["Profil", "/onboarding/"],
+  ["Home", "/"],
   ["Carte", "/map/"],
-  ["Dashboard", "/dashboard/"],
+  ["Profil", "/onboarding/"],
+  ["Cockpit", "/dashboard/"],
   ["Plans", "/plans/"],
 ];
 
@@ -36,9 +39,13 @@ export function AtlasShell({ children }: { children: React.ReactNode }) {
             <span className="brand-mark">BA</span>
             <span>
               Backchannel Atlas
-              <small>profile · map · plan</small>
+              <small>origin · gate · cash · plan</small>
             </span>
           </Link>
+          <div className="nav-system-status" aria-label="Statut systeme">
+            <span>LIVE</span>
+            <strong>Atlas OS</strong>
+          </div>
           <nav className="site-nav" aria-label="Navigation principale">
             {navItems.map(([label, href]) => (
               <Link className="nav-link" aria-current={isActive(href) ? "page" : undefined} key={href} href={href}>
@@ -66,8 +73,8 @@ export function AtlasShell({ children }: { children: React.ReactNode }) {
       </nav>
       <footer className="shell site-footer">
         <p>
-          Backchannel Atlas ne remplace pas une vérification officielle visa, emploi ou fiscalité. Les revenus sont
-          des fourchettes indicatives, pas des promesses.
+          Backchannel Atlas est un moteur d'aide a la decision. Verifie toujours visas, contrats, fiscalite et sources
+          officielles avant paiement, depart ou demission.
         </p>
         <a href={appPath("/account/")}>Exporter ou supprimer mes données</a>
       </footer>
