@@ -43,6 +43,8 @@ import {
   ScoreBreakdown,
   WorldMapCanvas,
   WorldMapHero,
+  CorridorWedgeStrip,
+  PaidAuditCta,
 } from "@/components/ui/AtlasUi";
 
 type Screen = "home" | "onboarding" | "dashboard" | "map" | "compare" | "country" | "plans" | "account" | "login" | "callback";
@@ -180,6 +182,7 @@ function Home({ scores, session }: { scores: CountryScore[]; session: Session | 
     <main className="shell app-screen">
       <WorldMapHero scores={scores} session={session} />
       <DecisionStatStrip scores={scores} session={session} />
+      <CorridorWedgeStrip />
       <RouteFlow />
       <section className="ops-split">
         <div className="ops-panel">
@@ -203,6 +206,7 @@ function Home({ scores, session }: { scores: CountryScore[]; session: Session | 
       <section className="route-board" aria-label="Trajectoires recommandees">
         {scores.slice(0, 3).map((score, index) => <OpportunityCard key={score.countryId} score={score} index={index} />)}
       </section>
+      <PaidAuditCta />
     </main>
   );
 }
@@ -381,6 +385,7 @@ function Dashboard({
           return <OpportunityCard key={score.countryId} score={score} country={country} index={index} onSavePlan={() => onSavePlan(country, score)} session={session} />;
         })}
       </section>
+      <PaidAuditCta variant="inline" />
     </main>
   );
 }

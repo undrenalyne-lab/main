@@ -65,6 +65,90 @@ function confidenceLabel(country?: CountryProfile) {
   return "needs proof";
 }
 
+export type CertaintyTier = "certain" | "probable" | "verify";
+
+export function accessProbabilityBand(accessScore: number) {
+  if (accessScore >= 72) return "35–55%";
+  if (accessScore >= 55) return "22–38%";
+  if (accessScore >= 40) return "12–25%";
+  if (accessScore >= 25) return "6–14%";
+  return "3–8%";
+}
+
+export function certaintyTierForScore(score: CountryScore, country?: CountryProfile): CertaintyTier {
+  if (country?.confidence === "high" && score.sourceIds.length > 0 && score.visaFit !== "unknown") return "certain";
+  if (country?.confidence === "medium" || score.accessScore >= 42) return "probable";
+  return "verify";
+}
+
+export function maxVerifiedCertainty(country?: CountryProfile): CertaintyTier {
+  if (country?.confidence === "high") return "probable";
+  return "verify";
+}
+
+const certaintyCopy: Record<CertaintyTier, { label: string; hint: string }> = {
+  certain: { label: "CERTAIN", hint: "Source officielle ou regle publique" },
+  probable: { label: "PROBABLE", hint: "Estimation selon donnees et profil" },
+  verify: { label: "A VERIFIER", hint: "Contrat, agent, employeur ou fiscaliste" },
+};
+
+export function CertaintyBadge({ tier, compact = false }: { tier: CertaintyTier; compact?: boolean }) {
+  const copy = certaintyCopy[tier];
+  return (
+    <span className={classNames("certainty-badge", `is-${tier}`, compact && "is-compact")} title={copy.hint}>
+      {copy.label}
+    </span>
+  );
+}
+
+export function ProbabilityBadge({ score }: { score: CountryScore }) {
+  return (
+    <div className="prob-badge" aria-label={`Probabilite d acces estimee ${accessProbabilityBand(score.accessScore)}`}>
+      <span>Acces estime</span>
+      <strong>{accessProbabilityBand(score.accessScore)}</strong>
+      <em>sous 6 mois · profil actuel</em>
+      <CertaintyBadge tier="probable" compact />
+    </div>
+  );
+}
+
+export function CorridorWedgeStrip() {
+  const corridors = [
+    ["FR/EU → AU", "FIFO · mining · rail"],
+    ["FR/EU → CH", "Chantier · sante · logistique"],
+    ["FR/EU → CA", "Camp jobs · trades"],
+  ];
+  return (
+    <section className="corridor-strip" aria-label="Corridors MVP documentes">
+      <span className="system-kicker">Wedge V1 · architecture mondiale</span>
+      <div className="corridor-strip__grid">
+        {corridors.map(([title, copy]) => (
+          <article key={title}>
+            <strong>{title}</strong>
+            <span>{copy}</span>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function PaidAuditCta({ variant = "panel" }: { variant?: "panel" | "inline" }) {
+  return (
+    <aside className={classNames("audit-cta", variant === "inline" && "is-inline")}>
+      <span className="system-kicker">Proof of Possibility MVP</span>
+      <h2>Audit de faisabilite</h2>
+      <p>Top 3 trajectoires, cash stable/high/max, gates, cout d entree, plan 30/90 jours, risques et sources.</p>
+      <div className="audit-cta__meta">
+        <span>49–149 EUR</span>
+        <CertaintyBadge tier="verify" compact />
+      </div>
+      <p className="audit-cta__note">Orientation strategique — pas de conseil juridique visa.</p>
+      <Link className="button primary" href="/onboarding/">Preparer mon profil audit</Link>
+    </aside>
+  );
+}
+
 export function WorldMapCanvas({
   scores,
   mode = "standard",
@@ -234,16 +318,19 @@ export function SalaryCard({ score, country }: { score: CountryScore; country?: 
         <span>Stable</span>
         <strong>{currency(score.realisticMonthlyRange.stable, score.realisticMonthlyRange.currency)}</strong>
         <em>{score.realisticMonthlyRange.netOrGross}</em>
+        <CertaintyBadge tier={certaintyTierForScore(score, country)} compact />
       </div>
       <div className="cash-console__cell">
         <span>High</span>
         <strong>{currency(score.realisticMonthlyRange.upside, score.realisticMonthlyRange.currency)}</strong>
         <em>plausible, conditions</em>
+        <CertaintyBadge tier="probable" compact />
       </div>
       <div className="cash-console__cell">
         <span>Max verified</span>
         <strong>{maxLabel}</strong>
-        <em>{confidenceLabel(country)}</em>
+        <em>max ≠ moyenne · {confidenceLabel(country)}</em>
+        <CertaintyBadge tier={maxVerifiedCertainty(country)} compact />
       </div>
     </div>
   );
@@ -296,6 +383,7 @@ export function OpportunityCard({
         <SalaryCard score={score} country={country} />
       </div>
       <aside className="route-ticket__side">
+        <ProbabilityBadge score={score} />
         <div className="gate-stack">
           <span>{score.visaLabel}</span>
           <span>{score.timeToFirstPay.lowWeeks}-{score.timeToFirstPay.highWeeks} semaines</span>
@@ -329,6 +417,12 @@ export function ProofOfPossibilityCard({ score }: { score: CountryScore }) {
     <aside className="intel-card">
       <span className="system-kicker">Proof layer</span>
       <h2>Le gros chiffre n'est jamais la promesse.</h2>
+      <div className="intel-card__tiers">
+        <CertaintyBadge tier="certain" />
+        <CertaintyBadge tier="probable" />
+        <CertaintyBadge tier="verify" />
+      </div>
+      <ProbabilityBadge score={score} />
       <div className="intel-grid">
         <div><span>Access</span><strong>{score.accessScore}</strong></div>
         <div><span>Cash</span><strong>{score.cashScore}</strong></div>
