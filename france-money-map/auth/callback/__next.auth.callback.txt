@@ -2,4 +2,4 @@
 2:I[39756,["/france-money-map/_next/static/chunks/0b3s-m850s-p7.js","/france-money-map/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
 3:I[37457,["/france-money-map/_next/static/chunks/0b3s-m850s-p7.js","/france-money-map/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
 4:[]
-0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"J2BbK-rlMKDG2m3s71yHq"}
+0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"61mBmOOlfmBzeuIB6BU-g"}

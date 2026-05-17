@@ -10,11 +10,11 @@ const worldWidth = 1200;
 const worldHeight = 620;
 
 const pinNudges: Record<string, { x: number; y: number }> = {
-  france: { x: -8, y: -4.2 },
+  france: { x: 5.8, y: -8 },
   germany: { x: 8.6, y: -11 },
   switzerland: { x: 10, y: 5.2 },
   uae: { x: 3.2, y: 1.8 },
-  canada: { x: -1.2, y: 1.4 },
+  canada: { x: -10, y: -4 },
   australia: { x: -18, y: -10 },
 };
 
@@ -46,7 +46,7 @@ function pinPosition(country: CountryProfile) {
   const projected = projectLonLat(country.geo.lon, country.geo.lat);
   const nudge = pinNudges[country.id] || { x: 0, y: 0 };
   return {
-    x: Math.max(6, Math.min(94, (projected.x / worldWidth) * 100 + nudge.x)),
+    x: Math.max(16, Math.min(88, (projected.x / worldWidth) * 100 + nudge.x)),
     y: Math.max(8, Math.min(92, (projected.y / worldHeight) * 100 + nudge.y)),
   };
 }
@@ -58,9 +58,10 @@ function countryLabel(score: CountryScore) {
   return "Non documente";
 }
 
-export function WorldMapCanvas({ scores, mode = "standard" }: { scores: CountryScore[]; mode?: "standard" | "hero" }) {
+export function WorldMapCanvas({ scores, mode = "standard" }: { scores: CountryScore[]; mode?: "standard" | "hero" | "compact" }) {
   const scoreByCountry = new Map(scores.map((score) => [score.countryId, score]));
   const countryByIso = new Map(countries.map((country) => [country.iso3, country]));
+  const visibleNodeIds = new Set((mode === "hero" ? scores.slice(0, 4) : scores).map((score) => score.countryId));
 
   return (
     <section className={classNames("map-board", mode === "hero" && "map-board-hero")} aria-label="Carte mondiale personnalisee des pays documentes">
@@ -97,7 +98,7 @@ export function WorldMapCanvas({ scores, mode = "standard" }: { scores: CountryS
       <div className="map-scanline" aria-hidden="true" />
       {countries.map((country) => {
         const score = scoreByCountry.get(country.id);
-        if (!score) return null;
+        if (!score || !visibleNodeIds.has(country.id)) return null;
         const position = pinPosition(country);
         return (
           <Link
@@ -118,14 +119,15 @@ export function WorldMapCanvas({ scores, mode = "standard" }: { scores: CountryS
 
 export function WorldMapHero({ scores, session }: { scores: CountryScore[]; session: unknown }) {
   const best = scores[0];
+  const second = scores[1];
   return (
     <section className="world-hero">
       <div className="world-hero-copy">
         <span className="eyebrow">Backchannel Atlas · global opportunity engine</span>
-        <h1>L'atlas des moves cash.</h1>
+        <h1>Le monde, trie pour ton profil.</h1>
         <p>
-          Age, passeport, langue, cash disponible, tolerance terrain. L'atlas transforme ton profil en routes pays,
-          gates visa, cash plausible, preuves et plan d'execution.
+          Entre age, passeport, anglais, cash et limites terrain. L'atlas sort pays, gates, cash realiste,
+          preuves et plan d'action.
         </p>
         <div className="hero-verdict">
           <span>Meilleur move actuel</span>
@@ -134,12 +136,31 @@ export function WorldMapHero({ scores, session }: { scores: CountryScore[]; sess
         </div>
         <div className="button-row hero-actions">
           <Link className="button primary" href="/onboarding/">Creer mon profil</Link>
-          <Link className="button" href="/map/">Explorer la map</Link>
+          <Link className="button" href="/map/">Explorer la carte</Link>
           <Link className="button subtle" href={session ? "/plans/" : "/login/"}>{session ? "Mes plans" : "Sauvegarder plus tard"}</Link>
+        </div>
+        <div className="arrival-proof-row" aria-label="Modele de decision">
+          <span>Stable</span>
+          <span>High</span>
+          <span>Max verifie</span>
+          <span>Probabilite</span>
         </div>
       </div>
       <div className="world-hero-map">
         <WorldMapCanvas scores={scores} mode="hero" />
+        {best && (
+          <div className="map-command-card">
+            <span className="eyebrow">Carte profile-first</span>
+            <h2>{best.name}</h2>
+            <p>{best.nextAction}</p>
+            <div className="map-command-grid">
+              <div><span>Score</span><strong>{best.totalScore}/100</strong></div>
+              <div><span>Stable</span><strong>{currency(best.realisticMonthlyRange.stable, best.realisticMonthlyRange.currency)}</strong></div>
+              <div><span>Gate</span><strong>{best.visaFit}</strong></div>
+            </div>
+            {second && <Link className="card-link" href="/compare/">Comparer avec {second.name}</Link>}
+          </div>
+        )}
         <div className="map-legend" aria-label="Legende carte">
           <span><i className="dot green" /> accessible</span>
           <span><i className="dot orange" /> prerequis</span>
@@ -148,6 +169,92 @@ export function WorldMapHero({ scores, session }: { scores: CountryScore[]; sess
         </div>
       </div>
     </section>
+  );
+}
+
+export function DecisionStatStrip({ scores, session }: { scores: CountryScore[]; session: unknown }) {
+  const live = scores.filter((score) => score.status !== "locked").length;
+  const best = scores[0];
+  return (
+    <section className="decision-strip" aria-label="Lecture rapide du moteur">
+      <div>
+        <span>Pays documentes</span>
+        <strong>{live}</strong>
+        <em>France/Australie live, expansion prevue</em>
+      </div>
+      <div>
+        <span>Best move</span>
+        <strong>{best?.name || "Profil requis"}</strong>
+        <em>{best ? `${best.totalScore}/100 selon ton profil` : "setup en 90 secondes"}</em>
+      </div>
+      <div>
+        <span>Cash lu proprement</span>
+        <strong>Stable / High / Max</strong>
+        <em>pas de max vendu comme salaire normal</em>
+      </div>
+      <div>
+        <span>Compte</span>
+        <strong>{session ? "Cloud actif" : "Guest first"}</strong>
+        <em>login seulement pour sauvegarder</em>
+      </div>
+    </section>
+  );
+}
+
+export function RouteFlow() {
+  const steps = [
+    ["01", "Profil", "Age, passeport, langue, cash, limites terrain."],
+    ["02", "Carte", "Les pays montent ou descendent selon ton vrai fit."],
+    ["03", "Verdict", "Cash stable, high, gates, cout d'entree, risques."],
+    ["04", "Plan", "Checklist 7/30/90 jours sauvegardable."],
+  ];
+  return (
+    <section className="route-flow" aria-label="Fonctionnement du produit">
+      {steps.map(([index, title, copy]) => (
+        <article key={index}>
+          <span>{index}</span>
+          <h3>{title}</h3>
+          <p>{copy}</p>
+        </article>
+      ))}
+    </section>
+  );
+}
+
+export function ScoreBreakdown({ score }: { score: CountryScore }) {
+  const rows = [
+    ["Access", score.accessScore],
+    ["Cash", score.cashScore],
+    ["Speed", score.speedScore],
+    ["Fit", score.fitScore],
+    ["Risk buffer", score.riskScore],
+  ];
+  return (
+    <div className="score-breakdown" aria-label={`Breakdown score ${score.name}`}>
+      {rows.map(([label, value]) => (
+        <div className="score-bar" key={label}>
+          <span>{label}</span>
+          <div><i style={{ width: `${value}%` }} /></div>
+          <strong>{value}</strong>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function CompactTrajectoryCard({ score, index }: { score: CountryScore; index: number }) {
+  return (
+    <Link className={classNames("trajectory-card", `is-${score.status}`)} href={`/country/${score.slug}/`}>
+      <span>{String(index + 1).padStart(2, "0")}</span>
+      <div>
+        <strong>{score.name}</strong>
+        <em>{score.visaLabel}</em>
+      </div>
+      <div>
+        <strong>{currency(score.realisticMonthlyRange.stable, score.realisticMonthlyRange.currency)}</strong>
+        <em>stable/mois</em>
+      </div>
+    </Link>
   );
 }
 

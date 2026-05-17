@@ -33,10 +33,14 @@ import {
 import type { ActionPlan, CountryProfile, CountryScore, UserProfile } from "@/lib/types";
 import {
   ActionPlanPreview,
+  CompactTrajectoryCard,
+  DecisionStatStrip,
   OpportunityCard,
   ProfileSummaryCard,
   ProofOfPossibilityCard,
+  RouteFlow,
   SalaryCard,
+  ScoreBreakdown,
   WorldMapCanvas,
   WorldMapHero,
 } from "@/components/ui/AtlasUi";
@@ -175,31 +179,29 @@ function Home({ scores, session }: { scores: CountryScore[]; session: Session | 
   return (
     <main className="shell page-stack">
       <WorldMapHero scores={scores} session={session} />
-      <section className="mission-strip" aria-label="Promesse produit">
-        <div><span>Modele</span><strong>Origin to destination to opportunity to plan</strong></div>
-        <div><span>Cash</span><strong>Stable / High / Max verifie</strong></div>
-        <div><span>Gates</span><strong>Visa, tickets, langue, budget</strong></div>
-        <div><span>Compte</span><strong>{session ? "Cloud actif" : "Guest d'abord, login apres verdict"}</strong></div>
-      </section>
+      <DecisionStatStrip scores={scores} session={session} />
+      <RouteFlow />
       <section className="home-command">
         <div className="home-command-copy">
-          <span className="eyebrow">Build narrow data, wide architecture</span>
-          <h2>France et Australie ne sont que le premier module. L'atlas est concu pour le monde.</h2>
+          <span className="eyebrow">Doctrine produit</span>
+          <h2>Peu de pays au debut. Architecture mondiale des maintenant.</h2>
           <p>
-            Chaque pays futur doit entrer par la meme structure: droits, gates, metiers, preuves, probabilite,
-            cout d'entree et plan. Pas de pays vendu comme fiable sans source.
+            Le site ne vend pas une destination. Il calcule un arbitrage: d'ou tu pars, ou tu peux aller,
+            quelle opportunite est realiste, quelle gate bloque, quel plan execute cette semaine.
           </p>
-          <div className="button-row">
-            <Link className="button" href="/onboarding/">Lancer le mission setup</Link>
-            <Link className="button" href="/compare/">Comparer les pays</Link>
+          <div className="trajectory-list">
+            {scores.slice(0, 3).map((score, index) => <CompactTrajectoryCard key={score.countryId} score={score} index={index} />)}
           </div>
         </div>
         {best && <ProofOfPossibilityCard score={best} />}
       </section>
+      <section className="section-head">
+        <span className="eyebrow">Top routes</span>
+        <h2>Les cartes qui servent a decider, pas a rever.</h2>
+        <p>Chaque route affiche cash stable, high plausible, gate, cout d'entree, delai et prochaine action.</p>
+      </section>
       <section className="opportunity-stack" aria-label="Trajectoires recommandees">
-        {scores.slice(0, 3).map((score, index) => (
-          <OpportunityCard key={score.countryId} score={score} index={index} />
-        ))}
+        {scores.slice(0, 3).map((score, index) => <OpportunityCard key={score.countryId} score={score} index={index} />)}
       </section>
     </main>
   );
@@ -211,7 +213,19 @@ function Onboarding({ profile, scores, onSave }: { profile: UserProfile; scores:
   const top = scoreCountries(draft, countries, rules).slice(0, 3);
   return (
     <main className="shell page-stack">
-      <Hero kicker="Mission setup" title="Ton profil n'est pas un formulaire. C'est le calcul du move." copy="Age exact, passeport, anglais, cash, mobilite, signaux vendables. Le scoring change en direct." />
+      <section className="setup-hero">
+        <div>
+          <span className="eyebrow">Mission setup</span>
+          <h1>Pas un formulaire. Un brief d'operation.</h1>
+          <p>En moins de 90 secondes: age, passeport, anglais, cash, signaux vendables et limites terrain. Le Top 3 bouge en direct.</p>
+        </div>
+        <div className="setup-progress" aria-label="Progression setup">
+          <span className="active">Identite</span>
+          <span className="active">Cash</span>
+          <span className="active">Signaux</span>
+          <span>Terrain</span>
+        </div>
+      </section>
       <section className="app-grid">
         <form
           className="panel wizard mission-wizard"
@@ -268,6 +282,20 @@ function Onboarding({ profile, scores, onSave }: { profile: UserProfile; scores:
               </div>
             </div>
           </div>
+          <div className="wizard-section">
+            <span className="wizard-index">04</span>
+            <div>
+              <h2>Limites terrain</h2>
+              <div className="toggle-grid">
+                <ToggleChip active={draft.mobility.acceptsFIFO} label="FIFO / rotations" onClick={() => update({ mobility: { ...draft.mobility, acceptsFIFO: !draft.mobility.acceptsFIFO } })} />
+                <ToggleChip active={draft.mobility.acceptsRemoteSites} label="Remote site" onClick={() => update({ mobility: { ...draft.mobility, acceptsRemoteSites: !draft.mobility.acceptsRemoteSites } })} />
+                <ToggleChip active={draft.mobility.acceptsNightShift} label="Nuits" onClick={() => update({ mobility: { ...draft.mobility, acceptsNightShift: !draft.mobility.acceptsNightShift } })} />
+                <Select label="Physique accepte" value={draft.mobility.acceptsPhysicalWork} options={{ low: "Faible", medium: "Moyen", high: "Fort", extreme: "Extreme" }} onChange={(value) => update({ mobility: { ...draft.mobility, acceptsPhysicalWork: value as UserProfile["mobility"]["acceptsPhysicalWork"] } })} />
+                <Select label="Horizon" value={draft.preferences.timeHorizon} options={{ "30d": "30 jours", "90d": "90 jours", "180d": "6 mois", "12m": "12 mois" }} onChange={(value) => update({ preferences: { ...draft.preferences, timeHorizon: value as UserProfile["preferences"]["timeHorizon"] } })} />
+                <Select label="Risque" value={draft.preferences.riskTolerance} options={{ low: "Bas", medium: "Moyen", high: "Haut" }} onChange={(value) => update({ preferences: { ...draft.preferences, riskTolerance: value as UserProfile["preferences"]["riskTolerance"] } })} />
+              </div>
+            </div>
+          </div>
           <div className="button-row">
             <button className="button primary" type="submit">Calculer mon Top 3</button>
             <button className="button" type="button" onClick={() => setDraft(demoProfiles.kevin32)}>Démo 32</button>
@@ -276,16 +304,14 @@ function Onboarding({ profile, scores, onSave }: { profile: UserProfile; scores:
         </form>
         <aside className="panel sticky">
           <span className="eyebrow">Preview live</span>
-          <h2>Top 3 actuel</h2>
+          <h2>Ce que ton profil debloque maintenant</h2>
           <ProfileSummaryCard profile={draft} compact />
-          <div className="mini-stack">
-            {top.map((score, index) => (
-              <Link className="mini-row" href={`/country/${score.slug}/`} key={score.countryId}>
-                <span>{index + 1}</span>
-                <strong>{score.name}</strong>
-                <em>{score.totalScore}/100</em>
-              </Link>
-            ))}
+          <div className="trajectory-list">
+            {top.map((score, index) => <CompactTrajectoryCard key={score.countryId} score={score} index={index} />)}
+          </div>
+          <div className="intel-note">
+            <strong>Lecture correcte.</strong>
+            <span>Un gros upside ne suffit pas. Le moteur pondere aussi visa, budget, delai, langue, terrain et risque.</span>
           </div>
         </aside>
       </section>
@@ -313,15 +339,18 @@ function Dashboard({
   const bestCountry = best ? countryMap.get(best.countryId) : null;
   return (
     <main className="shell page-stack">
-      <Hero kicker="Decision cockpit" title="Ton meilleur move, pas une liste de pays." copy="Le dashboard combine visa, fit, cash, vitesse, cout d'entree et risque. Le verdict doit te dire quoi faire cette semaine." />
-      <section className="dashboard-command">
-        <ProfileSummaryCard profile={profile} />
-        {best && <ActionPlanPreview score={best} />}
-        <div className="command-actions">
-          <Link className="button primary" href="/onboarding/">Modifier le profil</Link>
-          <Link className="button" href="/compare/">Comparer</Link>
-          <Link className="button" href="/plans/">Plans ({plans.length})</Link>
+      <section className="dashboard-hero">
+        <div className="dashboard-verdict">
+          <span className="eyebrow">Decision cockpit</span>
+          <h1>{best ? `${best.name} est ton meilleur move actuel.` : "Cree ton profil pour ouvrir le cockpit."}</h1>
+          <p>{best ? best.nextAction : "Le dashboard doit sortir un verdict actionnable, pas une liste passive."}</p>
+          <div className="button-row">
+            <Link className="button primary" href="/onboarding/">Recalculer mon profil</Link>
+            <Link className="button" href="/compare/">Comparer</Link>
+            <Link className="button subtle" href="/plans/">Plans ({plans.length})</Link>
+          </div>
         </div>
+        <ProfileSummaryCard profile={profile} />
       </section>
       {status && <div className="notice">{status}</div>}
       {best && bestCountry && (
@@ -331,10 +360,21 @@ function Dashboard({
             <h2>{best.name}: {best.totalScore}/100</h2>
             <p>{best.nextAction}</p>
             <SalaryCard score={best} country={bestCountry} />
+            <ScoreBreakdown score={best} />
           </div>
-          <ProofOfPossibilityCard score={best} />
+          <div className="best-side">
+            <ProofOfPossibilityCard score={best} />
+            <ActionPlanPreview score={best} />
+            <button className="button primary" onClick={() => onSavePlan(bestCountry, best)}>
+              Generer et sauvegarder le plan
+            </button>
+          </div>
         </section>
       )}
+      <section className="section-head">
+        <span className="eyebrow">Alternatives</span>
+        <h2>Si le meilleur move bloque, voici les routes suivantes.</h2>
+      </section>
       <section className="opportunity-stack">
         {scores.slice(0, 3).map((score, index) => {
           const country = countryMap.get(score.countryId)!;
@@ -346,10 +386,26 @@ function Dashboard({
 }
 
 function MapScreen({ scores }: { scores: CountryScore[] }) {
+  const best = scores[0];
   return (
     <main className="shell page-stack">
-      <Hero kicker="World atlas" title="Clique un pays. Ouvre le verdict." copy="Vert = executable. Orange = prerequis. Rouge = mauvais fit. Gris = pas encore documente. La carte est une interface de decision." />
-      <WorldMapCanvas scores={scores} />
+      <section className="map-page-command">
+        <div>
+          <span className="eyebrow">World atlas</span>
+          <h1>La carte est l'interface principale, pas un decor.</h1>
+          <p>Chaque pays documente est clickable. Vert = executable. Orange = prerequis. Rouge = mauvais fit. Gris = pas encore documente.</p>
+        </div>
+        {best && <ProofOfPossibilityCard score={best} />}
+      </section>
+      <section className="map-layout">
+        <WorldMapCanvas scores={scores} />
+        <aside className="panel map-sidebar">
+          <span className="eyebrow">Pays priorises</span>
+          <div className="trajectory-list">
+            {scores.slice(0, 5).map((score, index) => <CompactTrajectoryCard key={score.countryId} score={score} index={index} />)}
+          </div>
+        </aside>
+      </section>
       <section className="opportunity-stack compact-stack">
         {scores.slice(0, 3).map((score, index) => <OpportunityCard key={score.countryId} score={score} index={index} />)}
       </section>
@@ -360,7 +416,21 @@ function MapScreen({ scores }: { scores: CountryScore[] }) {
 function Compare({ scores }: { scores: CountryScore[] }) {
   return (
     <main className="shell page-stack">
-      <Hero kicker="Comparer" title="Pays, gates, cash, délai." copy="La bonne route n'est pas toujours celle qui affiche le plus gros upside." />
+      <section className="section-head">
+        <span className="eyebrow">Comparer</span>
+        <h1>Pays, gates, cash, delai. Pas de fantasme sans friction.</h1>
+        <p>La bonne route n'est pas toujours celle qui affiche le plus gros upside. Compare le cash avec les gates et le temps jusqu'a premiere paie.</p>
+      </section>
+      <section className="compare-cards">
+        {scores.slice(0, 4).map((score, index) => (
+          <article className="compare-card" key={score.countryId}>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h2>{score.name}</h2>
+            <SalaryCard score={score} country={countryMap.get(score.countryId)} />
+            <ScoreBreakdown score={score} />
+          </article>
+        ))}
+      </section>
       <div className="table-scroll panel">
         <table>
           <thead>
@@ -393,12 +463,21 @@ function CountryDetail({ profile, slug, session, onSavePlan }: { profile: UserPr
   const score = scoreCountry(profile, country, rules);
   return (
     <main className="shell page-stack">
-      <Hero kicker={`${country.status} · ${score.visaLabel}`} title={`${country.name}: verdict ${score.totalScore}/100`} copy={country.summary}>
-        <div className="button-row">
-          <button className="button primary" onClick={() => onSavePlan(country, score)}>Sauvegarder le plan</button>
-          {!session && <Link className="button" href="/login/">Login Google</Link>}
+      <section className="country-command">
+        <div>
+          <span className="eyebrow">{country.status} · {score.visaLabel}</span>
+          <h1>{country.name}: verdict {score.totalScore}/100</h1>
+          <p>{country.summary}</p>
+          <div className="button-row">
+            <button className="button primary" onClick={() => onSavePlan(country, score)}>Sauvegarder le plan</button>
+            {!session && <Link className="button" href="/login/">Login Google</Link>}
+          </div>
         </div>
-      </Hero>
+        <div className="country-command-card">
+          <SalaryCard score={score} country={country} />
+          <ScoreBreakdown score={score} />
+        </div>
+      </section>
       <section className="grid-3">
         <Metric label="Cash stable" value={currency(score.realisticMonthlyRange.stable, score.realisticMonthlyRange.currency)} note={score.realisticMonthlyRange.netOrGross} />
         <Metric label="Upside" value={currency(score.realisticMonthlyRange.upside, score.realisticMonthlyRange.currency)} note="plausible, pas promis" />
@@ -637,6 +716,14 @@ function Select({ label, value, options, onChange }: { label: string; value: str
         ))}
       </select>
     </label>
+  );
+}
+
+function ToggleChip({ active, label, onClick }: { active: boolean; label: string; onClick: () => void }) {
+  return (
+    <button className={classNames("chip toggle-chip", active && "active")} type="button" aria-pressed={active} onClick={onClick}>
+      {label}
+    </button>
   );
 }
 

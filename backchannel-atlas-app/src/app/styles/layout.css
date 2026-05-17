@@ -1,4 +1,8 @@
-.shell,
+.shell {
+  width: min(1440px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
 .container {
   width: min(var(--max-content), calc(100% - 28px));
   margin-inline: auto;
@@ -11,7 +15,7 @@
 .page-stack {
   display: grid;
   gap: var(--s6);
-  padding: var(--s6) 0 calc(var(--s20) + 58px);
+  padding: var(--s5) 0 calc(var(--s20) + 58px);
 }
 
 .section {
@@ -33,9 +37,15 @@
 .cards-grid,
 .home-command,
 .dashboard-command,
+.dashboard-hero,
 .best-move,
+.country-command,
+.map-layout,
+.compare-cards,
 .opportunity-stack,
 .mini-stack,
+.trajectory-list,
+.route-flow,
 .list,
 .wizard {
   display: grid;
@@ -163,8 +173,8 @@
 .world-hero {
   position: relative;
   display: grid;
-  min-height: min(86dvh, 820px);
-  grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.24fr);
+  min-height: min(82dvh, 760px);
+  grid-template-columns: minmax(340px, 0.48fr) minmax(0, 1.52fr);
   gap: clamp(var(--s4), 3vw, var(--s8));
   align-items: stretch;
 }
@@ -172,16 +182,17 @@
 .world-hero-copy {
   display: grid;
   align-content: center;
-  gap: var(--s5);
-  padding: clamp(var(--s6), 4vw, var(--s12));
+  gap: var(--s4);
+  padding: clamp(var(--s5), 3vw, var(--s10));
+  z-index: 3;
 }
 
 .world-hero-copy h1 {
-  max-width: 10ch;
-  font-size: clamp(3.25rem, 8vw, 8.2rem);
+  max-width: 11ch;
+  font-size: clamp(2.75rem, 5.6vw, 5.9rem);
   font-weight: 780;
-  letter-spacing: -0.082em;
-  line-height: 0.84;
+  letter-spacing: -0.062em;
+  line-height: 0.88;
   text-wrap: balance;
 }
 
@@ -196,10 +207,11 @@
 .world-hero-map {
   position: relative;
   min-width: 0;
+  min-height: min(76dvh, 720px);
 }
 
 .home-command {
-  grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+  grid-template-columns: minmax(0, 1.18fr) minmax(360px, 0.82fr);
 }
 
 .home-command-copy {
@@ -213,6 +225,18 @@
   grid-template-columns: minmax(0, 1fr) minmax(280px, 0.74fr) auto;
 }
 
+.dashboard-hero {
+  grid-template-columns: minmax(0, 1.28fr) minmax(360px, 0.72fr);
+  align-items: stretch;
+}
+
+.dashboard-verdict {
+  display: grid;
+  align-content: center;
+  gap: var(--s5);
+  padding: clamp(var(--s6), 5vw, var(--s12));
+}
+
 .command-actions {
   display: grid;
   gap: var(--s2);
@@ -220,8 +244,87 @@
 }
 
 .best-move {
-  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  grid-template-columns: minmax(0, 1.18fr) minmax(360px, 0.82fr);
   padding: clamp(var(--s5), 4vw, var(--s10));
+}
+
+.best-side {
+  display: grid;
+  gap: var(--s4);
+  align-content: start;
+}
+
+.section-head,
+.setup-hero,
+.map-page-command {
+  display: grid;
+  gap: var(--s4);
+  padding: clamp(var(--s6), 4vw, var(--s10));
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  background: var(--bg-surface);
+}
+
+.section-head {
+  max-width: 920px;
+}
+
+.section-head h1,
+.section-head h2,
+.setup-hero h1,
+.map-page-command h1,
+.dashboard-verdict h1,
+.country-command h1 {
+  max-width: 14ch;
+  font-size: clamp(2.25rem, 5vw, 5.2rem);
+  font-weight: 770;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.section-head p,
+.setup-hero p,
+.map-page-command p,
+.dashboard-verdict p,
+.country-command p {
+  max-width: 68ch;
+  color: var(--text-2);
+  font-size: 1rem;
+  line-height: 1.62;
+}
+
+.setup-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+  align-items: end;
+}
+
+.map-page-command {
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.46fr);
+}
+
+.map-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.28fr);
+  align-items: stretch;
+}
+
+.map-sidebar {
+  align-self: stretch;
+}
+
+.country-command {
+  grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+  padding: clamp(var(--s6), 5vw, var(--s12));
+  align-items: center;
+}
+
+.country-command-card {
+  display: grid;
+  gap: var(--s4);
+}
+
+.compare-cards {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .opportunity-stack.compact-stack .opportunity-card {
@@ -298,6 +401,13 @@
   .home-command,
   .dashboard-command,
   .best-move,
+  .dashboard-hero,
+  .country-command,
+  .map-layout,
+  .map-page-command,
+  .setup-hero,
+  .compare-cards,
+  .route-flow,
   .opportunity-card,
   .opportunity-stack.compact-stack .opportunity-card {
     grid-template-columns: 1fr;
@@ -308,12 +418,15 @@
   }
 
   .world-hero-map {
-    min-height: 520px;
+    order: -1;
+    min-height: 380px;
   }
 
   .mission-strip,
+  .decision-strip,
   .salary-card,
   .field-grid,
+  .toggle-grid,
   .proof-grid,
   .cash-strip {
     grid-template-columns: 1fr;
@@ -409,8 +522,10 @@
   }
 
   .world-hero-copy h1 {
-    max-width: 9ch;
-    font-size: clamp(3rem, 17vw, 4.9rem);
+    max-width: 10ch;
+    font-size: clamp(2.35rem, 12vw, 3.35rem);
+    letter-spacing: -0.045em;
+    line-height: 0.95;
   }
 
   .hero h1 {
