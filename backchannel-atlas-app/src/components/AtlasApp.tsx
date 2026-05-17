@@ -24,6 +24,7 @@ import {
   loadCloudData,
   savePlanToCloud,
   saveProfileToCloud,
+  signInWithEmail,
   signInWithGoogle,
   signOut,
   supabaseConfigured,
@@ -98,7 +99,23 @@ export function AtlasApp({ screen, countrySlug }: { screen: Screen; countrySlug?
 
   async function handleGoogleLogin() {
     markPendingSync();
-    await signInWithGoogle();
+    try {
+      await signInWithGoogle();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Google login indisponible.";
+      setStatus(`${message} Utilise le lien email si Google Cloud n'est pas encore branché.`);
+    }
+  }
+
+  async function handleEmailLogin(email: string) {
+    markPendingSync();
+    try {
+      await signInWithEmail(email);
+      setStatus("Lien envoyé. Ouvre ton email et clique le lien pour synchroniser ton atlas.");
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Email login indisponible.";
+      setStatus(message);
+    }
   }
 
   if (screen === "home") return <Home scores={scores} session={session} />;
@@ -108,7 +125,7 @@ export function AtlasApp({ screen, countrySlug }: { screen: Screen; countrySlug?
   if (screen === "compare") return <Compare scores={scores} />;
   if (screen === "country") return <CountryDetail profile={profile} slug={countrySlug} session={session} onSavePlan={savePlan} />;
   if (screen === "plans") return <PlansScreen plans={plans} session={session} onToggleTask={toggleTask} />;
-  if (screen === "login") return <Login status={status} isPending={isPending} onGoogleLogin={handleGoogleLogin} />;
+  if (screen === "login") return <Login status={status} isPending={isPending} onGoogleLogin={handleGoogleLogin} onEmailLogin={handleEmailLogin} />;
   if (screen === "callback") return <Callback />;
   return (
     <Account
@@ -396,7 +413,19 @@ function PlansScreen({ plans, session, onToggleTask }: { plans: ActionPlan[]; se
   );
 }
 
-function Login({ status, isPending, onGoogleLogin }: { status: string; isPending: boolean; onGoogleLogin: () => Promise<void> }) {
+function Login({
+  status,
+  isPending,
+  onGoogleLogin,
+  onEmailLogin,
+}: {
+  status: string;
+  isPending: boolean;
+  onGoogleLogin: () => Promise<void>;
+  onEmailLogin: (email: string) => Promise<void>;
+}) {
+  const [email, setEmail] = useState("");
+
   return (
     <main className="shell page-stack">
       <Hero kicker="Login" title="Sauvegarde ton atlas." copy="Google login via Supabase. Pas de mot de passe maison, pas de secret dans le repo." />
@@ -406,6 +435,32 @@ function Login({ status, isPending, onGoogleLogin }: { status: string; isPending
         <button className="button primary" disabled={!supabaseConfigured() || isPending} onClick={() => onGoogleLogin()}>
           Continuer avec Google
         </button>
+        <div className="login-divider">ou</div>
+        <form
+          className="inline-form"
+          onSubmit={(event) => {
+            event.preventDefault();
+            if (!email.trim()) return;
+            void onEmailLogin(email.trim());
+          }}
+        >
+          <label className="field">
+            <span>Email magic link</span>
+            <input
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="toi@email.com"
+              disabled={!supabaseConfigured() || isPending}
+              required
+            />
+          </label>
+          <button className="button ghost" disabled={!supabaseConfigured() || isPending || !email.trim()}>
+            Envoyer le lien
+          </button>
+        </form>
       </section>
     </main>
   );

@@ -53,6 +53,19 @@ export async function signInWithGoogle() {
   if (error) throw error;
 }
 
+export async function signInWithEmail(email: string) {
+  const supabase = getSupabase();
+  if (!supabase) throw new Error("Supabase n'est pas configuré.");
+  const redirectTo = `${window.location.origin}${appPath("/")}`;
+  const { error } = await supabase.auth.signInWithOtp({
+    email,
+    options: {
+      emailRedirectTo: redirectTo,
+    },
+  });
+  if (error) throw error;
+}
+
 export async function signOut() {
   const supabase = getSupabase();
   if (!supabase) return;

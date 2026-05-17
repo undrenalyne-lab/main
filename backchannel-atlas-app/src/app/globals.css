@@ -347,6 +347,24 @@ button {
   color: var(--text);
 }
 
+.inline-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.login-divider {
+  margin: 16px 0 4px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
 .export-box {
   min-height: 300px;
   margin-top: 16px;
@@ -608,6 +626,10 @@ th {
 
   .button-row {
     display: grid;
+  }
+
+  .inline-form {
+    grid-template-columns: 1fr;
   }
 
   .button-row .button {
