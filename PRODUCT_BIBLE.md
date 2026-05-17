@@ -18,13 +18,19 @@ C'est un moteur d'opportunites economiques internationales qui relie :
 - plan d'execution
 - preuves et limites
 
+France/Australie n'est qu'un premier dataset. La structure produit doit rester mondiale :
+
+```text
+origin country -> passport/work rights -> destination country -> opportunity -> proof -> plan
+```
+
 Phrase centrale :
 
 > 12k/mois existe. Le site montre ou, comment, a quelles conditions, avec quelles preuves, et quelle probabilite d'y acceder.
 
 ## Utilisateur cible
 
-Francophones qui veulent arbitrer une trajectoire professionnelle ou internationale pour augmenter leur cash reel, sans acheter de formations inutiles ni croire des promesses floues.
+Francophones au depart, puis n'importe quel utilisateur mondial qui veut arbitrer une trajectoire professionnelle ou internationale pour augmenter son cash reel, changer de pays, se reconvertir, construire du capital ou s'installer ailleurs sans acheter de formations inutiles ni croire des promesses floues.
 
 L'utilisateur veut savoir rapidement :
 

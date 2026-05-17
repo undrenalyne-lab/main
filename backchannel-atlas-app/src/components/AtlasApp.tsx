@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState, useTransition } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { countries, countryMap, getCountryBySlug, rules, sourceMap, worldFeatures } from "@/lib/data";
+import { countries, countryMap, getCountryBySlug, rules, sourceMap } from "@/lib/data";
 import { appPath, classNames, currency, percent } from "@/lib/format";
 import { generateActionPlan, togglePlanTask } from "@/lib/plans";
 import {
@@ -30,7 +30,16 @@ import {
   supabaseConfigured,
   syncGuestDataToCloud,
 } from "@/lib/supabase";
-import type { ActionPlan, CountryProfile, CountryScore, UserProfile, WorldFeature } from "@/lib/types";
+import type { ActionPlan, CountryProfile, CountryScore, UserProfile } from "@/lib/types";
+import {
+  ActionPlanPreview,
+  OpportunityCard,
+  ProfileSummaryCard,
+  ProofOfPossibilityCard,
+  SalaryCard,
+  WorldMapCanvas,
+  WorldMapHero,
+} from "@/components/ui/AtlasUi";
 
 type Screen = "home" | "onboarding" | "dashboard" | "map" | "compare" | "country" | "plans" | "account" | "login" | "callback";
 
@@ -162,31 +171,35 @@ function Hero({ kicker, title, copy, children }: { kicker: string; title: string
 }
 
 function Home({ scores, session }: { scores: CountryScore[]; session: Session | null }) {
+  const best = scores[0];
   return (
     <main className="shell page-stack">
-      <Hero
-        kicker="Backchannel Atlas · V2"
-        title="Trouve le pays où ton profil peut vraiment faire du cash."
-        copy="Âge, passeport, anglais, capital, compétences. Le moteur trie les pays, bloque les fantasmes et sort un plan."
-      >
-        <div className="button-row">
-          <Link className="button primary" href="/onboarding/">Créer mon profil</Link>
-          <Link className="button" href="/dashboard/">Voir mon dashboard</Link>
-          <Link className="button" href="/map/">Ouvrir la carte</Link>
-        </div>
-      </Hero>
-      <section className="grid-3">
-        {scores.slice(0, 3).map((score) => (
-          <CountryCard key={score.countryId} score={score} />
-        ))}
+      <WorldMapHero scores={scores} session={session} />
+      <section className="mission-strip" aria-label="Promesse produit">
+        <div><span>Modele</span><strong>Origin to destination to opportunity to plan</strong></div>
+        <div><span>Cash</span><strong>Stable / High / Max verifie</strong></div>
+        <div><span>Gates</span><strong>Visa, tickets, langue, budget</strong></div>
+        <div><span>Compte</span><strong>{session ? "Cloud actif" : "Guest d'abord, login apres verdict"}</strong></div>
       </section>
-      <section className="panel split">
-        <div>
-          <span className="eyebrow">Compte</span>
-          <h2>{session ? "Session active. Plans persistants." : "Teste sans compte. Sauvegarde après verdict."}</h2>
-          <p>Le login arrive au moment utile: quand tu veux retrouver ton profil et tes plans sur un autre appareil.</p>
+      <section className="home-command">
+        <div className="home-command-copy">
+          <span className="eyebrow">Build narrow data, wide architecture</span>
+          <h2>France et Australie ne sont que le premier module. L'atlas est concu pour le monde.</h2>
+          <p>
+            Chaque pays futur doit entrer par la meme structure: droits, gates, metiers, preuves, probabilite,
+            cout d'entree et plan. Pas de pays vendu comme fiable sans source.
+          </p>
+          <div className="button-row">
+            <Link className="button primary" href="/onboarding/">Lancer le mission setup</Link>
+            <Link className="button" href="/compare/">Comparer les pays</Link>
+          </div>
         </div>
-        <WorldMini scores={scores} />
+        {best && <ProofOfPossibilityCard score={best} />}
+      </section>
+      <section className="opportunity-stack" aria-label="Trajectoires recommandees">
+        {scores.slice(0, 3).map((score, index) => (
+          <OpportunityCard key={score.countryId} score={score} index={index} />
+        ))}
       </section>
     </main>
   );
@@ -198,38 +211,62 @@ function Onboarding({ profile, scores, onSave }: { profile: UserProfile; scores:
   const top = scoreCountries(draft, countries, rules).slice(0, 3);
   return (
     <main className="shell page-stack">
-      <Hero kicker="Step 1 · Profil" title="Crée ton profil. Le moteur trie." copy="Moins de 90 secondes: âge exact, passeport, anglais, cash, mobilité, signaux vendables." />
+      <Hero kicker="Mission setup" title="Ton profil n'est pas un formulaire. C'est le calcul du move." copy="Age exact, passeport, anglais, cash, mobilite, signaux vendables. Le scoring change en direct." />
       <section className="app-grid">
         <form
-          className="panel wizard"
+          className="panel wizard mission-wizard"
           onSubmit={(event) => {
             event.preventDefault();
             onSave(draft);
             window.location.href = appPath("/dashboard/");
           }}
         >
-          <Field label="Prénom" value={draft.identity.firstName || ""} onChange={(value) => update({ identity: { ...draft.identity, firstName: value } })} />
-          <Field label="Âge exact" type="number" value={draft.identity.ageExact} onChange={(value) => update({ identity: { ...draft.identity, ageExact: Number(value) } })} />
-          <Select label="Anglais" value={draft.skills.englishLevel} options={optionLabels.englishLevel} onChange={(value) => update({ skills: { ...draft.skills, englishLevel: value as UserProfile["skills"]["englishLevel"] } })} />
-          <Field label="Capital disponible" type="number" value={draft.money.availableCash} onChange={(value) => update({ money: { ...draft.money, availableCash: Number(value) } })} />
-          <Field label="Objectif mensuel" type="number" value={draft.money.targetMonthlyNet} onChange={(value) => update({ money: { ...draft.money, targetMonthlyNet: Number(value) } })} />
-          <Select label="Priorité" value={draft.preferences.priority} options={optionLabels.priority} onChange={(value) => update({ preferences: { ...draft.preferences, priority: value as UserProfile["preferences"]["priority"] } })} />
-          <div className="chip-cloud">
-            {["terrain", "elec", "meca", "rail", "hauteur", "logistique", "nuclear", "automation", "cvc"].map((tag) => (
-              <button
-                className={classNames("chip", draft.skills.experienceTags.includes(tag) && "active")}
-                type="button"
-                key={tag}
-                onClick={() => {
-                  const tags = new Set(draft.skills.experienceTags);
-                  if (tags.has(tag)) tags.delete(tag);
-                  else tags.add(tag);
-                  update({ skills: { ...draft.skills, experienceTags: Array.from(tags) } });
-                }}
-              >
-                {tag}
-              </button>
-            ))}
+          <div className="wizard-section">
+            <span className="wizard-index">01</span>
+            <div>
+              <h2>Identite utile</h2>
+              <div className="field-grid">
+                <Field label="Prenom" value={draft.identity.firstName || ""} onChange={(value) => update({ identity: { ...draft.identity, firstName: value } })} />
+                <Field label="Age exact" type="number" value={draft.identity.ageExact} onChange={(value) => update({ identity: { ...draft.identity, ageExact: Number(value) } })} />
+                <Field label="Passeport" value={draft.identity.passportCountry} onChange={(value) => update({ identity: { ...draft.identity, passportCountry: value.toUpperCase() } })} />
+                <Field label="Pays actuel" value={draft.identity.currentCountry} onChange={(value) => update({ identity: { ...draft.identity, currentCountry: value.toUpperCase() } })} />
+              </div>
+            </div>
+          </div>
+          <div className="wizard-section">
+            <span className="wizard-index">02</span>
+            <div>
+              <h2>Objectif cash</h2>
+              <div className="field-grid">
+                <Field label="Capital disponible" type="number" value={draft.money.availableCash} onChange={(value) => update({ money: { ...draft.money, availableCash: Number(value) } })} />
+                <Field label="Objectif mensuel" type="number" value={draft.money.targetMonthlyNet} onChange={(value) => update({ money: { ...draft.money, targetMonthlyNet: Number(value) } })} />
+                <Select label="Priorite" value={draft.preferences.priority} options={optionLabels.priority} onChange={(value) => update({ preferences: { ...draft.preferences, priority: value as UserProfile["preferences"]["priority"] } })} />
+                <Select label="Anglais" value={draft.skills.englishLevel} options={optionLabels.englishLevel} onChange={(value) => update({ skills: { ...draft.skills, englishLevel: value as UserProfile["skills"]["englishLevel"] } })} />
+              </div>
+            </div>
+          </div>
+          <div className="wizard-section">
+            <span className="wizard-index">03</span>
+            <div>
+              <h2>Signaux vendables</h2>
+              <div className="chip-cloud">
+                {["terrain", "elec", "meca", "rail", "hauteur", "logistique", "nuclear", "automation", "cvc", "security", "industrie"].map((tag) => (
+                  <button
+                    className={classNames("chip", draft.skills.experienceTags.includes(tag) && "active")}
+                    type="button"
+                    key={tag}
+                    onClick={() => {
+                      const tags = new Set(draft.skills.experienceTags);
+                      if (tags.has(tag)) tags.delete(tag);
+                      else tags.add(tag);
+                      update({ skills: { ...draft.skills, experienceTags: Array.from(tags) } });
+                    }}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
           <div className="button-row">
             <button className="button primary" type="submit">Calculer mon Top 3</button>
@@ -240,7 +277,7 @@ function Onboarding({ profile, scores, onSave }: { profile: UserProfile; scores:
         <aside className="panel sticky">
           <span className="eyebrow">Preview live</span>
           <h2>Top 3 actuel</h2>
-          <ProfileSummary profile={draft} />
+          <ProfileSummaryCard profile={draft} compact />
           <div className="mini-stack">
             {top.map((score, index) => (
               <Link className="mini-row" href={`/country/${score.slug}/`} key={score.countryId}>
@@ -272,22 +309,36 @@ function Dashboard({
   status: string;
   onSavePlan: (country: CountryProfile, score: CountryScore) => Promise<void>;
 }) {
+  const best = scores[0];
+  const bestCountry = best ? countryMap.get(best.countryId) : null;
   return (
     <main className="shell page-stack">
-      <Hero kicker="Dashboard" title="Ton verdict personnalisé." copy="Pas un classement général: âge, visa, cash, vitesse, fit et risques sont pondérés." />
-      <section className="panel command">
-        <ProfileSummary profile={profile} />
-        <div className="button-row">
+      <Hero kicker="Decision cockpit" title="Ton meilleur move, pas une liste de pays." copy="Le dashboard combine visa, fit, cash, vitesse, cout d'entree et risque. Le verdict doit te dire quoi faire cette semaine." />
+      <section className="dashboard-command">
+        <ProfileSummaryCard profile={profile} />
+        {best && <ActionPlanPreview score={best} />}
+        <div className="command-actions">
           <Link className="button primary" href="/onboarding/">Modifier le profil</Link>
           <Link className="button" href="/compare/">Comparer</Link>
           <Link className="button" href="/plans/">Plans ({plans.length})</Link>
         </div>
       </section>
       {status && <div className="notice">{status}</div>}
-      <section className="grid-3">
-        {scores.slice(0, 3).map((score) => {
+      {best && bestCountry && (
+        <section className="best-move">
+          <div>
+            <span className="eyebrow">Best move</span>
+            <h2>{best.name}: {best.totalScore}/100</h2>
+            <p>{best.nextAction}</p>
+            <SalaryCard score={best} country={bestCountry} />
+          </div>
+          <ProofOfPossibilityCard score={best} />
+        </section>
+      )}
+      <section className="opportunity-stack">
+        {scores.slice(0, 3).map((score, index) => {
           const country = countryMap.get(score.countryId)!;
-          return <CountryCard key={score.countryId} score={score} country={country} onSavePlan={() => onSavePlan(country, score)} session={session} />;
+          return <OpportunityCard key={score.countryId} score={score} country={country} index={index} onSavePlan={() => onSavePlan(country, score)} session={session} />;
         })}
       </section>
     </main>
@@ -297,10 +348,10 @@ function Dashboard({
 function MapScreen({ scores }: { scores: CountryScore[] }) {
   return (
     <main className="shell page-stack">
-      <Hero kicker="Carte score" title="Clique un pays. Ouvre le plan." copy="Vert = exécutable. Orange = prérequis. Rouge = mauvais fit. Gris = pas assez documenté." />
-      <WorldMap scores={scores} />
-      <section className="grid-3">
-        {scores.slice(0, 3).map((score) => <CountryCard key={score.countryId} score={score} />)}
+      <Hero kicker="World atlas" title="Clique un pays. Ouvre le verdict." copy="Vert = executable. Orange = prerequis. Rouge = mauvais fit. Gris = pas encore documente. La carte est une interface de decision." />
+      <WorldMapCanvas scores={scores} />
+      <section className="opportunity-stack compact-stack">
+        {scores.slice(0, 3).map((score, index) => <OpportunityCard key={score.countryId} score={score} index={index} />)}
       </section>
     </main>
   );
@@ -510,33 +561,6 @@ function Account({
   );
 }
 
-function CountryCard({ score, country = countryMap.get(score.countryId), onSavePlan, session }: { score: CountryScore; country?: CountryProfile; onSavePlan?: () => void; session?: Session | null }) {
-  return (
-    <article className={classNames("country-card", `is-${score.status}`)}>
-      <div className="country-head">
-        <span className="eyebrow">{score.status}</span>
-        <strong>{score.totalScore}/100</strong>
-      </div>
-      <h2>{score.name}</h2>
-      <div className="cash-strip">
-        <Metric label="Bas" value={currency(score.realisticMonthlyRange.low, score.realisticMonthlyRange.currency)} />
-        <Metric label="Stable" value={currency(score.realisticMonthlyRange.stable, score.realisticMonthlyRange.currency)} />
-        <Metric label="Upside" value={currency(score.realisticMonthlyRange.upside, score.realisticMonthlyRange.currency)} />
-      </div>
-      <p>{score.nextAction}</p>
-      <div className="pill-row">
-        <span>{score.visaFit}</span>
-        <span>{score.timeToFirstPay.lowWeeks}-{score.timeToFirstPay.highWeeks} sem.</span>
-        <span>{currency(score.entryCost.low, score.entryCost.currency)}+</span>
-      </div>
-      <div className="button-row">
-        <Link className="button" href={`/country/${score.slug}/`}>Voir pays</Link>
-        {country && onSavePlan && <button className="button primary" onClick={onSavePlan}>{session ? "Sauvegarder" : "Login + save"}</button>}
-      </div>
-    </article>
-  );
-}
-
 function ProfileSummary({ profile }: { profile: UserProfile }) {
   return (
     <div className="profile-summary">
@@ -622,95 +646,6 @@ function Empty({ title, copy, cta }: { title: string; copy: string; cta: React.R
       <h2>{title}</h2>
       <p>{copy}</p>
       {cta}
-    </section>
-  );
-}
-
-function WorldMini({ scores }: { scores: CountryScore[] }) {
-  return (
-    <div className="mini-stack">
-      {scores.slice(0, 4).map((score) => (
-        <Link className="mini-row" href={`/country/${score.slug}/`} key={score.countryId}>
-          <strong>{score.name}</strong>
-          <em>{score.totalScore}/100</em>
-        </Link>
-      ))}
-    </div>
-  );
-}
-
-const worldWidth = 1200;
-const worldHeight = 620;
-const pinNudges: Record<string, { x: number; y: number }> = {
-  france: { x: -2.8, y: 7.2 },
-  germany: { x: 5.2, y: -1.5 },
-  switzerland: { x: 6.4, y: 6.4 },
-  uae: { x: 3.2, y: 1.8 },
-  canada: { x: -1.2, y: 1.4 },
-  australia: { x: -18, y: -2.4 },
-};
-
-function projectLonLat(lon: number, lat: number) {
-  return { x: ((lon + 180) / 360) * worldWidth, y: ((90 - lat) / 180) * worldHeight };
-}
-
-function ringPath(points: number[][]) {
-  return points
-    .map((point, index) => {
-      const projected = projectLonLat(point[0], point[1]);
-      return `${index === 0 ? "M" : "L"}${projected.x.toFixed(1)} ${projected.y.toFixed(1)}`;
-    })
-    .join(" ");
-}
-
-function geometryPath(feature: WorldFeature) {
-  if (!feature.geometry) return "";
-  if (feature.geometry.type === "Polygon") {
-    return (feature.geometry.coordinates as number[][][]).map((ring) => `${ringPath(ring)} Z`).join(" ");
-  }
-  return (feature.geometry.coordinates as number[][][][])
-    .flatMap((polygon) => polygon.map((ring) => `${ringPath(ring)} Z`))
-    .join(" ");
-}
-
-function pinPosition(country: CountryProfile) {
-  if (!country.geo) return { x: 50, y: 50 };
-  const projected = projectLonLat(country.geo.lon, country.geo.lat);
-  const nudge = pinNudges[country.id] || { x: 0, y: 0 };
-  return {
-    x: Math.max(6, Math.min(94, (projected.x / worldWidth) * 100 + nudge.x)),
-    y: Math.max(8, Math.min(92, (projected.y / worldHeight) * 100 + nudge.y)),
-  };
-}
-
-function WorldMap({ scores }: { scores: CountryScore[] }) {
-  const scoreByCountry = new Map(scores.map((score) => [score.countryId, score]));
-  const countryByIso = new Map(countries.map((country) => [country.iso3, country]));
-  return (
-    <section className="map-board" role="img" aria-label="Carte mondiale personnalisée des pays documentés">
-      <svg className="world-svg" viewBox={`0 0 ${worldWidth} ${worldHeight}`} aria-hidden="true" focusable="false">
-        <g className="world-grid">
-          <path d={`M0 ${worldHeight * 0.25}H${worldWidth}M0 ${worldHeight * 0.5}H${worldWidth}M0 ${worldHeight * 0.75}H${worldWidth}`} />
-          <path d={`M${worldWidth * 0.25} 0V${worldHeight}M${worldWidth * 0.5} 0V${worldHeight}M${worldWidth * 0.75} 0V${worldHeight}`} />
-        </g>
-        <g>
-          {worldFeatures.map((feature, index) => {
-            const country = countryByIso.get(feature.properties?.iso3 || "");
-            const score = country ? scoreByCountry.get(country.id) : null;
-            return <path className={classNames("world-country", country && "documented", score && `score-${score.status}`)} d={geometryPath(feature)} key={`${feature.properties?.iso3 || index}`} />;
-          })}
-        </g>
-      </svg>
-      {countries.map((country) => {
-        const score = scoreByCountry.get(country.id)!;
-        const position = pinPosition(country);
-        return (
-          <Link className={classNames("map-node", `is-${score.status}`)} href={`/country/${country.slug}/`} style={{ left: `${position.x}%`, top: `${position.y}%` }} key={country.id}>
-            <strong>{country.name}</strong>
-            <span>{score.totalScore}/100</span>
-          </Link>
-        );
-      })}
     </section>
   );
 }

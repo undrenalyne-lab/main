@@ -3,11 +3,12 @@
 ## Priorite
 
 1. `PRODUCT_BIBLE.md`
-2. `DESIGN_SYSTEM.md`
-3. `UI_RULES.md`
-4. `impeccable`
-5. `gpt-tasteskill`
-6. jugement Codex par defaut
+2. `GLOBAL_PRODUCT_MODEL.md`
+3. `DESIGN_SYSTEM.md`
+4. `UI_RULES.md`
+5. `impeccable`
+6. `gpt-tasteskill`
+7. jugement Codex par defaut
 
 ## Regles absolues
 
@@ -26,6 +27,7 @@
 - Pas de salaire garanti.
 - Pas de fake login.
 - Pas de carte decorative.
+- Ne jamais hardcoder France/Australie comme limite du produit.
 
 ## Regles skills
 
