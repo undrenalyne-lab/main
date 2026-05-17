@@ -190,7 +190,7 @@ function Home({ scores, session }: { scores: CountryScore[]; session: Session | 
             cout d'entree et plan. Pas de pays vendu comme fiable sans source.
           </p>
           <div className="button-row">
-            <Link className="button primary" href="/onboarding/">Lancer le mission setup</Link>
+            <Link className="button" href="/onboarding/">Lancer le mission setup</Link>
             <Link className="button" href="/compare/">Comparer les pays</Link>
           </div>
         </div>

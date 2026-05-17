@@ -1,2 +1,2 @@
-:HL["/france-money-map/_next/static/chunks/0zii47ujn9djz.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"account","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"TIIH8aMo9x7VWT2riNVXH"}
+:HL["/france-money-map/_next/static/chunks/0hsoar55ec99m.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"account","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"J2BbK-rlMKDG2m3s71yHq"}

@@ -235,7 +235,7 @@ export function OpportunityCard({
         </div>
         <div className="button-row">
           <Link className="button" href={`/country/${score.slug}/`}>Voir pays</Link>
-          {country && onSavePlan && <button className="button primary" onClick={onSavePlan}>{session ? "Sauvegarder" : "Login + save"}</button>}
+          {country && onSavePlan && <button className="button" onClick={onSavePlan}>{session ? "Sauvegarder" : "Login + save"}</button>}
         </div>
       </div>
     </article>

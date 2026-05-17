@@ -1,0 +1,83 @@
+.t-display {
+  font-size: clamp(3rem, 7vw, 7.5rem);
+  font-weight: 760;
+  letter-spacing: -0.075em;
+  line-height: 0.86;
+  text-wrap: balance;
+}
+
+.t-h1 {
+  font-size: clamp(2rem, 4.5vw, 4.6rem);
+  font-weight: 730;
+  letter-spacing: -0.06em;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+.t-h2 {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.t-h3 {
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+}
+
+.t-body {
+  color: var(--text-2);
+  font-size: clamp(0.98rem, 1.4vw, 1.1rem);
+  line-height: 1.62;
+}
+
+.t-small {
+  color: var(--text-3);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.t-label {
+  color: var(--text-3);
+  font-family: var(--font-data);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.t-value {
+  font-family: var(--font-data);
+  font-size: clamp(1.7rem, 4vw, 2.75rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.t-value-secondary {
+  font-family: var(--font-data);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.num {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+}
+
+.text-muted {
+  color: var(--text-2);
+}
+
+.text-dim {
+  color: var(--text-3);
+}
