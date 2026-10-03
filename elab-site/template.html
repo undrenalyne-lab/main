@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="$lang">
+<head>
+<meta charset="utf-8"><meta name="elab-release" content="2026-10-03-redesign-aea8902"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>$title</title><meta name="description" content="$description">
+<link rel="icon" href="$base/elab-site/assets/favicon.png"><link rel="stylesheet" href="$base/elab-site/styles.css">
+<link rel="alternate" hreflang="fr" href="$fr_link"><link rel="alternate" hreflang="en" href="$en_link">
+<script defer src="$base/elab-site/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">$skip</a>
+<header class="site-header">
+<a class="brand" href="$home" aria-label="Undrenalyn eLab — $home_label"><span class="brand-symbol" aria-hidden="true">u<span>↗</span></span><span>Undrenalyn<span class="brand-lab">eLab<span class="brand-dot">.</span></span></span></a>
+<button class="menu-toggle" aria-controls="navigation" aria-expanded="false" data-open-label="$menu" data-close-label="$close">$menu <span aria-hidden="true">+</span></button>
+<nav id="navigation" class="navigation" aria-label="$nav_label">$nav_links<a class="nav-contact" href="#contact">$contact <span aria-hidden="true">↗</span></a></nav>
+<div class="languages" aria-label="$lang_label"><a href="$fr_link" lang="fr" $fr_current>FR</a><span aria-hidden="true">/</span><a href="$en_link" lang="en" $en_current>EN</a></div>
+</header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+<div class="hero-copy"><p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>$hero_kicker</p><h1 id="hero-title">$hero_lines</h1><p class="hero-body">$hero_body</p><div class="hero-actions"><a class="button button-dark" href="#contact">$contact <span aria-hidden="true">↗</span></a><a class="text-link" href="#expertises">$hero_secondary <span aria-hidden="true">↓</span></a></div></div>
+<figure class="hero-visual"><div class="visual-top"><span>UNDRENALYN ELAB</span><span aria-hidden="true">[ CREATIVE LAB ]</span></div><img src="$base/elab-site/assets/identites.jpg" alt="$hero_alt" width="1168" height="784" fetchpriority="high"><figcaption><span class="hero-caption">$hero_caption</span><span>$hero_caption_small</span><small>$image_label</small></figcaption></figure>
+</section>
+<div class="intro"><p>$intro</p><span>$intro_small</span></div>
+<section id="expertises" class="section expertise" aria-labelledby="expertise-title">
+<div class="section-head"><div><p class="eyebrow">$expertise_kicker</p><h2 id="expertise-title">$expertise_title</h2></div><p class="section-description">$expertise_body</p></div>
+<div class="service-tabs" aria-label="$tabs_label">$tabs_html</div>
+<div class="service-panels">$panels</div>
+</section>
+<section id="methode" class="section method" aria-labelledby="method-title"><div class="section-head"><div><p class="eyebrow">$method_kicker</p><h2 id="method-title">$method_title</h2></div><p class="section-description">$method_body</p></div><ol class="steps">$steps_html</ol></section>
+<section id="studio" class="section studio" aria-labelledby="studio-title"><figure class="portrait"><img src="$base/elab-site/assets/steven.jpg" alt="$about_alt" width="571" height="1000" loading="lazy"><figcaption>$about_caption</figcaption></figure><div class="studio-copy"><p class="eyebrow">$about_kicker</p><h2 id="studio-title">$about_title</h2><p>$about_body</p><p>$about_second</p><div class="tools"><p class="eyebrow">$tools_label</p><p>Midjourney · DALL·E · Runway<br>CapCut · Canva · Notion</p></div></div></section>
+<section class="section faq" aria-labelledby="faq-title"><div><p class="eyebrow">$faq_kicker</p><h2 id="faq-title">$faq_title</h2></div><div class="questions">$questions_html</div></section>
+<section id="contact" class="section contact" aria-labelledby="contact-title"><p class="eyebrow">$contact_kicker</p><div class="contact-grid"><div><h2 id="contact-title">$contact_title</h2><p class="contact-body">$contact_body</p></div><div class="contact-options"><a class="button button-green" href="https://wa.me/33630904905" target="_blank" rel="noopener noreferrer">$whatsapp<span aria-hidden="true">↗</span><span class="sr-only">$new_tab</span></a><a class="contact-book" href="https://koalendar.com/e/meet-with-steven-vailhen" target="_blank" rel="noopener noreferrer">$booking<span aria-hidden="true">↗</span><span class="sr-only">$new_tab</span></a><p>$contact_note</p><small>$contact_provider</small></div></div></section>
+</main>
+<footer class="footer"><div class="footer-top"><a class="footer-brand" href="$home">Undrenalyn eLab<span>.</span></a><p>$footer_line</p></div><div class="footer-bottom"><p>© 2026 Undrenalyn eLab. $copyright</p><nav aria-label="$legal_label">$legal_links</nav><a class="other-link" href="https://undrenalynelab.io/france-money-map/">$other</a></div></footer>
+</body></html>
