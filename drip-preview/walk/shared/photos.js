@@ -81,11 +81,6 @@ window.DRIP_PHOTOS = {
         "path": "assets/photos/accepted-1000188518-2385785d-941x1671-1895971184fc83d0.jpg"
       },
       {
-        "w": 941,
-        "h": 1671,
-        "path": "assets/photos/accepted-1000188518-3da8ae93-941x1671-1895971184fc83d0.jpg"
-      },
-      {
         "w": 404,
         "h": 717,
         "path": "assets/photos/accepted-1000188518-34b6d8a6-404x717-42cdd6553a6e9fbc.jpg"
@@ -109,17 +104,17 @@ window.DRIP_PHOTOS = {
       {
         "w": 1153,
         "h": 2048,
-        "path": "assets/photos/finish-1000188520-1000188520-threshold-1153-c5154d30-257e42f2.jpg"
+        "path": "assets/photos/accepted-1000188520-fb8cadcf-1153x2048-46c6da9b5f2eece4.jpg"
       },
       {
-        "w": 941,
-        "h": 1671,
-        "path": "assets/photos/finish-1000188520-1000188520-threshold-941-ad6daabf-cd8a33c1.jpg"
+        "w": 940,
+        "h": 1670,
+        "path": "assets/photos/accepted-1000188520-c7887c6c-940x1670-02b309f0ddd24e89.jpg"
       },
       {
-        "w": 405,
-        "h": 719,
-        "path": "assets/photos/finish-1000188520-1000188520-threshold-405-8348fd9d-625ea51e.jpg"
+        "w": 404,
+        "h": 718,
+        "path": "assets/photos/accepted-1000188520-bf5eab65-404x718-41e45fa4635ddef2.jpg"
       }
     ]
   },
@@ -141,11 +136,6 @@ window.DRIP_PHOTOS = {
         "w": 941,
         "h": 1010,
         "path": "assets/photos/accepted-1000188522-96213731-941x1010-65dbcab8c7dea708.jpg"
-      },
-      {
-        "w": 941,
-        "h": 1010,
-        "path": "assets/photos/accepted-1000188522-97be5096-941x1010-65dbcab8c7dea708.jpg"
       },
       {
         "w": 670,
@@ -171,17 +161,17 @@ window.DRIP_PHOTOS = {
       {
         "w": 1153,
         "h": 2048,
-        "path": "assets/photos/finish-1000188523-1000188523-cabinet-1153-6e0a83ea-3b9707d3.jpg"
+        "path": "assets/photos/accepted-1000188523-f2381ca6-1153x2048-3dc87f969b8475cc.jpg"
       },
       {
-        "w": 941,
-        "h": 1671,
-        "path": "assets/photos/finish-1000188523-1000188523-cabinet-941-e077fe95-c33bb57f.jpg"
+        "w": 940,
+        "h": 1670,
+        "path": "assets/photos/accepted-1000188523-3153c44e-940x1670-e797e0bf4208277a.jpg"
       },
       {
-        "w": 405,
-        "h": 719,
-        "path": "assets/photos/finish-1000188523-1000188523-cabinet-405-539d8015-8dfd784e.jpg"
+        "w": 404,
+        "h": 718,
+        "path": "assets/photos/accepted-1000188523-fff5f9c4-404x718-410590d437ace19b.jpg"
       }
     ]
   },
@@ -202,17 +192,17 @@ window.DRIP_PHOTOS = {
       {
         "w": 2048,
         "h": 1153,
-        "path": "assets/photos/finish-1000188540-1000188540-counter-2048-31f87caf-4a707d13.jpg"
+        "path": "assets/photos/accepted-1000188540-03d4503b-2048x1153-2e08825a82a65d29.jpg"
       },
       {
         "w": 1280,
         "h": 721,
-        "path": "assets/photos/finish-1000188540-1000188540-counter-1280-e27adf4e-1f946193.jpg"
+        "path": "assets/photos/accepted-1000188540-2d1ccb12-1280x721-f34de962ed8aa994.jpg"
       },
       {
-        "w": 720,
+        "w": 719,
         "h": 405,
-        "path": "assets/photos/finish-1000188540-1000188540-counter-720-44461439-414eda4d.jpg"
+        "path": "assets/photos/accepted-1000188540-d1413bcc-719x405-6929aeb947ca9582.jpg"
       }
     ]
   },
@@ -233,17 +223,17 @@ window.DRIP_PHOTOS = {
       {
         "w": 1153,
         "h": 2048,
-        "path": "assets/photos/finish-1000188524-1000188524-counter-m-1153-2d496c55-3d641eb2.jpg"
+        "path": "assets/photos/accepted-1000188524-f61c4d2a-1153x2048-1511bc2c2da97a39.jpg"
       },
       {
-        "w": 941,
-        "h": 1671,
-        "path": "assets/photos/finish-1000188524-1000188524-counter-m-941-28bc26e5-9156a494.jpg"
+        "w": 940,
+        "h": 1670,
+        "path": "assets/photos/accepted-1000188524-076bbdd5-940x1670-6b0169c51636945f.jpg"
       },
       {
-        "w": 405,
-        "h": 719,
-        "path": "assets/photos/finish-1000188524-1000188524-counter-m-405-d380c114-bd5fde84.jpg"
+        "w": 404,
+        "h": 718,
+        "path": "assets/photos/accepted-1000188524-95193fd6-404x718-ecfe832860ff4edf.jpg"
       }
     ]
   },
@@ -264,17 +254,17 @@ window.DRIP_PHOTOS = {
       {
         "w": 1153,
         "h": 2048,
-        "path": "assets/photos/finish-1000188525-1000188525-cakes-1153-9c1c3f02-1a81d851.jpg"
+        "path": "assets/photos/accepted-1000188525-49415861-1153x2048-4b7e70224ae4f198.jpg"
       },
       {
-        "w": 941,
-        "h": 1671,
-        "path": "assets/photos/finish-1000188525-1000188525-cakes-941-f5075678-ee5e86aa.jpg"
+        "w": 940,
+        "h": 1670,
+        "path": "assets/photos/accepted-1000188525-a4be8d2b-940x1670-750b6107aea918a1.jpg"
       },
       {
-        "w": 405,
-        "h": 719,
-        "path": "assets/photos/finish-1000188525-1000188525-cakes-405-e7762fce-c8d89ed9.jpg"
+        "w": 404,
+        "h": 718,
+        "path": "assets/photos/accepted-1000188525-26ba9596-404x718-3436bef7bcbb3983.jpg"
       }
     ]
   },
@@ -295,17 +285,17 @@ window.DRIP_PHOTOS = {
       {
         "w": 900,
         "h": 1125,
-        "path": "assets/photos/finish-1000188536-1000188536-sconce-900-b34fed37-8079ea7d.jpg"
+        "path": "assets/photos/accepted-1000188536-fddf99d6-900x1125-06669b8824d73128.jpg"
       },
       {
         "w": 720,
         "h": 900,
-        "path": "assets/photos/finish-1000188536-1000188536-sconce-720-f3455297-fa3fc23b.jpg"
+        "path": "assets/photos/accepted-1000188536-31fc34c7-720x900-3d2c0bb3d6ad17b1.jpg"
       },
       {
-        "w": 405,
-        "h": 506,
-        "path": "assets/photos/finish-1000188536-1000188536-sconce-405-f760fda4-fea8657a.jpg"
+        "w": 404,
+        "h": 505,
+        "path": "assets/photos/accepted-1000188536-7ea17610-404x505-18dde66c4fb1b958.jpg"
       }
     ]
   },
@@ -324,19 +314,14 @@ window.DRIP_PHOTOS = {
     ],
     "files": [
       {
-        "w": 941,
-        "h": 1671,
-        "path": "assets/photos/accepted-1000188521-ba4b8252-941x1671-142c7f7bb03f079e.jpg"
-      },
-      {
-        "w": 941,
-        "h": 1671,
-        "path": "assets/photos/accepted-1000188521-e399b148-941x1671-142c7f7bb03f079e.jpg"
+        "w": 1153,
+        "h": 2048,
+        "path": "assets/photos/accepted-1000188521-ba4b8252-1153x2048-46bfd4cb450b41d3.jpg"
       },
       {
         "w": 404,
-        "h": 717,
-        "path": "assets/photos/accepted-1000188521-9a58dc9f-404x717-0325ce28e7850cca.jpg"
+        "h": 718,
+        "path": "assets/photos/accepted-1000188521-9a58dc9f-404x718-93e1cc91181fb69e.jpg"
       }
     ]
   },
@@ -358,11 +343,6 @@ window.DRIP_PHOTOS = {
         "w": 941,
         "h": 1671,
         "path": "assets/photos/accepted-1000188530-044e38c0-941x1671-12960dea52e0ad7d.jpg"
-      },
-      {
-        "w": 941,
-        "h": 1671,
-        "path": "assets/photos/accepted-1000188530-24232dea-941x1671-12960dea52e0ad7d.jpg"
       },
       {
         "w": 404,
@@ -391,11 +371,6 @@ window.DRIP_PHOTOS = {
         "path": "assets/photos/accepted-1000188532-655083be-941x1671-d76f4b3d0c913f36.jpg"
       },
       {
-        "w": 941,
-        "h": 1671,
-        "path": "assets/photos/accepted-1000188532-523f3f95-941x1671-d76f4b3d0c913f36.jpg"
-      },
-      {
         "w": 404,
         "h": 717,
         "path": "assets/photos/accepted-1000188532-8823f9ba-404x717-8b851ac7c98196f1.jpg"
@@ -422,11 +397,6 @@ window.DRIP_PHOTOS = {
         "path": "assets/photos/accepted-1000188534-d3303066-941x1671-a7324b3f70e19525.jpg"
       },
       {
-        "w": 941,
-        "h": 1671,
-        "path": "assets/photos/accepted-1000188534-c240f046-941x1671-a7324b3f70e19525.jpg"
-      },
-      {
         "w": 404,
         "h": 717,
         "path": "assets/photos/accepted-1000188534-fd12d022-404x717-cb5e02080b112a03.jpg"
@@ -450,17 +420,17 @@ window.DRIP_PHOTOS = {
       {
         "w": 1153,
         "h": 2048,
-        "path": "assets/photos/finish-1000188519-1000188519-awning-1153-df038040-e4127d3c.jpg"
+        "path": "assets/photos/accepted-1000188519-3e012997-1153x2048-b7c0449f1a4cf698.jpg"
       },
       {
-        "w": 941,
-        "h": 1671,
-        "path": "assets/photos/finish-1000188519-1000188519-awning-941-c28d692f-c941ca5f.jpg"
+        "w": 940,
+        "h": 1670,
+        "path": "assets/photos/accepted-1000188519-871d83ec-940x1670-18f286605a5d8ab5.jpg"
       },
       {
-        "w": 405,
-        "h": 719,
-        "path": "assets/photos/finish-1000188519-1000188519-awning-405-60fc6469-171d7569.jpg"
+        "w": 404,
+        "h": 718,
+        "path": "assets/photos/accepted-1000188519-3fad2f87-404x718-65be83cdc2a5725d.jpg"
       }
     ]
   }
