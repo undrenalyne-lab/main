@@ -1,0 +1,53 @@
+/* Native arrival on the street route. ?journey=0 and reduced motion keep
+   the normal/fixed document and existing routes without the scroll driver. */
+html.stage.entry-journey {
+  height:auto;
+  overflow-x:hidden;
+  overflow-y:auto;
+  overscroll-behavior-y:auto;
+  scroll-behavior:auto;
+}
+html.stage.entry-journey body {
+  height:auto;
+  min-height:100vh;
+  overflow:visible;
+  overscroll-behavior:auto;
+}
+.entry-scroll-track { width:1px; pointer-events:none; }
+.entry-scroll-cue {
+  position:fixed;
+  z-index:11;
+  top:calc(var(--hh) + var(--places-h) + 14px);
+  left:50%;
+  transform:translateX(-50%);
+  margin:0;
+  max-width:calc(100% - 32px);
+  padding:6px 10px;
+  border-radius:2px;
+  color:var(--ink);
+  background:var(--paper);
+  font:500 12px/1.4 var(--sans);
+  text-align:center;
+  pointer-events:none;
+}
+.entry-scroll-cue[hidden] { display:none; }
+html.stage.entry-journey #welcome .welcome-info { opacity:var(--entry-welcome,1); }
+@media(max-width:759px) {
+  html.stage.entry-journey #entry-scroll-scene {
+    left:0;
+    right:0;
+    width:auto;
+    top:calc(var(--hh) + var(--places-h));
+    bottom:var(--navh);
+    height:auto;
+  }
+}
+
+.entry-arrival{position:fixed;z-index:13;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:32px;min-height:52px;padding:8px 24px;background:var(--paper);color:var(--ink);border-top:1px solid var(--rule)}
+.entry-arrival[hidden]{display:none}
+.entry-arrival>span{font:400 21px/1.3 var(--serif)}
+.entry-arrival a{font:600 13px/1.3 var(--sans);color:var(--blue);min-height:44px;display:flex;align-items:center;gap:8px;text-underline-offset:4px}
+.entry-arrival a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+@media(max-width:759px){.entry-arrival{bottom:var(--navh);padding:8px 14px;gap:22px;flex-wrap:wrap}.entry-arrival>span{width:100%;text-align:center;font-size:22px;margin-bottom:-6px}.entry-arrival a{font-size:12px}}
+
+html.stage.entry-journey body{background:var(--paper)}

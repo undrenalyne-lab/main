@@ -1,0 +1,93 @@
+/* Photographic menu: the café's existing paper, patina blue and type. */
+html.stage .zone-menu { width: min(760px, 64vw); }
+.menu-opening { margin: 24px 0 18px; }
+.menu-opening h3 { margin: 0 0 8px; font: 400 32px/1.12 var(--serif); }
+.menu-opening > p { margin: 0; max-width: 44em; color: var(--ink-2); font-size: 14px; line-height: 1.5; }
+.menu-taste { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; margin: 22px 0 0; padding: 0; list-style: none; }
+.menu-taste a { display: block; color: var(--ink); text-decoration: none; }
+.menu-taste figure { margin: 0; }
+.menu-taste img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: #e8e5de; }
+.menu-taste figcaption { padding-top: 9px; font-size: 13px; line-height: 1.4; }
+.menu-taste strong { display: block; margin-bottom: 3px; color: var(--blue); font-weight: 600; }
+.menu-taste a:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+.menu-taste .taste-price { display: block; margin-top: 3px; font-size: 12px; color: var(--ink-3); }
+.menu-photo { margin: 0; position: relative; min-width: 0; }
+.menu-photo > a { display: block; color: var(--blue); background: #e8e5de; position: relative; }
+.menu-photo img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.menu-photo figcaption { font-size: 12px; line-height: 1.4; margin-top: 6px; color: var(--ink-3); }
+.photo-enlarge { position: absolute; right: 6px; bottom: 6px; display: grid; place-items: center; width: 30px; height: 30px; background: var(--paper); color: var(--blue); font-size: 22px; border: 1px solid var(--rule); }
+.dishes li.has-menu-photo { display: grid; grid-template-columns: 156px minmax(0,1fr); gap: 22px; align-items: start; padding: 22px 0; border-bottom: 1px solid var(--rule); }
+.dish-copy { min-width: 0; }
+.has-menu-photo .dl { align-items: flex-start; flex-wrap: wrap; gap: 8px 14px; }
+.has-menu-photo .nm { font: 400 24px/1.16 var(--serif); }
+.has-menu-photo .ds { font-size: 14px; line-height: 1.55; margin-top: 8px; }
+.has-menu-photo .pr { font-size: 16px; line-height: 1.4; }
+.dish-permalink { margin: 10px 0 0; font-size: 12px; }
+.dish-permalink a { display: inline-flex; min-height: 32px; align-items: center; color: var(--blue); text-underline-offset: 3px; }
+.sizes .menu-photo { max-width: 110px; margin: 10px 0 7px; }
+.sizes .menu-photo img { aspect-ratio: 1; }
+.sizes tbody tr:has(.menu-photo) th, .sizes tbody tr:has(.menu-photo) td { padding-top: 15px; padding-bottom: 15px; vertical-align: top; }
+.sizes tbody tr:has(.menu-photo) .nm { font-weight: 600; }
+.sizes .menu-photo figcaption { font-weight: 400; }
+.menu-image-failed .photo-enlarge { display: none; }
+.menu-image-failed a { background: transparent; }
+.menu-image-failed img { display: none; }
+.menu-image-note { color: var(--ink-3); font-size: 12px; line-height: 1.5; }
+.menu-photo-dialog { width: min(960px,calc(100vw - 40px)); max-width: none; max-height: calc(100dvh - 40px); padding: 0; border: 0; background: var(--paper); color: var(--ink); box-shadow: 0 24px 70px #0005; overscroll-behavior: contain; }
+.menu-photo-dialog::backdrop { background: #151d1de0; }
+.menu-photo-dialog-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px 20px; border-bottom: 1px solid var(--rule); position: sticky; top: 0; background: var(--paper); z-index: 1; }
+.menu-photo-dialog button { font: 600 14px/1.4 var(--sans); color: var(--blue); background: transparent; border: 1px solid var(--rule); padding: 11px 14px; cursor: pointer; min-height: 44px; }
+.menu-photo-dialog-header p { margin: 0; font-size: 13px; }
+.menu-photo-detail { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(250px,1fr); }
+.menu-photo-large { margin: 0; display: grid; place-items: center; background: #e8e5de; min-width: 0; }
+.menu-photo-large img { width: 100%; height: auto; max-height: 70dvh; object-fit: contain; }
+.menu-photo-info { padding: 28px; min-width: 0; }
+.menu-photo-info .photo-category { margin: 0 0 10px; font-size: 12px; line-height: 1.5; color: var(--blue); }
+.menu-photo-info h2 { margin: 0 0 14px; font: 400 32px/1.12 var(--serif); }
+.menu-photo-info .photo-price { font-weight: 600; font-size: 18px; }
+.menu-photo-info .photo-description { font-size: 14px; line-height: 1.6; }
+.menu-photo-info .photo-note, .menu-photo-info .photo-status { font-size: 12px; line-height: 1.5; color: var(--ink-3); }
+.menu-photo-info .photo-note { margin-top: 20px; border-top: 1px solid var(--rule); padding-top: 14px; }
+.menu-photo-dialog a { color: var(--blue); text-underline-offset: 4px; }
+.menu-photo-dialog :focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+@media (min-width: 1100px) { html.stage .zone-menu { width: min(830px,62vw); } }
+@media (max-width: 759px) {
+ html.stage main > .zone-menu { width: 100%; top: calc(var(--hh) + var(--places-h) + 12svh); }
+ .menu-taste { grid-template-columns:1fr; gap:12px; }
+ .menu-taste li a{display:grid;grid-template-columns:88px minmax(0,1fr);gap:14px;align-items:center}
+ .menu-taste li figure{display:contents}
+ .menu-taste li figcaption{padding:0}
+ .menu-taste figcaption { font-size: 12px; }
+ .menu-opening h3 { font-size: 28px; }
+ .dishes li.has-menu-photo { grid-template-columns: 112px minmax(0,1fr); gap: 16px; padding: 18px 0; }
+ .has-menu-photo .nm { font-size: 21px; }
+ .has-menu-photo .dl { display: block; }
+ .has-menu-photo .pr { display: block; margin-top: 7px; }
+ .has-menu-photo .ds { font-size: 13px; line-height: 1.5; }
+ .menu-photo-dialog { width: calc(100vw - 20px); max-height: calc(100dvh - 20px); }
+ .menu-photo-detail { grid-template-columns: 1fr; }
+ .menu-photo-large img { max-height: 44dvh; }
+ .menu-photo-info { padding: 20px; }
+ .menu-photo-info h2 { font-size: 28px; }
+}
+@media (max-width: 380px) {
+ .dishes li.has-menu-photo { grid-template-columns: 88px minmax(0,1fr); gap: 12px; }
+ .has-menu-photo .nm { font-size: 19px; }
+ .menu-taste li a { grid-template-columns:76px minmax(0,1fr); }
+}
+@media (max-height: 500px) and (max-width: 959px) {
+ html.stage main > .zone-menu { top: calc(var(--hh) + var(--places-h)); }
+ .menu-photo-detail { grid-template-columns: 1fr 1fr; }
+ .menu-photo-large img { max-height: 76dvh; }
+}
+@media print { .menu-photo-dialog { display: none !important; } .photo-enlarge { display: none; } }
+
+/* Category choices stay within reach while browsing the long complete menu. */
+.sheet-head .menu-index{flex:1 0 100%;margin:0;border:0;min-width:0}
+.sheet-head .menu-index>summary{min-height:40px;padding:6px 0;font-size:14px}
+.sheet-head .menu-index-groups{max-height:45svh;overflow:auto;overscroll-behavior:contain}
+
+/* A real counter moment, secondary to the menu and its direct category links. */
+.menu-welcome-photo{float:right;width:82px;margin:0 0 12px 18px}.menu-welcome-photo img{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain}.menu-index{clear:both}@media(max-width:380px){.menu-welcome-photo{width:62px;margin-left:10px}}
+
+.zone-menu .sheet-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px 18px}.zone-menu .sheet-head h2{grid-column:1;grid-row:1}.zone-menu .menu-welcome-photo{grid-column:2;grid-row:1 / span 2;width:64px;margin:0}.zone-menu .menu-switch{grid-column:1;grid-row:2}.zone-menu .sheet-back{grid-column:2;grid-row:3;justify-self:end}.zone-menu .menu-index{grid-column:1 / -1;grid-row:4}@media(max-width:759px){.zone-menu .menu-welcome-photo{width:48px}.zone-menu .sheet-head{gap:4px 14px}.zone-menu .menu-switch a{font-size:20px}.zone-menu .sheet-back{grid-row:3}.zone-menu .menu-index{grid-row:3;grid-column:1}}
