@@ -127,7 +127,7 @@
     counterMenu: { d: { fx: .4, fy: .55, z: 1 }, m: { fx: .5, fy: .6, z: 1 } }
   };
 
-  const st = { zone: 'street', pos: 0, vel: 0, target: 0, o: { menu: 0, cafe: 0, visit: 0 }, gatedSince: 0 };
+  const st = { zone: 'street', pos: 0, vel: 0, target: 0, o: { menu: 0, cafe: 0, visit: 0 }, cc: 0, gatedSince: 0 };
   const L = {};
   let stage, V = { x: 0, y: 0, w: 1, h: 1 }, mobile = false, panels = {}, pendingFocus = null, vehicleTimer = 0;
   let alive = false; // set once the stage is built; until then links keep their plain behaviour
@@ -392,6 +392,19 @@
     }
     return { x: 0, y: 0, w: clamp(p.left + (1 - o) * p.w, 200, V.w), h: V.h };
   }
+  let counterBand = 0;
+  function counterVp() {
+    const vp = vpFor('menu', st.o.menu);
+    if (!mobile || st.cc <= 0) return vp;
+    const card = $('#counter .stop-copy');
+    if (card && card.offsetHeight) {
+      const r = card.getBoundingClientRect(), s = stage.getBoundingClientRect();
+      if (r.top > s.top + 40) counterBand = r.top - s.top;
+    }
+    if (!counterBand) return vp;
+    const h = lerp(V.h, clamp(counterBand, Math.min(V.h, 160), V.h), st.cc);
+    return h < vp.h ? { ...vp, h } : vp;
+  }
   const cam = (name) => CAM[name][mobile ? 'm' : 'd'];
   const lerpCam = (a, b, t) => ({ fx: lerp(a.fx, b.fx, t), fy: lerp(a.fy, b.fy, t), z: lerp(a.z, b.z, t) });
   function geom(s, vp, c) {
@@ -458,7 +471,7 @@
     } else {
       show(L.street, null);
       show(L.threshold, null);
-      show(L.counter, geom(shots.counter, vpFor('menu', st.o.menu), counterCam()));
+      show(L.counter, geom(shots.counter, counterVp(), counterCam()));
     }
     syncFacadeLife();
   }
@@ -482,7 +495,7 @@
   // Turning left inside: the counter comes in from the left, side by side, never on top.
   function turn(q) {
     const gT = geom(shots.threshold, vpFor('cafe', st.o.cafe), thresholdCam());
-    const gC = geom(shots.counter, vpFor('menu', st.o.menu), counterCam());
+    const gC = geom(shots.counter, counterVp(), counterCam());
     const dx = V.w * q;
     show(L.threshold, dx < V.w - .5 ? { k: gT.k, x: gT.x + dx, y: gT.y } : null, { x: dx, y: 0, w: V.w - dx, h: V.h });
     show(L.counter, dx > .5 ? { k: gC.k, x: gC.x + dx - V.w, y: gC.y } : null, { x: 0, y: 0, w: dx, h: V.h });
@@ -497,7 +510,13 @@
     return { menu: z === 'menu' ? 1 : 0, cafe: z === 'cafe' && Math.abs(p - 2) < .38 ? 1 : 0, visit: z === 'visit' ? 1 : 0 };
   }
 
+  // Mobile: the counter's card covers the bottom of the scene. st.cc eases the
+  // counter's framing into the band above that card (and back out for the menu).
+  const ccTarget = () => (mobile && st.zone === 'counter' ? 1 : 0);
   function step(dt, now) {
+    const cct = ccTarget();
+    st.cc += (cct - st.cc) * (1 - Math.exp(-dt / .11));
+    if (Math.abs(cct - st.cc) < .002) st.cc = cct;
     const tg = sheetTargets();
     for (const z of Object.keys(st.o)) {
       const want = tg[z];
@@ -532,9 +551,10 @@
     st.vel = 0;
     const tg = sheetTargets();
     for (const z of Object.keys(st.o)) st.o[z] = tg[z];
+    st.cc = ccTarget();
   }
 
-  const moving = () => st.pos !== Math.min(st.target, 3) || st.vel !== 0 || Object.keys(st.o).some((z) => st.o[z] !== sheetTargets()[z]);
+  const moving = () => st.pos !== Math.min(st.target, 3) || st.vel !== 0 || st.cc !== ccTarget() || Object.keys(st.o).some((z) => st.o[z] !== sheetTargets()[z]);
 
   function syncSheets() {
     if(!alive || fellBack)return;
@@ -962,7 +982,7 @@
     const info = $('.welcome-info');
     const css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = new URL('entry-scroll.css?v=c195d6434c', document.currentScript?.src || location.href).href;
+    css.href = new URL('entry-scroll.css?v=eed192c281', document.currentScript?.src || location.href).href;
     let ready = false, disposed = false, active = false, span = 1;
     let requested = 0, baseline = null, visualZone = null, resizing = false;
     let measuredW = 0, measuredH = 0;
@@ -996,7 +1016,8 @@
       resetMotion();
       if (active) stop();
       const previous = st.zone;
-      st.zone = 'street'; st.pos = st.target = st.vel = 0;
+      st.zone = 'street'; st.pos = st.target = st.vel = st.cc = 0;
+      counterBand = 0;
       for (const z of Object.keys(st.o)) st.o[z] = 0;
       setPlace('street', previous, true, false);
       updateNav('street');

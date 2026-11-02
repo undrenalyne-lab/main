@@ -17,7 +17,8 @@ html.stage.entry-journey body {
 .entry-scroll-cue {
   position:fixed;
   z-index:11;
-  top:calc(var(--hh) + var(--places-h) + 14px);
+  /* Low on the photograph (planters), never over the shop sign and its logo. */
+  bottom:calc(var(--rail) + var(--navh) + 20px);
   left:50%;
   transform:translateX(-50%);
   margin:0;
@@ -33,6 +34,8 @@ html.stage.entry-journey body {
 .entry-scroll-cue[hidden] { display:none; }
 html.stage.entry-journey #welcome .welcome-info { opacity:var(--entry-welcome,1); }
 @media(max-width:759px) {
+  /* The shopfront is a full-width band (2048 x 1153) under the tabs: sit on its lower edge. */
+  .entry-scroll-cue { bottom:auto; top:calc(var(--hh) + var(--places-h) + 56.3vw - 44px); }
   html.stage.entry-journey #entry-scroll-scene {
     left:0;
     right:0;
@@ -51,3 +54,8 @@ html.stage.entry-journey #welcome .welcome-info { opacity:var(--entry-welcome,1)
 @media(max-width:759px){.entry-arrival{bottom:var(--navh);padding:8px 14px;gap:22px;flex-wrap:wrap}.entry-arrival>span{width:100%;text-align:center;font-size:22px;margin-bottom:-6px}.entry-arrival a{font-size:12px}}
 
 html.stage.entry-journey body{background:var(--paper)}
+
+/* In short landscape the facade sits beside the practical information. */
+@media(max-width:759px) and (orientation:landscape) {
+  .entry-scroll-cue { top:auto; bottom:calc(var(--navh) + 4px); left:calc(var(--compact-scene-w) / 2); max-width:calc(var(--compact-scene-w) - 16px); }
+}
