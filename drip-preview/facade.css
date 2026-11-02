@@ -548,3 +548,7 @@ figure[data-menu-photo-state="ready"] > .menu-photo-status { display:none; }
 /* Source-photo coordinates differ from the former reconstruction. Keep actual
    lights/reflections intact rather than painting artificial masks over them. */
 .layer-street .fx,.layer-street .fx-pane{display:none}
+
+/* Audit 2 Nov: the four bottom-bar labels (Menu, The café, Visit, Call) stay on one line. */
+@media(max-width:759px){ .site-nav a, html.stage .site-nav a { white-space:nowrap; } }
+@media(max-width:420px){ .site-nav a, html.stage .site-nav a { padding:0 10px; } }
