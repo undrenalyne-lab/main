@@ -14,10 +14,9 @@
 window.DRIP_WALK = {
   // Reflet sur la vitre et lueur des ampoules réelles (pixels de l'original 1000188514.jpg).
   fx: [
-    { source: '1000188514.jpg', items: [
-      { kind: 'glow', rect: [825, 560, 355, 90] },
-      { kind: 'glow', rect: [1265, 600, 50, 120] },
-      { kind: 'glass', rect: [650, 540, 580, 250] }
+    { source: 'photograph-1000188514', items: [
+      { kind: 'glow', rect: [535, 385, 290, 72] },
+      { kind: 'glow', rect: [874, 385, 283, 72] }
     ] }
   ],
 
@@ -30,7 +29,7 @@ window.DRIP_WALK = {
 
     { id: 'door', place: 'The door', len: 190,
       shot: 'pro-door',
-      cut: { type: 'portal', from: [1250, 600, 175, 390], to: [316, 413, 607, 1393] },
+      cut: { type: 'portal', from: [1148, 556, 181, 348], to: [316, 413, 607, 1393] },
       cam: [[0.55, 0.48, 1], [0.52, 0.64, 1.04]],
       alt: 'The open door in its mustard frame, looking into the café: hanging lamps, chairs and a long narrow room.',
       caption: { kind: 'word', title: 'Come in.' } },

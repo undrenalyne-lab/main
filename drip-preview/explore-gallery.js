@@ -94,6 +94,7 @@
   let renderedHash = null;
   let ticket = 0;
   let outsideFocus = null;
+  let outsideHash = '#room';
   let intendedFocus = null;
   let photoState = 'idle';
   const scrollPositions = new Map();
@@ -123,7 +124,7 @@
   }
   function dismiss() {
     intendedFocus = 'outside';
-    navigate('#room', 'outside');
+    navigate(outsideHash, 'outside');
   }
   function leaveDialog() {
     rememberScroll();
@@ -140,9 +141,10 @@
       if (location.hash !== hash || dialog.open) return;
       if (hash === '#menu') focus(document.getElementById('menu-title'));
       else if (hash === '#visit') focus(document.getElementById('visit-title'));
-      else if (hash === '#room') {
+      else if (['#room', '#counter', '#courtyard', '#top'].includes(hash)) {
         const usable = outsideFocus?.isConnected && outsideFocus.getClientRects().length && !outsideFocus.closest('[inert], [hidden]');
-        focus(usable ? outsideFocus : document.getElementById('room-title'));
+        const section = document.getElementById(hash.slice(1));
+        focus(usable ? outsideFocus : section?.querySelector('h2') || document.getElementById('room-title'));
       }
     });
   }
@@ -267,7 +269,10 @@
     const u = new URL(a.href, location.href);
     if (u.origin !== location.origin || u.pathname !== location.pathname || u.search !== location.search || !readRoute(u.hash)) return;
     event.preventDefault();
-    if (!dialog.contains(a)) outsideFocus = a;
+    if (!dialog.contains(a)) {
+      outsideFocus = a;
+      outsideHash = ['#room', '#counter', '#courtyard', '#top', '#menu', '#visit'].includes(location.hash) ? location.hash : '#room';
+    }
     navigate(u.hash);
   });
   closeButton.addEventListener('click', dismiss);

@@ -82,6 +82,12 @@ html.stage .zone-menu { width: min(760px, 64vw); }
 }
 @media print { .menu-photo-dialog { display: none !important; } .photo-enlarge { display: none; } }
 
+/* In a short landscape viewport the multi-row heading must scroll away;
+   pinning it would cover nearly the entire usable menu sheet. */
+@media (max-height: 600px) {
+ html.stage .zone-menu .sheet-head { position: static; }
+}
+
 /* Category choices stay within reach while browsing the long complete menu. */
 .sheet-head .menu-index{flex:1 0 100%;margin:0;border:0;min-width:0}
 .sheet-head .menu-index>summary{min-height:40px;padding:6px 0;font-size:14px}

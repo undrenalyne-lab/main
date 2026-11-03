@@ -225,7 +225,7 @@ html.stage .zone-visit { right: 0; width: clamp(330px, 30vw, 420px); transform: 
 html.stage .zone-cafe .sheet-head, html.stage .zone-visit .sheet-head { border-bottom: 0; }
 html.stage .site-footer { display: none; }
 
-/* ---- façade life (coordinates on the 1672 x 941 picture) -------------------------- */
+/* ---- façade life (coordinates on the 1560 × 1035 rectified photograph) -------------------------- */
 
 .fx { position: absolute; pointer-events: none; }
 /* The light effects only exist on top of the photograph: never on an empty frame. */
@@ -388,6 +388,12 @@ html.stage .stop-counter .stop-number { display:none; }
 html.stage .stop-counter .stop-copy>p { font-size:14px; margin:0; }
 html.stage .stop-counter .stop-directions { flex-direction:row; gap:24px; margin:12px 0; }
 html.stage[data-place-settled="true"] .stop-counter.is-place-current .stop-copy { visibility:visible; }
+/* A landscape counter photograph keeps its full field on portrait phones.
+   The controls occupy the remaining height instead of making the sink dominate. */
+@media(max-width:759px) and (orientation:portrait){
+ html.stage .stop-counter { grid-template-rows:calc(100vw * 1083 / 1624) minmax(0,1fr)!important; }
+ html.stage .stop-counter .stop-copy { grid-row:2; align-self:stretch!important; }
+}
 @media(max-width:759px){
   .places-nav { padding:0 12px; gap:0; }
   .places-intro { display:none; }
@@ -422,7 +428,7 @@ html.stage[data-place-settled="true"] .stop-counter.is-place-current .stop-copy 
 .view-load-status { position:fixed; z-index:40; top:calc(var(--hh) + var(--places-h) + 12px); left:50%; transform:translateX(-50%); margin:0; padding:9px 16px; background:var(--paper); color:var(--ink); border:1px solid var(--rule); border-radius:24px; font-size:13px; box-shadow:0 3px 14px #291f1714; }
 .view-load-status:empty { display:none; }
 @media(max-width:759px) {
-  html.stage { --stage-h:calc(var(--places-h) + 100vw * 941 / 1672); }
+  html.stage { --stage-h:calc(var(--places-h) + 100vw * 1035 / 1560); }
   .site-header { position:sticky; top:0; height:var(--hh); min-height:var(--hh); flex-wrap:nowrap; justify-content:space-between; }
   .preview-tag { display:none; }
   .site-nav { position:fixed; left:0; right:0; bottom:0; z-index:30; height:calc(60px + env(safe-area-inset-bottom, 0px)); padding-bottom:env(safe-area-inset-bottom, 0px); background:var(--ivory); border-top:1px solid var(--rule); }
@@ -500,8 +506,8 @@ html.fixed .explore-stop.has-unavailable-primary .stop-copy { max-width:1000px; 
 @media(max-width:759px) and (orientation:landscape) {
   html.stage {
     --compact-view-h:max(1px, calc(100svh - var(--hh) - var(--places-h) - var(--navh)));
-    --compact-scene-w:min(42vw, calc(var(--compact-view-h) * 1672 / 941));
-    --compact-scene-h:calc(var(--compact-scene-w) * 941 / 1672);
+    --compact-scene-w:min(42vw, calc(var(--compact-view-h) * 1560 / 1035));
+    --compact-scene-h:calc(var(--compact-scene-w) * 1035 / 1560);
   }
   html.stage:not([data-place="counter"]):not([data-place="room"]):not([data-place="courtyard"]) body { background:var(--paper); }
   html.stage:not([data-place="counter"]):not([data-place="room"]):not([data-place="courtyard"]) .scene,
@@ -521,6 +527,14 @@ html.fixed .explore-stop.has-unavailable-primary .stop-copy { max-width:1000px; 
     top:calc(var(--hh) + var(--places-h)); left:var(--compact-scene-w);
     max-height:none; border-radius:0;
   }
+  /* Keep the counter photograph visible beside its controls on short phones. */
+  html.stage .stop-counter .stop-copy {
+    justify-self:end; align-self:stretch; width:clamp(240px,46vw,340px);
+    height:100%; max-width:none; margin:0; padding:14px 16px;
+    overflow-y:auto; overscroll-behavior:contain;
+  }
+  html.stage .stop-counter .stop-copy h2 { font-size:24px; }
+  html.stage .stop-counter .counter-return { display:flex; align-items:center; min-height:44px; margin-top:8px; }
 }
 /* The unopened menu has no layout work or competing product requests.
    Its fixed panel keeps its dimensions. JS releases this one-time gate before
@@ -545,9 +559,13 @@ figure[data-menu-photo-state="ready"] > .menu-photo-status { display:none; }
 .mobile-call{display:none}.visit-actions{display:flex;flex-wrap:wrap;gap:12px}
 @media(max-width:759px){.mobile-call{display:list-item}.site-nav a{padding-inline:12px}.site-nav li{flex:1}.site-nav li a{justify-content:center}.visit-actions .btn{min-height:46px}}
 
-/* Source-photo coordinates differ from the former reconstruction. Keep actual
-   lights/reflections intact rather than painting artificial masks over them. */
-.layer-street .fx,.layer-street .fx-pane{display:none}
+/* Real lamps come on once, without a rapid flicker or added fixtures. */
+.lit .fx-tube.t1 { animation: drip-lamp-on 1.25s ease-out .1s both; }
+.lit .fx-tube.t2 { animation: drip-lamp-on 1.25s ease-out .6s both; }
+@keyframes drip-lamp-on { 0%, 20% { opacity: .88; } 100% { opacity: 0; } }
+@media(prefers-reduced-motion:reduce) { .layer-street .fx { display:none; animation:none!important; } }
+html.stage .welcome-photo { background:var(--paper); }
+html.stage .welcome-photo .facade-img { object-fit:contain; object-position:center; }
 
 /* Audit 2 Nov: the four bottom-bar labels (Menu, The café, Visit, Call) stay on one line. */
 @media(max-width:759px){ .site-nav a, html.stage .site-nav a { white-space:nowrap; } }

@@ -5,6 +5,7 @@
 .places-nav .walk-link { color:var(--blue); }
 .door-hit::after { display:none; }
 .door-hit .door-label { position:absolute; left:50%; top:65%; transform:translateX(-50%); display:flex; align-items:center; gap:10px; white-space:nowrap; background:var(--paper); color:var(--ink); padding:12px 16px; font:600 15px/1.2 var(--sans); box-shadow:0 4px 20px #20180e33; }
+.door-hit .door-label { font-size:calc(13px / var(--photo-scale,1)); padding:calc(8px / var(--photo-scale,1)) calc(10px / var(--photo-scale,1)); gap:calc(6px / var(--photo-scale,1)); }
 html.stage:not([data-place="street"]) .door-hit { pointer-events:none; }
 /* Set both ends explicitly: an entrance must not leave inherited hidden
    visibility on the room photograph or its links after the scene settles. */
@@ -16,7 +17,7 @@ html.stage:not(.entering-room) .room-hub.is-place-current > .stop-photo * { visi
 html.stage .room-hub .stop-copy { display:flex; align-items:center; justify-content:center; padding:32px 5%; grid-template-columns:none; }
 .room-hub .room-story { width:100%; max-width:560px; }
 .room-hub .stop-photo { background:var(--paper); }
-.room-photo-frame { position:relative; aspect-ratio:941 / 1672; width:auto; height:100%; max-width:100%; margin:auto; }
+.room-photo-frame { position:relative; aspect-ratio:1153 / 1730; width:auto; height:100%; max-width:100%; margin:auto; }
 .room-photo-frame>img { width:100%; height:100%; object-fit:contain; }
 .photo-points { position:absolute; inset:0; }
 /* Small, opaque labels: readable photographic wayfinding without glass bubbles. */
@@ -24,7 +25,7 @@ html.stage .room-hub .stop-copy { display:flex; align-items:center; justify-cont
 .photo-point>span { display:grid;place-items:center;flex:none;width:20px;height:22px;font-size:17px;font-weight:400;color:var(--blue); }
 .photo-point:hover { background:#fff9ee; text-decoration:underline; text-underline-offset:4px; }
 .photo-point:focus-visible { outline:3px solid #fff; outline-offset:3px; box-shadow:0 0 0 7px #245157; }
-.point-counter{left:26%;top:52%}.point-seats{left:73%;top:70%}.point-objects{left:47%;top:29%}.point-rear{left:62%;top:45%}
+.point-counter{left:26%;top:61.56%}.point-seats{left:73%;top:82.86%}.point-objects{left:47%;top:34.33%}.point-rear{left:62%;top:53.27%}
 .photo-invitation {display:none;}
 .room-eyebrow { margin:0 0 16px; font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); }
 .room-hub .stop-copy h2 { margin:0 0 20px; font-size:58px; line-height:1.02; }
@@ -171,7 +172,7 @@ html.gallery-ready .full-photo-fallback{display:none}
 @media(min-width:1100px){
  html.stage .room-hub{grid-template-columns:minmax(0,1.6fr) minmax(400px,1fr)}
  html.stage .room-hub .stop-photo{display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0;background:var(--paper)}
- html.stage .room-hub .room-photo-frame{width:100%;height:auto;aspect-ratio:1153/2048;max-width:calc(var(--explore-h)*1.16);flex-shrink:0;margin:0}
+ html.stage .room-hub .room-photo-frame{width:100%;height:auto;aspect-ratio:1153/1730;max-width:calc(var(--explore-h)*1.16);flex-shrink:0;margin:0}
  html.stage .room-hub .room-photo-frame>img{width:100%;height:auto;max-height:none;object-fit:contain}
  .room-reverse{display:flex;max-width:none;align-items:center;gap:14px;width:100%;margin-top:8px;padding-top:16px;border-top:1px solid var(--rule);color:var(--ink);text-decoration:none}
  html.stage .room-hub .room-reverse img{display:block;width:60px;height:86px;object-fit:cover;aspect-ratio:auto}
@@ -210,9 +211,18 @@ html.stage .stop-courtyard .stop-copy{display:block}
    larger share of the portrait. The photograph itself is unchanged. */
 @media(min-width:1100px){
  html.stage .room-hub{grid-template-columns:auto minmax(400px,1fr)}
- html.stage .room-hub .room-photo-frame{width:min(var(--explore-h),750px);max-width:none}
+ html.stage .room-hub .room-photo-frame{width:min(640px,calc(var(--explore-h) * 1153 / 1730));max-width:none}
 }
 /* Pre-existing overflow in the still (reduced-motion) mobile view: the reverse-view thumbnail
    took the full line width and pushed its label off screen. Same compact thumbnail as desktop. */
 .room-secondary .room-reverse img{width:60px;height:86px;object-fit:cover;flex:none}
 .room-secondary .room-reverse span{min-width:0}
+
+/* Revue du 3 nov. : sur mobile, l'invitation superposée masquait lanterne et ventilateur ; elle quitte la photo
+   et le titre existant reprend sa place sous la photo. Le repère 03 laisse voir la lampe-vélo et le 04 se pose sur la porte du fond
+   au lieu du visage peint (mêmes cibles de 48 px). */
+.point-objects{left:31%;top:21.5%}.point-rear{left:47%;top:51%}
+@media(max-width:759px){
+ .photo-invitation{display:none}
+ .room-hub .stop-copy h2{display:block}
+}
