@@ -34,8 +34,8 @@ html.stage.entry-journey body {
 .entry-scroll-cue[hidden] { display:none; }
 html.stage.entry-journey #welcome .welcome-info { opacity:var(--entry-welcome,1); }
 @media(max-width:759px) {
-  /* The shopfront is a full-width band (2048 x 1153) under the tabs: sit on its lower edge. */
-  .entry-scroll-cue { bottom:auto; top:calc(var(--hh) + var(--places-h) + 56.3vw - 44px); }
+  /* The shopfront is a full-width band (1560 × 1035) under the tabs: sit on its lower edge. */
+  .entry-scroll-cue { bottom:auto; top:calc(var(--hh) + var(--places-h) + 66.3462vw - 44px); }
   html.stage.entry-journey #entry-scroll-scene {
     left:0;
     right:0;

@@ -113,13 +113,13 @@
   document.body.appendChild(loadStatus);
 
   // Picture coordinates (logical pixels of each recomposed image).
-  const DOOR = [1248, 598, 181, 391];          // open doorway, under the lattice
-  const DOOR_HIT = [1232, 523, 212, 470];      // whole mustard frame
+  const DOOR = [1148, 556, 181, 348];          // rectified photograph, 1560 × 1035
+  const DOOR_HIT = [1133, 486, 213, 421];      // whole mustard frame in the same plane
   const T_IN = [133, 205, 845, 1843];          // what the doorway frames, inside the threshold picture
   const PORTAL_ZOOM = 1.35;                    // façade push while the doorway opens (on top of 1.12)
   const CAM = {                                // fx/fy: where the frame sits in the free range; z: zoom over cover
-    street: { d: { fx: .5, fy: .12, z: 1 }, m: { fx: .5, fy: .5, z: 1 } },
-    streetVisit: { d: { fx: .08, fy: .12, z: 1 }, m: { fx: .62, fy: .5, z: 1 } },
+    street: { d: { fx: .5, fy: .5, z: 1, fit: 0 }, m: { fx: .5, fy: .5, z: 1, fit: 0 } },
+    streetVisit: { d: { fx: .5, fy: .5, z: 1, fit: 0 }, m: { fx: .5, fy: .5, z: 1, fit: 0 } },
     push: { d: { fx: 1, fy: .9, z: 1.12 }, m: { fx: .8, fy: .62, z: 1.12 } },
     threshold: { d: { fx: .42, fy: .36, z: 1 }, m: { fx: .4, fy: .32, z: 1 } },
     thresholdCafe: { d: { fx: .4, fy: .3, z: 1 }, m: { fx: .4, fy: .28, z: 1 } },
@@ -153,7 +153,7 @@
       stage.appendChild(layer);
       L[key] = { key, s, layer, shot, img: null, ready: false, shown: null };
     }
-    stage.style.background = shots.street.tone;
+    stage.style.background = 'var(--paper)';
 
     // The façade uses the page's own <img>: no second download.
     const facade = $('.facade-img');
@@ -253,32 +253,12 @@
   const panes = [];
 
   function buildFacadeLife(shot) {
-    // before opening: tubes off, soffit and interior dimmer
-    shot.appendChild(el('fx fx-soffit', [440, 286, 660, 120]));
-    shot.appendChild(el('fx fx-tube t1', [496, 325, 248, 22]));
-    shot.appendChild(el('fx fx-tube t2', [820, 325, 224, 22]));
-    shot.appendChild(el('fx fx-glow g1', [440, 280, 360, 150]));
-    shot.appendChild(el('fx fx-glow g2', [752, 280, 360, 150]));
-    for (const r of [[535, 426, 237, 29], [787, 426, 250, 29], [535, 465, 237, 162], [787, 465, 253, 162], [1067, 467, 72, 329]]) shot.appendChild(el('fx fx-dim', r));
-    const bulbs = [[609, 476], [720, 476], [810, 487], [834, 474], [890, 495], [929, 476], [966, 476], [939, 452], [964, 447]];
-    bulbs.forEach(([x, y], i) => {
-      const b = el('fx fx-bulb', [x, y]);
-      b.style.setProperty('--d', (i * 0.13).toFixed(2) + 's');
-      shot.appendChild(b);
-    });
-    for (const [x, y] of [[1090, 492], [1092, 532]]) {
-      const b = el('fx fx-bulb big', [x, y]);
-      b.style.setProperty('--d', '.3s');
-      shot.appendChild(b);
-    }
-    for (const r of PANES) {
-      const pane = el('fx-pane', r);
-      const shade = el('veh veh-shade');
-      const sheen = el('veh veh-sheen');
-      pane.append(shade, sheen);
-      shot.appendChild(pane);
-      panes.push({ r, pane, shade, sheen });
-    }
+    // Only the two photographed fluorescent tubes: calibrated on the final
+    // 1560 × 1035 image. No invented fixtures or reflected traffic.
+    shot.appendChild(el('fx fx-tube t1', [565, 415, 230, 10]));
+    shot.appendChild(el('fx fx-tube t2', [904, 415, 223, 11]));
+    shot.appendChild(el('fx fx-glow g1', [535, 385, 290, 72]));
+    shot.appendChild(el('fx fx-glow g2', [874, 385, 283, 72]));
     const hit = document.createElement('a');
     hit.className = 'door-hit';
     hit.href = '#room';
@@ -337,7 +317,7 @@
     if (!active) {
       clearTimeout(vehicleTimer); vehicleTimer = 0;
       for (const p of panes) for (const node of [p.shade,p.sheen]) for (const a of node.getAnimations()) a.cancel();
-    } else if (lit && !vehicleTimer) vehicleTimer = setTimeout(passBy, 5200 + Math.random() * 3800);
+    } else if (lit && panes.length && !vehicleTimer) vehicleTimer = setTimeout(passBy, 5200 + Math.random() * 3800);
   }
   function passBy(force, forceLtr) {
     clearTimeout(vehicleTimer); vehicleTimer = 0;
@@ -397,6 +377,13 @@
     const vp = vpFor('menu', st.o.menu);
     if (!mobile || st.cc <= 0) return vp;
     const card = $('#counter .stop-copy');
+    // In compact landscape the controls sit to the right, not over the photo.
+    // The resolved CSS width remains available while the departing card is hidden.
+    if (card && matchMedia('(max-width: 759px) and (orientation: landscape)').matches) {
+      const width = parseFloat(getComputedStyle(card).width) || 0;
+      const w = lerp(V.w, Math.max(1, V.w - width), st.cc);
+      return w < vp.w ? { ...vp, w } : vp;
+    }
     if (card && card.offsetHeight) {
       const r = card.getBoundingClientRect(), s = stage.getBoundingClientRect();
       if (r.top > s.top + 40) counterBand = r.top - s.top;
@@ -406,9 +393,9 @@
     return h < vp.h ? { ...vp, h } : vp;
   }
   const cam = (name) => CAM[name][mobile ? 'm' : 'd'];
-  const lerpCam = (a, b, t) => ({ fx: lerp(a.fx, b.fx, t), fy: lerp(a.fy, b.fy, t), z: lerp(a.z, b.z, t) });
+  const lerpCam = (a, b, t) => ({ fx: lerp(a.fx, b.fx, t), fy: lerp(a.fy, b.fy, t), z: lerp(a.z, b.z, t), fit: lerp(a.fit ?? 1, b.fit ?? 1, t) });
   function geom(s, vp, c) {
-    const k = Math.max(vp.w / s.w, vp.h / s.h) * c.z;
+    const k = lerp(Math.min(vp.w / s.w, vp.h / s.h), Math.max(vp.w / s.w, vp.h / s.h), c.fit ?? 1) * c.z;
     return { k, x: vp.x - c.fx * (s.w * k - vp.w), y: vp.y - c.fy * (s.h * k - vp.h) };
   }
   const mapR = (g, r) => ({ x: g.x + g.k * r[0], y: g.y + g.k * r[1], w: g.k * r[2], h: g.k * r[3] });
@@ -438,6 +425,7 @@
     }
     if (l.shown !== true) { l.layer.style.visibility = 'visible'; l.shown = true; }
     l.shot.style.transform = `translate3d(${g.x.toFixed(2)}px,${g.y.toFixed(2)}px,0) scale(${g.k.toFixed(5)})`;
+    if (l.key === 'street') l.shot.style.setProperty('--photo-scale', g.k.toFixed(5));
     l.layer.style.clipPath = clip
       ? `inset(${clip.y.toFixed(1)}px ${(V.w - clip.x - clip.w).toFixed(1)}px ${(V.h - clip.y - clip.h).toFixed(1)}px ${clip.x.toFixed(1)}px)`
       : '';
@@ -982,7 +970,7 @@
     const info = $('.welcome-info');
     const css = document.createElement('link');
     css.rel = 'stylesheet';
-    css.href = new URL('entry-scroll.css?v=eed192c281', document.currentScript?.src || location.href).href;
+    css.href = new URL('entry-scroll.css?v=349fc25079', document.currentScript?.src || location.href).href;
     let ready = false, disposed = false, active = false, span = 1;
     let requested = 0, baseline = null, visualZone = null, resizing = false;
     let measuredW = 0, measuredH = 0;
@@ -1130,6 +1118,7 @@
   });
   const onResize = () => {
     if (!alive) return;
+    counterBand = 0;
     if (entryJourney?.active) { entryJourney.resize(); return; }
     measure(); render(performance.now()); syncSheets(); spy(); kick();
   };

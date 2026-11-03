@@ -4,8 +4,8 @@ window.DRIP_PHOTOS = {
     "crop": [
       0,
       0,
-      2048,
-      1153
+      1560,
+      1035
     ],
     "tone": [
       115,
@@ -14,19 +14,19 @@ window.DRIP_PHOTOS = {
     ],
     "files": [
       {
-        "w": 1671,
-        "h": 941,
-        "path": "assets/photos/accepted-1000188514-4692dd53-1671x941-52b485641f333563.jpg"
+        "w": 1560,
+        "h": 1035,
+        "path": "assets/photos/photo-nov3-1000188514-1560x1035-9eca7816a2.jpg"
       },
       {
         "w": 1280,
-        "h": 721,
-        "path": "assets/photos/accepted-1000188514-9fe71000-1280x721-3ee47ad62f7d9807.jpg"
+        "h": 849,
+        "path": "assets/photos/photo-nov3-1000188514-1280x849-9eca7816a2.jpg"
       },
       {
         "w": 719,
-        "h": 405,
-        "path": "assets/photos/accepted-1000188514-9dbaf8e2-719x405-aaef0a9e7f2226ed.jpg"
+        "h": 477,
+        "path": "assets/photos/photo-nov3-1000188514-719x477-9eca7816a2.jpg"
       }
     ]
   },
@@ -34,9 +34,9 @@ window.DRIP_PHOTOS = {
     "source": "photograph-1000188514",
     "crop": [
       0,
-      233,
-      2048,
-      920
+      0,
+      1560,
+      1035
     ],
     "tone": [
       111,
@@ -45,19 +45,19 @@ window.DRIP_PHOTOS = {
     ],
     "files": [
       {
-        "w": 1672,
-        "h": 751,
-        "path": "assets/photos/accepted-1000188514-ed911cfe-1672x751-4b5ffab6e7cbfa1b.jpg"
+        "w": 1560,
+        "h": 1035,
+        "path": "assets/photos/photo-nov3-1000188514-1560x1035-9eca7816a2.jpg"
       },
       {
         "w": 1280,
-        "h": 575,
-        "path": "assets/photos/accepted-1000188514-e2afec37-1280x575-5955138800d9af87.jpg"
+        "h": 849,
+        "path": "assets/photos/photo-nov3-1000188514-1280x849-9eca7816a2.jpg"
       },
       {
         "w": 719,
-        "h": 323,
-        "path": "assets/photos/accepted-1000188514-5d0b3900-719x323-8662d3d652c4a6d0.jpg"
+        "h": 477,
+        "path": "assets/photos/photo-nov3-1000188514-719x477-9eca7816a2.jpg"
       }
     ]
   },
@@ -102,19 +102,19 @@ window.DRIP_PHOTOS = {
     ],
     "files": [
       {
-        "w": 1153,
-        "h": 2048,
-        "path": "assets/photos/accepted-1000188520-fb8cadcf-1153x2048-46c6da9b5f2eece4.jpg"
+        "w": 941,
+        "h": 1670,
+        "path": "assets/photos/photo-nov3-1000188520-941x1670-4cd0490877.jpg"
       },
       {
         "w": 940,
-        "h": 1670,
-        "path": "assets/photos/accepted-1000188520-c7887c6c-940x1670-02b309f0ddd24e89.jpg"
+        "h": 1668,
+        "path": "assets/photos/photo-nov3-1000188520-940x1668-4cd0490877.jpg"
       },
       {
         "w": 404,
-        "h": 718,
-        "path": "assets/photos/accepted-1000188520-bf5eab65-404x718-41e45fa4635ddef2.jpg"
+        "h": 717,
+        "path": "assets/photos/photo-nov3-1000188520-404x717-4cd0490877.jpg"
       }
     ]
   },
@@ -147,9 +147,9 @@ window.DRIP_PHOTOS = {
   "pro-cabinet": {
     "source": "photograph-1000188523",
     "crop": [
+      175,
       0,
-      0,
-      1153,
+      978,
       2048
     ],
     "tone": [
@@ -159,29 +159,29 @@ window.DRIP_PHOTOS = {
     ],
     "files": [
       {
-        "w": 1153,
+        "w": 978,
         "h": 2048,
-        "path": "assets/photos/accepted-1000188523-f2381ca6-1153x2048-3dc87f969b8475cc.jpg"
+        "path": "assets/photos/photo-nov3-1000188523-978x2048-27c0186cc8.jpg"
       },
       {
         "w": 940,
-        "h": 1670,
-        "path": "assets/photos/accepted-1000188523-3153c44e-940x1670-e797e0bf4208277a.jpg"
+        "h": 1968,
+        "path": "assets/photos/photo-nov3-1000188523-940x1968-27c0186cc8.jpg"
       },
       {
         "w": 404,
-        "h": 718,
-        "path": "assets/photos/accepted-1000188523-fff5f9c4-404x718-410590d437ace19b.jpg"
+        "h": 846,
+        "path": "assets/photos/photo-nov3-1000188523-404x846-27c0186cc8.jpg"
       }
     ]
   },
   "pro-counter": {
     "source": "photograph-1000188540",
     "crop": [
-      0,
-      0,
-      2048,
-      1153
+      300,
+      70,
+      1624,
+      1083
     ],
     "tone": [
       118,
@@ -190,19 +190,19 @@ window.DRIP_PHOTOS = {
     ],
     "files": [
       {
-        "w": 2048,
-        "h": 1153,
-        "path": "assets/photos/accepted-1000188540-03d4503b-2048x1153-2e08825a82a65d29.jpg"
+        "w": 1536,
+        "h": 1024,
+        "path": "assets/photos/photo-nov3-1000188540-1536x1024-2fd87d05c3.jpg"
       },
       {
         "w": 1280,
-        "h": 721,
-        "path": "assets/photos/accepted-1000188540-2d1ccb12-1280x721-f34de962ed8aa994.jpg"
+        "h": 853,
+        "path": "assets/photos/photo-nov3-1000188540-1280x853-2fd87d05c3.jpg"
       },
       {
         "w": 719,
-        "h": 405,
-        "path": "assets/photos/accepted-1000188540-d1413bcc-719x405-6929aeb947ca9582.jpg"
+        "h": 479,
+        "path": "assets/photos/photo-nov3-1000188540-719x479-2fd87d05c3.jpg"
       }
     ]
   },
@@ -210,9 +210,9 @@ window.DRIP_PHOTOS = {
     "source": "photograph-1000188524",
     "crop": [
       0,
-      0,
+      360,
       1153,
-      2048
+      1500
     ],
     "tone": [
       121,
@@ -222,18 +222,18 @@ window.DRIP_PHOTOS = {
     "files": [
       {
         "w": 1153,
-        "h": 2048,
-        "path": "assets/photos/accepted-1000188524-f61c4d2a-1153x2048-1511bc2c2da97a39.jpg"
+        "h": 1500,
+        "path": "assets/photos/photo-nov3-1000188524-1153x1500-4768903885.jpg"
       },
       {
         "w": 940,
-        "h": 1670,
-        "path": "assets/photos/accepted-1000188524-076bbdd5-940x1670-6b0169c51636945f.jpg"
+        "h": 1223,
+        "path": "assets/photos/photo-nov3-1000188524-940x1223-4768903885.jpg"
       },
       {
         "w": 404,
-        "h": 718,
-        "path": "assets/photos/accepted-1000188524-95193fd6-404x718-ecfe832860ff4edf.jpg"
+        "h": 526,
+        "path": "assets/photos/photo-nov3-1000188524-404x526-4768903885.jpg"
       }
     ]
   },
@@ -243,7 +243,7 @@ window.DRIP_PHOTOS = {
       0,
       0,
       1153,
-      2048
+      1740
     ],
     "tone": [
       128,
@@ -253,28 +253,28 @@ window.DRIP_PHOTOS = {
     "files": [
       {
         "w": 1153,
-        "h": 2048,
-        "path": "assets/photos/accepted-1000188525-49415861-1153x2048-4b7e70224ae4f198.jpg"
+        "h": 1740,
+        "path": "assets/photos/photo-nov3-1000188525-1153x1740-2fe119401d.jpg"
       },
       {
         "w": 940,
-        "h": 1670,
-        "path": "assets/photos/accepted-1000188525-a4be8d2b-940x1670-750b6107aea918a1.jpg"
+        "h": 1419,
+        "path": "assets/photos/photo-nov3-1000188525-940x1419-2fe119401d.jpg"
       },
       {
         "w": 404,
-        "h": 718,
-        "path": "assets/photos/accepted-1000188525-26ba9596-404x718-3436bef7bcbb3983.jpg"
+        "h": 610,
+        "path": "assets/photos/photo-nov3-1000188525-404x610-2fe119401d.jpg"
       }
     ]
   },
   "pro-sconce": {
     "source": "photograph-1000188536",
     "crop": [
-      100,
-      600,
+      90,
+      550,
       900,
-      1125
+      1080
     ],
     "tone": [
       138,
@@ -284,18 +284,18 @@ window.DRIP_PHOTOS = {
     "files": [
       {
         "w": 900,
-        "h": 1125,
-        "path": "assets/photos/accepted-1000188536-fddf99d6-900x1125-06669b8824d73128.jpg"
+        "h": 1080,
+        "path": "assets/photos/photo-nov3-1000188536-900x1080-a8a62e235d.jpg"
       },
       {
         "w": 720,
-        "h": 900,
-        "path": "assets/photos/accepted-1000188536-31fc34c7-720x900-3d2c0bb3d6ad17b1.jpg"
+        "h": 864,
+        "path": "assets/photos/photo-nov3-1000188536-720x864-a8a62e235d.jpg"
       },
       {
         "w": 404,
-        "h": 505,
-        "path": "assets/photos/accepted-1000188536-7ea17610-404x505-18dde66c4fb1b958.jpg"
+        "h": 485,
+        "path": "assets/photos/photo-nov3-1000188536-404x485-a8a62e235d.jpg"
       }
     ]
   },
@@ -305,7 +305,7 @@ window.DRIP_PHOTOS = {
       0,
       0,
       1153,
-      2048
+      1730
     ],
     "tone": [
       143,
@@ -315,13 +315,13 @@ window.DRIP_PHOTOS = {
     "files": [
       {
         "w": 1153,
-        "h": 2048,
-        "path": "assets/photos/accepted-1000188521-ba4b8252-1153x2048-46bfd4cb450b41d3.jpg"
+        "h": 1730,
+        "path": "assets/photos/photo-nov3-1000188521-1153x1730-258516cfd6.jpg"
       },
       {
         "w": 404,
-        "h": 718,
-        "path": "assets/photos/accepted-1000188521-9a58dc9f-404x718-93e1cc91181fb69e.jpg"
+        "h": 606,
+        "path": "assets/photos/photo-nov3-1000188521-404x606-258516cfd6.jpg"
       }
     ]
   },
@@ -381,9 +381,9 @@ window.DRIP_PHOTOS = {
     "source": "photograph-1000188534",
     "crop": [
       0,
-      0,
+      300,
       1153,
-      2048
+      1441
     ],
     "tone": [
       140,
@@ -393,13 +393,13 @@ window.DRIP_PHOTOS = {
     "files": [
       {
         "w": 941,
-        "h": 1671,
-        "path": "assets/photos/accepted-1000188534-d3303066-941x1671-a7324b3f70e19525.jpg"
+        "h": 1176,
+        "path": "assets/photos/photo-nov3-1000188534-941x1176-a25880a31b.jpg"
       },
       {
         "w": 404,
-        "h": 717,
-        "path": "assets/photos/accepted-1000188534-fd12d022-404x717-cb5e02080b112a03.jpg"
+        "h": 505,
+        "path": "assets/photos/photo-nov3-1000188534-404x505-a25880a31b.jpg"
       }
     ]
   },
@@ -407,9 +407,9 @@ window.DRIP_PHOTOS = {
     "source": "photograph-1000188519",
     "crop": [
       0,
-      0,
+      330,
       1153,
-      2048
+      1441
     ],
     "tone": [
       131,
@@ -419,18 +419,18 @@ window.DRIP_PHOTOS = {
     "files": [
       {
         "w": 1153,
-        "h": 2048,
-        "path": "assets/photos/accepted-1000188519-3e012997-1153x2048-b7c0449f1a4cf698.jpg"
+        "h": 1441,
+        "path": "assets/photos/photo-nov3-1000188519-1153x1441-5dc30a836a.jpg"
       },
       {
         "w": 940,
-        "h": 1670,
-        "path": "assets/photos/accepted-1000188519-871d83ec-940x1670-18f286605a5d8ab5.jpg"
+        "h": 1175,
+        "path": "assets/photos/photo-nov3-1000188519-940x1175-5dc30a836a.jpg"
       },
       {
         "w": 404,
-        "h": 718,
-        "path": "assets/photos/accepted-1000188519-3fad2f87-404x718-65be83cdc2a5725d.jpg"
+        "h": 505,
+        "path": "assets/photos/photo-nov3-1000188519-404x505-5dc30a836a.jpg"
       }
     ]
   }
