@@ -17,7 +17,7 @@ html.stage:not(.entering-room) .room-hub.is-place-current > .stop-photo * { visi
 html.stage .room-hub .stop-copy { display:flex; align-items:center; justify-content:center; padding:32px 5%; grid-template-columns:none; }
 .room-hub .room-story { width:100%; max-width:560px; }
 .room-hub .stop-photo { background:var(--paper); }
-.room-photo-frame { position:relative; aspect-ratio:1153 / 1730; width:auto; height:100%; max-width:100%; margin:auto; }
+.room-photo-frame { position:relative; aspect-ratio:1080 / 1920; width:auto; height:100%; max-width:100%; margin:auto; }
 .room-photo-frame>img { width:100%; height:100%; object-fit:contain; }
 .photo-points { position:absolute; inset:0; }
 /* Small, opaque labels: readable photographic wayfinding without glass bubbles. */
@@ -172,7 +172,7 @@ html.gallery-ready .full-photo-fallback{display:none}
 @media(min-width:1100px){
  html.stage .room-hub{grid-template-columns:minmax(0,1.6fr) minmax(400px,1fr)}
  html.stage .room-hub .stop-photo{display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0;background:var(--paper)}
- html.stage .room-hub .room-photo-frame{width:100%;height:auto;aspect-ratio:1153/1730;max-width:calc(var(--explore-h)*1.16);flex-shrink:0;margin:0}
+ html.stage .room-hub .room-photo-frame{width:100%;height:auto;aspect-ratio:1080/1920;max-width:calc(var(--explore-h)*1.16);flex-shrink:0;margin:0}
  html.stage .room-hub .room-photo-frame>img{width:100%;height:auto;max-height:none;object-fit:contain}
  .room-reverse{display:flex;max-width:none;align-items:center;gap:14px;width:100%;margin-top:8px;padding-top:16px;border-top:1px solid var(--rule);color:var(--ink);text-decoration:none}
  html.stage .room-hub .room-reverse img{display:block;width:60px;height:86px;object-fit:cover;aspect-ratio:auto}
@@ -211,7 +211,7 @@ html.stage .stop-courtyard .stop-copy{display:block}
    larger share of the portrait. The photograph itself is unchanged. */
 @media(min-width:1100px){
  html.stage .room-hub{grid-template-columns:auto minmax(400px,1fr)}
- html.stage .room-hub .room-photo-frame{width:min(640px,calc(var(--explore-h) * 1153 / 1730));max-width:none}
+ html.stage .room-hub .room-photo-frame{width:min(640px,calc(var(--explore-h) * 1080 / 1920));max-width:none}
 }
 /* Pre-existing overflow in the still (reduced-motion) mobile view: the reverse-view thumbnail
    took the full line width and pushed its label off screen. Same compact thumbnail as desktop. */
@@ -225,4 +225,24 @@ html.stage .stop-courtyard .stop-copy{display:block}
 @media(max-width:759px){
  .photo-invitation{display:none}
  .room-hub .stop-copy h2{display:block}
+}
+/* Photo de salle 9757 (1080 × 1920) : repères sur le comptoir, une chaise, le plafond près du luminaire
+   à engrenages (sans le couvrir) et la porte du fond. */
+.point-counter{left:13%;top:64%}.point-seats{left:52%;top:81%}.point-objects{left:24%;top:25%}.point-rear{left:37%;top:52%}
+/* Mobile en paysage : l'étiquette se place à côté du repère, jamais sous la barre d'onglets ;
+   03 remonte un peu pour être entier au premier écran (repères en paysage). */
+@media(max-width:759px) and (orientation:landscape){
+ .photo-point>.point-label{top:50%;left:46px;right:auto;transform:translateY(-50%)}
+ .point-seats>.point-label,.point-rear>.point-label,.point-objects>.point-label{left:auto;right:46px}
+ .point-objects{top:22%}
+}
+/* Bureau : la photo de salle (9 : 16) et son texte forment un ensemble centré, sans grand vide entre eux. */
+@media(min-width:1100px){
+ html.stage .room-hub{grid-template-columns:min(49vw,calc(var(--explore-h) * 1080 / 1920)) minmax(0,600px);justify-content:center;column-gap:clamp(40px,4vw,80px)}
+ html.stage .room-hub .stop-copy{justify-content:flex-start;padding-left:0;padding-right:0}
+ html.stage .room-hub .room-story{max-width:600px}
+}
+@media(min-width:1600px){
+ html.stage .room-hub{grid-template-columns:min(49vw,calc(var(--explore-h) * 1080 / 1920)) minmax(0,680px)}
+ html.stage .room-hub .room-story{max-width:680px}
 }

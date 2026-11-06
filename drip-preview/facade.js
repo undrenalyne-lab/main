@@ -118,7 +118,7 @@
   const T_IN = [133, 205, 845, 1843];          // what the doorway frames, inside the threshold picture
   const PORTAL_ZOOM = 1.35;                    // façade push while the doorway opens (on top of 1.12)
   const CAM = {                                // fx/fy: where the frame sits in the free range; z: zoom over cover
-    street: { d: { fx: .5, fy: .5, z: 1, fit: 1 }, m: { fx: .82, fy: .5, z: 1, fit: 1 } },
+    street: { d: { fx: .5, fy: .12, z: 1, fit: 1 }, m: { fx: .82, fy: .5, z: 1, fit: 1 } }, // desktop: whole shop sign in frame
     streetVisit: { d: { fx: .5, fy: .5, z: 1, fit: 1 }, m: { fx: .82, fy: .5, z: 1, fit: 1 } },
     push: { d: { fx: 1, fy: .9, z: 1.12 }, m: { fx: .8, fy: .62, z: 1.12 } },
     threshold: { d: { fx: .42, fy: .36, z: 1 }, m: { fx: .4, fy: .32, z: 1 } },

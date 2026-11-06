@@ -90,3 +90,9 @@ html:not(.stage) .welcome-photo .facade-img { width:100%; height:100%; max-heigh
 @media(max-width:759px) and (orientation:landscape) {
   html.stage[data-place="street"] main > .zone-visit { left:0; right:0; width:auto; }
 }
+/* Hors de la devanture, la barre basse n'a pas la place de ce lien : il débordait à droite. */
+html.stage:not([data-place="street"]) .frontage-link { display:none; }
+/* Desktop: the scroll hint sits low on the photograph, above the information bar, never over the sign or its logo. */
+@media(min-width:760px) {
+  html.stage[data-place="street"] .entry-scroll-cue { top:auto; bottom:calc(var(--hero-bottom) + 136px); }
+}
