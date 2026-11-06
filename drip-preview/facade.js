@@ -71,7 +71,7 @@
     const photoCollection = hash.startsWith('#photo-')
       ? document.getElementById(hash.slice(1))?.closest('.photo-collection')?.id : null;
     const collection = photoCollection || hash.slice(1);
-    const galleryHref = collection.startsWith('seats-') ? '#seats-overview' : collection === 'objects' ? '#objects' : null;
+    const galleryHref = collection.startsWith('seats-') ? '#seats-overview' : collection === 'objects' ? '#objects' : collection === 'latest-views' ? '#latest-views' : null;
     let currentPlace = null;
     for (const a of placeLinks) {
       const selected = galleryHref ? a.getAttribute('href') === galleryHref : a.dataset.zone === place;
@@ -84,7 +84,7 @@
   function zoneFromHash() {
     const h = decodeURIComponent(location.hash.slice(1));
     if (h === 'menu' || h === 'drinks' || h === 'food' || h.startsWith('cat-') || h.startsWith('item-')) return 'menu';
-    if (h === 'cafe' || /^(seats-|objects$|photo-)/.test(h)) return 'room';
+    if (h === 'cafe' || /^(seats-|objects$|latest-views$|photo-)/.test(h)) return 'room';
     if (h === 'visit' || h === 'counter' || h === 'room' || h === 'courtyard') return h;
     return 'street';
   }
@@ -118,8 +118,8 @@
   const T_IN = [133, 205, 845, 1843];          // what the doorway frames, inside the threshold picture
   const PORTAL_ZOOM = 1.35;                    // façade push while the doorway opens (on top of 1.12)
   const CAM = {                                // fx/fy: where the frame sits in the free range; z: zoom over cover
-    street: { d: { fx: .5, fy: .5, z: 1, fit: 0 }, m: { fx: .5, fy: .5, z: 1, fit: 0 } },
-    streetVisit: { d: { fx: .5, fy: .5, z: 1, fit: 0 }, m: { fx: .5, fy: .5, z: 1, fit: 0 } },
+    street: { d: { fx: .5, fy: .5, z: 1, fit: 1 }, m: { fx: .68, fy: .5, z: 1, fit: 1 } },
+    streetVisit: { d: { fx: .5, fy: .5, z: 1, fit: 1 }, m: { fx: .68, fy: .5, z: 1, fit: 1 } },
     push: { d: { fx: 1, fy: .9, z: 1.12 }, m: { fx: .8, fy: .62, z: 1.12 } },
     threshold: { d: { fx: .42, fy: .36, z: 1 }, m: { fx: .4, fy: .32, z: 1 } },
     thresholdCafe: { d: { fx: .4, fy: .3, z: 1 }, m: { fx: .4, fy: .28, z: 1 } },
@@ -917,7 +917,7 @@
     });
   }
   function galleryNeedsDocument() {
-    return document.readyState === 'complete' && !root.classList.contains('gallery-ready') && /^#(seats-|objects$|photo-)/.test(location.hash);
+    return document.readyState === 'complete' && !root.classList.contains('gallery-ready') && /^#(seats-|objects$|latest-views$|photo-)/.test(location.hash);
   }
   window.addEventListener('load', () => { if (galleryNeedsDocument()) fallback('Photo collections are shown as a normal page.'); });
   function restoreRoute() {

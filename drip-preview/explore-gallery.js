@@ -5,8 +5,8 @@
   'use strict';
   if (/[?&]nojs\b/.test(location.search) || window.DripExplore) return;
   const root = document.documentElement;
-  const ids = ['seats-overview', 'seats-inside', 'seats-front', 'seats-rear', 'objects'];
-  const labels = { 'seats-overview': 'All spaces', 'seats-inside': 'Inside', 'seats-front': 'Front terrace', 'seats-rear': 'Rear courtyard', objects: 'Details' };
+  const ids = ['seats-overview', 'seats-inside', 'seats-front', 'seats-rear', 'objects', 'latest-views'];
+  const labels = { 'seats-overview': 'All spaces', 'seats-inside': 'Inside', 'seats-front': 'Front terrace', 'seats-rear': 'Rear courtyard', objects: 'Details', 'latest-views': 'Latest views' };
   const sections = ids.map(id => document.getElementById(id)).filter(el => el?.classList.contains('photo-collection'));
   if (!sections.length || typeof HTMLDialogElement === 'undefined' || !HTMLDialogElement.prototype.showModal) return;
 

@@ -1,0 +1,92 @@
+/* Local review. Full useful viewport with a uniform photo scale, never stretch.
+   Portrait screens intentionally crop the sides; the whole-photo link remains. */
+:root { --hero-bottom:var(--navh); }
+html.stage[data-place="street"] {
+  --stage-h:calc(100svh - var(--hh) - var(--hero-bottom));
+  --compact-scene-w:100vw;
+  --compact-scene-h:calc(100svh - var(--hh) - var(--places-h) - var(--hero-bottom));
+}
+html.stage[data-place="street"] .scene,
+html.stage[data-place="street"] .welcome-photo,
+html.stage.entry-journey[data-place="street"] #entry-scroll-scene {
+  left:0; right:0; width:auto; top:calc(var(--hh) + var(--places-h));
+  bottom:var(--hero-bottom);
+  height:calc(100svh - var(--hh) - var(--places-h) - var(--hero-bottom));
+}
+html.stage[data-place="street"] .welcome-photo .facade-img {
+  width:100%; height:100%; max-height:none; object-fit:cover; object-position:68% 50%;
+}
+html.stage[data-place="street"] .welcome-info {
+  top:auto; bottom:var(--hero-bottom); left:0; right:0; width:100%; max-width:none;
+  height:auto; min-height:0; margin:0; padding:46px 28px 18px;
+  display:flex; flex-wrap:wrap; align-items:end; justify-content:space-between;
+  gap:12px 24px; overflow:visible; border:0;
+  background:linear-gradient(transparent,rgba(24,18,12,.85));
+  color:#fff8ed; pointer-events:none;
+}
+html.stage[data-place="street"] .welcome-info a { pointer-events:auto; }
+html.stage[data-place="street"] .tagline {
+  display:block; color:#fff8ed; max-width:300px; margin:0;
+  font-size:25px; line-height:1.12; text-shadow:0 1px 8px #100b08;
+}
+html.stage[data-place="street"] .facts { display:none; }
+html.stage[data-place="street"] .welcome-actions { margin:0; gap:8px; }
+html.stage[data-place="street"] .welcome-actions .btn { min-height:44px; }
+html.stage[data-place="street"] .welcome-actions .btn:not(.btn-primary) {
+  color:#fff8ed; border-color:#fff8edaa; background:#241a1177;
+}
+.frontage-link { display:inline-flex; align-items:center; min-height:44px; }
+.frontage-link a { display:inline-flex; align-items:center; min-height:44px; }
+html.stage[data-place="street"] .frontage-link {
+  display:inline-flex; color:#fff8ed; margin:0; min-height:44px;
+  font-size:12px; text-shadow:0 1px 6px #100b08;
+}
+html.stage[data-place="street"] .entry-scroll-cue {
+  top:calc(var(--hh) + var(--places-h) + 12px); bottom:auto;
+  left:50%; transform:translateX(-50%); width:max-content; max-width:calc(100% - 32px);
+}
+/* Keep six navigation options readable rather than squeezing them on tablets. */
+.places-nav { overflow-x:auto; justify-content:flex-start; }
+.places-nav ol { width:max-content; min-width:100%; justify-content:center; }
+.places-nav .places-intro { display:none; }
+@media(max-width:759px) {
+  :root { --hero-bottom:calc(60px + env(safe-area-inset-bottom, 0px)); }
+  .places-nav ol { justify-content:flex-start; }
+}
+@media(max-width:759px) and (orientation:portrait) {
+  html.stage[data-place="street"] .welcome-info {
+    padding:50px 20px 12px; gap:8px 16px; align-items:center;
+  }
+  html.stage[data-place="street"] .tagline { flex-basis:100%; font-size:26px; }
+  html.stage[data-place="street"] .welcome-actions .btn:not(.btn-primary) { display:none; }
+  html.stage[data-place="street"] .welcome-actions .btn { padding-inline:16px; }
+  html.stage[data-place="street"] .frontage-link { margin-left:auto; font-size:11px; }
+}
+@media(max-width:759px) and (orientation:landscape) {
+  html.stage[data-place="street"] .welcome-info { padding:35px 16px 8px; gap:8px; }
+  html.stage[data-place="street"] .tagline { font-size:19px; max-width:180px; }
+  html.stage[data-place="street"] .welcome-actions .btn:not(.btn-primary) { display:none; }
+  html.stage[data-place="street"] .frontage-link { font-size:11px; }
+  html.stage[data-place="street"] .entry-scroll-cue { top:calc(var(--hh) + var(--places-h) + 6px); }
+}
+html:not(.stage) .welcome-photo { height:calc(100svh - var(--hh) - var(--places-h) - var(--hero-bottom)); }
+html:not(.stage) .welcome-photo .facade-img { width:100%; height:100%; max-height:none; object-fit:cover; object-position:68% 50%; }
+@media(prefers-reduced-motion:reduce) {
+  html:not(.stage) .welcome-photo { min-height:280px; }
+}
+
+/* Match the legacy compact-scene selector's specificity. This restores full
+   width in short landscape without disturbing counter, room or courtyard. */
+@media(max-width:759px) and (orientation:landscape) {
+  html.stage:not([data-place="counter"]):not([data-place="room"]):not([data-place="courtyard"])[data-place="street"] .scene,
+  html.stage:not([data-place="counter"]):not([data-place="room"]):not([data-place="courtyard"])[data-place="street"] .welcome-photo {
+    left:0; right:0; width:auto; top:calc(var(--hh) + var(--places-h));
+    bottom:var(--hero-bottom);
+    height:calc(100svh - var(--hh) - var(--places-h) - var(--hero-bottom));
+  }
+}
+/* Visit shares data-place=street. Keep its practical-information sheet on
+   screen when the old compact split layout is replaced by a full-width hero. */
+@media(max-width:759px) and (orientation:landscape) {
+  html.stage[data-place="street"] main > .zone-visit { left:0; right:0; width:auto; }
+}
