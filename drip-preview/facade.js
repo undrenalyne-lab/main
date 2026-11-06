@@ -113,13 +113,13 @@
   document.body.appendChild(loadStatus);
 
   // Picture coordinates (logical pixels of each recomposed image).
-  const DOOR = [1148, 556, 181, 348];          // rectified photograph, 1560 × 1035
-  const DOOR_HIT = [1133, 486, 213, 421];      // whole mustard frame in the same plane
+  const DOOR = [1052, 511, 159, 344];          // reviewed façade, 1448 × 1086
+  const DOOR_HIT = [1037, 442, 187, 416];      // whole mustard frame in the same plane
   const T_IN = [133, 205, 845, 1843];          // what the doorway frames, inside the threshold picture
   const PORTAL_ZOOM = 1.35;                    // façade push while the doorway opens (on top of 1.12)
   const CAM = {                                // fx/fy: where the frame sits in the free range; z: zoom over cover
-    street: { d: { fx: .5, fy: .5, z: 1, fit: 1 }, m: { fx: .68, fy: .5, z: 1, fit: 1 } },
-    streetVisit: { d: { fx: .5, fy: .5, z: 1, fit: 1 }, m: { fx: .68, fy: .5, z: 1, fit: 1 } },
+    street: { d: { fx: .5, fy: .5, z: 1, fit: 1 }, m: { fx: .82, fy: .5, z: 1, fit: 1 } },
+    streetVisit: { d: { fx: .5, fy: .5, z: 1, fit: 1 }, m: { fx: .82, fy: .5, z: 1, fit: 1 } },
     push: { d: { fx: 1, fy: .9, z: 1.12 }, m: { fx: .8, fy: .62, z: 1.12 } },
     threshold: { d: { fx: .42, fy: .36, z: 1 }, m: { fx: .4, fy: .32, z: 1 } },
     thresholdCafe: { d: { fx: .4, fy: .3, z: 1 }, m: { fx: .4, fy: .28, z: 1 } },
@@ -254,11 +254,11 @@
 
   function buildFacadeLife(shot) {
     // Only the two photographed fluorescent tubes: calibrated on the final
-    // 1560 × 1035 image. No invented fixtures or reflected traffic.
-    shot.appendChild(el('fx fx-tube t1', [565, 415, 230, 10]));
-    shot.appendChild(el('fx fx-tube t2', [904, 415, 223, 11]));
-    shot.appendChild(el('fx fx-glow g1', [535, 385, 290, 72]));
-    shot.appendChild(el('fx fx-glow g2', [874, 385, 283, 72]));
+    // 1448 × 1086 reviewed image. No additional fixtures or reflected traffic.
+    shot.appendChild(el('fx fx-tube t1', [463, 370, 233, 10]));
+    shot.appendChild(el('fx fx-tube t2', [800, 370, 233, 10]));
+    shot.appendChild(el('fx fx-glow g1', [433, 340, 293, 72]));
+    shot.appendChild(el('fx fx-glow g2', [770, 340, 293, 72]));
     const hit = document.createElement('a');
     hit.className = 'door-hit';
     hit.href = '#room';

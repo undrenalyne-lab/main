@@ -14,7 +14,7 @@ html.stage.entry-journey[data-place="street"] #entry-scroll-scene {
   height:calc(100svh - var(--hh) - var(--places-h) - var(--hero-bottom));
 }
 html.stage[data-place="street"] .welcome-photo .facade-img {
-  width:100%; height:100%; max-height:none; object-fit:cover; object-position:68% 50%;
+  width:100%; height:100%; max-height:none; object-fit:cover; object-position:82% 50%;
 }
 html.stage[data-place="street"] .welcome-info {
   top:auto; bottom:var(--hero-bottom); left:0; right:0; width:100%; max-width:none;
@@ -70,7 +70,7 @@ html.stage[data-place="street"] .entry-scroll-cue {
   html.stage[data-place="street"] .entry-scroll-cue { top:calc(var(--hh) + var(--places-h) + 6px); }
 }
 html:not(.stage) .welcome-photo { height:calc(100svh - var(--hh) - var(--places-h) - var(--hero-bottom)); }
-html:not(.stage) .welcome-photo .facade-img { width:100%; height:100%; max-height:none; object-fit:cover; object-position:68% 50%; }
+html:not(.stage) .welcome-photo .facade-img { width:100%; height:100%; max-height:none; object-fit:cover; object-position:82% 50%; }
 @media(prefers-reduced-motion:reduce) {
   html:not(.stage) .welcome-photo { min-height:280px; }
 }
