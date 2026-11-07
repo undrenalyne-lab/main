@@ -70,7 +70,8 @@
     });
     item.addEventListener('pointerleave', () => {
       if (hover.matches && !narrow.matches) closeTimer = setTimeout(() => {
-        if (!item.contains(document.activeElement)) closeItems();
+        const focusIsInOpenItem = items.some(open => open.classList.contains('is-open') && open.contains(document.activeElement));
+        if (!focusIsInOpenItem) closeItems();
       }, 180);
     });
   }
