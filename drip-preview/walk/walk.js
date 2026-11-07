@@ -128,6 +128,15 @@
 
   // Toujours plein écran : un portrait se parcourt verticalement, un paysage horizontalement.
   function geometry(L, cam) {
+    // The arrival photo must show the complete sign and terrace before entering.
+    // The doorway transition still uses these exact source coordinates.
+    if (L.key === 'pro-street' || L.key === 'pro-street-m') {
+      const top = Math.max(128, document.querySelector('.walk-navigation').getBoundingClientRect().bottom + 16);
+      const room = Math.max(120, vh - top - 76);
+      const s = Math.min(vw / L.W, room / L.H);
+      const w = L.W * s, h = L.H * s;
+      return { s, w, h, x: (vw - w) / 2, y: vw < 900 ? top + 12 : top + (room - h) / 2 };
+    }
     const cover = Math.max(vw / L.W, vh / L.H);
     const s = cover * clamp(cam[2], 1, MAX_ZOOM);
     const w = L.W * s;

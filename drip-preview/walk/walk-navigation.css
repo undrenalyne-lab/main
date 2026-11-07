@@ -48,3 +48,20 @@ html:not(.cine) .walk-main { padding-top: calc(var(--topbar) + 90px); }
 }
 
 .cine.side .place{bottom:76px}
+
+/* With the whole façade visible, keep the mobile arrival image and title together. */
+@media(max-width:899px) and (orientation:portrait) {
+  .cine .beat-hero .caption { position:fixed; top:calc(164px + 66.3462vw); bottom:auto; left:20px; right:20px; width:auto; margin:0; }
+}
+
+@media(max-width:899px) and (max-height:720px) and (orientation:portrait) {
+  .cine .beat-hero .caption h1 { font-size:44px; margin-top:8px; }
+  .cine .beat-hero .caption .kicker { font-size:10px; letter-spacing:.12em; }
+  .cine .beat-hero .caption .hint { font-size:13px; margin-top:12px; }
+  .cine .beat-hero .hint-drop { height:24px; }
+}
+@media(max-width:899px) and (max-height:720px) and (orientation:portrait) {
+  .cine .beat-hero .caption { top:calc(140px + 66.3462vw); }
+  .cine .beat-hero .caption .kicker { margin-top:0; }
+  .cine .beat-hero .caption .hint { margin-top:8px; line-height:1.2; }
+}
