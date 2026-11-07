@@ -14,51 +14,59 @@
 <link rel="stylesheet" href="menu-photography.css?v=e6b213aaaa">
 <script>document.documentElement.classList.add('js', 'fixed');</script>
 <link rel="stylesheet" href="navigation.css?v=20261107">
+<link rel="stylesheet" href="premium.css?v=20261107b">
 </head>
 <body>
 <a class="skip" href="#menu" data-zone="menu">Skip to the menu</a>
-<header class="site-header" id="top">
-<p class="brand"><a href="#top" data-zone="street">Drip Expresso</a></p>
-<nav class="site-nav" aria-label="Main">
-<ul>
-<li><a href="#menu" data-zone="menu">Menu</a></li>
-<li><a href="#room" data-zone="room">The café</a></li>
-<li><a href="#visit" data-zone="visit">Visit</a></li>
-<li class="mobile-call"><a href="tel:+61894718000" aria-label="Call Drip Expresso on (08) 9471 8000">Call</a></li>
+<div id="top" aria-hidden="true"></div>
+<header class="site-header" id="site-header">
+<p class="brand"><a href="#top" aria-label="Drip Expresso home">Drip Expresso<span>Bayswater · Perth</span></a></p>
+<button class="mobile-nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span class="toggle-label">Explore</span><span class="toggle-icon" aria-hidden="true"></span></button>
+<nav class="site-nav" id="primary-navigation" aria-label="Main navigation">
+<ul class="main-nav-list">
+<li class="nav-item">
+<button class="nav-trigger" type="button" aria-expanded="false" aria-controls="nav-menu-panel" data-zone="menu">Menu <span class="chevron" aria-hidden="true"></span></button>
+<div class="nav-panel" id="nav-menu-panel">
+<div class="panel-intro"><span class="eyebrow">At the table</span><p>Something to sip. <br>Something to savour.</p><a href="#menu" class="text-link">Explore the full menu <span aria-hidden="true">↗</span></a></div>
+<div class="panel-links"><a href="#drinks"><span>Drinks</span><small>Vietnamese coffee, espresso, tea &amp; more</small><b aria-hidden="true">↗</b></a><a href="#food"><span>Food</span><small>Breakfast, lunch &amp; something in between</small><b aria-hidden="true">↗</b></a><a href="carte/Drip-Expresso-Menu.pdf" target="_blank" rel="noopener"><span class="small-label">Download the menu</span><small>PDF · Opens in a new tab</small><b aria-hidden="true">↓</b></a></div>
+<figure class="panel-photo"><img src="walk/assets/photos/photo-nov3-1000188540-1280x853-2fd87d05c3.jpg" alt="The blue counter inside Drip Expresso" width="1280" height="853" loading="lazy"></figure>
+</div></li>
+<li class="nav-item">
+<button class="nav-trigger" type="button" aria-expanded="false" aria-controls="nav-cafe-panel" data-zone="room">The Café <span class="chevron" aria-hidden="true"></span></button>
+<div class="nav-panel" id="nav-cafe-panel">
+<div class="panel-intro"><span class="eyebrow">A look around Drip</span><p>Behind the <br>yellow doorway.</p><a href="#room" class="text-link">Step inside <span aria-hidden="true">↗</span></a></div>
+<div class="panel-links"><a href="#seats-overview" data-gallery><span>Find your spot</span><small>The long room, front terrace &amp; rear nook</small><b aria-hidden="true">↗</b></a><a href="#objects" data-gallery><span>The little details</span><small>Painted walls, rope lights &amp; vintage objects</small><b aria-hidden="true">↗</b></a><a href="walk/index.html"><span class="small-label">Start the Walk</span><small>An optional, immersive photo tour</small><b aria-hidden="true">↗</b></a></div>
+<figure class="panel-photo"><img src="walk/assets/photos/photo-nov3-1000188534-941x1176-a25880a31b.jpg" alt="The long room with wooden tables, lamps and the street doorway" width="941" height="1176" loading="lazy"></figure>
+</div></li>
+<li class="nav-item">
+<button class="nav-trigger" type="button" aria-expanded="false" aria-controls="nav-visit-panel" data-zone="visit">Visit <span class="chevron" aria-hidden="true"></span></button>
+<div class="nav-panel" id="nav-visit-panel">
+<div class="panel-intro"><span class="eyebrow">Plan your visit</span><p>See you <br>in Bayswater.</p><a href="#visit" class="text-link">All visitor information <span aria-hidden="true">↗</span></a></div>
+<div class="panel-links"><a href="#opening-hours"><span>Opening hours</span><small>Café and kitchen times</small><b aria-hidden="true">↗</b></a><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Drip%20Expresso%2C%203A%20King%20William%20Street%2C%20Bayswater%20WA%206053" target="_blank" rel="noopener"><span>Find us</span><small>3A King William Street · Open Google Maps</small><b aria-hidden="true">↗</b></a><a href="tel:+61894718000"><span class="small-label">Call the café</span><small>(08) 9471 8000</small><b aria-hidden="true">↗</b></a></div>
+<figure class="panel-photo"><img src="assets/final/1000189763-1280-0bbbc7bd.jpg" alt="Tables and chairs outside the yellow doorway" width="1280" height="720" loading="lazy"></figure>
+</div></li>
 </ul>
+<a class="mobile-walk text-link" href="walk/index.html">Start the Walk <span aria-hidden="true">↗</span></a>
 </nav>
-
+<a class="header-walk" href="walk/index.html">Start the Walk <span aria-hidden="true">↗</span></a>
 </header>
-<nav class="places-nav" aria-label="Explore the café"><span class="places-intro">Explore</span><ol>
-<li><a href="#top" data-zone="street">Outside</a></li>
-<li><a href="#room" data-zone="room">Step inside</a></li>
-<li><a href="walk/index.html" class="walk-link">Start the walk <span aria-hidden="true">↗</span></a></li>
-<li><a href="#seats-overview" data-gallery>Places to sit</a></li>
-<li><a href="#objects" data-gallery>A closer look</a></li>
-</ol></nav>
+<noscript><nav class="fallback-nav" aria-label="Main navigation"><a href="#drinks">Drinks</a><a href="#food">Food</a><a href="#room">The Café</a><a href="#visit">Visit</a><a href="walk/index.html">Start the Walk ↗</a></nav></noscript>
 
 <main id="main">
 <section class="welcome" id="welcome" aria-labelledby="welcome-title">
-<figure class="welcome-photo"><img src="assets/final/facade-1448-cd7ae6b8.jpg" srcset="assets/final/facade-640-cd7ae6b8.jpg 640w, assets/final/facade-960-cd7ae6b8.jpg 960w, assets/final/facade-1448-cd7ae6b8.jpg 1448w" width="1448" height="1086" alt="Edited Drip Expresso shopfront preview with the mustard-framed entrance, painted mural, tables and planters. Some mural, plant and window details differ from the original photograph." class="facade-img" fetchpriority="high" decoding="async" sizes="(max-aspect-ratio: 1/1) 230vw, 100vw"></figure>
-<div class="welcome-info">
-<h1 id="welcome-title" class="welcome-title">Drip Expresso <span>Café · Bayswater WA</span></h1>
-<p class="tagline">Vietnamese coffee, breakfast and lunch in Bayswater.</p>
-<ul class="facts">
-<li><span class="k">Open</span> Every day, <time datetime="06:00">6am</time> – <time datetime="15:00">3pm</time></li>
-<li><span class="k">Kitchen</span> <time datetime="06:30">6:30am</time> – <time datetime="14:30">2:30pm</time></li>
-<li class="facts-addr"><span class="k">Find us</span> 3A King William Street, Bayswater</li>
-</ul>
-<p class="welcome-actions"><a class="btn btn-primary" href="#menu" data-zone="menu">See the menu</a> <a class="btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Drip%20Expresso%2C%203A%20King%20William%20Street%2C%20Bayswater%20WA%206053" target="_blank" rel="noopener">Directions<span aria-hidden="true"> ↗</span><span class="sr"> (opens Google Maps in a new tab)</span></a></p>
-
-<p class="hero-preview">Independent demo · Not the café’s official website</p>
-<p class="frontage-link"><a href="assets/final/facade-1448-cd7ae6b8.jpg" target="_blank" rel="noopener">See the whole shopfront <span aria-hidden="true">↗</span></a></p>
-</div>
+<figure class="welcome-photo"><img src="assets/photos/photo-nov3-1000188514-1560x1035-9eca7816a2.jpg" srcset="assets/photos/photo-nov3-1000188514-539x358-9eca7816a2.jpg 539w, assets/photos/photo-nov3-1000188514-958x636-9eca7816a2.jpg 958w, assets/photos/photo-nov3-1000188514-1560x1035-9eca7816a2.jpg 1560w" width="1560" height="1035" alt="Drip Expresso's real shopfront: burgundy sign, gold mural, yellow doorway and outdoor tables. The window reflects the street." class="facade-img" fetchpriority="high" decoding="async" sizes="100vw"></figure>
+<div class="welcome-info"><p class="hero-eyebrow">Drip Expresso · Bayswater, WA</p>
+<h1 id="welcome-title" class="welcome-title">A little colour.<br>A little coffee.</h1>
+<p class="tagline">Vietnamese coffee, breakfast &amp; lunch.</p>
+<p class="welcome-actions"><a class="btn btn-primary" href="#menu">Explore the menu <span aria-hidden="true">↗</span></a><a class="hero-walk" href="walk/index.html">Start the Walk <span aria-hidden="true">↗</span></a></p></div>
+<div class="hero-bottom"><a href="#room">Come on in <span aria-hidden="true">↓</span></a><p>3A King William Street</p><a class="frontage-link" href="assets/photos/photo-nov3-1000188514-1560x1035-9eca7816a2.jpg" target="_blank" rel="noopener">View the whole shopfront <span aria-hidden="true">↗</span></a></div>
 </section>
+<div class="arrival-note"><p>Breakfast, lunch &amp; a place to pause.</p><a href="#visit">Find us in Bayswater <span aria-hidden="true">↗</span></a><span>Independent design preview</span></div>
 
 <section class="explore-stop stop-room room-hub" id="room" data-place-panel="room" aria-labelledby="room-title">
-<figure class="stop-photo"><div class="room-photo-frame"><img src="assets/final/1000189757-720-03e08ee5.jpg" srcset="assets/final/1000189757-480-03e08ee5.jpg 480w, assets/final/1000189757-720-03e08ee5.jpg 720w, assets/final/1000189757-1080-03e08ee5.jpg 1080w" sizes="(max-width:759px) 100vw, 430px" width="1080" height="1920" alt="Inside from the entrance: rope lights, a lantern under the ceiling fan and the gear lamp above the long banquette and tables, the counter on the left and the doorway to the back nook." loading="lazy" decoding="async">
+<figure class="stop-photo"><div class="room-photo-frame"><img src="walk/assets/photos/photo-nov3-1000188534-941x1176-a25880a31b.jpg" srcset="walk/assets/photos/photo-nov3-1000188534-404x505-a25880a31b.jpg 404w, walk/assets/photos/photo-nov3-1000188534-941x1176-a25880a31b.jpg 941w" sizes="(max-width:759px) 100vw, 48vw" width="941" height="1176" alt="The long room towards the street door, with warm lamps above the wooden tables and banquette." loading="lazy" decoding="async">
 </div></figure>
-<div class="stop-copy"><div class="room-story"><span id="cafe"></span><p class="room-eyebrow">Make yourself at home</p><h2 id="room-title" tabindex="-1">Welcome in.</h2><p class="room-lead">Take a look at the menu, find a place to sit, or explore the little details.</p>
+<div class="stop-copy"><div class="room-story"><span id="cafe"></span><p class="room-eyebrow">The Café</p><h2 id="room-title" tabindex="-1">Pull up<br>a chair.</h2><p class="room-lead">A yellow doorway. A blue counter. Wooden tables beneath rope lights and lanterns.</p><p class="room-description">From the long room to the front terrace and covered nook at the back, take a look around the spaces and details that make Drip its own.</p>
 <div class="room-moments" aria-label="Moments inside the café"><figure class="moment-tables"><img class="" src="assets/moments/1000188903-400-cccfee35cc.webp" srcset="assets/moments/1000188903-400-cccfee35cc.webp 400w, assets/moments/1000188903-900-eada60c3aa.webp 900w, assets/moments/1000188903-1672-42adfa555a.webp 1672w" sizes="(max-width:759px) 50vw, 350px" width="1672" height="941" alt="Warm window light across the wooden tables and leather banquette." loading="lazy" decoding="async"></figure><figure class="moment-lamp"><img class="" src="assets/final/1000188909-800-837009a3.jpg" srcset="assets/final/1000188909-800-837009a3.jpg 800w, assets/final/1000188909-1280-837009a3.jpg 1280w, assets/final/1000188909-1672-837009a3.jpg 1672w" sizes="(max-width:759px) 50vw, 200px" width="1672" height="941" alt="Gears and exposed bulbs in the hanging bicycle lamp." loading="lazy" decoding="async" data-photo-version="review-20261106"></figure></div>
 <nav class="room-choices" aria-label="Choose what to explore">
 <a href="#menu" data-zone="menu"><span class="choice-no" aria-hidden="true">01</span><span><strong>See the menu</strong><small>Food, drinks &amp; prices</small></span><span aria-hidden="true">↖</span></a>
@@ -69,7 +77,7 @@
 <section class="zone zone-menu" id="menu" aria-labelledby="menu-title" data-zone-panel="menu">
 <div class="sheet">
 <div class="menu-entry"><div class="menu-entry-copy"><div class="sheet-head">
-<h2 id="menu-title" tabindex="-1">Menu</h2>
+<p class="eyebrow">Food &amp; drink</p><h2 id="menu-title" tabindex="-1">At the table.</h2>
 <nav class="menu-switch" aria-label="Menu sections"><a href="#drinks">Drinks</a><a href="#food">Food</a></nav>
 <a class="sheet-back" href="#counter" data-zone="counter">Back to the counter</a>
 <details class="menu-index">
@@ -86,7 +94,7 @@
 </nav>
 </details>
 </div>
-<p class="sheet-intro">Prices in AUD. <a href="carte/Drip-Expresso-Menu.pdf" target="_blank" rel="noopener">Download the menu (PDF)</a></p></div><figure class="menu-counter-preview" id="counter"><img src="walk/assets/photos/photo-nov3-1000188540-1280x853-2fd87d05c3.jpg" srcset="walk/assets/photos/photo-nov3-1000188540-719x479-2fd87d05c3.jpg 719w, walk/assets/photos/photo-nov3-1000188540-1280x853-2fd87d05c3.jpg 1280w, walk/assets/photos/photo-nov3-1000188540-1536x1024-2fd87d05c3.jpg 1536w" sizes="(max-width:759px) 100vw, 520px" width="1536" height="1024" alt="The blue wooden counter, brass basin, espresso machine and warm wooden shelves, shown in full without zoom." loading="lazy" decoding="async"><figcaption>At the blue counter.</figcaption></figure></div>
+<p class="sheet-intro">Prices in AUD · Please confirm current prices with the café. <a href="carte/Drip-Expresso-Menu.pdf" target="_blank" rel="noopener">Download the menu (PDF)</a></p></div><figure class="menu-counter-preview" id="counter"><img src="walk/assets/photos/photo-nov3-1000188540-1280x853-2fd87d05c3.jpg" srcset="walk/assets/photos/photo-nov3-1000188540-719x479-2fd87d05c3.jpg 719w, walk/assets/photos/photo-nov3-1000188540-1280x853-2fd87d05c3.jpg 1280w, walk/assets/photos/photo-nov3-1000188540-1536x1024-2fd87d05c3.jpg 1536w" sizes="(max-width:759px) 100vw, 520px" width="1536" height="1024" alt="The blue wooden counter, brass basin, espresso machine and warm wooden shelves, shown in full without zoom." loading="lazy" decoding="async"><figcaption>At the blue counter.</figcaption></figure></div>
 <div class="menu-opening"><h3>A taste of Drip.</h3><p>Come for breakfast, stop for lunch, or take a break over Vietnamese coffee.</p><ul class="menu-taste"><li><a href="#item-eggs-benedict-60" data-menu-jump><figure><img src="assets/menu/accepted-smoked-salmon-spinach-eggs-benedict--9d4e57606a65-fc8b7ba3-320x320-a0a5b36c60fef013.jpg" srcset="assets/menu/accepted-smoked-salmon-spinach-eggs-benedict--9d4e57606a65-fc8b7ba3-320x320-a0a5b36c60fef013.jpg 320w, assets/menu/accepted-smoked-salmon-spinach-eggs-benedict--9d4e57606a65-e4388679-640x640-7ef1f7e31596befe.jpg 640w, assets/menu/accepted-smoked-salmon-spinach-eggs-benedict--9d4e57606a65-06bd9751-1200x1200-b8b870d7fe30e31d.jpg 1200w" sizes="(max-width: 759px) 28vw, 220px" width="1200" height="1200" alt="Smoked Salmon &amp; Spinach Eggs Benedict at Drip Expresso" loading="lazy" decoding="async"><figcaption><strong>Smoked Salmon &amp; Spinach Eggs Benedict</strong><span class="taste-price">$25</span></figcaption></figure></a></li><li><a href="#item-hot-drinks-50" data-menu-jump><figure><img src="assets/menu/accepted-latte--967256607765-dd869124-320x320-0dd8b08d110a400e.jpg" srcset="assets/menu/accepted-latte--967256607765-dd869124-320x320-0dd8b08d110a400e.jpg 320w, assets/menu/accepted-latte--967256607765-4396fd00-640x640-ad41f53d16d0d9e0.jpg 640w, assets/menu/accepted-latte--967256607765-0836d352-1200x1200-2eab93a9504315c8.jpg 1200w" sizes="(max-width: 759px) 28vw, 220px" width="1200" height="1200" alt="Latte at Drip Expresso" loading="lazy" decoding="async"><figcaption><strong>Latte</strong><span class="taste-price">From $5</span></figcaption></figure></a></li><li><a href="#item-matcha-40" data-menu-jump><figure><img src="assets/menu/accepted-iced-strawberry-matcha--0d5b315f2777-563b26df-320x320-4349f7f877097aa8.jpg" srcset="assets/menu/accepted-iced-strawberry-matcha--0d5b315f2777-563b26df-320x320-4349f7f877097aa8.jpg 320w, assets/menu/accepted-iced-strawberry-matcha--0d5b315f2777-a490dec1-640x640-766a26c030fd0ff9.jpg 640w, assets/menu/accepted-iced-strawberry-matcha--0d5b315f2777-37e8c507-1200x1200-2ce3c70068d09ac5.jpg 1200w" sizes="(max-width: 759px) 28vw, 220px" width="1200" height="1200" alt="Iced Strawberry Matcha at Drip Expresso" loading="lazy" decoding="async"><figcaption><strong>Iced Strawberry Matcha</strong><span class="taste-price">From $9</span></figcaption></figure></a></li></ul></div>
 
 <section class="part" id="drinks" aria-labelledby="drinks-title">
@@ -380,13 +388,13 @@
 <section class="zone zone-visit" id="visit" aria-labelledby="visit-title" data-zone-panel="visit">
 <div class="sheet">
 <div class="sheet-head">
-<h2 id="visit-title" tabindex="-1">Visit</h2>
+<h2 id="visit-title" tabindex="-1">Come find us.</h2>
 <a class="sheet-back" href="#top" data-zone="street">Back outside</a>
 </div>
 <address class="addr"><strong>Drip Expresso</strong><br>3A King William Street<br>Bayswater WA 6053</address>
 <p class="landmark">Opposite Bayswater Station</p>
 <p class="visit-actions"><a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&amp;destination=Drip%20Expresso%2C%203A%20King%20William%20Street%2C%20Bayswater%20WA%206053" target="_blank" rel="noopener">Directions<span aria-hidden="true"> ↗</span><span class="sr"> (opens Google Maps in a new tab)</span></a> <a class="btn" href="tel:+61894718000" aria-label="Call Drip Expresso on (08) 9471 8000"><span aria-hidden="true">☎</span> <span>(08) 9471 8000</span></a></p>
-<table class="hours">
+<table class="hours" id="opening-hours">
 <caption>Opening hours</caption>
 <tbody>
 <tr><th scope="row">Café</th><td>Every day</td><td><time datetime="06:00">6am</time> – <time datetime="15:00">3pm</time></td></tr>
@@ -394,7 +402,7 @@
 </tbody>
 </table>
 <p>Public holiday surcharge 15%.</p>
-<p class="preview-notice">Demo preview · Not the café’s official website. Edited images may differ from the original photographs.</p>
+<p class="preview-notice">Independent design preview, not the café’s official website. Menu and hours are based on the supplied menu, reviewed 24 October 2026. Confirm holiday hours and current details with the café. Some existing gallery images are edited previews.</p>
 <nav class="social-links" aria-label="Social media"><a href="https://www.facebook.com/profile.php?id=61595081469999" target="_blank" rel="noopener noreferrer" aria-label="Drip Expresso on Facebook (opens a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.8 21v-8.2h2.8l.4-3.2h-3.2v-2c0-.9.3-1.6 1.6-1.6h1.7V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.3v2.3H7.7v3.2h2.8V21z"/></svg><span>Facebook</span><span aria-hidden="true">↗</span></a></nav>
 </div>
 </section>
@@ -417,6 +425,7 @@
 </footer>
 
 <script src="navigation.js?v=20261107"></script>
+<script src="premium.js?v=20261107b"></script>
 <script src="explore-gallery.js?v=71e32b5180"></script>
 <script src="menu-photography.js?v=5c9b6c05da"></script>
 </body>

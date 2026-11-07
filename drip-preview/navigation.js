@@ -6,7 +6,7 @@
   root.classList.remove('stage', 'entry-journey');
   root.classList.add('fixed');
   const rail = document.querySelector('.places-nav');
-  const links = [...document.querySelectorAll('.site-nav a[data-zone], .places-nav a')];
+  const links = [...document.querySelectorAll('.site-nav [data-zone], .places-nav a')];
   const sections = [...document.querySelectorAll('main > section[id]')];
   function sectionForHash() {
     let id;
@@ -47,7 +47,7 @@
     requestAnimationFrame(() => {
       queued = false;
       if (document.querySelector('dialog[open]')) return;
-      const line = (rail?.getBoundingClientRect().bottom || 60) + 80;
+      const line = (rail?.getBoundingClientRect().bottom || document.querySelector('.site-header')?.getBoundingClientRect().bottom || 94) + 80;
       const current = sections.filter(s => s.parentElement?.id === 'main' && s.getBoundingClientRect().height > 0 && s.getBoundingClientRect().top <= line).at(-1);
       if (current) mark(current.id);
     });
