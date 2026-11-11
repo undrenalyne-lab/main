@@ -1,0 +1,12 @@
+/* Interaction polish, without changing the approved visual composition. */
+dialog{overscroll-behavior:contain}
+dialog .dialog-head{position:sticky;top:0;z-index:5;background:#f6ead5;padding-top:12px;padding-bottom:12px;isolation:isolate}
+#menu-dialog .dialog-head{top:0;background:#f8f4e9}
+dialog .dialog-head .close,#menu-dialog .dialog-head .close{position:static;flex:0 0 46px;min-width:46px;min-height:46px;border-radius:50%}
+#menu-dialog .empty{padding:24px 0;font:15px/1.5 Arial,sans-serif}
+#menu-reset{margin-top:14px;border:1px solid #203d32;border-radius:4px;background:#203d32;color:#fff;padding:12px 18px;min-height:44px;font:14px/1.4 Arial,sans-serif}
+.menu-information summary{min-height:44px}
+#menu-dialog input[type=search]{margin-bottom:12px}
+.gallery-grid figure{min-width:0}
+nav button,nav a{touch-action:manipulation}
+@media(forced-colors:active){button,a{forced-color-adjust:auto}.button,.close,#menu-popover{border:1px solid ButtonText}}
