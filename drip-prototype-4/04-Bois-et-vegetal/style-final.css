@@ -1,0 +1,240 @@
+/* Prototype 4 · finalisation, 10 November 2026. Loaded last, after style-refinement.css.
+   Keeps the chosen design and the requested framing; refines hierarchy, legibility and
+   responsive behaviour, and fixes functional and accessibility defects.
+   This stylesheet only crops photographs and shades the area behind text: it applies
+   no colour filter and no image file is changed. (The shopfront picture, approved/facade.png,
+   is itself an edited image: see LIVRAISON.md.)
+   To undo this pass: remove the style-final.css link from index.html. */
+
+/* ---------- 0. Helpers ---------- */
+:root{--u:min(1vw,16px)} /* 1vw, frozen once the 1600px page container is reached */
+.sr-only{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+[hidden]{display:none!important}
+
+/* ---------- 1. Photographs: display crops only ---------- */
+.hero-photo,#cafe>img,#space>img,#find>img,.gallery-grid img,.menu-cards img,.dish-photo img{filter:none}
+/* Sections that crop their content are not scrollable from the inside: a keyboard jump
+   or a returning focus can never slide a photograph out of its frame. */
+.hero,.story,.find{overflow:clip}
+.story>img{display:block}
+
+/* ---------- 2. Focus rings that stay visible on every surface ---------- */
+.hero .actions .button:focus-visible{outline:3px solid #fff3d6;outline-offset:3px;box-shadow:0 0 0 8px rgba(20,12,6,.8)}
+.menu-cards button:focus-visible{outline:3px solid #4d2118;outline-offset:3px}
+#gallery-dialog :focus-visible{outline:3px solid #4e2d1b;outline-offset:3px}
+.skip{border-radius:6px;font:15px/1.2 Arial,sans-serif}
+
+/* ---------- 3. Footer line: separators never start a wrapped line ---------- */
+footer p{display:flex;flex-wrap:wrap;margin:0}
+footer p span{white-space:nowrap}
+footer p span+span::before{content:'·';margin:0 1.25em}
+footer .social{display:inline-flex;align-items:center;justify-content:flex-end;min-width:44px;min-height:44px;padding:0}
+
+/* ---------- 4. Find us: one icon system, text aligned under the headings ---------- */
+.find{--iw:max(27px,calc(var(--u)*2.76));--ig:max(9px,calc(var(--u)*.75))}
+.find h3{display:flex;align-items:center;gap:var(--ig)}
+.find h3>span:first-child{flex:0 0 var(--iw);width:var(--iw);margin:0;font-size:inherit;line-height:0;display:flex;justify-content:center}
+.find h3>span:first-child .icon{width:var(--iw);height:var(--iw);vertical-align:0}
+.find .station{align-items:flex-start;gap:var(--ig)}
+.find address{padding-left:calc(var(--iw) + var(--ig))}
+.find .directions{display:inline-block;margin-left:calc(var(--iw) + var(--ig))}
+.find .hours dl{margin-left:calc(var(--iw) + var(--ig))}
+
+/* ---------- 5. Dialogs ---------- */
+/* The sticky heading now starts at the very top of the scroll area: no strip of
+   scrolled content shows above it any more. */
+#menu-dialog,#gallery-dialog{padding-top:0}
+#gallery-dialog .dialog-head{padding-top:44px;padding-bottom:16px;border-bottom:1px solid rgba(184,134,57,.4)}
+#menu-dialog .dialog-head{padding-top:42px}
+/* A constant height keeps the search field still while results change. */
+#menu-dialog{height:90dvh}
+#menu-dialog .menu-filter-strip{scroll-behavior:smooth}
+.menu-pdf-links a{display:inline-block;padding:13px 0;line-height:18px;text-decoration:underline;text-underline-offset:3px}
+.menu-pdf-links{gap:4px 22px;padding:0 0 6px}
+.gallery-grid figcaption .edited-note{color:#6b4a2f;white-space:nowrap}
+#gallery-dialog .dialog-head .eyebrow{color:#7a5514}
+
+.gallery-grid{align-items:start}
+/* Gallery order: shopfront and cups, the two upright photographs side by side,
+   then the wide table view across both columns. No empty cell, every photograph whole. */
+@media(min-width:701px){
+ .gallery-grid figure:last-child{grid-column:1/-1}
+ .gallery-grid figure:last-child img{max-height:none}
+}
+
+/* =====================================================================
+   6. Desktop and tablet (701px and wider): hero on the awning
+   ===================================================================== */
+@media(min-width:701px){
+ /* Navigation sits inside the black awning with a margin at both ends. */
+ header{left:6%;right:16.2%;gap:2.2%}
+ header .social{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0;font-size:max(22px,calc(var(--u)*2.1));margin-left:.4%}
+ header .phone{padding:calc(var(--u)*.62) calc(var(--u)*1.4);display:inline-flex;align-items:center}
+ header nav a,header nav>button,header .nav-button{min-height:40px}
+
+ /* Local shading: darker only behind the words, lighter on the mural and planters.
+    It is painted by .shade (which never leaves the hero) and follows the copy through
+    --hcb, the distance between the copy and the bottom of the photograph. */
+ .shade{background:
+   radial-gradient(ellipse var(--sx) var(--sy) at var(--scx) calc(100% - var(--hcb) - var(--scy)),rgba(16,10,5,.8),rgba(16,10,5,.6) 46%,rgba(16,10,5,.22) 78%,rgba(16,10,5,0)),
+   linear-gradient(90deg,rgba(18,11,6,.5),rgba(18,11,6,.16) 38%,rgba(18,11,6,0) 62%),
+   linear-gradient(180deg,rgba(18,11,6,.5),rgba(18,11,6,0) 20%)}
+ .hero-copy{bottom:var(--hcb)}
+ .hero-copy .eyebrow,.hero-copy .tagline{text-shadow:0 1px 2px rgba(10,6,3,.8),0 0 16px rgba(10,6,3,.6)}
+ .hero-copy h1{text-shadow:0 2px 18px rgba(10,6,3,.5)}
+ .hero .actions a.button{background:rgba(26,17,9,.78)}
+ .hero .actions a.button:hover{background:#5f401a}
+}
+
+/* =====================================================================
+   7. Desktop (1001px and wider)
+   ===================================================================== */
+@media(min-width:1001px){
+ /* Every viewport-based size now stops growing at the 1600px container
+    (above it, text used to outgrow its columns), and small text gets a floor. */
+ h2{font-size:calc(var(--u)*3.22)}
+ .eyebrow{font-size:max(11px,var(--u));margin-bottom:calc(var(--u)*1.1)}
+
+ /* Hero copy: same place as before; on short laptop screens it rises just enough
+    for both buttons to stay on the first screen. */
+ .hero{--hcb:clamp(calc(var(--u)*3.8),calc(var(--u)*59.116 - 100svh + 28px),calc(var(--u)*19));
+   --sx:calc(var(--u)*29.3);--sy:calc(var(--u)*20);--scx:calc(var(--u)*18.9);--scy:calc(var(--u)*6.3)}
+ .hero-copy .eyebrow{margin-left:calc(var(--u)*1.2);margin-bottom:calc(var(--u)*1.45)}
+ .hero-copy h1{font-size:calc(var(--u)*7);margin-bottom:calc(var(--u)*1.55)}
+ .hero-copy h1 span{font-size:calc(var(--u)*7.5);padding-left:calc(var(--u)*9);margin-top:calc(var(--u)*-.65)}
+ .hero-copy h1 span:after{width:calc(var(--u)*16);margin-top:calc(var(--u)*-.5);margin-left:calc(var(--u)*6)}
+ .tagline{font-size:max(18px,calc(var(--u)*1.9));margin:0 0 calc(var(--u)*1.7) calc(var(--u)*1.2)}
+ .actions{gap:calc(var(--u)*1.2)}
+ .button{padding:calc(var(--u)*.8) calc(var(--u)*1.8);font-size:max(14px,calc(var(--u)*1.3));min-height:40px}
+
+ /* OUR CAFÉ: the whole 16:9 photograph, copy aligned on one left edge. */
+ #cafe{aspect-ratio:1600/621}
+ #cafe>img{width:69%}
+ #cafe:after{background:linear-gradient(90deg,transparent 58%,rgba(25,17,10,.3) 64%,#19110a 69%,transparent 79%)}
+ #cafe .story-copy{left:71.8%;right:2.2%;top:calc(var(--u)*3.6)}
+ .story-copy p:not(.eyebrow){font-size:max(15px,calc(var(--u)*1.35));line-height:1.36}
+ .rule{width:calc(var(--u)*5.5);margin:calc(var(--u)*1.8) 0 calc(var(--u)*1.6)}
+ .values{display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between;gap:0 calc(var(--u)*.8);margin-top:calc(var(--u)*1.9);font-size:max(12px,var(--u))}
+ .values b{font-size:max(28px,calc(var(--u)*3));margin-bottom:calc(var(--u)*.4)}
+
+ /* OUR MENU */
+ .menu-band{padding:calc(var(--u)*1.6) calc(var(--u)*2.1) calc(var(--u)*1.6) calc(var(--u)*8.2);gap:calc(var(--u)*1.6)}
+ .menu-title .eyebrow{margin:0 0 calc(var(--u)*1.5) calc(var(--u)*1.2)}
+ .menu-title h2{font-size:calc(var(--u)*3.05)}
+ .menu-cards{gap:var(--u)}
+ .menu-cards button{border-radius:calc(var(--u)*1.4)}
+ .menu-cards span{padding:calc(var(--u)*2.5) 0 var(--u);font-size:max(15px,calc(var(--u)*1.4))}
+
+ /* THE SPACE: long room with the banquette on the left and the counter on the right. */
+ #space>img{object-position:50% 64%}
+ #space:after{background:linear-gradient(90deg,transparent 45%,rgba(25,17,10,.45) 53%,#19110a 59%,transparent 69%)}
+ #space .story-copy{top:50%;transform:translateY(-52%)}
+ .room .button{margin-top:calc(var(--u)*2)}
+
+ /* FIND US: the band grows with its text instead of clipping it. */
+ .find{display:block;height:auto;max-height:none;min-height:calc(var(--u)*19.34)}
+ .find>img{position:absolute;left:0;top:0;width:35.3%;height:100%}
+ .find-copy{margin-left:35.3%;min-height:calc(var(--u)*19.34);padding:calc(var(--u)*2) calc(var(--u)*5.4);gap:calc(var(--u)*4.1);font-size:max(14.5px,calc(var(--u)*1.3))}
+ .find h3{font-size:max(17px,calc(var(--u)*1.6));margin-bottom:calc(var(--u)*.5)}
+ .find .station{margin-top:calc(var(--u)*1.3)}
+ .find .directions{font-size:max(13px,calc(var(--u)*.95));margin-top:calc(var(--u)*.2);padding:6px 0}
+ .hours{padding-left:calc(var(--u)*4)}
+ .find .hours dl{gap:calc(var(--u)*.55) calc(var(--u)*2);margin-top:calc(var(--u)*.8);margin-bottom:calc(var(--u)*1.8)}
+ .hours .button{font-size:max(16px,calc(var(--u)*1.6))}
+
+ footer{padding:0 calc(var(--u)*4.8)}
+ footer>span{font-size:max(17px,calc(var(--u)*1.7))}
+ footer p{font-size:max(10.5px,calc(var(--u)*.85))}
+ footer .social{font-size:max(24px,calc(var(--u)*2.3))}
+}
+
+/* Narrow desktop and landscape tablets: a slightly smaller whole photograph leaves
+   the copy a column wide enough for readable text. */
+@media(min-width:1001px) and (max-width:1199px){
+ #cafe{aspect-ratio:1600/558}
+ #cafe>img{width:62%}
+ #cafe:after{background:linear-gradient(90deg,transparent 51%,rgba(25,17,10,.3) 57%,#19110a 62%,transparent 72%)}
+ #cafe .story-copy{left:65.6%;right:3%}
+ .find-copy{padding-left:calc(var(--u)*4);padding-right:calc(var(--u)*4);gap:calc(var(--u)*3)}
+ .hours{padding-left:calc(var(--u)*3)}
+}
+
+/* =====================================================================
+   8. Tablet (701px to 1000px)
+   ===================================================================== */
+@media(min-width:701px) and (max-width:1000px){
+ header>.phone,header>.social{display:none} /* as before on tablets: navigation only on the awning */
+ .hero{--hcb:clamp(20px,3.2vw,34px);--sx:31vw;--sy:clamp(165px,23.4vw,215px);--scx:19.8vw;--scy:60px}
+ .hero-copy h1{font-size:clamp(50px,7.3vw,72px);margin-bottom:12px}
+ .hero-copy h1 span{font-size:clamp(55px,8vw,79px)}
+ .tagline{font-size:clamp(16px,2.2vw,19px);margin-bottom:14px}
+
+ /* OUR CAFÉ: the whole photograph first, then the copy in two columns
+    (it used to sit on top of the picture and was unreadable). */
+ #cafe{height:auto;aspect-ratio:auto}
+ #cafe>img{display:block;width:100%;height:auto;aspect-ratio:16/9}
+ #cafe:after{display:none}
+ #cafe .story-copy{position:static;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);column-gap:clamp(28px,5vw,48px);align-items:start;padding:34px clamp(28px,5vw,48px) 38px}
+ #cafe .story-copy .eyebrow{grid-column:1;grid-row:1;margin-bottom:14px}
+ #cafe .story-copy h2{grid-column:1;grid-row:2;font-size:clamp(32px,4.6vw,40px)}
+ #cafe .story-copy .rule{grid-column:1;grid-row:3;margin:20px 0 0}
+ #cafe .story-copy>p:not(.eyebrow){grid-column:2;grid-row:1/4;align-self:center;font-size:17px;line-height:1.55}
+ #cafe .values{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 16px;margin-top:28px;padding-top:24px;border-top:1px solid rgba(220,163,54,.28);font-size:13px}
+
+ /* THE SPACE */
+ #space{height:clamp(430px,57vw,540px)}
+ #space>img{width:54%;object-position:50% 64%}
+ #space:after{background:linear-gradient(90deg,transparent 41%,rgba(25,17,10,.45) 49%,#19110a 54%,transparent 64%)}
+ #space .story-copy{left:59%;right:4%;top:50%;transform:translateY(-52%)}
+ #space .story-copy h2{font-size:clamp(31px,4.4vw,38px)}
+
+ /* OUR MENU: the title clears the blossom drawing. */
+ .menu-band{padding-left:max(24px,10.5%)}
+ .menu-title{width:27%}
+ .menu-title h2{font-size:clamp(25px,3.5vw,31px)}
+
+ /* FIND US: photograph on the left, the two blocks stacked, lotus clear of the text. */
+ .find{display:block;height:auto;min-height:0}
+ .find>img{position:absolute;left:0;top:0;width:36%;height:100%;min-height:0}
+ .find-copy{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;margin-left:36%;padding:34px clamp(26px,5vw,44px)}
+ .find .hours{border-top:1px solid #745339;padding-top:22px}
+ .find .hours dl{justify-content:start;column-gap:28px}
+ .find .directions{font-size:14px;line-height:18px;min-height:0;padding:13px 0;margin-top:-4px}
+ .find:after{inset:auto 0 0 auto;width:118px;height:206px;opacity:.5}
+}
+
+/* =====================================================================
+   9. Mobile (700px and narrower)
+   ===================================================================== */
+@media(max-width:700px){
+ /* Navigation panel: opaque, comfortable rows, a chevron shows that Menu unfolds. */
+ header nav{background:#20160d;gap:0;padding:10px 12px;min-width:240px;box-shadow:0 18px 50px rgba(0,0,0,.55)}
+ header nav a,header nav>button,header .nav-button{display:flex;align-items:center;width:100%;min-height:46px;padding:0 10px;border-radius:6px}
+ header nav a:after,header nav>button:after{display:none}
+ header .nav-button:after,header .nav-button:hover:after{content:'';position:static;display:block;flex:0 0 auto;margin-left:auto;width:8px;height:8px;background:none;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transform-origin:center}
+ header .nav-button[aria-expanded=true]:after,header .nav-button[aria-expanded=true]:hover:after{transform:translateY(2px) rotate(-135deg)}
+ header nav #menu-popover{margin:2px 0 8px;padding:4px 6px}
+ header nav #menu-popover button{min-height:44px;padding:10px;font-size:16px}
+
+ .values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;white-space:normal}
+ .values span{text-wrap:balance}
+
+ .hero-copy .eyebrow{font-size:10.5px;letter-spacing:.28em}
+
+ .find .directions{padding:13px 0;margin-top:0;margin-bottom:12px;font-size:14px;line-height:18px}
+ .find address{padding-left:calc(var(--iw) + var(--ig))}
+ .find:after{top:344px;bottom:auto;width:104px;height:182px;opacity:.3}
+
+ footer p{font-size:10px;letter-spacing:.2em;line-height:1.5;row-gap:6px;width:calc(100% + 2.5em);margin-left:-2.5em;clip-path:inset(0 0 0 2.5em)}
+ footer p span{position:relative;padding-left:2.5em}
+ footer p span::before,footer p span+span::before{content:'·';position:absolute;left:1.05em;margin:0}
+
+ /* Dialogs */
+ #gallery-dialog .dialog-head{padding-top:34px}
+ #menu-dialog{height:96dvh}
+ #menu-dialog .dialog-head{padding-top:26px}
+ /* The category row fades out on the right: more chips are available by swiping. */
+ #menu-dialog .filters.menu-filter-strip{padding-right:34px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 34px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 34px),transparent)}
+}
+/* style-menu.css switches the menu to its compact layout at 760px, not 700px. */
+@media(max-width:760px){#menu-dialog .dialog-head{padding-top:26px}}

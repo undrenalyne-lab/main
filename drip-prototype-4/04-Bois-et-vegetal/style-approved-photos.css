@@ -1,0 +1,18 @@
+/* Approved photographs: originals retained byte-for-byte. No generated detail. */
+.hero{overflow:hidden}
+.hero-photo{top:auto;bottom:0;left:0;width:100%;height:auto;min-height:100%;object-fit:cover;object-position:50% 100%;transform:none;filter:none}
+#cafe>img{object-position:52% 50%;filter:brightness(1.025) contrast(1.02)}
+#space>img{object-position:50% 56%;filter:brightness(1.025) contrast(1.02)}
+#find>img{object-position:50% 46%;filter:none}
+.gallery-grid img{height:auto;max-height:520px;object-fit:contain;filter:none;background:#201713}
+@media(max-width:700px){
+ .hero{padding-top:88px;height:auto;min-height:0;max-height:none;display:flex;flex-direction:column}
+ .hero-photo{position:relative;top:auto;left:auto;bottom:auto;order:0;width:100%;height:auto;min-height:0;aspect-ratio:1.875;object-fit:cover;object-position:50% 100%;clip-path:inset(0);}
+ .hero-copy{position:relative;left:auto;right:auto;bottom:auto;padding:25px 24px 30px;order:1;background:#211810}
+ .hero .shade{display:none}
+ #cafe>img,#space>img{height:auto;aspect-ratio:16/9;object-fit:cover}
+ #find>img{height:330px;object-position:50% 35%}
+}
+
+/* Individual composition and gentle tonal lift, no artificial detail. */
+@media(min-width:701px){.hero-photo{height:100%;min-height:0;object-fit:cover;object-position:50% 100%}}
