@@ -3,9 +3,11 @@
  const section=document.querySelector('#space'),track=section?.querySelector('.space-track');
  if(!track)return;
  const slides=[...track.querySelectorAll('.space-slide')],choices=[...section.querySelectorAll('[data-space-index]')],position=section.querySelector('.space-position b'),announcement=section.querySelector('.space-announcement');
+ const backgrounds=[...section.querySelectorAll('.space-ambient')];
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');let active=0,settle;
  function update(index,announce=true){
   active=(index+slides.length)%slides.length;
+  backgrounds.forEach((image,i)=>image.classList.toggle('is-active',i===active));
   choices.forEach((button,i)=>button.setAttribute('aria-pressed',String(i===active)));
   position.textContent=String(active+1).padStart(2,'0');
   if(announce)announcement.textContent=`${active+1} of ${slides.length}: ${slides[active].querySelector('figcaption span').textContent}`;

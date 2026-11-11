@@ -37,3 +37,26 @@
 @media(max-width:700px){#space{display:flex;flex-direction:column;gap:0;padding:38px 20px 35px}#space .story-copy{display:contents}#space .story-copy>.eyebrow{order:0;align-self:flex-start;margin-bottom:15px}#space .story-copy>h2{order:1;align-self:flex-start;font-size:40px}#space .story-copy>h2 br{display:none}#space .story-copy>.rule{order:2;align-self:flex-start;margin:20px 0}#space .story-copy>p:not(.eyebrow){order:3;align-self:flex-start;font-size:16px;margin-bottom:24px}#space .space-media{order:4;max-width:500px}#space .space-choices{order:5;width:100%;max-width:500px;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:22px}#space .space-choice>img{aspect-ratio:1}#space .space-choice>span{display:block;font-size:10px;line-height:1.4;padding-top:8px}#space .space-choice small{display:block;font-size:9px;margin-bottom:4px}#space .story-copy>.button{order:6;margin-top:25px}#space figcaption{font-size:11px;padding:13px 12px}#space .space-controls{margin-top:12px;gap:22px}}
 @media(prefers-reduced-motion:reduce){#space *{scroll-behavior:auto;transition:none}}
 #space .space-choice{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start}
+
+
+/* The selected real photograph fills the entire section, softened into atmosphere.
+   Four fixed layers cross-fade without changing layout or animating the blur itself. */
+#space{position:relative;isolation:isolate;overflow:clip;background:var(--space-ink);--space-muted:#e0d4c4}
+#space .space-backdrop{position:absolute;inset:-72px;z-index:-2;pointer-events:none;user-select:none}
+#space .space-ambient{position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 72%;filter:blur(48px);transform:scale(1.12);opacity:0;transition:opacity .8s cubic-bezier(.22,.61,.36,1)}
+#space .space-ambient.is-active{opacity:1}
+#space::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(15,12,10,.52),rgba(15,12,10,.68) 48%,rgba(15,12,10,.81) 72%,rgba(15,12,10,.75)),linear-gradient(180deg,rgba(15,12,10,.22),transparent 22%,transparent 76%,rgba(15,12,10,.32))}
+#space .story-copy{text-shadow:0 2px 18px rgba(0,0,0,.52)}
+#space .space-track{box-shadow:0 20px 60px rgba(0,0,0,.28)}
+#space .space-controls button{background:rgba(20,15,11,.6)}
+#space .space-controls button:hover{background:#5f401a}
+#space .space-position{text-shadow:0 1px 8px #000}
+#space .space-choice{border-bottom-color:#a68c6a}
+#space .space-choice[aria-pressed=true]{border-bottom-color:var(--space-gold)}
+#space .space-choice:focus-visible{outline:3px solid #ffd16d;outline-offset:5px}
+@media(max-width:700px){
+ #space::before{background:linear-gradient(180deg,rgba(15,12,10,.80),rgba(15,12,10,.65) 35%,rgba(15,12,10,.69) 70%,rgba(15,12,10,.82))}
+ #space .space-ambient{filter:blur(38px);object-position:50% 65%}
+ #space .story-copy>h2,#space .story-copy>.eyebrow,#space .story-copy>p,#space .space-choice>span{text-shadow:0 2px 16px rgba(0,0,0,.65)}
+}
+@media(prefers-reduced-motion:reduce){#space .space-ambient{transition:none}}
